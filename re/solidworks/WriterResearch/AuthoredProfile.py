@@ -33,6 +33,12 @@ class AuthoredProfile:
     Feature: ArchiveFeature
 
 
+@Dataclass(frozen=True, slots=True)
+class AuthoredSlots:
+    Profile: int
+    Sketch: int
+
+
 # the authored sketch allocates another object using the class established by Origin
 def ReadAuthoredOpen(
     Cursor: ArchiveCursor, Generation: int, OriginSketch: int
@@ -70,7 +76,7 @@ def WriteAuthoredOpen(
     OriginSketch: int,
     State: AuthoredProfile,
     PointCount: int,
-) -> None:
+) -> AuthoredSlots:
     RequireArch(Generation, 19000, "authored rectangle generation")
     RequireArch(Writer.objects.get(OriginSketch), KSketchClass, "owned Origin sketch")
     RequireArch(
@@ -89,6 +95,7 @@ def WriteAuthoredOpen(
     CheckFolderMap(Writer, (KProfileClass,), 4)
     Name = EncodeString(State.Name)
     Writer.BeginObject(KProfileClass, 1)
+    Profile = Writer.next_index - 1
     WriteFolderName(Writer, Name, State.TreeId, Flags=State.Flags)
     Writer.raw(PackFields("<Hi", 0, 0))
     WriteArcFeature(Writer, Generation, State.Feature, AllowRegenTime=True)
@@ -98,3 +105,4 @@ def WriteAuthoredOpen(
     Writer.i32(0)
     Writer.BeginObject(KSketchClass, 1)
     Writer.i32(PointCount)
+    return AuthoredSlots(Profile, Writer.next_index - 1)

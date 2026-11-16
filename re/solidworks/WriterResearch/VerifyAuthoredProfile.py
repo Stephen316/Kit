@@ -10,8 +10,15 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "authoring"))
 
 from AuthoredProfile import ReadAuthoredOpen, WriteAuthoredOpen
 from HeaderLogs import ReadHeaderLogs
+from OrdinaryProfile import (
+    OrdinaryProfile,
+    ProfileAttachment,
+    ProfileDisplay,
+)
 from OrdinaryResolved import BeginOrdinaryResolved, ReadResolvedSystem
 from RectangleFields import line_fields, measured_graph, point_fields
+from ResolvedPart import BuildOrdinaryResolved
+from VerifyBossResolve import inspect_boss
 from VerifyConfigRoot import CAPTURE_REVISION, principal_captures, require
 from VerifyOriginProxy import read_ghost, verify_proxy
 from VerifyProfileSupport import verify_profile_support
@@ -19,7 +26,7 @@ from VerifyRectAnchor import verify_anchor
 from VerifyRectAxes import verify_axes
 from VerifyRectCorners import verify_corners
 from VerifyRectDims import verify_dims
-from VerifyRectDisplay import verify_display_list
+from VerifyRectDisplay import DRAFT, verify_display_list
 from VerifyRectLines import verify_lines
 from VerifyRectRegion import verify_region
 from VerifyRectTrim import verify_trim
@@ -55,7 +62,7 @@ def verify_members(stream, profile, measurement):
 
 
 # document IDs, archive allocations and geometry order must converge on the same owner
-def inspect_open(archive, measurement, construct):
+def inspect_open(archive, measurement, construct, configuration=None):
     generation = ContainerMo(archive.streams)
     config_blob = archive.require("Contents/Config-0")
     config, model = ReadOrdinaryMap(config_blob, generation)
@@ -110,7 +117,7 @@ def inspect_open(archive, measurement, construct):
     )
     after = map_state(cursor)
     writer = origin_slots = None
-    if construct:
+    if construct and configuration is None:
         writer, origin_slots = BeginOrdinaryResolved(generation, config_state, system)
         require(writer.Snapshot() == before, "generated system owner map")
         WriteAuthoredOpen(
@@ -126,15 +133,19 @@ def inspect_open(archive, measurement, construct):
         fields.Feature.RegenTime,
         sha256(stream[start:end]).hexdigest(),
     )
-    corner_proof = verify_corners(
+    corner_proof, saved_corners = verify_corners(
         cursor, profile, corners, endpoints, tallies, generation, writer
     )
-    proxy_proof = verify_proxy(
+    proxy_proof, saved_proxy = verify_proxy(
         cursor, profile, origin, system.Origin, ghost, generation, writer, origin_slots
     )
-    line_proof = verify_lines(cursor, profile, endpoints, tallies, generation, writer)
-    dim_proof = verify_dims(cursor, profile, corners, measurement, generation, writer)
-    axis_proof = verify_axes(
+    line_proof, saved_lines = verify_lines(
+        cursor, profile, endpoints, tallies, generation, writer
+    )
+    dim_proof, saved_lengths = verify_dims(
+        cursor, profile, corners, measurement, generation, writer
+    )
+    axis_proof, saved_axes = verify_axes(
         cursor, profile, corners, endpoints, measurement, generation, writer
     )
     anchor_proof = verify_anchor(
@@ -145,7 +156,7 @@ def inspect_open(archive, measurement, construct):
         generation,
         writer,
     )
-    display_proof = verify_display_list(
+    display_proof, poses, restored, inactive = verify_display_list(
         cursor,
         profile,
         corners,
@@ -153,7 +164,7 @@ def inspect_open(archive, measurement, construct):
         generation,
         writer,
     )
-    region_proof = verify_region(
+    region_proof, saved_region = verify_region(
         cursor,
         snapshot,
         profile,
@@ -173,7 +184,7 @@ def inspect_open(archive, measurement, construct):
         generation,
         writer,
     )
-    trim_proof = verify_trim(
+    trim_proof, saved_trim = verify_trim(
         cursor,
         profile,
         tuple(endpoints),
@@ -187,6 +198,54 @@ def inspect_open(archive, measurement, construct):
         require(
             len(writer.build()) == cursor.Offset, "complete generated profile return"
         )
+    if configuration is not None:
+        require(
+            configuration.Framed.State == config_state, "generated config namespace"
+        )
+        state = OrdinaryProfile(
+            fields,
+            saved_corners,
+            saved_lines,
+            saved_lengths,
+            saved_axes,
+            ProfileDisplay(poses, DRAFT, restored),
+            saved_region,
+            ProfileAttachment(
+                reference.FeatureId,
+                reference.TimeValue,
+                saved_proxy.FeatureTime,
+                saved_proxy.LastAccessStamp,
+            ),
+            saved_trim,
+        )
+        expected = bytearray(stream[: cursor.Offset])
+        for offset in inactive:
+            expected[offset : offset + 4] = bytes(4)
+
+        def compose(boss):
+            built = BuildOrdinaryResolved(
+                generation, configuration, system, state, boss
+            )
+            require(
+                built.Framed.Data[: cursor.Offset] == expected,
+                "complete profile built from the generated config",
+            )
+            require(
+                (built.Profile.Feature, built.Profile.Sketch, built.Profile.File)
+                == (profile.ObjectIndex, profile.SketchIndex, trim_proof[4]),
+                "actual generated profile sketch and trim file aliases",
+            )
+            return built
+
+        if has_atom:
+            inspect_boss(archive, measurement, True, compose=compose)
+        else:
+            built = compose(None)
+            require(
+                len(built.Framed.Data) == cursor.Offset
+                and built.Framed.State == map_state(cursor),
+                "complete generated sketch only map and footer",
+            )
     return (
         opening,
         corner_proof,

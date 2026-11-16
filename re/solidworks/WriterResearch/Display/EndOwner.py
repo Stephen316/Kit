@@ -78,6 +78,12 @@ def ReadEndProps(Cursor: FieldCursor, *, Generation: int) -> EndProps:
     return EndProps(*Cursor.ReadInts("<5i"))
 
 
+# a fresh ordinary extrusion starts with the native end constructor's clear fields
+def EncodeFreshProps(*, Generation: int) -> bytes:
+    RequireArch(Generation, KConfigGen, "fresh ordinary blind solid end properties")
+    return PackFields("<5i", *EndProps(0, 0, 0, 0, 0))
+
+
 # the extrusion returns only after the independently owned end specification closes
 def EncodeBossReturn(*, Generation: int) -> bytes:
     RequireArch(Generation, KConfigGen, "plain modern blind boss outer return")

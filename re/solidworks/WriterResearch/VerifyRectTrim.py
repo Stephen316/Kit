@@ -109,7 +109,7 @@ def verify_trim(
                 "exact resolved list close",
             )
             writer.raw(WriterEnd)
-    return (
+    proof = (
         start,
         end,
         before.NextIndex,
@@ -122,6 +122,7 @@ def verify_trim(
         continuation,
         sha256(raw).hexdigest(),
     )
+    return proof, state
 
 
 # The same verifier also accepts a fully generated system and sketch from the profile driver.
@@ -129,9 +130,10 @@ def inspect_trim(archive, measurement, construct):
     generation = ContainerMo(archive.streams)
     cursor, profile, edges, mode, reference = open_trim(archive, generation)
     writer = PartArchiveWriter(map_state(cursor)) if construct else None
-    return verify_trim(
+    proof, _ = verify_trim(
         cursor, profile, edges, mode, reference, measurement, generation, writer
     )
+    return proof
 
 
 # source digests bind the complete ordered boundary and allocation replay

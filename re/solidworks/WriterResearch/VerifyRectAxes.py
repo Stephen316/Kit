@@ -77,10 +77,11 @@ def verify_axes(cursor, profile, corners, edges, measurement, generation, writer
         require(writer.Snapshot() == after, "constructed axis handle allocations")
     cursor.Offset = end
     cursor.NextIndex = sketch.NextIndex
-    return (
+    proof = (
         start,
         end,
         before.NextIndex,
         after.NextIndex,
         sha256(cursor.BlobValue[start:end]).hexdigest(),
     )
+    return proof, tuple(order)

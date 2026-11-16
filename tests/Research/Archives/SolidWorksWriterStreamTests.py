@@ -129,6 +129,17 @@ def CheckBossEnd() -> None:
     )
 
 
+# composition must reach exact eof with one named driving depth and archive map
+def CheckBossWhole() -> None:
+    Report = LoadReport("VerifyBossResolve.py", 8)
+    assert Report["constructed"] is True
+    assert Report["saved_property_forms"] == 3
+    assert (
+        Report["boss_replay_sha256"]
+        == "b90d5aa693f33eed082fc9250cf78bb79f54a545a22859f67ce714041eb74eab"
+    )
+
+
 # the research writer and reader must agree on the full stream in real native files
 def CheckDefinition() -> None:
     Report = LoadReport("VerifyDefinition.py")
@@ -411,6 +422,14 @@ def CheckSidecars() -> None:
     assert (
         Report["replay_sha256"]
         == "a0361c2da1f1182d8976fbabe0d77eaa9579dccfa6655554b622c2485ac36cd9"
+    )
+    assert (
+        Report["package_sha256"]
+        == "865e7d717d4d4fff91c1df314e3cd1895b03f2a8bda4cfe9a8346fec12c2251e"
+    )
+    assert (
+        Report["document_sha256"]
+        == "76446501f05f8a0087064f6023170f518ca07dc7e795443c03da32427b03fb7f"
     )
     assert (
         Report["retained_sha256"]

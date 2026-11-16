@@ -86,17 +86,20 @@ be needed to omit another member. [Licensed omission measurements](../SolidWorks
 | Full typed payload | `Contents/Config-0-ModelHeader`, `Header2` | `HeaderTail.WriteModelHdr`, with explicit source-owned time, feature IDs and saved state |
 | Full typed payload | `Contents/CusProps`, `Contents/OleItems`, `OleItemInformation/OLE_Item_Data` | `PartProperties.EncodePartProperties`, `PartOle.EncodePartOle` |
 | Fresh-document payload | `_MO_VERSION_19000/History`, `_MO_VERSION_19000/Biography` | `PartFraming.EncodeVersionStreams`, which creates fresh state from absence of prior saved history |
-| Partial content | `Contents/Config-0`, `Contents/Config-0-ResolvedFeatures` | `ConfigResolvedFraming` derives the framing and shared allocation. Both bodies need end-to-end authoring composition. |
+| Full typed payload | `Contents/Config-0`, `Contents/Config-0-ResolvedFeatures` | `OrdinaryConfig.BuildOrdinaryConfig` and `ResolvedPart.BuildOrdinaryResolved` share the generated configuration map. |
 | Open | `Contents/3DExperienceExchange2`, `Contents/3DExperienceExchange_ConfigHeader`, `Contents/PMISemanticDataDB` | Database stream constructors or licensed omission evidence |
 | Open | `Contents/eModelLic` | Scoped native save-context semantics and a justified caller input |
 | Open | `Preview`, `PreviewPNG` | Native preview encoding from generated content or licensed omission evidence |
 | Open | `SwDocContentMgr/SwDocContentMgrInfo`, `ThirdPtyStore/VisualStates` | Content manager and visualization state constructors or licensed omission evidence |
-| Full typed payload | `[Content_Types].xml`, `_rels/.rels` | `PartManifests.EncodeManifests` binds the actual app, core and custom property targets |
-| Full typed payload | `docProps/OpenTime.xml`, `docProps/app.xml`, `docProps/core.xml` | `PartSimpleProperties` constructs caller-owned property values in the exact namespaces |
-| Full typed payload | `docProps/Config-0-Properties.xml`, `docProps/custom.xml` | `PartSectionProperties` constructs the exact empty document and configuration scopes |
-| Open | `docProps/ISolidWorksInformation.xml` | Typed saved application-information owners and values |
+| Typed payload with prerequisites | `[Content_Types].xml`, `_rels/.rels` | `PartOpc.EncodePartOpc` requires actual emitted extended, core and custom property streams |
+| Full typed payload | `docProps/OpenTime.xml` | `PartOpenTime.EncodePartOpenTime` for the measured fresh and once-open histories |
+| Full typed payload | `docProps/app.xml`, `docProps/core.xml`, `docProps/custom.xml` | `PartDocProperties.EncodeDocumentProperties` from caller metadata and the native fresh-property defaults |
+| Full typed payload | `docProps/Config-0-Properties.xml` | `PartSectionProperties.EncodeSectionProps` constructs the empty configuration scope |
+| Open | `docProps/ISolidWorksInformation.xml` | Typed SOLIDWORKS information metadata owners and serialization |
 | Open | `swXmlContents/Features`, `swXmlContents/KeyWords` | XML derived from authored feature and document metadata or licensed omission evidence |
 
-There are 20 retained members with standalone constructors, including two
-fresh-document payloads. Two are partially composed and 11 lack a
-constructive owner. Native acceptance of a fully generated archive is pending.
+There are 22 retained members with typed constructors, including two
+fresh-document payloads and two manifests with property stream prerequisites.
+Eleven remain open. Native acceptance of a fully generated archive is pending.
+[Package manifests and open timing](SolidWorksPackageMetadata.md)
+[Document property writers](SolidWorksDocumentProperties.md)

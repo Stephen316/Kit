@@ -1,0 +1,5 @@
+# Compose the generated SOLIDWORKS configuration and resolved features
+
+The ordinary resolved writer takes the allocation map produced by the Config-0 writer. It reuses the generated environment, actual part owner and ghost identity, builds the principal datums and Origin, and constructs the anchored rectangle. The optional extrusion reuses the generated profile, trim file, and configuration atom and closes the resolved list.
+
+The hosted archive check constructs both streams against all 14 pinned P01 and P03 files. It verifies exact profile bytes outside documented inactive display fields, the final map, and the P03 extrusion's linked signed depth. Fresh extrusion end properties use the installed native constructor's initial values. Independent native open, edit, rebuild and save/reopen still require a generated whole part. [Resolved writer](../../../../../../re/solidworks/WriterResearch/ResolvedPart.py), [configuration and profile verification](../../../../../../re/solidworks/WriterResearch/VerifyOrdinaryConfig.py), [boss evidence](../../../../../../re/solidworks/WriterResearch/BossResolve.md)

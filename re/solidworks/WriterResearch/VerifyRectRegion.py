@@ -63,6 +63,7 @@ def verify_region(
         after.NextIndex == before.NextIndex + 8, "one region class and seven objects"
     )
     raw = cursor.BlobValue[start:end]
+    region = SketchRegionState(serial, outline)
     if writer is not None:
         require(
             writer.Snapshot() == before,
@@ -74,7 +75,7 @@ def verify_region(
             generation,
             profile.SketchIndex,
             edges,
-            SketchRegionState(serial, outline),
+            region,
         )
         require(
             writer.build()[position:] == raw,
@@ -83,7 +84,7 @@ def verify_region(
         require(writer.Snapshot() == after, "exact region list and outline allocations")
     cursor.Offset = end
     cursor.NextIndex = sketch.NextIndex
-    return (
+    proof = (
         start,
         region_start,
         region_end,
@@ -93,3 +94,4 @@ def verify_region(
         serial,
         sha256(raw).hexdigest(),
     )
+    return proof, region

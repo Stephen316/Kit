@@ -45,5 +45,14 @@ native acceptance have their own evidence gates.
 
 The process fixture uses synthetic observations to exercise the retained
 contract. It checks refusal of a mismatched receipt pin, reused process identity,
-failed control and changed restored archive. Admission of the licensed private
-runs requires their retained files and independently supplied hashes.
+failed control and changed restored archive.
+
+## Verified licensed replay
+
+The licensed Fusion owner ran the verifier at `204ac0b8` against the two
+original Fusion 2706.1.17 witness directories. Both returned
+`verified_rectangle_witness`. The earlier sealed ZIP supplied the plan and
+receipt pins. All 16 retained files matched that ZIP before and after replay.
+The combined verification JSON SHA-256 is
+`822ccd265b92510610148c9f67aa92c4835a9c4f3c64c783dfbad5df25a79d91`.
+[Licensed replay report](https://github.com/TryUniCAD/Kit/pull/94#issuecomment-6922174876)
