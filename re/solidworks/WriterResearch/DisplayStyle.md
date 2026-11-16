@@ -35,3 +35,30 @@ The three line width calls resolve to `utLineWidth_c::Serialize` at `0x3c85a6e0`
 The three exported `moDisplayDistanceDim_c` constructors call the `moDisplayDim_c` overloads at `0x4c86c360`, `0x4c86cb40` and `0x4c86d2b0`. All three invoke the same `moDisplayItem_c` constructor at `0x4ba64990`. It sets `+0x3b8` to -1.0 at `0x4ba64bfe`, initializes the map counts to zero, and initializes `+0x4a0` and `+0x4b8` to null. The member writes at `0x4ba64b11` through `0x4ba64b7b` supply the signed word values in the table. The three constructor calls at `0x4ba64b25`, `0x4ba64b46` and `0x4ba64b67` each pass line weight enum 0 to `utLineWidth_c` at `0x3c85a5f0`. That overload writes the supplied enum to member `+6` and initializes the float at `+0` to -1.0.
 
 The eight [receipt-pinned P03 controls](../../automation/PairedCaptures/P03/solidworks-db1390476325/receipt.json) include baseline, dimensional edits, inch units, YZ plane and negative direction. Their full `<d2ihf2ihf8ihf5i>` spans all have SHA-256 `5a3b29f9eea808f1984c8526c7474be07bc63b265894d6078c23860aeec1abc1`. These controls corroborate the supported normal empty branch. Appearance edits, populated child records, other display branches and native acceptance of a generated display remain unmeasured. [Enclosing depth display](BlindDepth.md)
+
+## Terminal display item points and vectors
+
+The plain archive store path ends `moDisplayItem_c::Serialize` with 148 bytes immediately after the 94-byte style. The count 4 is already in the last style word at `0x4ba4c440`. The first point starts at member `+0x4f0`, with a 24-byte stride and four calls to `mgPoint_c::save` at `0x4ba4c456`. The signed-long operator at `0x4ba4c46c` writes the count 2 established in `r13d` at `0x4ba4b86d`. The two calls to `mgVector_c::save` at `0x4ba4c486` start at member `+0x550`, with the same 24-byte stride. The serializer returns after the second vector and leaves the archive allocation map unchanged.
+
+The constructor makes the four default points at `0x4ba64d63` through `0x4ba64d88`. The zero-argument `mgPoint_c` constructor at `0x31de3a20` clears three eight-byte slots. The calls at `0x4ba64d8e` and `0x4ba64da5` resolve to `mgUnitVector_c::yAxis`. The calls at `0x4ba64d9e` and `0x4ba64db5` copy that vector to `+0x550` and `+0x568`. In `sldmgu.dll` SHA-256 `3b82cfcaa13f099fca4f9741acbb11479dab7a6f20656052d5a750e61c6fee1e`, the two `save(su_CArchive&)` exports share `0x31e13a30`. The plain path writes three doubles in slot order at `0x31e13b61`, `0x31e13b6f` and `0x31e13b7d`. The separately gated database path serializes via MessagePack.
+
+All eight exact saves decode as `<12di6d>` with four `(0, 0, 0)` points, count 2, and two `(0, 1, 0)` vectors. The span SHA-256 is `bac88f3516585d8d8532a99d9cc384405e47cbdb63beeac763384fc6973e6182`. The principal YZ and reversed-direction cases preserve the display-local +Y values. The depth parameter and its signed placement remain separately owned by the boss records.
+
+| P03 save | First point | First text byte after vectors | First handle tag |
+| --- | ---: | ---: | ---: |
+| `baseline-a` | 13367 | 13515 | 13651 |
+| `baseline-b` | 13595 | 13743 | 13879 |
+| `edit-width_mm-41` | 13595 | 13743 | 13879 |
+| `edit-height_mm-23` | 13595 | 13743 | 13879 |
+| `edit-depth_mm-12` | 13595 | 13743 | 13879 |
+| `units-inch` | 13595 | 13743 | 13879 |
+| `plane-yz` | 13437 | 13585 | 13721 |
+| `direction-negative` | 13365 | 13513 | 13649 |
+
+To reproduce the offsets, verify the receipt, measurement digest, file sizes and file digests as in the [hosted archive check](../../../tests/Research/Archives/SolidWorksBossStyleTests.py). Open the ordinary [rectangle and boss read](../../../src/convert/adapters/solidworks/resolved/RectanglePart.py) on `Contents/Config-0` and `Contents/Config-0-ResolvedFeatures`. In the unique boss `ReadDisplayOpen`, the cursor is at the first point after the style value has been read. Advance 148 bytes through the points and vectors to the first text byte. The offset on return from that call is the independently recovered `depth_display.handle.offset`.
+
+## Following inline text and handle
+
+The `moDisplayDim_c` caller resumes at `0x4c82a1e9` and calls serializer slot 5 on the inline `moDimText_c` member `+0x6a0` at `0x4c82a1f6`. The vtable at `0x4d243868` resolves that slot to `0x4c6e86b0`. Its plain saved text begins with the empty Unicode `iText` CString at member `+0x08`, written by the CString operator at `0x4c6e8870`. The next fields are the origin `Position` at `+0x38`, `FormatToUse` signed long 18 at `+0x10`, and the null `Format` object at `+0x18`. Their store calls are `0x4c6e88eb`, `0x4c6e892d` and `0x4c6e898c`. The constructor at `0x4c84ff90` initializes the points, a null format object on this path and scale 1.0. The `useOtherFormat` entry at `0x4c8578b0` writes the supplied format to `+0x10` and clears `+0x18`. The calling route that supplies 18 on this boss still needs attribution.
+
+The 136 bytes from the empty CString through the last field before the handle also agree in all eight saves, with SHA-256 `f88940a3060281aebab6185f30814dc56f675b79047c28e1036dab141751cd6f`. The offset after them holds a compact schema-1 `moFeatureDimHandle_c` class definition. The typed walk reaches it at next map index 297, which allocates the handle class and object 298. The enclosing compact display reference has already allocated object 296 before `ReadDisplayOpen`, whose entry and exit both have next index 297. The `moDisplayDim_c` store writes `DimHandleCount` from `+0x860` at `0x4c82a35d` before the handle loop. Attribution of the remaining inline text fields and the producer of its selected format is needed before complete depth-display generation. [Handle and cache reader](../../../src/convert/adapters/solidworks/resolved/BossDepth.py)
