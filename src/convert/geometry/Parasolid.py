@@ -1414,15 +1414,54 @@ def MakeNodeState(
     return Nodes
 
 
-# loop orientation converts face reversals into encoded coedge traversal directions
+# paired fins must start at opposite ends without losing explicit topology use reversals
+def FindFinBodies(
+    Topology: BrepTopology,
+    Owners: EncodeOwners,
+    ForwardFaces: Mapping[str, bool],
+    ForwardUses: Mapping[str, bool],
+) -> set[str]:
+    FaceBreaks: set[str] = set()
+    UseBreaks: set[str] = set()
+    for EdgeData in Topology.edges.values():
+        CoedgeIds = Topology.edge_coedges[EdgeData.id]
+        if len(CoedgeIds) != 2 or EdgeData.start_vertex_id == EdgeData.end_vertex_id:
+            continue
+        FirstId, OtherId = CoedgeIds
+        FirstFace = Topology.loop_face[Topology.coedge_loop[FirstId]]
+        OtherFace = Topology.loop_face[Topology.coedge_loop[OtherId]]
+        RawOpposite = (
+            Topology.coedges[FirstId].reversed ^ Topology.coedges[OtherId].reversed
+        )
+        BodyId = Owners.KEdgeBody[EdgeData.id]
+        if RawOpposite == (ForwardFaces[FirstFace] ^ ForwardFaces[OtherFace]):
+            FaceBreaks.add(BodyId)
+        if RawOpposite == (ForwardUses[FirstFace] ^ ForwardUses[OtherFace]):
+            UseBreaks.add(BodyId)
+    return FaceBreaks - UseBreaks
+
+
+# loop orientation converts face reversals into connected encoded coedge traversal
 def MakeLoopOrder(
-    Model: BrepModel, Topology: BrepTopology
+    Model: BrepModel, Topology: BrepTopology, Owners: EncodeOwners
 ) -> tuple[dict[str, tuple[str, ...]], dict[str, bool]]:
     EncodedLoops: dict[str, tuple[str, ...]] = {}
     EncodedReversed: dict[str, bool] = {}
+    ForwardFaces = {
+        FaceData.id: Topology.IsFaceForward(FaceData.id) for FaceData in Model.faces
+    }
+    ForwardUses = {
+        FaceData.id: ForwardFaces[FaceData.id] == FaceData.same_sense
+        for FaceData in Model.faces
+    }
+    UseBodies = FindFinBodies(Topology, Owners, ForwardFaces, ForwardUses)
     for LoopData in Model.loops:
-        FaceData = Topology.faces[Topology.loop_face[LoopData.id]]
-        FaceForward = Topology.IsFaceForward(FaceData.id)
+        FaceId = Topology.loop_face[LoopData.id]
+        FaceForward = (
+            ForwardUses[FaceId]
+            if Owners.KFaceBody[FaceId] in UseBodies
+            else ForwardFaces[FaceId]
+        )
         EncodedLoops[LoopData.id] = (
             LoopData.coedge_ids
             if FaceForward
@@ -1505,7 +1544,7 @@ def MakeFinState(
     Indices: EncodeIndices,
     Owners: EncodeOwners,
 ) -> EncodeFinState:
-    EncodedLoops, EncodedReversed = MakeLoopOrder(Model, Topology)
+    EncodedLoops, EncodedReversed = MakeLoopOrder(Model, Topology, Owners)
     VertexFins: dict[str, list[int]] = {Vertex.id: [] for Vertex in Model.vertices}
     FinVertex: dict[int, str] = {}
     FinOther: dict[int, int] = {}
