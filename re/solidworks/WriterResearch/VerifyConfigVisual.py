@@ -62,7 +62,7 @@ def inspect_visual(config, cmgr, generation, layouts, construct):
     cmgr_start = ReadCmgrOpening(cmgr, generation).Offset
     _, _, cmgr_return = ReadColorSpan(cmgr, generation)
     require(
-        config[start:end] == cmgr[cmgr_start:cmgr_return.Offset],
+        config[start:end] == cmgr[cmgr_start : cmgr_return.Offset],
         "separately owned visual bodies differ",
     )
     if construct:
@@ -77,7 +77,10 @@ def inspect_visual(config, cmgr, generation, layouts, construct):
         require(writer.build() == config[:end], "typed Config-0 visual reconstruction")
         require(
             (writer.next_index, writer.classes)
-            == (cursor.NextIndex, {name: index for index, name in cursor.Classes.items()}),
+            == (
+                cursor.NextIndex,
+                {name: index for index, name in cursor.Classes.items()},
+            ),
             "constructed Config-0 visual ownership",
         )
     return (
@@ -107,7 +110,9 @@ def report(construct):
         "capture_revision": CAPTURE_REVISION,
         "captures": {row[0]: row[-1] for row in rows},
         "constructed": construct,
-        "replay_sha256": sha256(json.dumps(rows, separators=(",", ":")).encode()).hexdigest(),
+        "replay_sha256": sha256(
+            json.dumps(rows, separators=(",", ":")).encode()
+        ).hexdigest(),
     }
 
 
