@@ -8,6 +8,45 @@ QUANTITIES = frozenset(
 DIMENSIONAL = QUANTITIES - {"dimensionless", "exact"}
 MAX_NODES = 100000
 MAX_RECORDS = 1000000
+MAX_EVIDENCE_BYTES = 8 * 1024 * 1024
+MAX_REPORT_BYTES = 32 * 1024 * 1024
+
+
+def _encoded_size(value, limit):
+    pending = [(value, 0)]
+    records = 0
+    while pending:
+        item, depth = pending.pop()
+        records += 1
+        if records > MAX_RECORDS or depth > 64:
+            raise ValueError("semantic evidence exceeds its structure limit")
+        if isinstance(item, str):
+            if len(item) > 1024 * 1024:
+                raise ValueError("semantic evidence string exceeds its character limit")
+        elif isinstance(item, dict):
+            if len(pending) + 2 * len(item) > MAX_RECORDS:
+                raise ValueError("semantic evidence exceeds its structure limit")
+            if any(not isinstance(key, str) for key in item):
+                raise ValueError("semantic evidence object keys must be strings")
+            pending.extend((key, depth + 1) for key in item)
+            pending.extend((child, depth + 1) for child in item.values())
+        elif isinstance(item, list):
+            if len(pending) + len(item) > MAX_RECORDS:
+                raise ValueError("semantic evidence exceeds its structure limit")
+            pending.extend((child, depth + 1) for child in item)
+        elif item is not None and type(item) not in (bool, int, float):
+            raise ValueError("semantic evidence must contain JSON data")
+        if len(pending) > MAX_RECORDS:
+            raise ValueError("semantic evidence exceeds its structure limit")
+    size = 0
+    try:
+        for chunk in json.JSONEncoder(allow_nan=False).iterencode(value):
+            size += len(chunk)
+            if size > limit:
+                return None
+    except (TypeError, ValueError, RecursionError) as error:
+        raise ValueError("semantic evidence must contain finite JSON data") from error
+    return size
 
 
 def _text(value, limit, description):
@@ -90,15 +129,9 @@ def _graph(graph, side):
     issues = graph.get("issues", [])
     if not isinstance(issues, list) or len(issues) > MAX_RECORDS:
         raise ValueError("semantic graph issues must be a bounded list")
-    try:
-        encoded = json.dumps(issues, allow_nan=False, ensure_ascii=False)
-    except (TypeError, ValueError, RecursionError) as error:
-        raise ValueError(
-            "semantic graph issues must contain finite JSON data"
-        ) from error
-    if len(encoded) > 32 * 1024 * 1024:
+    if _encoded_size(issues, MAX_REPORT_BYTES) is None:
         raise ValueError("semantic graph issues exceed their output budget")
-    return nodes, [{"side": side, "issue": item} for item in issues]
+    return nodes, issues
 
 
 def _equal(left, right, tolerances):
@@ -198,7 +231,6 @@ def _preferences(scores):
 
 
 def _reference_differences(left, right, matches):
-    differences = []
     inverse = {target: source for source, target in matches.items()}
     for first, second in sorted(matches.items()):
         expected, observed = Counter(), Counter()
@@ -216,46 +248,39 @@ def _reference_differences(left, right, matches):
             if expected[key] == observed[key]:
                 continue
             role, origin, target = key
-            differences.append(
-                {
-                    "left": first,
-                    "right": second,
-                    "role": role,
-                    "left_target": (
-                        inverse[target]
-                        if origin == "matched"
-                        else target if origin == "left" else None
-                    ),
-                    "right_target": target if origin in {"matched", "right"} else None,
-                    "left_count": expected[key],
-                    "right_count": observed[key],
-                    "reason": (
-                        "target_multiplicity"
-                        if origin == "matched"
-                        else "unmatched_target"
-                    ),
-                }
-            )
+            yield {
+                "left": first,
+                "right": second,
+                "role": role,
+                "left_target": (
+                    inverse[target]
+                    if origin == "matched"
+                    else target if origin == "left" else None
+                ),
+                "right_target": target if origin in {"matched", "right"} else None,
+                "left_count": expected[key],
+                "right_count": observed[key],
+                "reason": (
+                    "target_multiplicity" if origin == "matched" else "unmatched_target"
+                ),
+            }
     for side, nodes, aligned in (("left", left, matches), ("right", right, inverse)):
         for identity, node in sorted(nodes.items()):
             counts = Counter((link["role"], link["target"]) for link in node["links"])
             for (role, target), count in sorted(counts.items()):
                 if target not in nodes or identity not in aligned:
-                    differences.append(
-                        {
-                            "side": side,
-                            "node": identity,
-                            "role": role,
-                            "target": target,
-                            "count": count,
-                            "reason": (
-                                "unresolved_target"
-                                if target not in nodes
-                                else "unmatched_node"
-                            ),
-                        }
-                    )
-    return differences
+                    yield {
+                        "side": side,
+                        "node": identity,
+                        "role": role,
+                        "target": target,
+                        "count": count,
+                        "reason": (
+                            "unresolved_target"
+                            if target not in nodes
+                            else "unmatched_node"
+                        ),
+                    }
 
 
 def match_graphs(left, right, tolerances, max_candidates=100000):
@@ -272,8 +297,19 @@ def match_graphs(left, right, tolerances, max_candidates=100000):
     for identity, node in right_nodes.items():
         right_kinds[node["kind"]].append(identity)
     candidates, differences, limited = {}, {}, []
+    report_remaining = MAX_REPORT_BYTES - 4096
+
+    def retain(items, item):
+        nonlocal report_remaining
+        size = _encoded_size(item, report_remaining - 2)
+        if size is None:
+            raise ValueError("semantic report exceeds its 33554432-byte JSON limit")
+        report_remaining -= size + 2
+        items.append(item)
+
     evaluations = 0
     work_remaining = max_candidates * 64
+    evidence_remaining = MAX_EVIDENCE_BYTES
     for kind in sorted(left_kinds.keys() & right_kinds.keys()):
         sources, targets = sorted(left_kinds[kind]), sorted(right_kinds[kind])
         count = len(sources) * len(targets)
@@ -285,7 +321,8 @@ def match_graphs(left, right, tolerances, max_candidates=100000):
             for second in targets
         )
         if count > max_candidates - evaluations or work > work_remaining:
-            limited.append(
+            retain(
+                limited,
                 {
                     "kind": kind,
                     "left": sources,
@@ -296,9 +333,12 @@ def match_graphs(left, right, tolerances, max_candidates=100000):
                         if count > max_candidates - evaluations
                         else "field_budget"
                     ),
-                }
+                },
             )
             continue
+        tentative_candidates, tentative_differences = {}, {}
+        group_bytes = 0
+        evidence_limited = False
         for first in sources:
             for second in targets:
                 fields = _fields(
@@ -307,13 +347,38 @@ def match_graphs(left, right, tolerances, max_candidates=100000):
                     tolerances,
                 )
                 pair = first, second
-                differences[pair] = fields
-                candidates[pair] = (
+                evaluations += 1
+                size = _encoded_size(
+                    {"left": first, "right": second, "differences": fields},
+                    evidence_remaining - group_bytes,
+                )
+                if size is None:
+                    evidence_limited = True
+                    break
+                group_bytes += size
+                tentative_differences[pair] = fields
+                tentative_candidates[pair] = (
                     0,
                     _distance(left_shapes[first], right_shapes[second]),
                     len(fields),
                 )
-        evaluations += count
+            if evidence_limited:
+                break
+        if evidence_limited:
+            retain(
+                limited,
+                {
+                    "kind": kind,
+                    "left": sources,
+                    "right": targets,
+                    "candidate_pairs": count,
+                    "reason": "evidence_budget",
+                },
+            )
+        else:
+            candidates.update(tentative_candidates)
+            differences.update(tentative_differences)
+            evidence_remaining -= group_bytes
         work_remaining -= work
     matches = {}
     search_limited = bool(limited)
@@ -369,16 +434,29 @@ def match_graphs(left, right, tolerances, max_candidates=100000):
     unresolved = defaultdict(list)
     for first, second in candidates:
         unresolved[first].append(second)
-    return {
-        "matches": [
+    report = {
+        "matches": [],
+        "ambiguous": [],
+        "unmatched_left": [],
+        "unmatched_right": [],
+        "reference_differences": [],
+        "search_limited": search_limited,
+        "limited_candidates": limited,
+        "candidate_evaluations": evaluations,
+        "issues": [],
+    }
+    for first, second in sorted(matches.items()):
+        retain(
+            report["matches"],
             {
                 "left": first,
                 "right": second,
                 "differences": differences[(first, second)],
-            }
-            for first, second in sorted(matches.items())
-        ],
-        "ambiguous": [
+            },
+        )
+    for first, targets in sorted(unresolved.items()):
+        retain(
+            report["ambiguous"],
             {
                 "left": first,
                 "right": sorted(targets),
@@ -402,16 +480,17 @@ def match_graphs(left, right, tolerances, max_candidates=100000):
                     }
                     for second in sorted(targets)
                 ],
-            }
-            for first, targets in sorted(unresolved.items())
-        ],
-        "unmatched_left": sorted(left_nodes.keys() - matches.keys()),
-        "unmatched_right": sorted(right_nodes.keys() - set(matches.values())),
-        "reference_differences": _reference_differences(
-            left_nodes, right_nodes, matches
-        ),
-        "search_limited": search_limited,
-        "limited_candidates": limited,
-        "candidate_evaluations": evaluations,
-        "issues": left_issues + right_issues,
-    }
+            },
+        )
+    for identity in sorted(left_nodes.keys() - matches.keys()):
+        retain(report["unmatched_left"], identity)
+    for identity in sorted(right_nodes.keys() - set(matches.values())):
+        retain(report["unmatched_right"], identity)
+    for item in _reference_differences(left_nodes, right_nodes, matches):
+        retain(report["reference_differences"], item)
+    for side, issues in (("left", left_issues), ("right", right_issues)):
+        for item in issues:
+            retain(report["issues"], {"side": side, "issue": item})
+    if _encoded_size(report, MAX_REPORT_BYTES) is None:
+        raise ValueError("semantic report exceeds its 33554432-byte JSON limit")
+    return report
