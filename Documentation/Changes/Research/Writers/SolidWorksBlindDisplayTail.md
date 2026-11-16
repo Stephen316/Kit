@@ -1,0 +1,5 @@
+# Construct ordinary SOLIDWORKS blind boss display placement
+
+The research encoder constructs the 240-byte enclosing distance display after the feature-dimension handle and parallel-plane distance child. It derives the placement directions and duplicated local points from the existing neutral frame, measured tangent, signed normal and positive depth. The caller supplies the witnessed document detail settings and a signed annotation witness projection because the P03 measurement receipt does not contain the annotation point. [Native stores and archive evidence](../../../../re/solidworks/WriterResearch/DisplayTail.md)
+
+The hosted archive check compares 232 independently constructible bytes on the eight pinned P03 files and checks a distinct explicit witness in place of the saved annotation value. The packaged reader verifies the generated records reach the unchanged display cursor with the exact allocated objects. Hosted execution for this change is pending. Full model writing and licensed native reopen remain unqualified. [Archive verification](../../../../tests/Research/Archives/SolidWorksDistVerify.py)

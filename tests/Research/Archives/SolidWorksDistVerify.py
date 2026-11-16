@@ -1,14 +1,17 @@
 from pytest import MonkeyPatch
 
 from convert.adapters.solidworks.Container.Archive import KDefinitionKind
-from convert.adapters.solidworks.Container.ArchiveCursor import ArchiveCursor
+from convert.adapters.solidworks.Container.ArchiveCursor import (
+    ArchiveCursor,
+    FieldCursor,
+)
 from convert.adapters.solidworks.Container.Definition import ArchiveWriter
 from convert.adapters.solidworks.Resolved.BossDepth import (
     DepthDisplay,
     ReadFeatHandle,
     ReadParDepthMut,
 )
-from tests.Research.Archives.SolidWorksDistCodecs import LoadPairMut
+from tests.Research.Archives.SolidWorksDistCodecs import LoadPairMut, LoadTailMut
 from tests.Research.Archives.SolidWorksDistInputs import ReadDistInputs
 
 # the prior archive walk independently bounded the optional point mask for every save
@@ -35,11 +38,17 @@ KModelIdentity = 29
 # the second native retain site is unresolved so the fixture supplies the observed count
 KRetainCount = 2
 
+# a deliberately distinct annotation input exercises the signed witness field
+KAuthoredWitness = -0.003
+
+# the native placement writer reaches this separate annotation scalar after text position
+KWitnessOffset = 54
+
 
 # the writers receive the saved enclosure allocations and independent authored inputs
-def GeneratePair(
+def GenerateDisplay(
     PatchValue: MonkeyPatch, Measurements: bytes, Variant: str, Generation: int
-) -> tuple[bytes, bytes]:
+) -> tuple[bytes, bytes, bytes]:
     Inputs = ReadDistInputs(Measurements, Variant)
     Handle, Distance = LoadPairMut(PatchValue)
     Writer = ArchiveWriter()
@@ -64,7 +73,18 @@ def GeneratePair(
         Geometry=Geometry,
     )
     assert (DistanceObject, Writer.next_index) == (300, 303)
-    return HandleBytes, Writer.build()[len(HandleBytes) :]
+    OuterDisplay = LoadTailMut(PatchValue).EncodeBossTail(
+        Generation=Generation,
+        DisplayMode=201,
+        ConditionOne=False,
+        Geometry=Geometry,
+        DepthMm=Inputs["depth_mm"],
+        WitnessMetres=KAuthoredWitness,
+        ArrowHead=0,
+        Precision=2,
+        AltPrecision=2,
+    )
+    return HandleBytes, Writer.build()[len(HandleBytes) :], OuterDisplay
 
 
 # the production reader resumes past the child only with the separate presentation fields
@@ -111,9 +131,17 @@ def VerifyDistChild(
         ChildEnd - SourceChild,
         DisplayEnd - ChildEnd,
     ) == (133, 346, 240)
-    HandleBytes, DistanceBytes = GeneratePair(
+    HandleBytes, DistanceBytes, OuterDisplay = GenerateDisplay(
         PatchValue, Measurements, Variant, Generation
     )
     assert HandleBytes == Resolved[SourceHandle:SourceChild]
     assert DistanceBytes == Resolved[SourceChild:ChildEnd]
-    ReadGenerated(Depth, HandleBytes, DistanceBytes, Resolved[ChildEnd:DisplayEnd])
+    SavedTail = Resolved[ChildEnd:DisplayEnd]
+    assert len(OuterDisplay) == len(SavedTail) == 240
+    assert OuterDisplay[:KWitnessOffset] == SavedTail[:KWitnessOffset]
+    WitnessCursor = FieldCursor(OuterDisplay, KWitnessOffset)
+    assert WitnessCursor.ReadPoint(1) == (KAuthoredWitness,)
+    NextField = WitnessCursor.Offset
+    assert OuterDisplay[KWitnessOffset:NextField] != SavedTail[KWitnessOffset:NextField]
+    assert OuterDisplay[NextField:] == SavedTail[NextField:]
+    ReadGenerated(Depth, HandleBytes, DistanceBytes, OuterDisplay)

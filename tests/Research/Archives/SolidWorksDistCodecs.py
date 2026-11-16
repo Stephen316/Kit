@@ -46,6 +46,25 @@ class DistCodec(Protocol):
     ) -> int: ...
 
 
+# the generated outer tail takes caller settings separately from the model length
+class PlacementCodec(Protocol):
+
+    # the hosted case can supply its own annotation projection without copying it
+    def EncodeBossTail(
+        self,
+        *,
+        Generation: int,
+        DisplayMode: int,
+        ConditionOne: bool,
+        Geometry: object,
+        DepthMm: float,
+        WitnessMetres: float,
+        ArrowHead: int,
+        Precision: int,
+        AltPrecision: int,
+    ) -> bytes: ...
+
+
 # the bare research imports must resolve to these exact files for the scoped hosted test
 def LoadResearchMut(PatchValue: MonkeyPatch, NameValue: str) -> ModuleType:
     PathValue = FilePath(__file__).resolve().parents[3] / "re/solidworks/WriterResearch"
@@ -63,3 +82,8 @@ def LoadPairMut(PatchValue: MonkeyPatch) -> tuple[HandleCodec, DistCodec]:
     Handle = LoadResearchMut(PatchValue, "DisplayHandle")
     Dimension = LoadResearchMut(PatchValue, "BlindDimension")
     return CastValue(HandleCodec, Handle), CastValue(DistCodec, Dimension)
+
+
+# the same isolated codec state provides the frame type for the outer serializer
+def LoadTailMut(PatchValue: MonkeyPatch) -> PlacementCodec:
+    return CastValue(PlacementCodec, LoadResearchMut(PatchValue, "DisplayTail"))
