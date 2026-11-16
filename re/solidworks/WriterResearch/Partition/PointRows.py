@@ -20,7 +20,7 @@ KPointSchema = "SCH_3701250_37102_13006"
 # partition allocation assigns transport slots separately from kernel node identifiers
 @Dataclass(frozen=True, slots=True)
 class GhostAllocation:
-    body: int
+    shell: int
     point: int
     vertex: int
     ghost_value: int
@@ -54,7 +54,7 @@ def EncodePointRow(PointMm: SpaceVector, Slots: GhostAllocation) -> bytes:
     return bytes(Result)
 
 
-# the faceless vertex owns no fins or siblings and joins its body and the point
+# the faceless vertex owns no fins or siblings and joins its shell and the point
 def EncodeVertexRow(Slots: GhostAllocation) -> bytes:
     Result = GhostRowHead(18)
     WritePointerMut(Result, Slots.vertex)
@@ -62,7 +62,7 @@ def EncodeVertexRow(Slots: GhostAllocation) -> bytes:
     for Reference in (0, 0, 0, 0, Slots.point):
         WritePointerMut(Result, Reference)
     WriteFloatMut(Result, KMissingParam)
-    WritePointerMut(Result, Slots.body)
+    WritePointerMut(Result, Slots.shell)
     return bytes(Result)
 
 
@@ -81,7 +81,7 @@ def EncodeGhostRows(
 ) -> GhostRows:
     if Schema != KPointSchema:
         raise ParaWriteError("unsupported ghost point transmit schema")
-    Indices = (Slots.body, Slots.point, Slots.vertex, Slots.ghost_value)
+    Indices = (Slots.shell, Slots.point, Slots.vertex, Slots.ghost_value)
     if len(set(Indices)) != 4 or not all(0 < Value < 32767 for Value in Indices):
         raise ParaWriteError("ghost point requires four distinct short transport slots")
     Nodes = (Slots.point_node, Slots.vertex_node)

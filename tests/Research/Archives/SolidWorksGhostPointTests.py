@@ -1,6 +1,7 @@
 from hashlib import sha256 as HashBytes
 from json import loads as LoadJson
 from pathlib import Path as FilePath
+from struct import unpack_from as UnpackFrom
 from typing import Protocol, TypedDict, cast as CastValue
 
 import pytest as Pytest
@@ -45,6 +46,51 @@ class GhostCodec(Protocol):
     def EncodeGhostRows(
         self, PointMm: SpaceVector, Slots: object, GhostId: int, *, Schema: str
     ) -> tuple[bytes, bytes, bytes]: ...
+
+
+# the attribute writer receives the body binding independently of the vertex shell
+class GhostBindCodec(Protocol):
+
+    # the tuple of owned references remains explicit at the research boundary
+    def GhostAttributeSlots(self, *Values: int) -> object: ...
+
+    # the name and attached attribute span end before the body list header
+    def EncodeGhostAttr(self, Slots: object, *, Schema: str) -> bytes: ...
+
+
+# the root row keeps the world counters independent of body or transport identifiers
+class GhostWorldCodec(Protocol):
+
+    # the enclosing partition supplies the five interpreted world fields
+    def GhostWorld(self, *Values: int) -> object: ...
+
+    # the returned class and row end at the following class definition
+    def EncodeGhostWorld(self, State: object, *, Schema: str) -> bytes: ...
+
+
+# the hosted comparison supplies the exact world counters through the named input
+def MatchGhostWorld(
+    PatchValue: Pytest.MonkeyPatch, Payload: bytes, Schema: str
+) -> None:
+    assert Payload[0x101] == ord("Z")
+    HighValue, Current = UnpackFrom(">2i", Payload, 0x11D)
+    assert HighValue == Current and 2 <= Current <= 6
+    Codec = CastValue(
+        GhostWorldCodec, LoadResearchMut(PatchValue, "Partition.WorldRow")
+    )
+    State = Codec.GhostWorld(1, 2, 3, HighValue, Current)
+    assert Codec.EncodeGhostWorld(State, Schema=Schema) == Payload[0x66:0x12F]
+
+
+# the body and shell records independently ground the two different owner references
+def MatchGhostBind(PatchValue: Pytest.MonkeyPatch, Payload: bytes, Schema: str) -> None:
+    assert Payload[0x12F:0x132] == bytes((0, 12, 36))
+    assert UnpackFrom(">Hi2H", Payload, 0x249) == (3, 5, 5, 6)
+    assert Payload[0x39C:0x39F] == bytes((0, 13, 255))
+    assert UnpackFrom(">H", Payload, 0x39F) == (7,)
+    Codec = CastValue(GhostBindCodec, LoadResearchMut(PatchValue, "Partition.AttrRows"))
+    Slots = Codec.GhostAttributeSlots(10, 4, 3, 2, 11, 5)
+    assert Codec.EncodeGhostAttr(Slots, Schema=Schema) == Payload[0x2EC:0x328]
 
 
 # open and check the exact vendor authored archive before locating ghost rows
@@ -101,6 +147,8 @@ def CheckGhostPoint(Variant: str) -> None:
         Encoded = Codec.EncodeGhostRows(
             SpaceVector(0, 0, 0), Slots, 10001, Schema=Header.schema
         )
+        MatchGhostBind(PatchValue, Payload, Header.schema)
+        MatchGhostWorld(PatchValue, Payload, Header.schema)
     assert Encoded == (
         Payload[0x3B5:0x3DE],
         Payload[0x414:0x431],
