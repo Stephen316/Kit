@@ -1,5 +1,11 @@
 from pathlib import Path
 
+from convert.Formats.Fusion.DocumentCodec.Auxiliary.Mesh.MeshLayout import (
+    KMeshGroupGuid,
+    KTextureGuid,
+)
+from convert.Formats.Fusion.EntityCodec.Vocabulary.ReadCatalog import ReadCatalog
+
 from convert.Formats.Fusion.DocumentCodec.Vocabulary.NativeSchema import NativeSchema
 from convert.Formats.Fusion.DocumentCodec.Vocabulary.AuthorSchemas import AuthorSchemas
 from convert.Formats.Fusion.DocumentCodec.Vocabulary.ReadVocabulary import (
@@ -22,4 +28,15 @@ def ReadNames() -> tuple[NativeSchema, ...]:
     for Source in Paths:
         for Schema in ReadVocabulary(Source):
             Catalog[Schema.Value.ClassGuid.upper()] = Schema
+    MeshClasses = ReadCatalog().Classes
+    for ClassName, GuidValue in (
+        ("ParaMeshBodies", KMeshGroupGuid),
+        ("ParaMeshTextureStore", KTextureGuid),
+    ):
+        Versions = MeshClasses.get(GuidValue, ())
+        if len(Versions) != 1 or Versions[0].SchemaVersion != 0:
+            raise ValueError(
+                "Fusion catalog lacks the original empty mesh scaffold classes"
+            )
+        Catalog[GuidValue] = NativeSchema(ClassName, "Fusion", Versions[0])
     return tuple(Catalog.values())

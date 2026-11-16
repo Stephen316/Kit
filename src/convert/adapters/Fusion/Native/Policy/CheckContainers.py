@@ -6,6 +6,7 @@ from convert.adapters.Fusion.Native.Graph.GraphChecks import (
 )
 from convert.adapters.Fusion.Native.Graph.NativeGraph import NativeGraph
 from convert.adapters.Fusion.Native.Graph.SketchContexts import KSketchContexts
+from convert.adapters.Fusion.Native.Policy.CheckMeshAbsent import CheckMeshAbsent
 
 # the empty classes order must stay explicit so public document claims remain grounded in native records
 KEmptyClasses = (
@@ -40,6 +41,7 @@ def CheckContainers(Graph: NativeGraph, Context: KSketchContexts) -> None:
         for NodeValue in Graph.ByClass(ClassName):
             if "children" in NodeValue.Fields:
                 EmptyFields(NodeValue, ("children",))
+    CheckMeshAbsent(Graph, Context.Component)
     Sketches = ResolveField(Graph, Context.Component, "rSketches", "Sketches")
     SameNodes((Context.Sketch,), LinkedNodes(Graph, Sketches, "children"))
     SameNodes((Context.Sketch,), Graph.ByClass("MSketch"))
