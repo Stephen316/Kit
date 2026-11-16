@@ -23,6 +23,12 @@ def PrepareTimeout(RootPath: FilePath) -> tuple[SessionHost, dict[str, object]]:
     )
     Harness = MakeQueueHost(RootPath, Planned["source_revision"])
     (RootPath / "AbsentEndpoint").mkdir(mode=0o700)
+    Inbox = RootPath / "Inbox"
+    Inbox.mkdir(mode=0o700)
+    Installation = RootPath / "Installation.json"
+    Owner = JsonCodec.loads(Installation.read_bytes())
+    Owner["macos_automatic_quit"] = True
+    _ = Installation.write_text(JsonCodec.dumps(Owner), encoding="utf-8")
     assert Harness.StorePath is not None
     _ = RunFusionTool(
         "re/automation/Controller.py",
@@ -46,6 +52,9 @@ def PrepareTimeout(RootPath: FilePath) -> tuple[SessionHost, dict[str, object]]:
                 str(PlanRoot / "plan.json"),
                 "--resource",
                 "application:fusion:local",
+                "--receipt",
+                str(Inbox / "pair.json"),
+                "--owner-lifecycle",
             ],
         )
     )
@@ -188,8 +197,10 @@ def VerifyArchive(Harness: SessionHost, RequestPath: FilePath) -> None:
     Retained = {
         EntryPath.name: EntryPath.read_bytes() for EntryPath in SpoolPath.iterdir()
     }
-    Result = JsonCodec.loads(RunFusionTool(ArchivePath, Arguments))
-    assert Result["status"] == "archived" and Result["resource_rearmed"] is False
+    Result = VerifyOwnArc(Harness, RequestPath, FenceBytes)
+    assert Result["status"] == "phase_a_probe_archived"
+    assert Result["resource_rearmed"] is False
+    assert Result["native_retry"] == "waiting_for_verified_owner_readiness"
     assert not SpoolPath.exists() and not FencePath.exists()
     SavedPath = Endpoint / "failed-spools" / SpoolPath.name
     for FileName, Content in Retained.items():
@@ -203,6 +214,47 @@ def VerifyArchive(Harness: SessionHost, RequestPath: FilePath) -> None:
     VerifyReadback(Harness, SavedPath, HashBytes(Manifest.read_bytes()).hexdigest())
     assert HashBytes(DatabasePath.read_bytes()).hexdigest() == StoreHash
     VerifyRetry(Harness, HashBytes(Manifest.read_bytes()).hexdigest())
+
+
+# separate owner programs must refuse a claimed probe and resume the exact completed archive
+def VerifyOwnArc(
+    Harness: SessionHost, RequestPath: FilePath, FenceBytes: bytes
+) -> dict[str, object]:
+    RootPath = Harness.RootPath
+    Lifecycle = RootPath / "Lifecycle.json"
+    _ = Lifecycle.write_text("disposable owner profile\n", encoding="utf-8")
+    ScriptPath = "re/automation/ApplicationWorkers/FusionLifecycleOwner.py"
+    Arguments = [
+        "--config",
+        str(Harness.ConfigFile),
+        "--installation",
+        str(RootPath / "Installation.json"),
+        "--lifecycle",
+        str(Lifecycle),
+        "--queue-directory",
+        str(RootPath / "Inbox"),
+        "--once",
+    ]
+    FencePath = RootPath / "AbsentEndpoint/fence.json"
+    ClaimedPath = RequestPath.with_suffix(".running")
+    _ = RequestPath.rename(ClaimedPath)
+    Refused = JsonCodec.loads(RunFusionTool(ScriptPath, Arguments, ExitCode=1))
+    assert Refused["status"] == "lifecycle_refused"
+    assert FencePath.read_bytes() == FenceBytes and ClaimedPath.is_file()
+    _ = ClaimedPath.rename(RequestPath)
+    HostedFence = JsonCodec.loads(FenceBytes)
+    HostedFence["host"] = JsonCodec.loads(RequestPath.read_bytes())["client"]
+    HostedBytes = JsonCodec.dumps(HostedFence).encode()
+    _ = FencePath.write_bytes(HostedBytes)
+    Deferred = JsonCodec.loads(RunFusionTool(ScriptPath, Arguments))
+    assert Deferred["status"] == "waiting_for_acknowledged_phase_a"
+    assert FencePath.read_bytes() == HostedBytes and RequestPath.is_file()
+    _ = FencePath.write_bytes(FenceBytes)
+    Result: dict[str, object] = JsonCodec.loads(RunFusionTool(ScriptPath, Arguments))
+    _ = FencePath.write_bytes(FenceBytes)
+    Recovered = JsonCodec.loads(RunFusionTool(ScriptPath, Arguments))
+    assert Result == Recovered and not FencePath.exists()
+    return Result
 
 
 # a listener may hold its lock while the owner reads only the archived receipt and pins

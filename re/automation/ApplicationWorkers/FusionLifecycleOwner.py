@@ -27,6 +27,7 @@ from FusionLifecyclePair import ACTIONABLE, phase_state, select_pair
 from FusionLifecycleRecords import active_intent, eligible_exit, optional, pin_handoff
 from FusionLifecycleRegistration import admit, pending_admission, release
 from FusionOwnerRestart import record_restart
+from FusionOwnerRecovery import archive_timeout
 from FusionQueueReceipt import owned_bytes, receipt_bytes, seal
 from FusionQuitObserver import watch
 from FusionReplacementLaunch import (
@@ -96,9 +97,12 @@ class Owner:
 
     def begin(self):
         raw = optional(self.root / "fence.json")
-        if raw is None:
+        fence = json.loads(raw) if raw is not None else None
+        recovered = archive_timeout(self, fence)
+        if recovered is not None:
+            return recovered
+        if fence is None:
             return status("waiting_for_acknowledged_phase_a")
-        fence = json.loads(raw)
         if (
             fence.get("reason") != "restart_required"
             or fence.get("installation") != self.config["installation"]
