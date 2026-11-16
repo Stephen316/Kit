@@ -381,9 +381,9 @@ def ValidateSupport(Model: BrepModel) -> None:
 
 # this declaration exists because focused behavior needs one stable owner
 def VerifyBrepData(Model: BrepModel, PayloadData: bytes) -> None:
-    Decoded = DecodeBrepModel(PayloadData)
+    Decoded, Reason = ReadBrepResult(PayloadData)
     if Decoded is None:
-        raise ParaWriteError("generated Parasolid B-rep cannot be decoded")
+        raise ParaWriteError(f"generated Parasolid B-rep cannot be decoded ({Reason})")
     Errors = Decoded.validate()
     if Errors:
         raise ParaWriteError(Errors[0])
@@ -4189,14 +4189,20 @@ class RecordTables:
 
 # this declaration exists because focused behavior needs one stable owner
 def DecodeBrepModel(PayloadData: bytes | bytearray) -> BrepModel | None:
+    Model, _ = ReadBrepResult(PayloadData)
+    return Model
+
+
+# a generated payload must retain the reason that the public decoder treats as refusal
+def ReadBrepResult(PayloadData: bytes | bytearray) -> tuple[BrepModel | None, str]:
     DataValue = bytes(PayloadData)
     Header = ParaHeaderData(DataValue)
     if Header is None:
-        return None
+        return None, "invalid transmit header"
     DescValue = Header.description.casefold()
     if "delta" in DescValue or "transmit file" not in DescValue:
-        return None
-    return DecodePartModel(DataValue, Header)
+        return None, "unsupported transmit description"
+    return ReadPartResult(DataValue, Header)
 
 
 # this declaration exists because focused behavior needs one stable owner
@@ -4227,20 +4233,31 @@ def ParaHeaderData(DataValue: bytes) -> ParaHeader | None:
 
 # this declaration exists because focused behavior needs one stable owner
 def DecodePartModel(PayloadData: bytes, Header: ParaHeader) -> BrepModel | None:
+    Model, _ = ReadPartResult(PayloadData, Header)
+    return Model
+
+
+# the writer needs to distinguish record scanning from topology reconstruction and validation
+def ReadPartResult(
+    PayloadData: bytes, Header: ParaHeader
+) -> tuple[BrepModel | None, str]:
     BodyData = PayloadData[Header.body_offset :]
     if not BodyData or len(BodyData) > 268435456:
-        return None
+        return None, "invalid partition body length"
     Tables = ScanPartRecords(BodyData)
-    if Tables is None or not Tables.bridges:
-        return None
+    if Tables is None:
+        return None, "partition record scan exceeded its limits"
+    if not Tables.bridges:
+        return None, "partition contains no decoded faces"
     UnchangedIds, AttrOrders = SolidFaceData(BodyData)
     try:
         Model = BuildPartModel(Tables, UnchangedIds, AttrOrders)
-    except (KeyError, ValueError, OverflowError):
-        return None
-    if Model.validate():
-        return None
-    return Model
+    except (KeyError, ValueError, OverflowError) as Failure:
+        return None, f"invalid partition topology ({Failure})"
+    Errors = Model.validate()
+    if Errors:
+        return None, Errors[0]
+    return Model, ""
 
 
 # this declaration exists because focused behavior needs one stable owner
