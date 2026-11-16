@@ -482,10 +482,14 @@ def WriteLineStyles(Writer: ArchiveWriter) -> None:
 
 
 # this definition exists because focused behavior needs one stable owner
-def WriteLineFonts(Writer: ArchiveWriter) -> None:
+def WriteLineFonts(
+    Writer: ArchiveWriter,
+    *,
+    Bindings: tuple[LineFontBinding, ...] = KLineFontBindings,
+) -> None:
     Writer.begin_object(KLineFontManagerClass, KLineFontManagerSchema)
-    Writer.u16(len(KLineFontBindings))
-    for Binding in KLineFontBindings:
+    Writer.u16(len(Bindings))
+    for Binding in Bindings:
         Writer.string(Binding.annotation)
         Writer.begin_object(KLineFontConfigClass, KLineFontConfigSchema)
         Writer.string(Binding.font)
@@ -496,7 +500,12 @@ def WriteLineFonts(Writer: ArchiveWriter) -> None:
 
 
 # this definition exists because focused behavior needs one stable owner
-def WriteView(Writer: ArchiveWriter, ViewValue: ViewRecord) -> None:
+def WriteView(
+    Writer: ArchiveWriter,
+    ViewValue: ViewRecord,
+    *,
+    PlacementFields: tuple[int, ...] = KWindowPlacementFields,
+) -> None:
     Writer.u8(1 if ViewValue.rotation else 0)
     for Value in ViewValue.rotation:
         Writer.f64(Value)
@@ -513,38 +522,45 @@ def WriteView(Writer: ArchiveWriter, ViewValue: ViewRecord) -> None:
     Writer.f64(ViewValue.trailer_value)
     Writer.string(ViewValue.name)
     if ViewValue.has_window_placement:
-        WriteWindow(Writer)
+        WriteWindow(Writer, PlacementFields=PlacementFields)
 
 
 # this definition exists because focused behavior needs one stable owner
-def WriteWindow(Writer: ArchiveWriter) -> None:
-    Writer.u32(KWindowPlacementFields[0])
-    Writer.u32(KWindowPlacementFields[1])
-    for ItemData in KWindowPlacementFields[2:-1]:
-        Writer.u16(ItemData)
-    Writer.i32(KWindowPlacementFields[-1])
+def WriteWindow(
+    Writer: ArchiveWriter, *, PlacementFields: tuple[int, ...] = KWindowPlacementFields
+) -> None:
+    Writer.raw(Struct.pack("<II6Hi", *PlacementFields))
 
 
 # this definition exists because focused behavior needs one stable owner
-def WriteTail(Writer: ArchiveWriter) -> None:
+def WriteTail(
+    Writer: ArchiveWriter, *, BuildStamp: int = KEnvironmentBuildStamp
+) -> None:
     Writer.zeros(KEnvironmentReservedHead)
     Writer.u32(KEnvironmentCapacity)
     Writer.zeros(KEnvironmentReservedMiddA)
     for ItemData in KEnvironmentSentinels:
         Writer.i32(ItemData)
-    Writer.u32(KEnvironmentBuildStamp)
+    Writer.u32(BuildStamp)
     Writer.u8(KEnvironmentTrailingFlag)
 
 
 # this definition exists because focused behavior needs one stable owner
-def WriteUserModel(Writer: ArchiveWriter, UserValue: str) -> None:
+def WriteUserModel(
+    Writer: ArchiveWriter,
+    UserValue: str,
+    *,
+    SessionWords: tuple[int, ...] = KSessionHeaderWords,
+    ViewValues: tuple[ViewRecord, ...] = KViewRecords,
+    PlacementFields: tuple[int, ...] = KWindowPlacementFields,
+    BuildStamp: int = KEnvironmentBuildStamp,
+) -> None:
     Writer.begin_object(KUserModelEnvClass, KUserModelEnvSchema)
     Writer.string(UserValue)
-    for ItemData in KSessionHeaderWords:
-        Writer.u16(ItemData)
-    for ViewValue in KViewRecords:
-        WriteView(Writer, ViewValue)
-    WriteTail(Writer)
+    Writer.raw(Struct.pack("<8H", *SessionWords))
+    for ViewValue in ViewValues:
+        WriteView(Writer, ViewValue, PlacementFields=PlacementFields)
+    WriteTail(Writer, BuildStamp=BuildStamp)
 
 
 # this definition exists because focused behavior needs one stable owner
@@ -636,7 +652,10 @@ def EncodeBody(*, Standard: str = "moBS_c", UserValue: str = "Kit") -> bytes:
 
 # this definition exists because focused behavior needs one stable owner
 def EncodePreamble(
-    *, Clsid: bytes = KPartClsid, ViewValue: tuple[float, ...] | None = None
+    *,
+    Clsid: bytes = KPartClsid,
+    ViewValue: tuple[float, ...] | None = None,
+    CameraValue: tuple[float, float, float, float] = KPreambleTail,
 ) -> bytes:
     Chunk = bytearray()
     Chunk += Struct.pack(
@@ -659,8 +678,7 @@ def EncodePreamble(
     Chunk += KPreambleMiddle
     Chunk += Struct.pack("<d", KPreambleScale)
     Chunk += Struct.pack("<H", KPreamblePad)
-    for Value in KPreambleTail:
-        Chunk += Struct.pack("<d", Value)
+    Chunk += Struct.pack("<4d", *CameraValue)
     for ItemData in KPreambleTrailerWords:
         Chunk += Struct.pack("<H", ItemData)
     return bytes(Chunk)

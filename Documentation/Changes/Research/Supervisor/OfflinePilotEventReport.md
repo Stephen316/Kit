@@ -20,3 +20,5 @@ Add `--dependency-timing` to measure the longest settled dependency chain by sum
 The first replay used the [P03 affected depth run](../Inference/FusionDepthAffectedReplay.md). The retained store had 72 events and ten completed attempts. The longest path linked the signed-depth assessment to one archive rescan and totaled 5.37 attempt seconds. The command replayed the same bytes twice without changing the ledger. This measures the historical controller workload.
 
 Hosted controller coverage exercises multiple pages, an event appended beyond the fixed cutoff, a parked claim, replay and byte-identical readback of the store.
+
+At PR head `4285aea` and tested merge `e822910006afba1f68c4ad779aa64eae3367981b`, the dependency timing fixture completed its two-job chain and reproduced the report after a job revision. The Linux output-intake step passed, and Windows passed all 96 supervisor cases. The two-week unattended pilot still needs operating evidence. [Linux output intake](https://github.com/TryUniCAD/Kit/actions/runs/43804326178/job/133091614795), [Windows supervisor](https://github.com/TryUniCAD/Kit/actions/runs/43804326178/job/133091614740)

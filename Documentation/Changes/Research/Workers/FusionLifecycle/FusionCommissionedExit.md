@@ -23,4 +23,9 @@ still require a separate verified watch.
 The hosted cold-start witness uses a disposable AppKit process, restarts the
 owner while the peer is live, and verifies which observer recorded the exact
 exit. It also checks that hiding the durable exit receipt cannot turn
-later process absence into a verified exit. Hosted execution is pending.
+later process absence into a verified exit. It passed at PR head `d0288d10`
+on tested merge `6ee63ca70913eac551d8e780b85d26437e0ca98d`. The macOS suite
+reported 164 passes, two skips and one pilot timing fixture failure. The
+fixture had omitted the controller's required settlement reason. A signed-in
+Fusion replacement and its preclaim healthy control remain open.
+[Hosted macOS result](https://github.com/TryUniCAD/Kit/actions/runs/43801915215/job/133084019077)

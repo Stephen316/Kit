@@ -6,6 +6,8 @@ from ArchiveFusionProbe import archive_probe
 from FusionLifecyclePair import pairs
 from FusionProbeArchiveCustody import authorize_archive
 from FusionQueueReceipt import owned_bytes, receipt_bytes
+from FusionRecoveryBasis import retain_basis
+from FusionReplacementPreflight import stage_preflight
 from FusionRestartPairs import installed
 from QueueFusionPhases import recover_receipt
 from StoreRead import read_store
@@ -38,18 +40,58 @@ def archive_timeout(owner, fence):
         queue == expected and raw == receipt_bytes(expected),
         "Fusion probe archive lost its durable queue receipt",
     )
+    if (
+        fence is None
+        and owner.exit_watch is not None
+        and owner.exit_watch.epoch is not None
+        and owner.args.launch_archived_replacement
+    ):
+        from FusionArchivedReplacement import reconcile_replacement
+
+        saved = reconcile_replacement(owner, path, queue, kind, raw)
+        return archive_status(saved)
     saved = archive_probe(
         owner.args.config,
         queue,
         kind,
         authorize=partial(authorize_archive, owner, path, queue, raw),
+        retain=(
+            partial(retain_recovery, owner, queue, raw)
+            if owner.exit_watch is not None and owner.exit_watch.epoch is not None
+            else None
+        ),
     )
+    return archive_status(saved)
+
+
+# the public owner status exposes evidence digest fields without local paths or launch challenges
+def archive_status(saved):
     return {
         "status": "phase_a_probe_archived",
         "archive_manifest_sha256": saved["archive_manifest_sha256"],
         "resource_rearmed": False,
         "native_retry": "waiting_for_verified_owner_readiness",
+        **{
+            key: value
+            for key, value in saved.items()
+            if key.startswith(
+                ("recovery_basis_", "replacement_preflight_", "archive_replacement_")
+            )
+        },
     }
+
+
+# the archive locks and parked snapshot cover both the joined basis and replacement preflight
+def retain_recovery(owner, queue, raw, database, config, timeout, archive):
+    basis = retain_basis(owner, queue, raw, database, config, timeout, archive)
+    checksum = basis.get("recovery_basis_sha256")
+    if checksum is not None:
+        basis.update(
+            stage_preflight(
+                owner, queue, database, archive["archive_manifest_sha256"], checksum
+            )
+        )
+    return basis
 
 
 # candidates are read from one parked controller snapshot before archive acquires custody

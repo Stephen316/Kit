@@ -165,6 +165,7 @@ See [the change entry](../../Changes/Research/PinnedFusionReader.md).
 ## A12 SOLIDWORKS writer research
 
 The [generation-19000 writer research](../../Changes/Research/Writers/SolidWorksWriterResearch.md) records evidence for the P03 rectangular blind boss, including the configuration-to-feature join, model header, and Definition notebook, appearance manager and terminal fields.
+The [typed Definition constructor](../../Changes/Research/Writers/SolidWorksDefinitionStream.md) reproduced the complete stream in all 25 pinned saves at `2fc4acbd`. The [CMgr visual properties analysis](../../../re/solidworks/WriterResearch/CmgrVisual.md) reproduced the measured 300-byte DSPBR record on the same hosted run. The outer configuration manager still needs full construction. The [blind boss display analysis](../../../re/solidworks/WriterResearch/DisplayStyle.md) reproduced the 94-byte style in eight P03 saves. The following 284 bytes now have a typed constructor and await hosted verification. [Hosted archive results](https://github.com/TryUniCAD/Kit/actions/runs/43806206876/job/133097509585)
 The saved controls support offline format research while A06 graph qualification and A09 codec evidence remain open.
 A12 still needs complete native generation from a qualified portable graph, refusal at the writer boundary, and controlled application evidence.
 

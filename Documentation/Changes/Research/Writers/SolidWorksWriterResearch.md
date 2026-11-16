@@ -20,6 +20,8 @@ The A12 research targets an origin-anchored rectangle and one forward blind addi
 - [Empty material manager](SolidWorksMaterialManager.md) emits the unsigned appearance counter and empty object list. Its reader returns the offset of the document's next string.
 - [Definition options fragment](SolidWorksDefinitionOptions.md) composes the journal, notebook, material manager and typed document defaults through the end of the rendering-options block.
 - [Definition fragment assembly](SolidWorksDefinitionFragment.md) continues from the rendering options through the remaining document fields, empty variability count and terminal part double.
+- [Complete Definition stream](SolidWorksDefinitionStream.md) combines the typed modern prefix and journal-to-end fragment with explicit user, view and camera inputs.
 - [Blind depth](../../../../re/solidworks/WriterResearch/BlindDepth.md) encodes the named `moLengthParameter_c` fragment from a requested depth and allocated class references. Two independently supplied depths decode through the existing typed reader. The enclosing display record still has unresolved fields.
+- [Blind boss display style](SolidWorksBossDisplayStyle.md) constructs the 94-byte appearance span from the inherited display-item serializer and constructor defaults verified across all eight P03 controls.
 
 The corpus pass checked native file sizes and hashes against the committed receipts. The work includes no production writer registration. Complete configuration and resolved-archive construction, qualified portable inputs, and an application-verified generated part remain open. The [step register](../../../Reference/Research/AutomationSteps.md#a12-solidworks-writer-research) tracks the qualification dependencies.

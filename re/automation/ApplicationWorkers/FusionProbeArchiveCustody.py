@@ -13,11 +13,24 @@ from ResourceOccupancy import closed_attempt_receipt, stored_record
 ARCHIVE_POLICY = (
     "ApplicationWorkers/ApplicationProtocol.py",
     "ApplicationWorkers/ArchiveFusionProbe.py",
+    "ApplicationWorkers/FusionArchivedReplacement.py",
+    "ApplicationWorkers/FusionArchiveReplacementRecords.py",
+    "ApplicationWorkers/FusionCommissionedExit.py",
+    "ApplicationWorkers/FusionExitRecords.py",
+    "ApplicationWorkers/FusionOwnerColdStart.py",
     "ApplicationWorkers/FusionOwnerRecovery.py",
+    "ApplicationWorkers/FusionRecoveryBasis.py",
+    "ApplicationWorkers/FusionReplacementPreflight.py",
+    "ApplicationWorkers/FusionReplacementLaunch.py",
     "ApplicationWorkers/FusionProbeArchiveCustody.py",
     "ApplicationWorkers/FusionRequestEvidence.py",
     "ApplicationWorkers/FusionTimeoutAudit.py",
     "ApplicationWorkers/FusionApplicationWorker.py",
+    "ApplicationWorkers/FusionStartupEvidence.py",
+    "ApplicationWorkers/MacApplicationBundle.py",
+    "ApplicationWorkers/MacArchiveLaunchGate.py",
+    "ApplicationWorkers/MacBundleLaunch.py",
+    "FusionColdStartAdmission.py",
     "LaunchGate.py",
     "Processes.py",
     "ResourceOccupancy.py",
@@ -58,7 +71,7 @@ def authorize_archive(owner, path, queue, raw, database, config, timeout):
 
 
 # only the first historical attempt can explain this still parked application disposition
-def exited_worker(database, store, pair, timeout):
+def first_attempt(database, store, pair, timeout):
     first, second = (
         database.execute(
             "SELECT id,definition_hash,generation,fingerprint,attempts,receipt,result FROM jobs WHERE id=?",
@@ -95,7 +108,14 @@ def exited_worker(database, store, pair, timeout):
         and accepted["snapshot"]["definition_hash"] == first["definition_hash"],
         "Fusion historical hold differs from the settled job",
     )
-    worker = stored_record(objects, first["result"])["receipt"]
+    return attempt, accepted
+
+
+# the archived transport must belong to the supervisor child that was reaped
+def exited_worker(database, store, pair, timeout):
+    attempt, accepted = first_attempt(database, store, pair, timeout)
+    objects = Artifacts(store, create=False)
+    worker = stored_record(objects, accepted["result_sha256"])["receipt"]
     require(
         type(worker.get("pid")) is int
         and worker["pid"] > 1

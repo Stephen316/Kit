@@ -28,9 +28,11 @@ class CommissionedExit(ExitStack):
         self.root = root
         self.target = None
         self.planned = None
+        self.epoch = None
 
     def arm(self, boot, admission):
         epoch, executable = admitted_epoch(boot, admission)
+        self.epoch = epoch
         digest = epoch["admission_sha256"]
         path = self.root / f"initial-native-exit-{digest}.json"
         existing = optional(path)

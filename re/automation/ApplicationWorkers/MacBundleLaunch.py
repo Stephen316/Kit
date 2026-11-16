@@ -48,10 +48,12 @@ def available(expected_uid=None):
 
 def launch_bundle(
     source, bundle, earliest, old_peer, seconds, request_path, request_sha256,
-    *, dispatch_before=None, cold_start=False,
+    *, dispatch_before=None, cold_start=False, recovery_gate=None,
 ):
     require(
-        cold_start == (old_peer is None) and (not cold_start or dispatch_before is not None),
+        cold_start == (old_peer is None)
+        and (recovery_gate is None or not cold_start)
+        and (not (cold_start or recovery_gate is not None) or dispatch_before is not None),
         "macOS launch requires either replacement or exact cold-start custody",
     )
     uid = os.getuid() if cold_start else old_peer["uid"]
@@ -78,12 +80,18 @@ def launch_bundle(
             arguments.append(str(dispatch_before))
         if cold_start:
             arguments.append("cold-start")
-        invocation = subprocess.run(
-            arguments,
-            capture_output=True,
-            check=False,
-            timeout=seconds + 5,
-        )
+        if recovery_gate is None:
+            invocation = subprocess.run(
+                arguments,
+                capture_output=True,
+                check=False,
+                timeout=seconds + 5,
+            )
+        else:
+            from MacArchiveLaunchGate import guarded_launch
+
+            arguments.append("archive-recovery")
+            invocation = guarded_launch(arguments, seconds + 5, recovery_gate)
     if invocation.returncode != 0 or not 0 < len(invocation.stdout) <= 4096:
         raise MacLaunchError(invocation)
     reply = json.loads(invocation.stdout)
