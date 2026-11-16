@@ -700,7 +700,11 @@ public sealed class SolidWorksScopeControl
                 {
                     if (error.ErrorCode != RotUnavailable) throw;
                     unavailable++;
-                    active = FindOwnedRegistration(process.Pid);
+                    try { active = FindOwnedRegistration(process.Pid); }
+                    catch (COMException lookup)
+                    {
+                        if (lookup.ErrorCode != RotUnavailable) throw;
+                    }
                     if (active == null)
                     {
                         ownedMissing++;
