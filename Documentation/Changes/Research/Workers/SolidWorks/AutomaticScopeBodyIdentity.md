@@ -11,4 +11,4 @@ Each native solid region (`0x13`) and shell (`0x0d`) point back to each other an
 
 The exact paired inspection report SHA-256 is `7d82892faf83ea65101ea3ac48ed370dac114555704749b80b7fd4ddd943972c`. The two non-inspection reports retain their previous hashes. This witness covers the pinned automatic saves and their partition schema. Ordinary conversion still returns its derived carrier. Persisted Auto-select and explicit body targeting require their own native controls.
 
-The [P04 partition identity audit](P04PartitionIdentity.md) checks the same native links across all eleven one-body discovery captures.
+The [P04 partition identity audit](DiscoveryPartitionIdentity.md) checks the same native links across all eleven one-body discovery captures.

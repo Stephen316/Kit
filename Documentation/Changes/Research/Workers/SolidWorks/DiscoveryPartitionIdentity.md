@@ -1,4 +1,4 @@
-# Verify the P04 body identity in the saved partition
+# Verify P04 body identity in the saved partition
 
 ```text
 python re/solidworks/archive/PartitionIdentity.py
