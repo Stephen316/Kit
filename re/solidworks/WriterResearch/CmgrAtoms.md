@@ -56,4 +56,4 @@ The four fields after this map are `(0,0,-1,-1)` from `0x4c226cc5`, `0x4c226cd4`
 
 The enclosing manager writes its second configuration pointer at `0x4c21c890` as an alias to the first part object, slot 4. `0x4c21c89f` writes count 1. `0x4c23f4e8` writes the configuration list, a compact count 1 followed by the same object reference. `0x4c21cb03` then writes external object count 1. These 14 bytes lead to the [first external object definition](CmgrTail.md#external-file-and-referenced-configuration) at offsets 1818, 1892 and 1982 respectively. All 25 modern and the old comparator preserve these aliases.
 
-The interval between the visual return and linked-atom map still needs a continuous typed walk. Encoding should derive the recorded boundaries from each typed body and shared archive namespace.
+The [feature and mass property records](CmgrMiddle.md) establish the continuous typed walk from the visual return to this linked-atom map. Encoding should derive the recorded boundaries from each typed body and shared archive namespace.
