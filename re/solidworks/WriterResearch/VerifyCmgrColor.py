@@ -144,7 +144,9 @@ def verify_color():
             version_framing[item["sha256"]] = verify_version_framing(
                 archive, generation
             )
-            config_resolved[item["sha256"]] = verify_config_resolved(archive, generation)
+            config_resolved[item["sha256"]] = verify_config_resolved(
+                archive, generation
+            )
         color, start, cursor = ReadColorSpan(stream, generation)
         end = cursor.Offset
         saved = stream[start:end]
@@ -182,7 +184,9 @@ def verify_color():
     RequireArch(len(compositions), 14, "CMgr composed stream capture count")
     RequireArch(len(configuration_indexes), 14, "CMgr active index capture count")
     RequireArch(len(version_framing), 14, "modern framing input capture count")
-    RequireArch(len(config_resolved), 14, "configuration and resolved map capture count")
+    RequireArch(
+        len(config_resolved), 14, "configuration and resolved map capture count"
+    )
     return {
         "capture_revision": CAPTURE_REVISION,
         "captures": captures,

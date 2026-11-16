@@ -8,14 +8,15 @@ CAPTURE_REVISION = "466dcb172dfa3803463e07ccde963ba01671d200"
 sys.path[:0] = [str(ROOT / "src"), str(ROOT / "re/automation")]
 
 from HeaderLogs import ReadHeaderLogs
+from PartArchive import PartArchiveState, PartArchiveWriter
 from ResolvedCabinet import ReadCabinetRec, WriteCabinetRec
+from ResolvedFolderTail import ReadLateFolders, WriteLateFolders
 from ResolvedFolders import ReadSysFolders, WriteSysFolders
 from SolidworksCensusInputs import capture_inputs
 from convert.adapters.solidworks.Config.OrdinaryMap import ReadOrdinaryMap
 from convert.adapters.solidworks.Container.ArchiveCheck import RequireArch
 from convert.adapters.solidworks.Container.ArchiveCursor import ArchiveCursor
 from convert.adapters.solidworks.Container.Container import SldprtArchive
-from convert.adapters.solidworks.Container.Definition import ArchiveWriter
 from convert.adapters.solidworks.Resolved.ResolvedHead import OpenResolved
 from convert.adapters.solidworks.Resolved.SystemPrefix import ReadSysPrefix
 
@@ -25,6 +26,7 @@ def verify_resolved_folders() -> dict[str, object]:
     rows, _ = capture_inputs(ROOT, CAPTURE_REVISION)
     captures = {}
     cabinets = {}
+    later_folders = {}
     for recipe, asset, source, _, measurement in rows:
         if recipe not in ("P01", "P03"):
             continue
@@ -44,9 +46,13 @@ def verify_resolved_folders() -> dict[str, object]:
         system = ReadSysPrefix(comparison)
         prior = system.FirstFolders
         start = cursor.Offset
-        writer = ArchiveWriter()
-        writer.SetNextIndex(cursor.NextIndex)
-        writer.classes.update((name, index) for index, name in cursor.Classes.items())
+        writer = PartArchiveWriter(
+            PartArchiveState(
+                cursor.NextIndex,
+                tuple(sorted(cursor.Classes.items())),
+                tuple(sorted(cursor.Objects.items())),
+            )
+        )
         folders = ReadSysFolders(cursor, 19000)
         RequireArch(
             (
@@ -125,10 +131,53 @@ def verify_resolved_folders() -> dict[str, object]:
         cabinets[asset["sha256"]] = sha256(
             stream[cabinet_start : cursor.Offset]
         ).hexdigest()
+        later_start = cursor.Offset
+        later = ReadLateFolders(cursor, 19000)
+        expected_later = system.LaterFolders
+        RequireArch(
+            (
+                (cursor.Offset, cursor.NextIndex),
+                tuple((row.Name, row.TreeId) for row in later.Folders),
+                later.Environment,
+            ),
+            (
+                (expected_later[-1].EndOffset, expected_later[-1].NextIndex),
+                tuple((row.NameValue, row.FeatureId) for row in expected_later),
+                system.Environment,
+            ),
+            "resolved later folder boundary, identities and environment",
+        )
+        RequireArch(
+            all(
+                row.Name in measured and (row.Name, row.TreeId) in logged
+                for row in later.Folders
+            ),
+            True,
+            "resolved later folders native tree and revision evidence",
+        )
+        WriteLateFolders(writer, 19000, later)
+        RequireArch(
+            writer.build() == stream[start : cursor.Offset],
+            True,
+            "resolved prefix through the material folder",
+        )
+        RequireArch(
+            writer.Snapshot(),
+            PartArchiveState(
+                cursor.NextIndex,
+                tuple(sorted(cursor.Classes.items())),
+                tuple(sorted(cursor.Objects.items())),
+            ),
+            "resolved later folder full archive allocator",
+        )
+        later_folders[asset["sha256"]] = sha256(
+            stream[later_start : cursor.Offset]
+        ).hexdigest()
     return {
         "capture_revision": CAPTURE_REVISION,
         "captures": captures,
         "cabinet_records": cabinets,
+        "late_folder_records": later_folders,
     }
 
 

@@ -17,3 +17,5 @@ The [inherited feature codec](CmgrInherited.py) writes the update stamp, last up
 Each folder allocates a class and an object, then instantiates its name through the `moNodeName_c` class inherited from Config-0. The six folders therefore allocate 18 slots. The read-only replay reaches byte 1221 before `moDetailCabinet_c` across all 14 pinned saves. The allocator advances from 106 to 124 in P01 and from 111 to 129 in P03. The actual source span starts at byte 6 after the resolved list header.
 
 The source SHA map sorts the 14 source file SHA-256s and maps each to its saved folder-span SHA-256. Compact JSON SHA-256 is `21a06cba04c78d1311519d08df37d3dc310cf090075a6916abc371fd93fd583e`. The hosted verifier reconstructs the six objects and compares the exact bytes and final class map. [Hosted gate entry](VerifyResolvedFolders.py)
+
+After the annotation cabinet, [the resolved body, markup, equation and material folders](ResolvedFolderTail.md) continue through the principal-plane definition.

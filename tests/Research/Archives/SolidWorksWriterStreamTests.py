@@ -49,6 +49,13 @@ def CheckResFolder() -> None:
         DigestBytes(Encoded.encode("ascii")).hexdigest()
         == "8ab5fe560c589276e8cf2a548c5b22e9d29dbe1f81bd0150d9ec47f645a67a05"
     )
+    LaterFolders = Report["late_folder_records"]
+    assert isinstance(LaterFolders, dict) and LaterFolders.keys() == Cabinets.keys()
+    Encoded = JsonCodec.dumps(LaterFolders, sort_keys=True, separators=(",", ":"))
+    assert (
+        DigestBytes(Encoded.encode("ascii")).hexdigest()
+        == "d7cd9e7f9f20eb1a8eafbf46e7ccfc4a0dabb51dfc60c6b399e19a6264c8d61f"
+    )
 
 
 # the configured model title must keep real allocation order in the standalone archive

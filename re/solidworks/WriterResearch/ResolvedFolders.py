@@ -88,17 +88,31 @@ def WriteFolderName(Writer: ArchiveWriter, EncodedName: bytes, TreeId: int) -> N
     Writer.raw(EncodeNull())
 
 
+# Each ordinary folder shares the node list and inherited feature record.
+def ReadFolderBody(Cursor: ArchiveCursor, Generation: int) -> SystemFolder:
+    Name, TreeId = ReadFolderName(Cursor)
+    RequireArch(Cursor.ReadInts("<Hi"), (0, 0), "resolved folder node list")
+    return SystemFolder(Name, TreeId, ReadArcFeature(Cursor, Generation))
+
+
+# The name object consumes its own slot before the inherited feature fields.
+def WriteFolderBody(
+    Writer: ArchiveWriter, Generation: int, Folder: SystemFolder, EncodedName: bytes
+) -> None:
+    WriteFolderName(Writer, EncodedName, Folder.TreeId)
+    Writer.raw(PackFields("<Hi", 0, 0))
+    WriteArcFeature(Writer, Generation, Folder.Feature)
+
+
 # Folder definitions create slots in sequence and reuse the configuration's name class.
 def ReadSysFolders(Cursor: ArchiveCursor, Generation: int) -> tuple[SystemFolder, ...]:
     RequireArch(Generation, 19000, "resolved standalone folder generation")
     Folders = []
     for ClassName, Format, Values in KFolders:
         _ = Cursor.TakePointer((ClassName,), KDefinitionKind, CompactOnly=True)
-        Name, TreeId = ReadFolderName(Cursor)
-        RequireArch(Cursor.ReadInts("<Hi"), (0, 0), "resolved folder node list")
-        Feature = ReadArcFeature(Cursor, Generation)
+        Folder = ReadFolderBody(Cursor, Generation)
         RequireArch(Cursor.ReadInts(Format), Values, f"resolved {ClassName} return")
-        Folders.append(SystemFolder(Name, TreeId, Feature))
+        Folders.append(Folder)
     return tuple(Folders)
 
 
@@ -115,7 +129,5 @@ def WriteSysFolders(
         Folders, Names, KFolders, strict=True
     ):
         Writer.begin_object(ClassName, 1)
-        WriteFolderName(Writer, Name, Folder.TreeId)
-        Writer.raw(PackFields("<Hi", 0, 0))
-        WriteArcFeature(Writer, Generation, Folder.Feature)
+        WriteFolderBody(Writer, Generation, Folder, Name)
         Writer.raw(PackFields(Format, *Values))
