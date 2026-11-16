@@ -10,7 +10,7 @@ from convert.adapters.freecad.Protocol import (
     FEATURE_WRITE_TYPE_IDS as FeatureWriteTypeIds,
     SKETCH_TYPE_ID as SketchTypeId,
 )
-from interchange.enums.EnumDocument import Capability
+from interchange.Enums.EnumDocument import Capability
 
 # this binding exists because shared behavior needs one stable value
 KSuffix = ".FCStd"

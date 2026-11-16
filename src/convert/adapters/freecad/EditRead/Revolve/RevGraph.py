@@ -23,10 +23,10 @@ from convert.adapters.freecad.EditRead.Sketch.SavedSketchFiles import (
 )
 from convert.adapters.freecad.EditRead.XmlField import CheckNoEditExpr, EditScalar
 from convert.adapters.freecad.Native import NativeObject
-from interchange.document.models.DocumentModel import CadDocument
-from interchange.geometry.models.Sketch import Sketch
-from interchange.geometry.models.SupportPlane import SupportPlane
-from interchange.geometry.models.Transform import KTransformIdentity
+from interchange.document.Models.DocumentModel import CadDocument
+from interchange.geometry.Models.Sketch import Sketch
+from interchange.geometry.Models.SupportPlane import SupportPlane
+from interchange.geometry.Models.Transform import KTransformIdentity
 
 
 # model ownership travels separately from the parsed native angular values

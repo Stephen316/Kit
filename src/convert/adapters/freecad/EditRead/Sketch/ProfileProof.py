@@ -12,8 +12,8 @@ from convert.adapters.freecad.EditRead.Sketch.SketchDefaults import (
 )
 from convert.adapters.freecad.EditRead.XmlField import EditScalar
 from convert.adapters.freecad.Native import NativeObject
-from interchange.geometry.models.GeometryCurves import CircleGeometry, PointGeometry
-from interchange.geometry.models.Sketch import Sketch
+from interchange.geometry.Models.GeometryCurves import CircleGeometry, PointGeometry
+from interchange.geometry.Models.Sketch import Sketch
 from interchange.serialization.EncodeData import ToData
 
 

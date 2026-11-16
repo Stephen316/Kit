@@ -15,11 +15,11 @@ from pathlib import Path
 repository = Path(__file__).resolve().parents[4]
 sys.path.insert(0, str(repository / 'src'))
 
-from convert.formats.Fusion.BulkSpans import ReadBulkSpans
-from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
-from convert.formats.Fusion.MetaIndex import SegmentKind
-from convert.formats.Fusion.EntityCodec.Model.MatrixValue import MatrixValue
-from convert.formats.Fusion.SegmentCodec.Manifest.LinkLayout import KUnchangedGuid
+from convert.Formats.Fusion.BulkSpans import ReadBulkSpans
+from convert.Formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
+from convert.Formats.Fusion.MetaIndex import SegmentKind
+from convert.Formats.Fusion.EntityCodec.Model.MatrixValue import MatrixValue
+from convert.Formats.Fusion.SegmentCodec.Manifest.LinkLayout import KUnchangedGuid
 
 oracle = repository / 're/Fusion/LocalOracle/LinksConfigs'
 private = oracle / 'tmp'

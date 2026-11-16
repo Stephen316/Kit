@@ -12,10 +12,10 @@ from convert.adapters.freecad.EditRead.Revolve.RevPose import CheckRevPose
 from convert.adapters.freecad.EditRead.Revolve.RevSheet import ReadRevSheet
 from convert.adapters.freecad.EditRead.Sketch.RingProof import ReadRingProfile
 from convert.adapters.freecad.Native import ParseObjects
-from interchange.document.models.DocumentModel import CadDocument
-from interchange.features.FeatureAngleRev import AngularRevolve
-from interchange.features.RevolveSpan import GetAngleSpan
-from interchange.geometry.models.Sketch import Sketch
+from interchange.document.Models.DocumentModel import CadDocument
+from interchange.Features.FeatureAngleRev import AngularRevolve
+from interchange.Features.RevolveSpan import GetAngleSpan
+from interchange.geometry.Models.Sketch import Sketch
 
 
 # only corroborated native parameters and shape references may reach neutral rebuilding

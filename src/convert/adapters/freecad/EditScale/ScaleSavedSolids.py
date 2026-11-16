@@ -12,16 +12,16 @@ from convert.adapters.freecad.EditScale.ScaleWritePlan import ScaleWritePlan
 from convert.adapters.freecad.EditShape.PrismShape import IsEditPrism
 from convert.adapters.freecad.EditShape.ScalePrismShape import IsScalePrism
 from convert.adapters.freecad.Native import NativeObject
-from convert.formats.Fusion.Revolves.JoinRevModels import JoinRevModels
-from convert.formats.Fusion.Scales.ScaleSeed import ReadScaleSeed
-from convert.geometry.Extrude.Polygon.PrismRing import ReadPrismRing
-from convert.geometry.Scale.ScalePrism import BuildScalePrism
-from interchange.brep.topology.BrepModel import BrepModel
-from interchange.document.models.DocumentModel import CadDocument
-from interchange.features.FeatureBody import DesignBody
-from interchange.features.FeatureBoundScale import BoundScale
-from interchange.geometry.models.Transform import Transform
-from interchange.geometry.models.VectorSpace import SpaceVector
+from convert.Formats.Fusion.Revolves.JoinRevModels import JoinRevModels
+from convert.Formats.Fusion.Scales.ScaleSeed import ReadScaleSeed
+from convert.Geometry.Extrude.Polygon.PrismRing import ReadPrismRing
+from convert.Geometry.Scale.ScalePrism import BuildScalePrism
+from interchange.brep.Topology.BrepModel import BrepModel
+from interchange.document.Models.DocumentModel import CadDocument
+from interchange.Features.FeatureBody import DesignBody
+from interchange.Features.FeatureBoundScale import BoundScale
+from interchange.geometry.Models.Transform import Transform
+from interchange.geometry.Models.VectorSpace import SpaceVector
 
 
 # matching the evaluated factor prevents accepting a stale spreadsheet dependency

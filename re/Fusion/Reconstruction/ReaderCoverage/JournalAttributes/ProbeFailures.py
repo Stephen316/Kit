@@ -7,10 +7,10 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[5]
 sys.path.insert(0, str(ROOT / 'src'))
 
-from convert.formats.Fusion.BrepCodec.Journal.Reading.ReadEntityNode import ReadEntityNode
-from convert.formats.Fusion.BrepCodec.Journal.Reading.ReadModelHead import ReadModelHead
-from convert.formats.Fusion.MetaCursor import MetaCursor
-from convert.formats.Fusion.Topology.AsmEdge.AsmTable import ReadAsmName, ReadAsmRecord
+from convert.Formats.Fusion.BrepCodec.Journal.Reading.ReadEntityNode import ReadEntityNode
+from convert.Formats.Fusion.BrepCodec.Journal.Reading.ReadModelHead import ReadModelHead
+from convert.Formats.Fusion.MetaCursor import MetaCursor
+from convert.Formats.Fusion.Topology.AsmEdge.AsmTable import ReadAsmName, ReadAsmRecord
 
 KCAUSES = (
     'Unsupported Fusion journal qualified field',

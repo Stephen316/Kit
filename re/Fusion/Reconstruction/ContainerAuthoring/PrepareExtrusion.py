@@ -12,14 +12,14 @@ BASE = Path(__file__).resolve().parent
 REPOSITORY = BASE.parents[3]
 sys.path.insert(0, str(REPOSITORY / 'src'))
 
-from convert.formats.Fusion.BrepCodec.EmitHistory import EmitHistory
-from convert.formats.Fusion.BrepCodec.Models.BodyIdentity import BodyIdentity
-from convert.formats.Fusion.BrepCodec.Models.FeatureTag import FeatureTag
-from convert.formats.Fusion.BrepCodec.Models.HistoryState import HistoryState
-from convert.formats.Fusion.BrepCodec.Models.SketchLink import SketchLink
-from convert.formats.Fusion.BrepCodec.Models.TopologyTags import TopologyTags
-from convert.formats.Fusion.GeometryCodec.CylinderBody import CylinderBody
-from convert.formats.Fusion.GeometryCodec.GeometryStamp import GeometryStamp
+from convert.Formats.Fusion.BrepCodec.EmitHistory import EmitHistory
+from convert.Formats.Fusion.BrepCodec.Models.BodyIdentity import BodyIdentity
+from convert.Formats.Fusion.BrepCodec.Models.FeatureTag import FeatureTag
+from convert.Formats.Fusion.BrepCodec.Models.HistoryState import HistoryState
+from convert.Formats.Fusion.BrepCodec.Models.SketchLink import SketchLink
+from convert.Formats.Fusion.BrepCodec.Models.TopologyTags import TopologyTags
+from convert.Formats.Fusion.GeometryCodec.CylinderBody import CylinderBody
+from convert.Formats.Fusion.GeometryCodec.GeometryStamp import GeometryStamp
 
 AUTHOR = runpy.run_path(str(BASE / 'AuthorFeatureContainer.py'))
 
@@ -49,7 +49,7 @@ def encode_history(contract, authored_at):
     history = HistoryState(contract['currentHistoryId'], contract['initialHistoryId'], history_fields['historyCurrentStateId'], history_fields['nextEntityTag'], history_fields['boardStatus'], history_fields.get('maxStateId'))
     stamp = GeometryStamp('Kit', 'Independent authored extrusion', parsed.astimezone(timezone.utc).isoformat().replace('+00:00', 'Z'))
     data = EmitHistory(model, identity, tags, history, stamp)
-    evidence = {'encoder': 'convert.formats.Fusion.BrepCodec.EmitHistory.EmitHistory', 'cylinder': asdict(model), 'bodyIdentity': asdict(identity), 'topologyTags': asdict(tags), 'history': asdict(history), 'stamp': asdict(stamp), 'partName': contract['partName'], 'bodyEntityId': contract['bodyEntityId'], 'bodyUuidInDesign': contract['bodyUuid'], 'size': len(data), 'sha256': hashlib.sha256(data).hexdigest(), 'sourceGeometry': None, 'sourceHistory': None}
+    evidence = {'encoder': 'convert.Formats.Fusion.BrepCodec.EmitHistory.EmitHistory', 'cylinder': asdict(model), 'bodyIdentity': asdict(identity), 'topologyTags': asdict(tags), 'history': asdict(history), 'stamp': asdict(stamp), 'partName': contract['partName'], 'bodyEntityId': contract['bodyEntityId'], 'bodyUuidInDesign': contract['bodyUuid'], 'size': len(data), 'sha256': hashlib.sha256(data).hexdigest(), 'sourceGeometry': None, 'sourceHistory': None}
     return data, evidence
 
 

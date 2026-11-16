@@ -38,25 +38,25 @@ sys.path.insert(0, str(HERE.parents[4] / 'src'))
 import BuildVariants  # noqa: E402
 import KitSolids  # noqa: E402
 
-from convert.formats.Fusion.DrawingCodec.Author.BuildBundle import BuildBundle  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Author.BuildDrawing import BuildDrawing  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Author.MakeIdentity import MakeIdentity  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Author.Model.DesignTarget import DesignTarget  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Author.Model.DrawingSpec import DrawingSpec  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Author.Model.SheetSpec import SheetSpec  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Bundle.EmitDrawBundle import EmitDrawBundle  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Bundle.ReadDrawBundle import ReadDrawBundle  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Dwg.Author.AuthorDwg import AuthorDwg  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Dwg.Author.Spec.DimensionDraft import DimensionDraft  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Dwg.Author.Spec.DwgDraft import DwgDraft  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Dwg.Author.Spec.SheetDraft import SheetDraft  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Dwg.Author.Spec.TitleText import TitleText  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Dwg.Author.Spec.ViewDraft import ViewDraft  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Dwg.Author.Spec.ViewSource import ViewSource  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Dwg.EmitDwgFile import EmitDwgFile  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Dwg.ReadDwgFile import ReadDwgFile  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Model.DrawingDatabase import DrawingDatabase  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.ReadDrawing import ReadDrawing  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Author.BuildBundle import BuildBundle  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Author.BuildDrawing import BuildDrawing  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Author.MakeIdentity import MakeIdentity  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Author.Model.DesignTarget import DesignTarget  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Author.Model.DrawingSpec import DrawingSpec  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Author.Model.SheetSpec import SheetSpec  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Bundle.EmitDrawBundle import EmitDrawBundle  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Bundle.ReadDrawBundle import ReadDrawBundle  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.Author.AuthorDwg import AuthorDwg  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.Author.Spec.DimensionDraft import DimensionDraft  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.Author.Spec.DwgDraft import DwgDraft  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.Author.Spec.SheetDraft import SheetDraft  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.Author.Spec.TitleText import TitleText  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.Author.Spec.ViewDraft import ViewDraft  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.Author.Spec.ViewSource import ViewSource  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.EmitDwgFile import EmitDwgFile  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.ReadDwgFile import ReadDwgFile  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Model.DrawingDatabase import DrawingDatabase  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.ReadDrawing import ReadDrawing  # noqa: E402
 
 LAYOUT_HANDLE = 0x2E50
 MOMENT = datetime.datetime(2026, 11, 12, 12, 0, 0)

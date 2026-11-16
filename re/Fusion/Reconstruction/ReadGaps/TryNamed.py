@@ -7,8 +7,8 @@ sys.path.insert(0, str(BASE))
 
 from ExampleRecords import documents
 from RecordFailures import failures
-import convert.formats.Fusion.EntityCodec.Frame.ReadNamedMut as Named
-from convert.formats.Fusion.EntityCodec.Schema.WireType import WireType
+import convert.Formats.Fusion.EntityCodec.Frame.ReadNamedMut as Named
+from convert.Formats.Fusion.EntityCodec.Schema.WireType import WireType
 
 USED = collections.Counter()
 
@@ -30,7 +30,7 @@ def main():
         finally:
             Named.NamedShape = source
 
-    import convert.formats.Fusion.EntityCodec.Frame.ReadFrameMut as Frame
+    import convert.Formats.Fusion.EntityCodec.Frame.ReadFrameMut as Frame
     Frame.ReadNamedMut = reader
     for name, data in documents():
         found = failures(data)

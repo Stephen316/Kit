@@ -1,0 +1,34 @@
+from typing import TypeAlias
+
+from interchange.geometry.Models.GeometryConics import (
+    ArcEllipseGeom,
+    ArcHyperGeom,
+    ArcParabGeom,
+    EllipseGeometry,
+    HyperbolaGeom,
+    ParabolaGeom,
+)
+from interchange.geometry.Models.GeometryCurves import (
+    ArcGeometry,
+    CircleGeometry,
+    LineGeometry,
+    NativeGeometry,
+    PointGeometry,
+    SplineGeometry,
+)
+
+# exhaustive geometry typing prevents new classes from escaping sketch validation
+KGeometryTypes: TypeAlias = (  # lgtm[py/unused-global-variable]
+    PointGeometry
+    | LineGeometry
+    | CircleGeometry
+    | ArcGeometry
+    | EllipseGeometry
+    | ArcEllipseGeom
+    | HyperbolaGeom
+    | ArcHyperGeom
+    | ParabolaGeom
+    | ArcParabGeom
+    | SplineGeometry
+    | NativeGeometry
+)

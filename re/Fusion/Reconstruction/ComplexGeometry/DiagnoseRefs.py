@@ -9,11 +9,11 @@ BASE = Path(__file__).resolve().parent
 ROOT = BASE.parents[3]
 sys.path.insert(0, str(ROOT / "src"))
 
-from convert.formats.Fusion.BrepCodec.Journal.Reading.ReadEntitiesMut import ReadEntitiesMut  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Reading.ReadModelHead import ReadModelHead  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Validation.EntityRefRules import KEntityRefRules  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Writing.MakeEntityNode import MakeEntityNode  # noqa: E402
-from convert.formats.Fusion.MetaCursor import MetaCursor  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Reading.ReadEntitiesMut import ReadEntitiesMut  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Reading.ReadModelHead import ReadModelHead  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Validation.EntityRefRules import KEntityRefRules  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Writing.MakeEntityNode import MakeEntityNode  # noqa: E402
+from convert.Formats.Fusion.MetaCursor import MetaCursor  # noqa: E402
 
 
 def main():

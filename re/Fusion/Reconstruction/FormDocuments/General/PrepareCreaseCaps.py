@@ -23,8 +23,8 @@ PLAN = sys.argv[1] if len(sys.argv) > 1 else 'fit'
 sys.argv[1:] = []  # PrepareCaps reads sys.argv at import
 from GeneralCages import ROOT, closed
 from PrepareCaps import cap_prism
-from convert.formats.Fusion.TSplineCodec.EmitTspline import EmitTspline
-from convert.formats.Fusion.TSplineCodec.ReadTspline import ReadTspline
+from convert.Formats.Fusion.TSplineCodec.EmitTspline import EmitTspline
+from convert.Formats.Fusion.TSplineCodec.ReadTspline import ReadTspline
 
 TARGET = ROOT / 're/Fusion/LocalOracle/FormDocuments/General/CreaseCaps'
 CELLS = 3

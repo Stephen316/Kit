@@ -8,11 +8,11 @@ ROOT = Path(__file__).resolve().parents[4]
 sys.path.insert(0, str(ROOT / 'src'))
 sys.setrecursionlimit(20000)
 
-from convert.formats.Fusion.BundleCodec.ReadBundle import ReadBundle
-from convert.formats.Fusion.DocumentCodec.EmitParsed import EmitParsed
-from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
-from convert.formats.Fusion.MaterialCodec.Package.EmitPackage import EmitPackage
-from convert.formats.Fusion.MaterialCodec.Package.ReadPackage import ReadPackage
+from convert.Formats.Fusion.BundleCodec.ReadBundle import ReadBundle
+from convert.Formats.Fusion.DocumentCodec.EmitParsed import EmitParsed
+from convert.Formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
+from convert.Formats.Fusion.MaterialCodec.Package.EmitPackage import EmitPackage
+from convert.Formats.Fusion.MaterialCodec.Package.ReadPackage import ReadPackage
 
 FIELD = re.compile(rb'<(\w+) name="([^"]*)">([^<]*)<')
 

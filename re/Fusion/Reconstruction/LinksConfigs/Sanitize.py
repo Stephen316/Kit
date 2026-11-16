@@ -9,8 +9,8 @@ from pathlib import Path
 repository = Path(__file__).resolve().parents[4]
 sys.path.insert(0, str(repository / 'src'))
 
-from convert.formats.Fusion.SegmentCodec.Manifest.EmitRootWire import EmitRootWire
-from convert.formats.Fusion.SegmentCodec.Manifest.ReadRootWire import ReadRootWire
+from convert.Formats.Fusion.SegmentCodec.Manifest.EmitRootWire import EmitRootWire
+from convert.Formats.Fusion.SegmentCodec.Manifest.ReadRootWire import ReadRootWire
 
 lineage = re.compile(rb'(?:dm\.lineage:|fs\.file:vf\.)([A-Za-z0-9_-]{22})')
 lineage_wide = re.compile(rb'(?:d\x00m\x00\.\x00l\x00i\x00n\x00e\x00a\x00g\x00e\x00:\x00|f\x00s\x00\.\x00f\x00i\x00l\x00e\x00:\x00v\x00f\x00\.\x00)((?:[A-Za-z0-9_-]\x00){22})')

@@ -37,7 +37,7 @@ import BuildTransplant as T  # noqa: E402
 import BuildVariants  # noqa: E402
 import SmbSolid  # noqa: E402
 from PruneDwg import Graph, field, target, with_fields  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgHandleRef import DwgHandleRef  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.Model.DwgHandleRef import DwgHandleRef  # noqa: E402
 
 PLAN = 'PlanEdges.json'
 KBASE_LONG_A = 11

@@ -12,13 +12,13 @@ from convert.adapters.freecad.EditAxisRev.AxisRevScope import ReadAxisScope
 from convert.adapters.freecad.EditRev.ApplyRevEdit import SetRevAngle
 from convert.adapters.freecad.EditRev.RebuildRevDoc import RebuildRevDoc
 from convert.adapters.freecad.EditRev.RevAngles import ReadRevAngles
-from convert.formats.Fusion.Revolves.ProfileMeridian import CalcMeridian
-from convert.formats.Fusion.Revolves.RevProfile import ReadRevProfile
-from interchange.document.models.DocumentModel import CadDocument
-from interchange.features.FeatureAngleRev import AngularRevolve
-from interchange.features.RevolveSpan import GetAngleSpan
-from interchange.geometry.models.Sketch import Sketch
-from interchange.geometry.models.VectorSpace import SpaceVector
+from convert.Formats.Fusion.Revolves.ProfileMeridian import CalcMeridian
+from convert.Formats.Fusion.Revolves.RevProfile import ReadRevProfile
+from interchange.document.Models.DocumentModel import CadDocument
+from interchange.Features.FeatureAngleRev import AngularRevolve
+from interchange.Features.RevolveSpan import GetAngleSpan
+from interchange.geometry.Models.Sketch import Sketch
+from interchange.geometry.Models.VectorSpace import SpaceVector
 
 
 # angle and source geometry edits regenerate the same native solid and selected axis identities

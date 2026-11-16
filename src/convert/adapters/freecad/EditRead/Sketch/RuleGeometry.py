@@ -12,8 +12,8 @@ from convert.adapters.freecad.EditRead.Sketch.RuleOperands import (
     RulePoint,
 )
 from convert.adapters.freecad.EditRead.Sketch.RuleTangent import TangentBranch
-from interchange.geometry.models.GeometryCurves import CircleGeometry, LineGeometry
-from interchange.geometry.models.VectorPlane import PlaneVector
+from interchange.geometry.Models.GeometryCurves import CircleGeometry, LineGeometry
+from interchange.geometry.Models.VectorPlane import PlaneVector
 
 
 # finite physical distances make point residuals independent of coordinate signs

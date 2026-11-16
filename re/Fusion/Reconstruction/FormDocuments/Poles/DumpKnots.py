@@ -11,8 +11,8 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from PoleData import GENERAL, OLD_LABELS, general_saved, general_surface, old_surface, read_tables, table_faces  # noqa: E402
 
-from convert.formats.Fusion.BrepCodec.Journal.Spline.Capped.CageGraph import ReadGraph  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Spline.Capped.CappedLayout import CappedLayout  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.Capped.CageGraph import ReadGraph  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.Capped.CappedLayout import CappedLayout  # noqa: E402
 
 
 def show(name):

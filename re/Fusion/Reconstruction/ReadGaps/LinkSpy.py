@@ -9,10 +9,10 @@ sys.setrecursionlimit(20000)
 
 from CacheSpy import ROOT
 
-from convert.formats.Fusion.BundleCodec.ReadBundle import ReadBundle
-import convert.formats.Fusion.DocumentCodec.ReadDocument as Reader
-from convert.formats.Fusion.DocumentCodec.Auxiliary.Graphics.CheckDocScene import CheckDocScene
-from convert.formats.Fusion.SegmentCodec.Manifest.LinkLayout import KLinkedUrl
+from convert.Formats.Fusion.BundleCodec.ReadBundle import ReadBundle
+import convert.Formats.Fusion.DocumentCodec.ReadDocument as Reader
+from convert.Formats.Fusion.DocumentCodec.Auxiliary.Graphics.CheckDocScene import CheckDocScene
+from convert.Formats.Fusion.SegmentCodec.Manifest.LinkLayout import KLinkedUrl
 
 VERSION = re.compile(r'version=(\d+)')
 

@@ -5,7 +5,7 @@
 The implementation adapts the MIT-licensed openswx rotation codec at
 `72291dc962bbf267fa40cd57813b273108ebac53`, and follows its payload-boundary
 advancement and cache-cell recognition. Full attribution is shipped in
-`src/convert/adapters/solidworks/container/OpenSwxLicense.md` and wheel license metadata.
+`src/convert/adapters/solidworks/Container/OpenSwxLicense.md` and wheel license metadata.
 
 The modern parser uses the file header's final byte as the name rotation key.
 Version 4 is the familiar nibble swap; version 3 requires rotate-left by three

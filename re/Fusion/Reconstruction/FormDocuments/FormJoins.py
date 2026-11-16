@@ -6,11 +6,11 @@ from pathlib import Path
 BASE = Path(__file__).resolve().parent
 ROOT = BASE.parents[3]
 sys.path.insert(0, str(ROOT / 'src'))
-from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
-from convert.formats.Fusion.BrepCodec.Journal.Spline.ListTsplines import ListTsplines
-from convert.formats.Fusion.BrepCodec.Journal.Spline.SubtransNode import SubtransNode
+from convert.Formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.ListTsplines import ListTsplines
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.SubtransNode import SubtransNode
 
-VOCAB = json.loads((ROOT / 'src/convert/formats/Fusion/DocumentCodec/Vocabulary/FormClasses.json').read_text())
+VOCAB = json.loads((ROOT / 'src/convert/Formats/Fusion/DocumentCodec/Vocabulary/FormClasses.json').read_text())
 NAMES = {row['NameValue']: row['ClassGuid'].upper() for row in VOCAB}
 
 

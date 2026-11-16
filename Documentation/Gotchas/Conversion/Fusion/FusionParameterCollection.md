@@ -12,5 +12,5 @@ Decode the reference and retain its identity.
 Verify the target collection class, membership, and reciprocal name registry before claiming complete semantic proof.
 Do not accept arbitrary footer bytes or infer expression dependencies from collection membership.
 
-The existing [membership checker](../../../../src/convert/formats/Fusion/FormulaDeps/ScopedParams.py) independently establishes the footer relationship.
+The existing [membership checker](../../../../src/convert/Formats/Fusion/FormulaDeps/ScopedParams.py) independently establishes the footer relationship.
 See the [data model](../../../Reference/Research/FusionDataModel.md#numeric-parameter) for the exact layout.

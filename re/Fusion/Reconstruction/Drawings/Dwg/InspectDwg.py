@@ -3,7 +3,7 @@
 # Usage (from anywhere):
 #   /opt/homebrew/bin/python3.14 -I re/Fusion/Reconstruction/Drawings/Dwg/InspectDwg.py <directory-with-dwg-files>
 #
-# Runs convert.formats.Fusion.DrawingCodec.Dwg.ReadDwgInventory on every *.dwg in the
+# Runs convert.Formats.Fusion.DrawingCodec.Dwg.ReadDwgInventory on every *.dwg in the
 # given directory and writes DwgInventory.json next to this script. Only file names,
 # hashes and decoded structure are recorded; the input directory path is not.
 # User names (SummaryInfo Author / LastSavedBy) and any absolute filesystem paths are
@@ -24,7 +24,7 @@ from pathlib import Path
 WORKTREE = Path(__file__).resolve().parents[5]
 sys.path.insert(0, str(WORKTREE / 'src'))
 
-from convert.formats.Fusion.DrawingCodec.Dwg.ReadDwgInventory import ReadDwgInventory  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.ReadDwgInventory import ReadDwgInventory  # noqa: E402
 
 OUTPUT = Path(__file__).resolve().parent / 'DwgInventory.json'
 REDACTED = '<redacted>'
@@ -289,7 +289,7 @@ def inspect(path):
 def main(directory):
     samples = sorted(Path(directory).glob('*.dwg'))
     report = {
-        'Reader': 'convert.formats.Fusion.DrawingCodec.Dwg.ReadDwgInventory.ReadDwgInventory',
+        'Reader': 'convert.Formats.Fusion.DrawingCodec.Dwg.ReadDwgInventory.ReadDwgInventory',
         'Python': sys.version.split()[0],
         'Redaction': 'SummaryInfo Author/LastSavedBy and any text containing an absolute path or the local login name are replaced by <redacted>',
         'Samples': [],

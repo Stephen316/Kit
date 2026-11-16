@@ -3,7 +3,7 @@ from math import degrees as Degrees, isclose as IsClose
 from convert.adapters.freecad.EditableRev import EditRevolve
 from convert.adapters.freecad.EditRead.XmlField import EditChild, EditFloat, EditScalar
 from convert.adapters.freecad.Native import NativeObject
-from interchange.geometry.models.VectorSpace import SpaceVector
+from interchange.geometry.Models.VectorSpace import SpaceVector
 
 
 # all persisted native vector components independently corroborate the selected origin axis

@@ -7,8 +7,8 @@ from zipfile import ZipFile
 
 root = Path(__file__).resolve().parents[4]
 sys.path.insert(0, str(root / "src"))
-from convert.formats.Fusion.BrepCodec.Frustum.ReadFrustumHist import ReadFrustumHist
-from convert.formats.Fusion.BrepCodec.Frustum.EmitFrustumHist import EmitFrustumHist
+from convert.Formats.Fusion.BrepCodec.Frustum.ReadFrustumHist import ReadFrustumHist
+from convert.Formats.Fusion.BrepCodec.Frustum.EmitFrustumHist import EmitFrustumHist
 
 folder = Path(__file__).resolve().parent
 source = root / "re/Fusion/Study/timeline-5867579925b5/rolled_back.f3d"

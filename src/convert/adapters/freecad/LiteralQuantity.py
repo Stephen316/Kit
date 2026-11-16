@@ -2,8 +2,8 @@ from typing import cast as CastValue
 from math import isclose as IsClose, isfinite as IsFinite, pi as HalfTurn
 from re import compile as CompilePattern
 
-from interchange.enums.EnumValues import ValueKind
-from interchange.features.DistanceParam import KLengthFactors
+from interchange.Enums.EnumValues import ValueKind
+from interchange.Features.DistanceParam import KLengthFactors
 
 # self contained numbers preserve editable literal controls with or without units
 KLiteralPattern = CompilePattern(

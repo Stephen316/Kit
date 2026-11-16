@@ -10,8 +10,8 @@ from convert.adapters.freecad.EditRead.Formula.SavedQuantity import (
 )
 from convert.adapters.freecad.EditRead.Formula.SheetLayout import CheckSheetShape
 from convert.adapters.freecad.Native import NativeObject
-from convert.geometry.Formula.FormulaUnits import GetQuantity, IsMatchingQty
-from interchange.records.RecordParameter import Parameter
+from convert.Geometry.Formula.FormulaUnits import GetQuantity, IsMatchingQty
+from interchange.Records.RecordParameter import Parameter
 
 
 # only driving dimensions may take their new literal values from the worksheet

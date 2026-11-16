@@ -1,5 +1,5 @@
 from convert.adapters.freecad.EditableExt import EditExtrude, ReadEditExtrude
-from interchange.document.models.DocumentModel import CadDocument
+from interchange.document.Models.DocumentModel import CadDocument
 
 # a versioned property distinguishes editable exports from older carrier archives
 KEditableBinding = "KitEditableExtrusionV1"

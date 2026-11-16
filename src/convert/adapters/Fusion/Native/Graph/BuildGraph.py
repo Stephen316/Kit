@@ -1,9 +1,9 @@
 from convert.adapters.Fusion.Native.Graph.NativeGraph import NativeGraph
 from convert.adapters.Fusion.Native.Graph.NativeNode import NativeNode
 from convert.adapters.Fusion.Native.Graph.ReadNames import ReadNames
-from convert.formats.Fusion.DocumentCodec.Model.DocumentModel import DocumentModel
-from convert.formats.Fusion.DocumentCodec.Vocabulary.NativeSchema import NativeSchema
-from convert.formats.Fusion.DocumentCodec.Records.NativeAuxiliary import (
+from convert.Formats.Fusion.DocumentCodec.Model.DocumentModel import DocumentModel
+from convert.Formats.Fusion.DocumentCodec.Vocabulary.NativeSchema import NativeSchema
+from convert.Formats.Fusion.DocumentCodec.Records.NativeAuxiliary import (
     KAuxiliarySchemas,
 )
 

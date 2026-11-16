@@ -19,4 +19,4 @@ Read `FProteinEffectAttribute` as one `AssetReference` text field, like the firs
 ## Evidence
 
 - [Cache and package notes](../../../../../re/Fusion/Reconstruction/ReadGaps/CachePackageNotes.md#protein-effect-attribute-member-5)
-- [Cache gap tests](../../../../../tests/convert/formats/FusionCodec/SavedCorpus/CacheGapTests.py), case `TestCacheMember`
+- [Cache gap tests](../../../../../tests/Convert/Formats/FusionCodec/SavedCorpus/CacheGapTests.py), case `TestCacheMember`

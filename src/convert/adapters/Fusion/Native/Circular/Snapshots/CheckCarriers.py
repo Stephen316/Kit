@@ -1,11 +1,11 @@
 from convert.adapters.Fusion.Native.Graph.GraphChecks import SameNumbers
-from convert.formats.Fusion.BrepCodec.Journal.Geometry.PlaneNode import PlaneNode
-from convert.formats.Fusion.BrepCodec.Journal.Geometry.ConeNode import ConeNode
-from convert.formats.Fusion.BrepCodec.Frustum.Models.ConeFrame import ConeFrame
-from convert.formats.Fusion.BrepCodec.Frustum.Validation.CheckConeFrame import (
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.PlaneNode import PlaneNode
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.ConeNode import ConeNode
+from convert.Formats.Fusion.BrepCodec.Frustum.Models.ConeFrame import ConeFrame
+from convert.Formats.Fusion.BrepCodec.Frustum.Validation.CheckConeFrame import (
     CheckConeFrame,
 )
-from convert.formats.Fusion.GeometryCodec.Frustum.FrustumBody import FrustumBody
+from convert.Formats.Fusion.GeometryCodec.Frustum.FrustumBody import FrustumBody
 
 
 # invalid plane input must fail here so public geometry remains consistent with native circular topology

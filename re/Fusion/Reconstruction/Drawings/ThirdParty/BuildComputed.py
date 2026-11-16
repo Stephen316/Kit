@@ -24,11 +24,11 @@ class common:
 
 from BuildPruned import emit_fresh
 
-from convert.formats.Fusion.DrawingCodec.Dwg.Author.ShellParts import AuthorAppInfo
-from convert.formats.Fusion.DrawingCodec.Dwg.Header.HeaderFrame import KHeaderName
-from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgAppEntry import DwgAppEntry
-from convert.formats.Fusion.DrawingCodec.Dwg.ReadDwgFile import ReadDwgFile
-from convert.formats.Fusion.DrawingCodec.Dwg.ReadDwgInventory import ReadInventory
+from convert.Formats.Fusion.DrawingCodec.Dwg.Author.ShellParts import AuthorAppInfo
+from convert.Formats.Fusion.DrawingCodec.Dwg.Header.HeaderFrame import KHeaderName
+from convert.Formats.Fusion.DrawingCodec.Dwg.Model.DwgAppEntry import DwgAppEntry
+from convert.Formats.Fusion.DrawingCodec.Dwg.ReadDwgFile import ReadDwgFile
+from convert.Formats.Fusion.DrawingCodec.Dwg.ReadDwgInventory import ReadInventory
 
 OLD = Path(os.environ.get("KIT_DRAWING_SRC", "/private/var/folders/b0/tf903gr929v3hkcly_v3dl800000gn/T/KitFusionDrawings/Variants"))
 OUT = Path(os.environ.get("KIT_DRAWING_OUT", str(HERE / "Out"))) / "Variants"

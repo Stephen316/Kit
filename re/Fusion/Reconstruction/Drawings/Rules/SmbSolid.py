@@ -20,13 +20,13 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE.parents[4] / 'src'))
 
-from interchange.brep.curves.BrepCurves import CircleCurve, LineCurve  # noqa: E402
-from interchange.brep.surfaces.BrepSurfaces import ConeSurface, CylinderSurface, PlaneSurface  # noqa: E402
-from interchange.brep.topology.BrepModel import BrepModel  # noqa: E402
-from interchange.brep.topology.BrepTopology import (  # noqa: E402
+from interchange.brep.Curves.BrepCurves import CircleCurve, LineCurve  # noqa: E402
+from interchange.brep.Surfaces.BrepSurfaces import ConeSurface, CylinderSurface, PlaneSurface  # noqa: E402
+from interchange.brep.Topology.BrepModel import BrepModel  # noqa: E402
+from interchange.brep.Topology.BrepTopology import (  # noqa: E402
     BrepBody, BrepCoedge, BrepEdge, BrepFace, BrepFaceUse, BrepLoop, BrepRegion, BrepShell, BrepShellUse, BrepVertex,
 )
-from interchange.geometry.models.VectorSpace import SpaceVector  # noqa: E402
+from interchange.geometry.Models.VectorSpace import SpaceVector  # noqa: E402
 
 MM = 10.0
 

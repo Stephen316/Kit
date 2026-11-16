@@ -9,8 +9,8 @@ from convert.adapters.freecad.ArchiveOutput.ArchiveWrite import BuildDocXmlMut
 from convert.adapters.freecad.EditBinding import ReadEditBinding
 from convert.adapters.freecad.EditScale.ScaleBinding import KScaleBinding
 from convert.adapters.freecad.EditScale.ScaleWritePlan import ReadScalePlan
-from interchange.document.models.DocumentModel import CadDocument
-from interchange.features.FeatureBoundScale import BoundScale
+from interchange.document.Models.DocumentModel import CadDocument
+from interchange.Features.FeatureBoundScale import BoundScale
 
 
 # compare generated native data independently of the embedded manifest carrier text

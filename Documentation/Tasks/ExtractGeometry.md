@@ -66,5 +66,5 @@ See [result evaluation](InspectResult.md) for product acceptance.
 ## Sources
 
 - [Extraction implementation](../../src/convert/api/ApiBrep.py)
-- [Payload selection](../../src/convert/geometry/BrepPayloads.py)
-- [Payload filenames](../../src/convert/geometry/BrepNames.py)
+- [Payload selection](../../src/convert/Geometry/BrepPayloads.py)
+- [Payload filenames](../../src/convert/Geometry/BrepNames.py)

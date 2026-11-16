@@ -25,7 +25,7 @@ KRootInfo = KHereInfo.parents[3]
 KGeneration = KHereInfo.parent / "Generation"
 System.path.insert(0, str(KRootInfo / "src"))
 System.path.insert(0, str(KGeneration))
-from convert.adapters.solidworks.container.Container import SldprtArchive
+from convert.adapters.solidworks.Container.Container import SldprtArchive
 from SolveRuns import LoadTraces, Solver
 
 

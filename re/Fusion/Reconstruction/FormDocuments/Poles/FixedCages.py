@@ -29,11 +29,11 @@ ROOT = BASE.parents[4]
 sys.path.insert(0, str(ROOT / 'src'))
 sys.path.insert(0, str(ROOT / 're/Fusion/Reconstruction/FormDocuments/Crease'))
 from CreaseCages import HEADER, crease_sets, grid_box  # noqa: E402
-from convert.formats.Fusion.TSplineCodec.EmitTspline import EmitTspline  # noqa: E402
-from convert.formats.Fusion.TSplineCodec.MakeClosedCage import MakeClosedCage  # noqa: E402
-from convert.formats.Fusion.TSplineCodec.Model.ControlGrip import ControlGrip  # noqa: E402
-from convert.formats.Fusion.TSplineCodec.Model.CreaseData import CreaseData  # noqa: E402
-from convert.formats.Fusion.TSplineCodec.ReadTspline import ReadTspline  # noqa: E402
+from convert.Formats.Fusion.TSplineCodec.EmitTspline import EmitTspline  # noqa: E402
+from convert.Formats.Fusion.TSplineCodec.MakeClosedCage import MakeClosedCage  # noqa: E402
+from convert.Formats.Fusion.TSplineCodec.Model.ControlGrip import ControlGrip  # noqa: E402
+from convert.Formats.Fusion.TSplineCodec.Model.CreaseData import CreaseData  # noqa: E402
+from convert.Formats.Fusion.TSplineCodec.ReadTspline import ReadTspline  # noqa: E402
 
 TARGET = ROOT / 're/Fusion/LocalOracle/FormDocuments/Crease/FixedRound'
 

@@ -9,4 +9,4 @@ The scanner checks each declared size against the remaining budget before decomp
 The export view independently limits a selected stream to 16 MiB.
 Other SDK reading paths retain their existing limits.
 A remote process case verifies rejection before inflation using an oversized stream declaration.
-See [the scanner](../../../src/convert/adapters/solidworks/container/Container.py) and [CLI view](../../../src/convert/Commands/SolidworksView.py).
+See [the scanner](../../../src/convert/adapters/solidworks/Container/Container.py) and [CLI view](../../../src/convert/Commands/SolidworksView.py).

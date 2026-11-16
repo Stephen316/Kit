@@ -21,7 +21,7 @@ sys.path.insert(0, str(BASE))
 sys.path.insert(0, str(BASE.parent / 'Tables'))
 from SavedBodies import GENERAL, OLD_SAVES, ROOT, general_saved, old_saved, read_saved  # noqa: E402
 
-from convert.formats.Fusion.BrepCodec.Journal.Spline.Capped.CappedLayout import CappedLayout  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.Capped.CappedLayout import CappedLayout  # noqa: E402
 from ReadShapes import ReadShapes  # noqa: E402
 from ReadStencils import ReadStencils  # noqa: E402
 from StencilKey import StencilKey  # noqa: E402
@@ -160,7 +160,7 @@ def compare_old(name):
 
 
 def limit_points(surface):
-    from convert.formats.Fusion.BrepCodec.Journal.Spline.Capped.CageGraph import ReadGraph
+    from convert.Formats.Fusion.BrepCodec.Journal.Spline.Capped.CageGraph import ReadGraph
 
     graph = ReadGraph(surface)
     grips = [(g.CoordX, g.CoordY, g.CoordZ) for g in surface.Grips]

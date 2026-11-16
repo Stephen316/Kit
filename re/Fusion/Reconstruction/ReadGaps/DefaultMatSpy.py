@@ -5,8 +5,8 @@ ROOT = Path(__file__).resolve().parents[4]
 sys.path.insert(0, str(ROOT / 'src'))
 
 from convert.adapters.Fusion.Projection.NativeMaterial import NativeMaterial
-from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
-from convert.formats.Fusion.DocumentCodec.Reading.Materials.ReadMatRefs import ReadMatRefs
+from convert.Formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
+from convert.Formats.Fusion.DocumentCodec.Reading.Materials.ReadMatRefs import ReadMatRefs
 
 NAMES = ('physmat_Label', 'UIName', 'BaseSchema', 'description', 'physmat_Type', 'physmat_Class')
 

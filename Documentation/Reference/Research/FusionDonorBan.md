@@ -2,7 +2,7 @@
 
 ## Purpose and scope
 
-This page applies the [no donor blocks standard](../../../.agents/skills/standard-pr-practice/references/Standards/Portable/NoDonorBlocks.md) to the Fusion codecs in `src/convert/formats/Fusion/`.
+This page applies the [no donor blocks standard](../../../.agents/skills/standard-pr-practice/references/Standards/Portable/NoDonorBlocks.md) to the Fusion codecs in `src/convert/Formats/Fusion/`.
 Read it before you write or review a Fusion writer, a default table or a data file under `src/`.
 The standard has the highest priority in the repository.
 This page adds Fusion examples and checks. It does not relax the standard.
@@ -90,7 +90,7 @@ A change is not finished if the answer to any of these questions is yes:
 
 ## Audit of the Fusion writers
 
-An audit of `src/convert/formats/Fusion/` found the items below.
+An audit of `src/convert/Formats/Fusion/` found the items below.
 Each row names the data, why it is donor or case-specific data, and the general rule that replaces it.
 
 | Item                                     | Data and origin                                                         | General rule                                              |

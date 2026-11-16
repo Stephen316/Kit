@@ -11,15 +11,15 @@ from convert.adapters.freecad.EditShape.Revolution.RevExpected import (
     RevFace,
 )
 from convert.adapters.freecad.EditShape.TrimGeometry import SurfaceSide
-from convert.geometry.Opencascade import ApplyDirection, LocationPoint
-from convert.geometry.Revolve.SweepVector import CrossVector, DotVector
-from interchange.brep.curves.BrepCurves import CircleCurve
-from interchange.brep.surfaces.BrepSurfaces import (
+from convert.Geometry.Opencascade import ApplyDirection, LocationPoint
+from convert.Geometry.Revolve.SweepVector import CrossVector, DotVector
+from interchange.brep.Curves.BrepCurves import CircleCurve
+from interchange.brep.Surfaces.BrepSurfaces import (
     ConeSurface,
     CylinderSurface,
     PlaneSurface,
 )
-from interchange.geometry.models.VectorSpace import SpaceVector
+from interchange.geometry.Models.VectorSpace import SpaceVector
 
 
 # plane and rotary faces compare orientation independently of the native parameter basis

@@ -1,9 +1,9 @@
 from convert.adapters.base.WriteValidate import IsObjectTuple
 from convert.adapters.freecad.EditRing.RingInputs import ReadRingInput
-from convert.formats.Fusion.DesignZip import KDesignPrefix
-from convert.formats.Fusion.Profiles.ProfileRef import KLoopGuid, KProfileGuid
-from interchange.features.FeatureStep import FeatureStep
-from interchange.geometry.models.Sketch import Sketch
+from convert.Formats.Fusion.DesignZip import KDesignPrefix
+from convert.Formats.Fusion.Profiles.ProfileRef import KLoopGuid, KProfileGuid
+from interchange.Features.FeatureStep import FeatureStep
+from interchange.geometry.Models.Sketch import Sketch
 
 
 # the owned descriptor and loop identify every whole selected curve

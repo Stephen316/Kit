@@ -5,14 +5,14 @@ from convert.adapters.freecad.EditAxisRev.AxisPrimitives import (
     ReadAxisPoint,
 )
 from convert.adapters.freecad.EditRing.RingEndpoints import ReadRingEnds
-from convert.geometry.Extrude.Polygon.PrismFrame import PlacePrismPoint
-from convert.geometry.Revolve.SweepVector import OffsetVector
-from interchange.brep.topology.BrepMath import IsFiniteSpace
-from interchange.geometry.models.GeometryCurves import LineGeometry
-from interchange.geometry.models.Sketch import Sketch
-from interchange.geometry.models.Transform import KOriginZero, Transform
-from interchange.geometry.models.VectorPlane import PlaneVector
-from interchange.geometry.models.VectorSpace import SpaceVector
+from convert.Geometry.Extrude.Polygon.PrismFrame import PlacePrismPoint
+from convert.Geometry.Revolve.SweepVector import OffsetVector
+from interchange.brep.Topology.BrepMath import IsFiniteSpace
+from interchange.geometry.Models.GeometryCurves import LineGeometry
+from interchange.geometry.Models.Sketch import Sketch
+from interchange.geometry.Models.Transform import KOriginZero, Transform
+from interchange.geometry.Models.VectorPlane import PlaneVector
+from interchange.geometry.Models.VectorSpace import SpaceVector
 
 
 # the independent sketch owns one construction line and its original endpoint records

@@ -7,7 +7,7 @@ from convert.adapters.freecad.EditShape.TrimGeometry import (
     IsUnitPair,
     TrimCurve,
 )
-from convert.geometry.Opencascade import (
+from convert.Geometry.Opencascade import (
     DecodeFailure,
     EdgeData,
     FaceData,
@@ -16,8 +16,8 @@ from convert.geometry.Opencascade import (
     ShapeRecord,
     Tokens,
 )
-from interchange.brep.curves.BrepCurves import LineCurve
-from interchange.brep.surfaces.BrepSurfaces import PlaneSurface
+from interchange.brep.Curves.BrepCurves import LineCurve
+from interchange.brep.Surfaces.BrepSurfaces import PlaneSurface
 
 
 # linear planar trims are the only stored edge representations used by kit prisms

@@ -1,0 +1,21 @@
+from convert.Formats.Fusion.EntityCodec.Recipes.Model.BaseRecipe import BaseRecipe
+from convert.Formats.Fusion.EntityCodec.Recipes.Model.BodyRecipe import BodyRecipe
+from convert.Formats.Fusion.EntityCodec.Recipes.Model.BoundFaceRecipe import (
+    BoundFaceRecipe,
+)
+from convert.Formats.Fusion.EntityCodec.Recipes.Model.EdgeRecipe import EdgeRecipe
+from convert.Formats.Fusion.EntityCodec.Recipes.Model.FaceRecipe import FaceRecipe
+from convert.Formats.Fusion.EntityCodec.Recipes.Model.RecipePayload import (
+    KRecipePayload,
+)
+from convert.Formats.Fusion.EntityCodec.Recipes.Model.VertexRecipe import VertexRecipe
+
+# the recipe kinds vocabulary must stay centralized so entity reconstruction agrees on supported native identities
+KRecipeKinds: dict[type[KRecipePayload], str] = {
+    BaseRecipe: "base_recipe_data",
+    BodyRecipe: "body_recipe_data",
+    FaceRecipe: "face_recipe_data",
+    BoundFaceRecipe: "bounded_face_recipe_data",
+    EdgeRecipe: "edge_recipe_data",
+    VertexRecipe: "vertex_recipe_data",
+}

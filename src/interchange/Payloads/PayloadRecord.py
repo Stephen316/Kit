@@ -1,0 +1,51 @@
+from __future__ import annotations
+
+from dataclasses import field as MakeDataField
+from typing import Mapping as TypeMap
+
+from interchange.Core.Common import FreezeMapping
+from interchange.Core.ModelBase import ModelBase, ModelDataMut
+from interchange.Core.ModelExtras import ModelExtras
+from interchange.Payloads.PayloadRoles import PayloadRole
+from interchange.Payloads.PayloadView import PayloadView
+from interchange.Records.RecordProvenance import Provenance
+
+
+# payload extensions need validation before writers derive filesystem paths
+def FindExtError(ExtensionText: object) -> str:
+    if not isinstance(ExtensionText, str):
+        return "payload file extension must start with a period"
+    NameValue = ExtensionText[1:] if ExtensionText.startswith(".") else ""
+    if not NameValue or not NameValue[0].isascii() or not NameValue[0].isalnum():
+        return "payload file extension must start with a period"
+    IsInvalid = any(
+        not Character.isascii() or not (Character.isalnum() or Character in "._-")
+        for Character in NameValue
+    )
+    if IsInvalid or NameValue.endswith("."):
+        return "payload file extension contains an invalid character"
+    return ""
+
+
+# native bytes need identity purpose and integrity metadata for lossless translation
+@ModelDataMut
+class BrepPayload(PayloadView, ModelExtras, ModelBase):
+    id: str
+    format_id: str
+    kind: str
+    schema: str
+    sha256: str
+    data: bytes | None = None
+    source_stream: str = ""
+    provenance: Provenance | None = None
+    attributes: TypeMap[str, object] = MakeDataField(default_factory=FreezeMapping)
+    role: PayloadRole = PayloadRole.KAuxiliary
+    file_extension: str = ".bin"
+
+    # invalid metadata must fail before bytes reach archive writers
+    def __post_init__(self) -> None:
+        if type(self.role) is not PayloadRole:
+            raise TypeError("payload role must be a PayloadRole")
+        ErrorText = FindExtError(self.file_extension)
+        if ErrorText:
+            raise ValueError(ErrorText)

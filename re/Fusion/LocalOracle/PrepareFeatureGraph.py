@@ -4,18 +4,18 @@ import json
 from pathlib import Path
 from zipfile import ZipFile
 
-from convert.formats.Fusion.BulkSpans import ReadBulkSpans
-from convert.formats.Fusion.DesignZip import KDesignPrefix
-from convert.formats.Fusion.NumericParam import KParamGuid, ReadNativeNum
-from convert.formats.Fusion.SegmentCodec.Bulk.BulkRecord import BulkRecord
-from convert.formats.Fusion.SegmentCodec.EmitSegment import EmitSegment
-from convert.formats.Fusion.SegmentCodec.Features.ReadFeature import ReadFeature
-from convert.formats.Fusion.SegmentCodec.Features.EmitFeature import EmitFeature
-from convert.formats.Fusion.SegmentCodec.Features.Model.ClassStamp import ClassStamp
-from convert.formats.Fusion.SegmentCodec.Metadata.ReadMetaWire import ReadMetaWire
-from convert.formats.Fusion.SegmentCodec.Parameters.EmitNumeric import EmitNumeric
-from convert.formats.Fusion.SegmentCodec.Parameters.EmitNumBinding import EmitNumBinding
-from convert.formats.Fusion.SegmentCodec.Parameters.ReadNumBinding import ReadNumBinding
+from convert.Formats.Fusion.BulkSpans import ReadBulkSpans
+from convert.Formats.Fusion.DesignZip import KDesignPrefix
+from convert.Formats.Fusion.NumericParam import KParamGuid, ReadNativeNum
+from convert.Formats.Fusion.SegmentCodec.Bulk.BulkRecord import BulkRecord
+from convert.Formats.Fusion.SegmentCodec.EmitSegment import EmitSegment
+from convert.Formats.Fusion.SegmentCodec.Features.ReadFeature import ReadFeature
+from convert.Formats.Fusion.SegmentCodec.Features.EmitFeature import EmitFeature
+from convert.Formats.Fusion.SegmentCodec.Features.Model.ClassStamp import ClassStamp
+from convert.Formats.Fusion.SegmentCodec.Metadata.ReadMetaWire import ReadMetaWire
+from convert.Formats.Fusion.SegmentCodec.Parameters.EmitNumeric import EmitNumeric
+from convert.Formats.Fusion.SegmentCodec.Parameters.EmitNumBinding import EmitNumBinding
+from convert.Formats.Fusion.SegmentCodec.Parameters.ReadNumBinding import ReadNumBinding
 
 
 root = Path(__file__).resolve().parent / "Features"

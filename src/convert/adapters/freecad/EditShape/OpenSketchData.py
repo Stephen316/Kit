@@ -1,7 +1,7 @@
 from dataclasses import dataclass as MakeDataClass
 
 from convert.adapters.freecad.EditShape.CylinderRims import KAngleTolerance
-from convert.geometry.Opencascade import (
+from convert.Geometry.Opencascade import (
     ApplyLocations,
     AssertReachable,
     DecodeFailure,
@@ -16,7 +16,7 @@ from convert.geometry.Opencascade import (
     Tokens,
     ZeroTable,
 )
-from interchange.brep.curves.BrepCurves import LineCurve
+from interchange.brep.Curves.BrepCurves import LineCurve
 
 
 # saved native open sketches retain a located compound rather than a solid model

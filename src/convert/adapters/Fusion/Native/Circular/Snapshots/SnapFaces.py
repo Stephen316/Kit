@@ -1,13 +1,13 @@
 from convert.adapters.Fusion.Native.Circular.Snapshots.SnapAccess import SnapEntity
-from convert.formats.Fusion.BrepCodec.Journal.Snapshot.GeometryState import (
+from convert.Formats.Fusion.BrepCodec.Journal.Snapshot.GeometryState import (
     GeometryState,
 )
-from convert.formats.Fusion.BrepCodec.Journal.Geometry.BodyNode import BodyNode
-from convert.formats.Fusion.BrepCodec.Journal.Geometry.LumpNode import LumpNode
-from convert.formats.Fusion.BrepCodec.Journal.Geometry.ShellNode import ShellNode
-from convert.formats.Fusion.BrepCodec.Journal.Geometry.FaceNode import FaceNode
-from convert.formats.Fusion.BrepCodec.Journal.Geometry.LoopNode import LoopNode
-from convert.formats.Fusion.BrepCodec.Journal.Geometry.CoedgeNode import CoedgeNode
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.BodyNode import BodyNode
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.LumpNode import LumpNode
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.ShellNode import ShellNode
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.FaceNode import FaceNode
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.LoopNode import LoopNode
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.CoedgeNode import CoedgeNode
 
 
 # body faces needs an explicit validity boundary so public geometry remains consistent with native circular topology

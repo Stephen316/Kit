@@ -2,8 +2,8 @@ from pathlib import Path
 from textwrap import dedent
 
 ROOT = Path(__file__).resolve().parents[4]
-BASE = ROOT / 'src/convert/formats/Fusion/GraphicsCodec'
-P = 'convert.formats.Fusion.GraphicsCodec.'
+BASE = ROOT / 'src/convert/Formats/Fusion/GraphicsCodec'
+P = 'convert.Formats.Fusion.GraphicsCodec.'
 
 def save(name, code):
     path = BASE / (name + '.py')
@@ -101,7 +101,7 @@ class SceneWire:
             raise ValueError("Unsupported linked graphics callback")
 ''')
 save('Wire/MeshStreams', '''
-from convert.formats.Fusion.GraphicsCodec.Model.State.GraphicsStream import GraphicsStream
+from convert.Formats.Fusion.GraphicsCodec.Model.State.GraphicsStream import GraphicsStream
 
 
 class MeshStreams:

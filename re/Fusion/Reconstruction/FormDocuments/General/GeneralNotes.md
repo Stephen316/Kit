@@ -5,7 +5,7 @@ Branch `form-general-rules` (from e4e99c2b5). Research only; nothing here is loa
 ## Task state
 
 - Goal: replace `FormStencils.xz`, `FormShapes.xz`, `StencilKey.py` and loaders in
-  `src/convert/formats/Fusion/BrepCodec/Journal/Spline/Stencil/` with a rule derived from cage topology.
+  `src/convert/Formats/Fusion/BrepCodec/Journal/Spline/Stencil/` with a rule derived from cage topology.
 - Acceptance: old 8 layouts (Box, CreasedPlane, CreasedBox, Box3, Valence5..8) model-equal; at least 6
   held-out layouts with valence 3, 5, 6, 7 points, a crease loop, a weighted cage, a non-box topology.
 - Method: black box only. Kit cage -> Fusion via `re/Fusion/LocalOracle/RunLocked.mjs` -> read Fusion save.

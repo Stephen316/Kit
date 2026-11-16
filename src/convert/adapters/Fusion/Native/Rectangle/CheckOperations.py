@@ -8,7 +8,7 @@ from convert.adapters.Fusion.Native.Graph.IntegerValue import IntegerValue
 from convert.adapters.Fusion.Native.Graph.NativeGraph import NativeGraph
 from convert.adapters.Fusion.Native.Graph.ExtrudeContext import ExtrudeContext
 from convert.adapters.Fusion.Native.Graph.KnownHistory import KKnownHistory
-from convert.formats.Fusion.EntityCodec.Model.ValuePair import ValuePair
+from convert.Formats.Fusion.EntityCodec.Model.ValuePair import ValuePair
 
 
 # invalid operations input must fail here so public document claims remain grounded in native records

@@ -2,7 +2,7 @@ from math import cos as Cosine, hypot as Hypot, isclose as IsClose, sin as SineV
 
 from convert.adapters.freecad.EditRead.XmlField import EditChild, EditFloat
 from convert.adapters.freecad.Native import IsTransformNear, NativeObject, TransformA
-from interchange.geometry.models.Transform import Transform
+from interchange.geometry.Models.Transform import Transform
 
 # freecad serializes both quaternion and axis angle representations of the same transform
 KEditFrameTol = 1e-9

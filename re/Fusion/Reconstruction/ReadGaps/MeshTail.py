@@ -6,9 +6,9 @@ sys.path.insert(0, str(BASE))
 sys.setrecursionlimit(20000)
 
 from ExampleRecords import documents
-import convert.formats.Fusion.GraphicsCodec.Wire.MeshStreams as Mesh
-from convert.formats.Fusion.ContainerCodec.ReadContainer import ReadContainer
-from convert.formats.Fusion.DocumentCodec.Auxiliary.Graphics.ReadSceneParts import ReadSceneParts
+import convert.Formats.Fusion.GraphicsCodec.Wire.MeshStreams as Mesh
+from convert.Formats.Fusion.ContainerCodec.ReadContainer import ReadContainer
+from convert.Formats.Fusion.DocumentCodec.Auxiliary.Graphics.ReadSceneParts import ReadSceneParts
 
 
 def main():

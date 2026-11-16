@@ -2,17 +2,17 @@ from convert.adapters.freecad.EditBodyRev.BodyRevModels import GetBodyTopology
 from convert.adapters.freecad.EditBodyRev.BodyRevParams import ReadSeedDepth
 from convert.adapters.freecad.EditExtRing import GetEditRing
 from convert.adapters.freecad.EditScale.ScaleBodyPlan import ScaleBodyPlan
-from convert.formats.Fusion.Extrudes.SolidCreators import IsSavedActive
-from convert.formats.Fusion.Scales.ScaleSeed import ReadScaleSeed
-from convert.geometry.Extrude.Polygon.PolygonExtrude import BuildPrism
-from convert.geometry.Scale.ScalePrism import BuildScalePrism
-from interchange.brep.topology.BrepModel import BrepModel
-from interchange.document.models.DocumentModel import CadDocument
-from interchange.features.FeatureBody import DesignBody
-from interchange.features.FeatureDistExt import DistanceExtrude
-from interchange.features.FeatureStep import FeatureStep
-from interchange.geometry.models.Selection import Selection
-from interchange.geometry.models.VectorSpace import SpaceVector
+from convert.Formats.Fusion.Extrudes.SolidCreators import IsSavedActive
+from convert.Formats.Fusion.Scales.ScaleSeed import ReadScaleSeed
+from convert.Geometry.Extrude.Polygon.PolygonExtrude import BuildPrism
+from convert.Geometry.Scale.ScalePrism import BuildScalePrism
+from interchange.brep.Topology.BrepModel import BrepModel
+from interchange.document.Models.DocumentModel import CadDocument
+from interchange.Features.FeatureBody import DesignBody
+from interchange.Features.FeatureDistExt import DistanceExtrude
+from interchange.Features.FeatureStep import FeatureStep
+from interchange.geometry.Models.Selection import Selection
+from interchange.geometry.Models.VectorSpace import SpaceVector
 
 # an origin scale cache receives its component translation through the root location
 KScaleOrigin = SpaceVector(0, 0, 0)

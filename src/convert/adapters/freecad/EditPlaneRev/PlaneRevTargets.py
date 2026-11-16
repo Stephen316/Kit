@@ -4,27 +4,27 @@ from typing import cast as CastValue
 
 from convert.adapters.base.WriteValidate import IsObjectTuple
 from convert.adapters.freecad.EditExtScope import HasEditState
-from convert.formats.Fusion.AnglePlane.AnglePlaneBasis import (
+from convert.Formats.Fusion.AnglePlane.AnglePlaneBasis import (
     IsSameAngPlane,
     RotatePlane,
 )
-from convert.formats.Fusion.NativePlane import KPlaneFeature, KPlaneObject
-from convert.formats.Fusion.PlaneCollection import KDatumCollection
-from convert.formats.Fusion.Revolves.OriginAxis import KAxisGuid, KOriginGuid
-from convert.formats.Fusion.Revolves.PlaneRevInputs import TargetPlanes
-from convert.formats.Fusion.SelectionProxy import KSelectProxy
-from convert.formats.Fusion.SelectionRef import KSelectDesc, KSelectLeaf
-from convert.geometry.Extrude.Polygon.PrismFrame import CheckPrismFrame
-from convert.geometry.Revolve.SweepVector import CrossVector, DotVector
-from interchange.document.models.DocumentModel import CadDocument
-from interchange.enums.EnumFeatures import FeatureKind
-from interchange.features.FeatureBoundPlane import BoundDatum
-from interchange.features.FeaturePlaneRev import PlaneRevolve
-from interchange.features.FeatureStep import FeatureStep
-from interchange.geometry.models.Selection import Selection
-from interchange.geometry.models.SupportPlane import SupportPlane
-from interchange.geometry.models.Transform import KOriginZero, Transform
-from interchange.geometry.models.VectorSpace import SpaceVector
+from convert.Formats.Fusion.NativePlane import KPlaneFeature, KPlaneObject
+from convert.Formats.Fusion.PlaneCollection import KDatumCollection
+from convert.Formats.Fusion.Revolves.OriginAxis import KAxisGuid, KOriginGuid
+from convert.Formats.Fusion.Revolves.PlaneRevInputs import TargetPlanes
+from convert.Formats.Fusion.SelectionProxy import KSelectProxy
+from convert.Formats.Fusion.SelectionRef import KSelectDesc, KSelectLeaf
+from convert.Geometry.Extrude.Polygon.PrismFrame import CheckPrismFrame
+from convert.Geometry.Revolve.SweepVector import CrossVector, DotVector
+from interchange.document.Models.DocumentModel import CadDocument
+from interchange.Enums.EnumFeatures import FeatureKind
+from interchange.Features.FeatureBoundPlane import BoundDatum
+from interchange.Features.FeaturePlaneRev import PlaneRevolve
+from interchange.Features.FeatureStep import FeatureStep
+from interchange.geometry.Models.Selection import Selection
+from interchange.geometry.Models.SupportPlane import SupportPlane
+from interchange.geometry.Models.Transform import KOriginZero, Transform
+from interchange.geometry.Models.VectorSpace import SpaceVector
 
 
 # final feature links identify targets independently from timeline and geometric sort order

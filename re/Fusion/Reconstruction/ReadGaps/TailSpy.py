@@ -6,8 +6,8 @@ sys.path.insert(0, str(BASE))
 
 from CacheSpy import scene, where
 
-import convert.formats.Fusion.GraphicsCodec.Wire.MeshStreams as Mesh
-from convert.formats.Fusion.GraphicsCodec.ReadGraphics import ReadGraphics
+import convert.Formats.Fusion.GraphicsCodec.Wire.MeshStreams as Mesh
+from convert.Formats.Fusion.GraphicsCodec.ReadGraphics import ReadGraphics
 
 SPANS = []
 

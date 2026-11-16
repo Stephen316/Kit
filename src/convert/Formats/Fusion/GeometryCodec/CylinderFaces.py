@@ -1,0 +1,24 @@
+from convert.Formats.Fusion.GeometryCodec.EntityRef import EntityRef
+from convert.Formats.Fusion.GeometryCodec.GeometryRecord import GeometryRecord
+from convert.Formats.Fusion.GeometryCodec.KeywordToken import KeywordToken
+from convert.Formats.Fusion.GeometryCodec.MakeRecord import MakeRecord
+
+
+# the faces operation needs a consistent construction rule so geometric values retain their native record boundaries
+def BuildFaces() -> tuple[GeometryRecord, ...]:
+    Values = ((5, 7, 17, False), (6, 9, 18, False), (-1, 10, 19, True))
+    return tuple(
+        MakeRecord(
+            "face",
+            (
+                EntityRef(NextFace),
+                EntityRef(FirstLoop),
+                EntityRef(3),
+                EntityRef(-1),
+                EntityRef(Surface),
+                KeywordToken("reversed" if Reverse else "forward"),
+                KeywordToken("single"),
+            ),
+        )
+        for NextFace, FirstLoop, Surface, Reverse in Values
+    )

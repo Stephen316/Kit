@@ -12,26 +12,26 @@ sys.path.insert(0, str(ROOT / 'src'))
 
 from compression import zstd  # noqa: E402
 
-from convert.formats.Fusion.BundleCodec.EmitBundle import EmitBundle  # noqa: E402
-from convert.formats.Fusion.BundleCodec.Model.BundleFile import BundleFile  # noqa: E402
-from convert.formats.Fusion.BundleCodec.Model.BundleGraph import BundleGraph  # noqa: E402
-from convert.formats.Fusion.BundleCodec.Model.BundleLink import BundleLink  # noqa: E402
-from convert.formats.Fusion.BundleCodec.Model.BundleModel import BundleModel  # noqa: E402
-from convert.formats.Fusion.BundleCodec.Model.BundleObject import BundleObject  # noqa: E402
-from convert.formats.Fusion.BundleCodec.Model.BundleRefs import BundleRefs  # noqa: E402
-from convert.formats.Fusion.BundleCodec.Model.BundleText import BundleText  # noqa: E402
-from convert.formats.Fusion.BundleCodec.Model.FusionBundle import FusionBundle  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Bundle.DrawingBundle import DrawingBundle  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Bundle.EmitDrawBundle import EmitDrawBundle  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Bundle.ReadDrawBundle import ReadDrawBundle  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.EmitDrawing import EmitDrawing  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Manifest.ReadRoot import ReadRoot  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Model.PackageSlot import PackageSlot  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Package.DrawingPackage import DrawingPackage  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Package.EmitPackage import EmitPackage  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Package.EntryLayout import EntryLayout  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Package.ReadPackage import ReadPackage  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.ReadDrawing import ReadDrawing  # noqa: E402
+from convert.Formats.Fusion.BundleCodec.EmitBundle import EmitBundle  # noqa: E402
+from convert.Formats.Fusion.BundleCodec.Model.BundleFile import BundleFile  # noqa: E402
+from convert.Formats.Fusion.BundleCodec.Model.BundleGraph import BundleGraph  # noqa: E402
+from convert.Formats.Fusion.BundleCodec.Model.BundleLink import BundleLink  # noqa: E402
+from convert.Formats.Fusion.BundleCodec.Model.BundleModel import BundleModel  # noqa: E402
+from convert.Formats.Fusion.BundleCodec.Model.BundleObject import BundleObject  # noqa: E402
+from convert.Formats.Fusion.BundleCodec.Model.BundleRefs import BundleRefs  # noqa: E402
+from convert.Formats.Fusion.BundleCodec.Model.BundleText import BundleText  # noqa: E402
+from convert.Formats.Fusion.BundleCodec.Model.FusionBundle import FusionBundle  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Bundle.DrawingBundle import DrawingBundle  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Bundle.EmitDrawBundle import EmitDrawBundle  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Bundle.ReadDrawBundle import ReadDrawBundle  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.EmitDrawing import EmitDrawing  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Manifest.ReadRoot import ReadRoot  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Model.PackageSlot import PackageSlot  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Package.DrawingPackage import DrawingPackage  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Package.EmitPackage import EmitPackage  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Package.EntryLayout import EntryLayout  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Package.ReadPackage import ReadPackage  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.ReadDrawing import ReadDrawing  # noqa: E402
 
 OUT = Path(tempfile.gettempdir()) / 'KitFusionDrawings' / 'Variants'
 BUNDLE_LAYOUT = EntryLayout(8, 0x0808, 0x6000, 0x5B6C, 20, 20, 0)

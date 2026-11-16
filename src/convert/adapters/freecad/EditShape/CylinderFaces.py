@@ -6,9 +6,9 @@ from convert.adapters.freecad.EditShape.CylinderRims import (
     KPositionTolerance,
 )
 from convert.adapters.freecad.EditShape.CylinderShell import CylinderFace
-from convert.geometry.Revolve.SweepVector import DotVector, OffsetVector
-from interchange.brep.surfaces.BrepSurfaces import CylinderSurface, PlaneSurface
-from interchange.geometry.models.VectorSpace import SpaceVector
+from convert.Geometry.Revolve.SweepVector import DotVector, OffsetVector
+from interchange.brep.Surfaces.BrepSurfaces import CylinderSurface, PlaneSurface
+from interchange.geometry.Models.VectorSpace import SpaceVector
 
 
 # cap membership and traversal must place material between the two end stations

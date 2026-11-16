@@ -3,8 +3,8 @@ from xml.etree.ElementTree import Element
 from convert.adapters.freecad.EditRead.Sketch.SavedPrimitive import ReadPrimitive
 from convert.adapters.freecad.EditRead.XmlField import EditChild, EditScalar
 from convert.adapters.freecad.Native import NativeObject
-from interchange.geometry.models.GeometryCurves import LineGeometry
-from interchange.geometry.models.VectorPlane import PlaneVector
+from interchange.geometry.Models.GeometryCurves import LineGeometry
+from interchange.geometry.Models.VectorPlane import PlaneVector
 
 
 # freecad regenerates these two coordinate axes without creating external source dependencies

@@ -1,11 +1,11 @@
 from math import isclose as IsClose
 
 from convert.adapters.base.WriteValidate import IsObjectTuple
-from interchange.brep.topology.BrepMath import IsFinitePlane
-from interchange.enums.EnumGeometry import GeometryKind
-from interchange.features.FeatureStep import FeatureStep
-from interchange.geometry.models.GeometryCurves import CircleGeometry, PointGeometry
-from interchange.geometry.models.Sketch import Sketch, SketchEntity
+from interchange.brep.Topology.BrepMath import IsFinitePlane
+from interchange.Enums.EnumGeometry import GeometryKind
+from interchange.Features.FeatureStep import FeatureStep
+from interchange.geometry.Models.GeometryCurves import CircleGeometry, PointGeometry
+from interchange.geometry.Models.Sketch import Sketch, SketchEntity
 
 
 # whole sketch links can reproduce a selected circle when the remaining entities are helper points

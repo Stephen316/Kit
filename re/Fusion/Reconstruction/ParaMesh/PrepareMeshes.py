@@ -12,8 +12,8 @@ ROOT = Path(__file__).resolve().parent
 REPO = ROOT.parents[3]
 sys.path.insert(0, str(REPO / "src"))
 
-from convert.formats.Fusion.MeshCodec.EmitParaMesh import EmitParaMesh
-from convert.formats.Fusion.MeshCodec.ReadParaMesh import ReadParaMesh
+from convert.Formats.Fusion.MeshCodec.EmitParaMesh import EmitParaMesh
+from convert.Formats.Fusion.MeshCodec.ReadParaMesh import ReadParaMesh
 
 
 def prepare(source_name, output):

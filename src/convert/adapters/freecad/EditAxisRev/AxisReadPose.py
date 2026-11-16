@@ -9,10 +9,10 @@ from convert.adapters.freecad.EditRead.XmlField import (
     OnlyEditChild,
 )
 from convert.adapters.freecad.Native import NativeObject
-from convert.geometry.Revolve.SweepVector import DotVector
-from interchange.geometry.models.GeometryCurves import LineGeometry
-from interchange.geometry.models.Transform import Transform
-from interchange.geometry.models.VectorSpace import SpaceVector
+from convert.Geometry.Revolve.SweepVector import DotVector
+from interchange.geometry.Models.GeometryCurves import LineGeometry
+from interchange.geometry.Models.Transform import Transform
+from interchange.geometry.Models.VectorSpace import SpaceVector
 
 
 # native expression rewriting may change grouping but must preserve every live dependency

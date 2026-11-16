@@ -4,9 +4,9 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import Probe
-import convert.formats.Fusion.GraphicsCodec.Wire.MeshStreams as MeshModule
-from convert.formats.Fusion.GraphicsCodec.ReadGraphics import ReadGraphics
-from convert.formats.Fusion.GraphicsCodec.Model.State.GraphicsStream import GraphicsStream
+import convert.Formats.Fusion.GraphicsCodec.Wire.MeshStreams as MeshModule
+from convert.Formats.Fusion.GraphicsCodec.ReadGraphics import ReadGraphics
+from convert.Formats.Fusion.GraphicsCodec.Model.State.GraphicsStream import GraphicsStream
 
 reports = []
 

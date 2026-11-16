@@ -9,7 +9,7 @@ to you under it immediately and permanently.
 
 [Fusion feature index](../README.md)
 
-See [sketch projection](../../../src/convert/formats/Fusion/Sketches/SketchProjection.py) and [profile tests](../../../tests/convert/formats/FusionProfileTests.py).
+See [sketch projection](../../../src/convert/Formats/Fusion/Sketches/SketchProjection.py) and [profile tests](../../../tests/Convert/Formats/FusionProfileTests.py).
 
 ## SDK coverage
 

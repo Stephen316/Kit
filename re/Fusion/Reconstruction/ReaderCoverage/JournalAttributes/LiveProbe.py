@@ -5,9 +5,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[5]
 sys.path.insert(0, str(ROOT / 'src'))
 
-import convert.formats.Fusion.BrepCodec.Journal.Validation.CheckLiveRefs as LiveModule
-import convert.formats.Fusion.BrepCodec.Journal.Validation.WalkStates as WalkModule
-from convert.formats.Fusion.BrepCodec.Journal.Validation.ResolveSlot import ResolveSlot
+import convert.Formats.Fusion.BrepCodec.Journal.Validation.CheckLiveRefs as LiveModule
+import convert.Formats.Fusion.BrepCodec.Journal.Validation.WalkStates as WalkModule
+from convert.Formats.Fusion.BrepCodec.Journal.Validation.ResolveSlot import ResolveSlot
 
 original = LiveModule.CheckLiveRefs
 walk = {'state': 0}
@@ -51,7 +51,7 @@ def patched(records, versions, aliases, root_count):
 
 WalkModule.CheckLiveRefs = patched
 
-from convert.formats.Fusion.BrepCodec.Journal.ReadJournal import ReadJournal
+from convert.Formats.Fusion.BrepCodec.Journal.ReadJournal import ReadJournal
 
 for name in zipfile.ZipFile(ROOT / sys.argv[1]).namelist():
     if name.endswith('.smbh'):

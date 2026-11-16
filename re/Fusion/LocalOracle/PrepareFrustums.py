@@ -9,10 +9,10 @@ import sys
 root = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(root / "src"))
 
-from convert.formats.Fusion.GeometryCodec.Frustum.FrustumBody import FrustumBody
-from convert.formats.Fusion.GeometryCodec.Frustum.EmitFrustumSmb import EmitFrustumSmb
-from convert.formats.Fusion.GeometryCodec.Frustum.EmitFrustumSmt import EmitFrustumSmt
-from convert.formats.Fusion.GeometryCodec.GeometryStamp import GeometryStamp
+from convert.Formats.Fusion.GeometryCodec.Frustum.FrustumBody import FrustumBody
+from convert.Formats.Fusion.GeometryCodec.Frustum.EmitFrustumSmb import EmitFrustumSmb
+from convert.Formats.Fusion.GeometryCodec.Frustum.EmitFrustumSmt import EmitFrustumSmt
+from convert.Formats.Fusion.GeometryCodec.GeometryStamp import GeometryStamp
 
 
 output = Path(__file__).resolve().parent / "Frustums"

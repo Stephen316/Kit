@@ -13,7 +13,7 @@ ENTITY = BASE.parent / 'EntityGraph'
 CORPUS = runpy.run_path(str(ENTITY / 'CorpusProfiles.py'))
 PROFILE = CORPUS['PROFILE']
 GRAPH = PROFILE['GRAPH']
-TARGET = ROOT / 'src/convert/formats/Fusion/DrawingCodec/Segments/DrawingClasses.json'
+TARGET = ROOT / 'src/convert/Formats/Fusion/DrawingCodec/Segments/DrawingClasses.json'
 SEGMENTS = ('FusionDrawingDesignSegmentType', 'FusionDrawingACTSegmentType')
 sys.path.insert(0, str(ROOT / 'src'))
 
@@ -39,8 +39,8 @@ class DrawingBuilder(CORPUS['CorpusBuilder']):
 
 
 def segment_classes(path):
-    from convert.formats.Fusion.MetaIndex import SegmentKind
-    from convert.formats.Fusion.SegmentCodec.Metadata.ReadMetaWire import ReadMetaWire
+    from convert.Formats.Fusion.MetaIndex import SegmentKind
+    from convert.Formats.Fusion.SegmentCodec.Metadata.ReadMetaWire import ReadMetaWire
     from compression import zstd
     data = Path(path).read_bytes()
     archive = zipfile.ZipFile(io.BytesIO(data))
@@ -58,8 +58,8 @@ def segment_classes(path):
 
 
 def known_schemas():
-    from convert.formats.Fusion.DocumentCodec.Records.DocumentCatalog import DocumentCatalog
-    from convert.formats.Fusion.DocumentCodec.Records.ReadDocSchemas import ReadDocSchemas
+    from convert.Formats.Fusion.DocumentCodec.Records.DocumentCatalog import DocumentCatalog
+    from convert.Formats.Fusion.DocumentCodec.Records.ReadDocSchemas import ReadDocSchemas
     catalog = DocumentCatalog(ReadDocSchemas())
     return {(guid, schema.SchemaVersion) for guid, schemas in catalog.Classes.items() for schema in schemas}
 

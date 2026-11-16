@@ -7,7 +7,7 @@ Which fields does each schema write?
 
 ## Starting state
 
-The writer in `src/convert/formats/Fusion/DocumentCodec/Materials/MaterialAssets.py` always writes four assets.
+The writer in `src/convert/Formats/Fusion/DocumentCodec/Materials/MaterialAssets.py` always writes four assets.
 Their schemas are `PhysMatSchema`, `StructuralMetalSchema`, `ThermalSolidSchema` and `PrismMetalSchema`.
 So every material that Kit writes is a metal.
 The old corpus has 1617 material packages, and all of them are metal.

@@ -12,11 +12,11 @@ Each Fusion export of that version ends the Design stream with 10 bytes after th
 The last record is the continuation of a new `VisualAnalyses` record, which Fusion added on save.
 That continuation has 5 bytes of fields, as in native designs.
 
-| Export | Design stream bytes | Trailing bytes | Same trailing bytes as the first export |
-| --- | --- | --- | --- |
-| `AcceptedKitAsmRoot.f3d` | 17,946 | 10 | Yes |
-| `ReexportFirstKitAsmRoot.f3d` | 17,946 | 10 | No |
-| `ReexportSecondKitAsmRoot.f3d` | 17,946 | 10 | No |
+| Export                         | Design stream bytes | Trailing bytes | Same trailing bytes as the first export |
+| ------------------------------ | ------------------- | -------------- | --------------------------------------- |
+| `AcceptedKitAsmRoot.f3d`       | 17,946              | 10             | Yes                                     |
+| `ReexportFirstKitAsmRoot.f3d`  | 17,946              | 10             | No                                      |
+| `ReexportSecondKitAsmRoot.f3d` | 17,946              | 10             | No                                      |
 
 The last two exports came from one opened document.
 Their trailing bytes differ from the first export, so they are not record data.
@@ -33,11 +33,11 @@ Kit keeps at most 16 trailing Design bytes as `ParsedSegment.BulkSlack`.
 A longer Design tail still raises `ValueError`.
 The Browser stream keeps the strict check.
 
-| Stream | Trailing bytes kept |
-| --- | --- |
-| ACT | Any number |
-| Design | 0 to 16 |
-| Browser | 0 |
+| Stream  | Trailing bytes kept |
+| ------- | ------------------- |
+| ACT     | Any number          |
+| Design  | 0 to 16             |
+| Browser | 0                   |
 
 `KMaxDesignSlack` in `SlackLimit.py` holds the Design limit.
 Kit does not interpret these bytes.
@@ -47,6 +47,6 @@ Kit does not interpret these bytes.
 - [Assembly authoring acceptance](../../../../../re/Fusion/LocalOracle/LinksConfigs/AsmAcceptance.json), key `fusion_exports`
 - [Export script](../../../../../re/Fusion/LocalOracle/LinksConfigs/ReexportAsmRoot.py)
 - [Saved root fixture](../../../../../re/Fusion/LocalOracle/LinksConfigs/Fixtures/KitAsmRootSaved.f3d), a sanitized copy of `AcceptedKitAsmRoot.f3d`
-- [Saved root tests](../../../../../tests/convert/formats/FusionCodec/Links/SavedRootTests.py)
-- [Slack tests](../../../../../tests/convert/formats/FusionCodec/Documents/Act/ActSlackTests.py)
+- [Saved root tests](../../../../../tests/Convert/Formats/FusionCodec/Links/SavedRootTests.py)
+- [Slack tests](../../../../../tests/Convert/Formats/FusionCodec/Documents/Act/ActSlackTests.py)
 - [Assembly authoring change](../../../../Changes/Fusion/Assembly/FusionAssemblyAuthoring.md)

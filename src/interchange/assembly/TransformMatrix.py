@@ -1,6 +1,6 @@
 from math import isfinite as IsFiniteNum
 
-from interchange.core.ModelBase import ModelBase, ModelDataMut
+from interchange.Core.ModelBase import ModelBase, ModelDataMut
 
 # one identity tuple keeps placement defaults free of repeated constructor calls
 KIdentityValues: tuple[float, ...] = (

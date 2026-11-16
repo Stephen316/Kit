@@ -1,13 +1,13 @@
 from collections.abc import Mapping
 
 from convert.Commands.GeneratorKinds import KDefinitionKinds
-from interchange.document.validation.DocumentDefValidate import GetDefErrors
-from interchange.enums.EnumFeatures import FeatureKind
-from interchange.features.FeatureStep import FeatureStep
-from interchange.geometry.models.Selection import Selection
-from interchange.geometry.models.Sketch import Sketch
-from interchange.geometry.models.SupportPlane import SupportPlane
-from interchange.records.RecordParameter import Parameter
+from interchange.document.Validation.DocumentDefValidate import GetDefErrors
+from interchange.Enums.EnumFeatures import FeatureKind
+from interchange.Features.FeatureStep import FeatureStep
+from interchange.geometry.Models.Selection import Selection
+from interchange.geometry.Models.Sketch import Sketch
+from interchange.geometry.Models.SupportPlane import SupportPlane
+from interchange.Records.RecordParameter import Parameter
 
 # feature eligibility must exclude operations whose portable semantics are still unknown
 KPortableKinds = frozenset(

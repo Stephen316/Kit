@@ -1,11 +1,11 @@
 from dataclasses import replace as Replace
 
-from convert.formats.Fusion.Revolves.BuildRevGeom import BuildRevGeom
-from interchange.document.models.DocumentModel import CadDocument
-from interchange.features.FeatureAngleRev import AngularRevolve
-from interchange.features.FeaturePlaneRev import PlaneRevolve
-from interchange.geometry.models.Sketch import Sketch
-from interchange.geometry.models.Transform import Transform
+from convert.Formats.Fusion.Revolves.BuildRevGeom import BuildRevGeom
+from interchange.document.Models.DocumentModel import CadDocument
+from interchange.Features.FeatureAngleRev import AngularRevolve
+from interchange.Features.FeaturePlaneRev import PlaneRevolve
+from interchange.geometry.Models.Sketch import Sketch
+from interchange.geometry.Models.Transform import Transform
 
 
 # angular and plane driven edits regenerate one exact solid with its original identity

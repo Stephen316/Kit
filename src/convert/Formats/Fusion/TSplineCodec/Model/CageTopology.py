@@ -1,0 +1,16 @@
+from dataclasses import dataclass
+from convert.Formats.Fusion.TSplineCodec.Model.CageFace import CageFace
+from convert.Formats.Fusion.TSplineCodec.Model.CageEdge import CageEdge
+from convert.Formats.Fusion.TSplineCodec.Model.CageVertex import CageVertex
+from convert.Formats.Fusion.TSplineCodec.Model.CageLink import CageLink
+from convert.Formats.Fusion.TSplineCodec.Model.EndCondition import EndCondition
+
+
+# cage topology needs an explicit state contract so control cage topology retains its native connectivity
+@dataclass(frozen=True)
+class CageTopology:
+    Faces: tuple[CageFace, ...]
+    Edges: tuple[CageEdge, ...]
+    Vertices: tuple[CageVertex, ...]
+    Links: tuple[CageLink, ...]
+    EndConditions: tuple[EndCondition, ...] = ()

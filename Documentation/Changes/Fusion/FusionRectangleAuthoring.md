@@ -7,8 +7,8 @@ The native Fusion document writer adds two semantic profiles. The `rectangle` pr
 ```python
 from pathlib import Path
 
-from convert.formats.Fusion.DocumentCodec.EmitDocument import EmitDocument
-from convert.formats.Fusion.DocumentCodec.Model.DocumentSpec import DocumentSpec
+from convert.Formats.Fusion.DocumentCodec.EmitDocument import EmitDocument
+from convert.Formats.Fusion.DocumentCodec.Model.DocumentSpec import DocumentSpec
 
 Specification = DocumentSpec(
     "Independent cuboid",

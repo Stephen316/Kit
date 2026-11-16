@@ -8,11 +8,11 @@ sys.path.insert(0, str(BASE))
 from PackageSpy import ROOT, ReadBundle
 
 from convert.adapters.Fusion.Native.Graph.ReadNames import ReadNames
-from convert.formats.Fusion.ContainerCodec.ReadContainer import ReadContainer
-from convert.formats.Fusion.DocumentCodec.Records.MakeDocProfile import MakeDocProfile
-from convert.formats.Fusion.DocumentCodec.Records.ReadDocSchemas import ReadDocSchemas
-from convert.formats.Fusion.DocumentCodec.Records.ReadDocSegment import ReadDocSegment
-from convert.formats.Fusion.SegmentCodec.Metadata.ReadMetaWire import ReadMetaWire
+from convert.Formats.Fusion.ContainerCodec.ReadContainer import ReadContainer
+from convert.Formats.Fusion.DocumentCodec.Records.MakeDocProfile import MakeDocProfile
+from convert.Formats.Fusion.DocumentCodec.Records.ReadDocSchemas import ReadDocSchemas
+from convert.Formats.Fusion.DocumentCodec.Records.ReadDocSegment import ReadDocSegment
+from convert.Formats.Fusion.SegmentCodec.Metadata.ReadMetaWire import ReadMetaWire
 
 MASK = re.compile(r'[0-9A-Fa-f]{8}-[0-9A-Fa-f-]{27}')
 

@@ -9,7 +9,7 @@ from convert.adapters.freecad.Archive import (
 )
 from convert.adapters.freecad.Brep import BrepModelBrep
 from convert.adapters.freecad.EditScale.ScaleBodyPlan import ScaleBodyPlan
-from interchange.geometry.models.VectorSpace import SpaceVector
+from interchange.geometry.Models.VectorSpace import SpaceVector
 
 
 # preflight finishes both native caches and resolves every source link before emission

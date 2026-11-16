@@ -9,10 +9,10 @@ from convert.adapters.Fusion.Native.Rectangle.OrderLines import OrderLines
 from convert.adapters.Fusion.Native.Rectangle.ReadLine import ReadLine
 from convert.adapters.Fusion.Native.Graph.ExtrudeContext import ExtrudeContext
 from convert.adapters.Fusion.Native.Rectangle.RectGeometry import RectGeometry
-from interchange.enums.EnumGeometry import GeometryKind
-from interchange.geometry.models.GeometryCurves import PointGeometry
-from interchange.geometry.models.Sketch import SketchEntity
-from interchange.geometry.models.VectorPlane import PlaneVector
+from interchange.Enums.EnumGeometry import GeometryKind
+from interchange.geometry.Models.GeometryCurves import PointGeometry
+from interchange.geometry.Models.Sketch import SketchEntity
+from interchange.geometry.Models.VectorPlane import PlaneVector
 
 
 # the rectangle operation needs a distinct decoding boundary so public document claims remain grounded in native records

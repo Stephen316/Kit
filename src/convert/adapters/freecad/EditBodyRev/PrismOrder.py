@@ -1,13 +1,13 @@
 from dataclasses import dataclass as MakeDataClass
 
-from convert.geometry.Extrude.Polygon.PrismFrame import PlacePrismPoint
-from convert.geometry.Revolve.SweepVector import OffsetVector
-from interchange.brep.curves.BrepCurves import LineCurve
-from interchange.brep.topology.BrepModel import BrepModel
-from interchange.geometry.models.GeometryCurves import LineGeometry
-from interchange.geometry.models.Sketch import Sketch
-from interchange.geometry.models.Transform import KOriginZero, Transform
-from interchange.geometry.models.VectorSpace import SpaceVector
+from convert.Geometry.Extrude.Polygon.PrismFrame import PlacePrismPoint
+from convert.Geometry.Revolve.SweepVector import OffsetVector
+from interchange.brep.Curves.BrepCurves import LineCurve
+from interchange.brep.Topology.BrepModel import BrepModel
+from interchange.geometry.Models.GeometryCurves import LineGeometry
+from interchange.geometry.Models.Sketch import Sketch
+from interchange.geometry.Models.Transform import KOriginZero, Transform
+from interchange.geometry.Models.VectorSpace import SpaceVector
 
 
 # native edge identity needs the same child traversal on load and on recompute

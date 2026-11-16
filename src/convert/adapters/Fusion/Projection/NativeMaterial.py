@@ -1,11 +1,11 @@
-from convert.formats.Fusion.DocumentCodec.Materials.Model.MaterialSpec import (
+from convert.Formats.Fusion.DocumentCodec.Materials.Model.MaterialSpec import (
     MaterialSpec,
 )
-from convert.formats.Fusion.DocumentCodec.Materials.ProjectMaterial import (
+from convert.Formats.Fusion.DocumentCodec.Materials.ProjectMaterial import (
     ProjectMaterial,
 )
-from convert.formats.Fusion.DocumentCodec.Model.DocumentModel import DocumentModel
-from convert.formats.Fusion.DocumentCodec.Reading.Materials.ReadMatRefs import (
+from convert.Formats.Fusion.DocumentCodec.Model.DocumentModel import DocumentModel
+from convert.Formats.Fusion.DocumentCodec.Reading.Materials.ReadMatRefs import (
     ReadMatRefs,
 )
 

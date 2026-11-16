@@ -5,10 +5,10 @@ from convert.adapters.freecad.EditExtProfile import GetCenterPoint, GetEditCircl
 from convert.adapters.freecad.EditExtRing import GetEditRing
 from convert.adapters.freecad.EditExtSolid import KEditProfile
 from convert.adapters.freecad.EditRing.RingChange import CheckRingEdit
-from interchange.document.models.DocumentModel import CadDocument
-from interchange.geometry.models.GeometryCurves import CircleGeometry, PointGeometry
-from interchange.geometry.models.Sketch import Sketch
-from interchange.geometry.models.Transform import Transform
+from interchange.document.Models.DocumentModel import CadDocument
+from interchange.geometry.Models.GeometryCurves import CircleGeometry, PointGeometry
+from interchange.geometry.Models.Sketch import Sketch
+from interchange.geometry.Models.Transform import Transform
 
 
 # only the selected circle and its proven center point may change geometry

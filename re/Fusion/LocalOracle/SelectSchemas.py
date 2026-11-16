@@ -3,8 +3,8 @@ import json
 from pathlib import Path
 from zipfile import ZipFile
 
-from convert.formats.Fusion.DesignZip import KDesignPrefix
-from convert.formats.Fusion.SegmentCodec.Metadata.ReadMetaWire import ReadMetaWire
+from convert.Formats.Fusion.DesignZip import KDesignPrefix
+from convert.Formats.Fusion.SegmentCodec.Metadata.ReadMetaWire import ReadMetaWire
 
 
 root = Path(__file__).resolve().parent

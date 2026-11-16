@@ -1,0 +1,25 @@
+from dataclasses import dataclass as MakeDataClass
+
+from convert.Formats.Fusion.DrawingCodec.Dwg.Author.DraftValue import (
+    DraftLink,
+    DraftRecord,
+)
+
+
+# draft eed needs an explicit state contract so drawing objects retain valid ownership and reference relationships
+@MakeDataClass(frozen=True, slots=True)
+class DraftEed:
+    AppLink: DraftLink
+    EedItems: DraftRecord
+
+
+# draft row needs an explicit state contract so drawing objects retain valid ownership and reference relationships
+@MakeDataClass(frozen=True, slots=True)
+class DraftRow:
+    KeyText: str
+    ClassName: str
+    CommonData: DraftRecord
+    ClassData: DraftRecord
+    EedBlocks: tuple[DraftEed, ...]
+    SpareCommon: frozenset[str] = frozenset()
+    SpareClass: frozenset[str] = frozenset()

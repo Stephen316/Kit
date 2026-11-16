@@ -11,7 +11,7 @@ sys.path.insert(0, str(ROOT / 'src'))
 sys.path.insert(0, str(BASE))
 
 from Sweep import tracked
-from convert.formats.Fusion.TSplineCodec.Wire.MakeCursor import MakeCursor
+from convert.Formats.Fusion.TSplineCodec.Wire.MakeCursor import MakeCursor
 
 
 def members(name):

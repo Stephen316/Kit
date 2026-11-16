@@ -4,7 +4,7 @@ The Fusion journal codec now interprets closed convex planar bodies independentl
 
 ## APIs and units
 
-The additions live under `convert.formats.Fusion.BrepCodec.Journal`:
+The additions live under `convert.Formats.Fusion.BrepCodec.Journal`:
 
 | API                         | Behavior                                                                                                              |
 | --------------------------- | --------------------------------------------------------------------------------------------------------------------- |

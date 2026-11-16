@@ -12,4 +12,4 @@ Preserve the source and use `kit decode` or `kit research` for inspection.
 Empty external-document collections do not request sidecar publication.
 
 See [the guard change](../../../Changes/Commands/ExternalDocumentGuard.md) and
-[process coverage](../../../../tests/convert/Commands/Metadata/CliSidecarTests.py).
+[process coverage](../../../../tests/Convert/Commands/Metadata/CliSidecarTests.py).

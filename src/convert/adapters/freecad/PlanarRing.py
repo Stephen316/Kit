@@ -1,16 +1,16 @@
-from interchange.brep.topology.BrepTopology import BrepEdge
+from interchange.brep.Topology.BrepTopology import BrepEdge
 from collections.abc import Callable
 
 from convert.adapters.freecad.BrepGraph import ModelGraph
 from convert.adapters.freecad.CurvedRing import CurvedRingArea
 from convert.adapters.freecad.PlanarArc import ArcInPlane
-from convert.geometry.Revolve.SweepVector import DotVector, OffsetVector
-from interchange.brep.curves.BrepCurves import CircleCurve, LineCurve
-from interchange.brep.surfaces.BrepSurfaces import PlaneSurface
-from interchange.brep.topology.BrepTopology import BrepFace, BrepLoop
-from interchange.geometry.models.GeometryCurves import ArcGeometry, LineGeometry
-from interchange.geometry.models.VectorPlane import PlaneVector
-from interchange.geometry.models.VectorSpace import SpaceVector
+from convert.Geometry.Revolve.SweepVector import DotVector, OffsetVector
+from interchange.brep.Curves.BrepCurves import CircleCurve, LineCurve
+from interchange.brep.Surfaces.BrepSurfaces import PlaneSurface
+from interchange.brep.Topology.BrepTopology import BrepFace, BrepLoop
+from interchange.geometry.Models.GeometryCurves import ArcGeometry, LineGeometry
+from interchange.geometry.Models.VectorPlane import PlaneVector
+from interchange.geometry.Models.VectorSpace import SpaceVector
 
 # stable frame typing keeps qualification identical to the emitted geometry records
 KFrameFactory = Callable[

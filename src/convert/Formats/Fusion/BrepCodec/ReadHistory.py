@@ -1,0 +1,37 @@
+from convert.Formats.Fusion.BrepCodec.Models.HistoryModel import HistoryModel
+from convert.Formats.Fusion.BrepCodec.Reading.CheckTopology import CheckTopology
+from convert.Formats.Fusion.BrepCodec.Reading.GeometryTokens import GeometryTokens
+from convert.Formats.Fusion.BrepCodec.Reading.MapTopology import MapTopology
+from convert.Formats.Fusion.BrepCodec.Reading.ProfileRecords import ProfileRecords
+from convert.Formats.Fusion.BrepCodec.Reading.ReadBrepWire import ReadBrepWire
+from convert.Formats.Fusion.BrepCodec.Reading.ReadCylinder import ReadCylinder
+from convert.Formats.Fusion.BrepCodec.Reading.ReadIdentity import ReadIdentity
+from convert.Formats.Fusion.BrepCodec.Reading.ReadIds import ReadIds
+from convert.Formats.Fusion.BrepCodec.Reading.ReadJournal import ReadJournal
+from convert.Formats.Fusion.BrepCodec.Reading.ReadTagSet import ReadTagSet
+from convert.Formats.Fusion.BrepCodec.Reading.ReadVertices import ReadVertices
+from convert.Formats.Fusion.BrepCodec.Topology.HistoryRecords import BuildHistory
+
+
+# the history operation needs a distinct decoding boundary so topology identity survives native history reconstruction
+def ReadHistory(Payload: bytes) -> HistoryModel:
+    WireValue = ReadBrepWire(Payload, True)
+    Mapping = MapTopology(ProfileRecords(True), WireValue.Table)
+    Model = ReadCylinder(WireValue.Table, Mapping, True)
+    Identity = ReadIdentity(WireValue.Table, Mapping)
+    TagSet = ReadTagSet(WireValue.Table, Mapping, True)
+    Vertices = ReadVertices(WireValue.Table, Mapping, True)
+    Tracking = ReadIds(WireValue.Table, Mapping)
+    Expected = GeometryTokens(BuildHistory(Model, Identity, TagSet, Vertices, Tracking))
+    CheckTopology(Expected, WireValue.Table, Mapping)
+    History = ReadJournal(WireValue.Journal, len(WireValue.Table.Records))
+    return HistoryModel(
+        Model,
+        Identity,
+        TagSet,
+        History,
+        WireValue.Stamp,
+        WireValue.Header,
+        Vertices,
+        Tracking,
+    )

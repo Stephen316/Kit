@@ -1,4 +1,4 @@
-from interchange.compatibility.PythonCompat import BindCompatMut
+from interchange.Compatibility.PythonCompat import BindCompatMut
 from interchange.mesh.SurfaceMesh import SurfaceMesh
 
 BindCompatMut((SurfaceMesh,), {__name__: globals()})

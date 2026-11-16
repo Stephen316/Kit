@@ -1,7 +1,7 @@
 """Research copy of the retired per-layout Form tables. Nothing in src/ loads this folder."""
 from hashlib import sha256 as HashBytes
 
-from convert.formats.Fusion.TSplineCodec.Model.TsplineSurface import TsplineSurface
+from convert.Formats.Fusion.TSplineCodec.Model.TsplineSurface import TsplineSurface
 
 
 def StencilKey(Surface: TsplineSurface) -> str:

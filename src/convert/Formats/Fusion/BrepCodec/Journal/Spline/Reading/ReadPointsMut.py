@@ -1,0 +1,13 @@
+from convert.Formats.Fusion.BrepCodec.Journal.Reading.FieldCursor import FieldCursor
+from convert.Formats.Fusion.BrepCodec.Journal.Reading.Fields.ReadDoubleMut import (
+    ReadDoubleMut,
+)
+
+
+# the points operation needs a distinct decoding boundary so topology changes retain their native revision relationships
+def ReadPointsMut(
+    Cursor: FieldCursor, Count: int, Width: int
+) -> tuple[tuple[float, ...], ...]:
+    return tuple(
+        tuple(ReadDoubleMut(Cursor) for _ in range(Width)) for _ in range(Count)
+    )

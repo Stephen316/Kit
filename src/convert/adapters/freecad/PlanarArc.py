@@ -6,12 +6,12 @@ from math import (
     tau as FullTurn,
 )
 
-from convert.geometry.Revolve.SweepVector import DotVector, OffsetVector
-from interchange.brep.curves.BrepCurves import CircleCurve
-from interchange.brep.topology.BrepTopology import BrepEdge
-from interchange.geometry.models.GeometryCurves import ArcGeometry
-from interchange.geometry.models.VectorPlane import PlaneVector
-from interchange.geometry.models.VectorSpace import SpaceVector
+from convert.Geometry.Revolve.SweepVector import DotVector, OffsetVector
+from interchange.brep.Curves.BrepCurves import CircleCurve
+from interchange.brep.Topology.BrepTopology import BrepEdge
+from interchange.geometry.Models.GeometryCurves import ArcGeometry
+from interchange.geometry.Models.VectorPlane import PlaneVector
+from interchange.geometry.Models.VectorSpace import SpaceVector
 
 
 # the full carrier plane and signed sweep preserve major arcs and opposite normals

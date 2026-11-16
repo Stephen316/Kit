@@ -3,10 +3,10 @@ from __future__ import annotations
 from dataclasses import field as MakeDataField
 from typing import Mapping as TypeMap
 
-from interchange.core.Common import FreezeMapping
-from interchange.core.ModelBase import ModelBase, ModelDataMut
-from interchange.geometry.models.VectorSpace import SpaceVector
-from interchange.records.RecordProvenance import Provenance
+from interchange.Core.Common import FreezeMapping
+from interchange.Core.ModelBase import ModelBase, ModelDataMut
+from interchange.geometry.Models.VectorSpace import SpaceVector
+from interchange.Records.RecordProvenance import Provenance
 
 
 # surface meshes retain triangulation normals and source evidence for preview and exchange

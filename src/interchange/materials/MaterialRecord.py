@@ -1,7 +1,7 @@
 from math import isfinite as IsFinite
 from typing import cast as CastValue
 
-from interchange.core.ModelBase import ModelBase, ModelDataMut
+from interchange.Core.ModelBase import ModelBase, ModelDataMut
 
 
 # material record needs an explicit state contract so independent adapters agree on document semantics

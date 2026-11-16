@@ -6,8 +6,8 @@ from convert.adapters.freecad.EditRead.Revolve.RevSheet import (
     ReadRevLiteral,
 )
 from convert.adapters.freecad.Native import NativeObject
-from interchange.enums.EnumValues import ValueKind
-from interchange.records.RecordParameter import Parameter
+from interchange.Enums.EnumValues import ValueKind
+from interchange.Records.RecordParameter import Parameter
 from interchange.serialization.EncodeData import ToData
 
 

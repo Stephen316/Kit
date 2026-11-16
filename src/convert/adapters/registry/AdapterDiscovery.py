@@ -13,7 +13,7 @@ from convert.adapters.base.AdapterProtocols import CadWriterAdapter
 from convert.adapters.registry.RegistryErrors import DiscoveryError
 
 # internal and research packages stay out of production adapter discovery
-KInternalPackages = frozenset({"base", "registry", "staging"})
+KInternalPackages = frozenset({"base", "registry", "Staging"})
 
 
 # internal filtering applies only to the built in root so third party package names remain unrestricted

@@ -44,11 +44,11 @@ import BuildPruned2  # noqa: E402
 import BuildVariants  # noqa: E402
 from PruneDwg import Graph, field, prune, target, with_fields  # noqa: E402
 
-from convert.formats.Fusion.DrawingCodec.Dwg.Author.Notes.TextMetrics import TextExtent  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Dwg.Author.Sheet.PlacePort import KOverallFlags  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Dwg.Author.Sheet.SheetSizes import SheetSize  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Dwg.Author.Views.ViewState import ViewState  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgRecord import DwgRecord  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.Author.Notes.TextMetrics import TextExtent  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.Author.Sheet.PlacePort import KOverallFlags  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.Author.Sheet.SheetSizes import SheetSize  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.Author.Views.ViewState import ViewState  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.Model.DwgRecord import DwgRecord  # noqa: E402
 
 PLAN = 'PlanGrafts.json'
 KEEP_KINDS = tuple(kind for kind in BuildPruned2.PURGE_KINDS if kind != 'SCALE')

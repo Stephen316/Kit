@@ -13,15 +13,15 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE.parents[4] / 'src'))
 
-from interchange.brep.curves.BrepCurves import LineCurve  # noqa: E402
-from interchange.brep.surfaces.BrepSurfaces import PlaneSurface  # noqa: E402
-from interchange.brep.topology.BrepModel import BrepModel  # noqa: E402
-from interchange.brep.topology.BrepTopology import (  # noqa: E402
+from interchange.brep.Curves.BrepCurves import LineCurve  # noqa: E402
+from interchange.brep.Surfaces.BrepSurfaces import PlaneSurface  # noqa: E402
+from interchange.brep.Topology.BrepModel import BrepModel  # noqa: E402
+from interchange.brep.Topology.BrepTopology import (  # noqa: E402
     BrepBody, BrepCoedge, BrepEdge, BrepFace, BrepFaceUse, BrepLoop, BrepRegion, BrepShell, BrepShellUse, BrepVertex,
 )
-from interchange.geometry.models.VectorSpace import SpaceVector  # noqa: E402
+from interchange.geometry.Models.VectorSpace import SpaceVector  # noqa: E402
 
-import convert.formats.Fusion.DrawingCodec.Dwg.Author.Views.PlaceViewAction as PlaceViewAction  # noqa: E402
+import convert.Formats.Fusion.DrawingCodec.Dwg.Author.Views.PlaceViewAction as PlaceViewAction  # noqa: E402
 
 CORNERS = [(i & 1, (i >> 1) & 1, (i >> 2) & 1) for i in range(8)]
 SIDES = {(0, 0): (0, 2, 6, 4), (0, 1): (1, 5, 7, 3), (1, 0): (0, 4, 5, 1), (1, 1): (2, 3, 7, 6), (2, 0): (0, 1, 3, 2), (2, 1): (4, 6, 7, 5)}

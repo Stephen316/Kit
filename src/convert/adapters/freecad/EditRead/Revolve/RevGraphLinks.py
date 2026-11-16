@@ -11,9 +11,9 @@ from convert.adapters.freecad.EditRead.XmlField import (
     EditScalar,
 )
 from convert.adapters.freecad.Native import NativeObject
-from interchange.features.FeatureStep import FeatureStep
-from interchange.geometry.models.Selection import Selection
-from interchange.geometry.models.Transform import KTransformIdentity
+from interchange.Features.FeatureStep import FeatureStep
+from interchange.geometry.Models.Selection import Selection
+from interchange.geometry.Models.Transform import KTransformIdentity
 from convert.adapters.freecad.EditRead.EditPlacement import CheckEditFrame
 from interchange.serialization.EncodeData import ToData
 

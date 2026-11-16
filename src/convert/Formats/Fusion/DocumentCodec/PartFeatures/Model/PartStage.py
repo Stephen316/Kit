@@ -1,0 +1,26 @@
+from dataclasses import dataclass as MakeDataClass
+
+from convert.Formats.Fusion.DocumentCodec.PartFeatures.Model.PartFeature import (
+    KPartFeature,
+)
+from convert.Formats.Fusion.DocumentCodec.PartFeatures.Profile.SketchPlan import (
+    SketchPlan,
+)
+from convert.Formats.Fusion.DocumentCodec.PartFeatures.Solid.PrismSolid import (
+    PrismSolid,
+)
+
+
+# part stage needs an explicit state contract so feature parameters remain connected to the resulting geometry
+@MakeDataClass(frozen=True, slots=True)
+class PartStage:
+    Feature: KPartFeature
+    Before: PrismSolid
+    After: PrismSolid
+    Operations: tuple[int, ...]
+    StateId: int
+    FamilyIndex: int
+    Sketch: SketchPlan | None = None
+    Bodies: tuple[PrismSolid, ...] = ()
+    Shown: tuple[int, ...] = ()
+    Upper: SketchPlan | None = None

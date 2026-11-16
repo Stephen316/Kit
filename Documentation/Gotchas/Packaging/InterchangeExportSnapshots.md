@@ -6,5 +6,5 @@ Every dataclass or enum in that tuple is also added to `KTypeRegistry`.
 `CheckTopLevel` and `CheckClasses` compare the top-level names and the `CadDocument` fields with their snapshots.
 
 When you add a public model, add a facade module whose `__all__` exports it.
-Update `PythonCompatFacades.py`, `PythonCompatTopNames.py` and the field snapshot of each changed model in `tests/interchange/compatibility/`.
+Update `PythonCompatFacades.py`, `PythonCompatTopNames.py` and the field snapshot of each changed model in `tests/Interchange/Compatibility/`.
 `MaterialRecord` uses the `interchange.materials` facade.

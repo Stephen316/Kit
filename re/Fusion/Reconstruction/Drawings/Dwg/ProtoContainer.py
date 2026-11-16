@@ -5,8 +5,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[5]
 sys.path.insert(0, str(ROOT / 'src'))
 
-from convert.formats.Fusion.DrawingCodec.Dwg.ReadDwgInventory import ReadInventory
-from convert.formats.Fusion.DrawingCodec.Dwg.Header.MakeCryptMask import MakeCryptMask
+from convert.Formats.Fusion.DrawingCodec.Dwg.ReadDwgInventory import ReadInventory
+from convert.Formats.Fusion.DrawingCodec.Dwg.Header.MakeCryptMask import MakeCryptMask
 
 
 def take_byte(data, pos):

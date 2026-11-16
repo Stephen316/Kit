@@ -36,4 +36,4 @@ The package writer links `AssetData`, `Resources` and `Schemas` when `MaterialPa
 - [Package spy](../../../../../re/Fusion/Reconstruction/ReadGaps/PackageSpy.py)
 - [Package writer notes](../../../../../re/Fusion/Reconstruction/ReadGaps/CachePackageNotes.md#material-resource-folders)
 - [Package census](../../../../../re/Fusion/Reconstruction/ReadGaps/PackageCensus.json) and [package check](../../../../../re/Fusion/Reconstruction/ReadGaps/TryPackage.py)
-- [Package folder tests](../../../../../tests/convert/formats/FusionCodec/Materials/Package/PackageFolderTests.py)
+- [Package folder tests](../../../../../tests/Convert/Formats/FusionCodec/Materials/Package/PackageFolderTests.py)

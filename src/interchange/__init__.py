@@ -85,25 +85,25 @@ from .brep import (
     SphereSurface,
     TorusSurface,
 )
-from interchange.document.models.DocumentCaps import GetRetainedCaps, InferCaps
-from interchange.document.models.DocumentError import DocumentError
-from interchange.document.models.DocumentFilter import FilterDocument
-from interchange.document.models.DocumentMetadata import AddWrapperMeta, GetSemanticMeta
-from interchange.document.models.DocumentModel import CadDocument
-from interchange.document.models.DocumentPayload import GetPayloadIds
-from interchange.enums.EnumDocument import Capability, Severity
-from interchange.enums.EnumFeatures import FeatureKind
-from interchange.enums.EnumGeometry import ConstraintKind, GeometryKind
-from interchange.enums.EnumUnits import UnitSystem
-from interchange.enums.EnumValues import ParameterRole, ValueKind
-from interchange.features.FeatureAngleRev import AngularRevolve
-from interchange.features.FeatureBody import DesignBody
-from interchange.features.FeatureContract import FeatureDef
-from interchange.features.FeatureBoundPlane import BoundConstructionPlane
-from interchange.features.FeatureBoundScale import BoundScale
-from interchange.features.FeatureDistExt import DistanceExtrude
-from interchange.features.FeatureExtrude import ExtrudeEnd, ExtrudeFeature
-from interchange.features.FeatureKinds import (
+from interchange.document.Models.DocumentCaps import GetRetainedCaps, InferCaps
+from interchange.document.Models.DocumentError import DocumentError
+from interchange.document.Models.DocumentFilter import FilterDocument
+from interchange.document.Models.DocumentMetadata import AddWrapperMeta, GetSemanticMeta
+from interchange.document.Models.DocumentModel import CadDocument
+from interchange.document.Models.DocumentPayload import GetPayloadIds
+from interchange.Enums.EnumDocument import Capability, Severity
+from interchange.Enums.EnumFeatures import FeatureKind
+from interchange.Enums.EnumGeometry import ConstraintKind, GeometryKind
+from interchange.Enums.EnumUnits import UnitSystem
+from interchange.Enums.EnumValues import ParameterRole, ValueKind
+from interchange.Features.FeatureAngleRev import AngularRevolve
+from interchange.Features.FeatureBody import DesignBody
+from interchange.Features.FeatureContract import FeatureDef
+from interchange.Features.FeatureBoundPlane import BoundConstructionPlane
+from interchange.Features.FeatureBoundScale import BoundScale
+from interchange.Features.FeatureDistExt import DistanceExtrude
+from interchange.Features.FeatureExtrude import ExtrudeEnd, ExtrudeFeature
+from interchange.Features.FeatureKinds import (
     ChamferFeature,
     CirclePattern,
     CombineFeature,
@@ -118,10 +118,10 @@ from interchange.features.FeatureKinds import (
     ScaleFeature,
     ShellFeature,
 )
-from interchange.features.FeaturePlaneExt import PlaneExtrude
-from interchange.features.FeaturePlaneRev import PlaneRevolve
-from interchange.features.FeatureStep import FeatureCfgState, FeatureStep
-from interchange.geometry.models.GeometryConics import (
+from interchange.Features.FeaturePlaneExt import PlaneExtrude
+from interchange.Features.FeaturePlaneRev import PlaneRevolve
+from interchange.Features.FeatureStep import FeatureCfgState, FeatureStep
+from interchange.geometry.Models.GeometryConics import (
     ArcEllipseGeom,
     ArcHyperGeom,
     ArcParabGeom,
@@ -129,7 +129,7 @@ from interchange.geometry.models.GeometryConics import (
     HyperbolaGeom,
     ParabolaGeom,
 )
-from interchange.geometry.models.GeometryCurves import (
+from interchange.geometry.Models.GeometryCurves import (
     ArcGeometry,
     CircleGeometry,
     LineGeometry,
@@ -137,31 +137,31 @@ from interchange.geometry.models.GeometryCurves import (
     PointGeometry,
     SplineGeometry,
 )
-from interchange.geometry.models.Selection import Selection, SelectPathElem
-from interchange.geometry.models.Sketch import (
+from interchange.geometry.Models.Selection import Selection, SelectPathElem
+from interchange.geometry.Models.Sketch import (
     ConstraintRef,
     Sketch,
     SketchEntity,
     SketchRelation,
 )
-from interchange.geometry.models.SupportPlane import SupportPlane
-from .geometry.models.VectorPlane import PlaneVector
-from .geometry.models.VectorSpace import SpaceVector
+from interchange.geometry.Models.SupportPlane import SupportPlane
+from interchange.geometry.Models.VectorPlane import PlaneVector
+from interchange.geometry.Models.VectorSpace import SpaceVector
 from .history import AdapterCaps
 from interchange.mesh.SurfaceMesh import SurfaceMesh
-from interchange.payloads.PayloadMigrate import MigratePayload
-from interchange.payloads.PayloadRecord import BrepPayload
-from interchange.payloads.PayloadRoles import PayloadRole
-from interchange.compatibility.PythonCompat import BindTypeGlobals
-from interchange.records.RecordConfig import Configuration
-from interchange.records.RecordDiagnostic import Diagnostic
-from interchange.records.RecordParameter import Expression, Parameter, ParameterValue
-from interchange.records.RecordProvenance import Provenance, ProvenanceSpan
-from interchange.records.RecordSource import CadSource
-from interchange.records.RecordTopology import TopologyCounts
+from interchange.Payloads.PayloadMigrate import MigratePayload
+from interchange.Payloads.PayloadRecord import BrepPayload
+from interchange.Payloads.PayloadRoles import PayloadRole
+from interchange.Compatibility.PythonCompat import BindTypeGlobals
+from interchange.Records.RecordConfig import Configuration
+from interchange.Records.RecordDiagnostic import Diagnostic
+from interchange.Records.RecordParameter import Expression, Parameter, ParameterValue
+from interchange.Records.RecordProvenance import Provenance, ProvenanceSpan
+from interchange.Records.RecordSource import CadSource
+from interchange.Records.RecordTopology import TopologyCounts
 from interchange.serialization.MigrationRegistry import RegMigration
 from interchange.serialization.TypeRegistry import RegisterTypes
-from interchange.geometry.models.Vectors import (
+from interchange.geometry.Models.Vectors import (
     BoundingBox,
     Transform,
 )

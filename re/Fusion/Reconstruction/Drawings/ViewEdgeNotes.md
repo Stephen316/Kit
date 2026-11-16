@@ -129,7 +129,7 @@ Results (report `Rules/GraftRoundT16.json`, built by `Rules/ReportEdges.py`):
 
 1. Decode the stored edges of every saved view (done above, scratch dumpers).
 2. Oracle round E1 on the control: hidden style, poke, export, read Fusion's edges (done above).
-3. Implement in `src/convert/formats/Fusion/DrawingCodec/Dwg/Author/Views/`.
+3. Implement in `src/convert/Formats/Fusion/DrawingCodec/Dwg/Author/Views/`.
 4. Graft Kit views into Fusion saves and open them (round T16 done, held-out directions; BoxA offline).
 5. Docs: FusionDrawingCodec.md, FusionDataModel.md, FusionAcceptanceEvidence.md, the stored edge gotcha (done).
 

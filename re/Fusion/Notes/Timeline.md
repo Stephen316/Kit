@@ -9,7 +9,7 @@ to you under it immediately and permanently.
 
 [Fusion feature index](../README.md)
 
-See [SDK history projection](../../../src/convert/formats/Fusion/HistoryProjection.py) and [history tests](../../../tests/convert/formats/FusionHistoryTests.py).
+See [SDK history projection](../../../src/convert/Formats/Fusion/HistoryProjection.py) and [history tests](../../../tests/Convert/Formats/FusionHistoryTests.py).
 
 ## Saved study coverage
 

@@ -75,7 +75,7 @@ Those jobs no longer compete for the 20 concurrent job slots of the Free plan.
 
 ## Limits
 
-- `tests/convert/runtime/WheelRuntimeTests.py::CheckWheel` took 145.8 seconds in run 43371286350.
+- `tests/Convert/Runtime/WheelRuntimeTests.py::CheckWheel` took 145.8 seconds in run 43371286350.
   It sets the lower limit for the slowest shard.
   More CPUs or more shards cannot make the test suite faster than that test.
 - Each xdist worker collects all tests of its shard.

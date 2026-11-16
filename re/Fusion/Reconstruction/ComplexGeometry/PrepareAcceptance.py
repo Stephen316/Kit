@@ -16,17 +16,17 @@ ROOT = HERE.parents[3]
 sys.path.insert(0, str(ROOT / 'src'))
 sys.path.insert(0, str(HERE))
 
-from convert.formats.Fusion.BrepCodec.Journal.Complex.Authoring.CreateNurbsBody import CreateNurbsBody  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Complex.Authoring.ExactSubtypes import ExactSurface, SplineCurve, SplineSurface  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Complex.Authoring.SplineEval import PointOnSurface  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Spline.SplineNode import SplineNode  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.EmitJournal import EmitJournal  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.EmitStateSmb import EmitStateSmb  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.ReadJournal import ReadJournal  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Snapshot.EmitGeometry import EmitGeometry  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Snapshot.ReadGeometry import ReadGeometry  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Models.HistoryState import HistoryState  # noqa: E402
-from convert.formats.Fusion.GeometryCodec.GeometryStamp import GeometryStamp  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Complex.Authoring.CreateNurbsBody import CreateNurbsBody  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Complex.Authoring.ExactSubtypes import ExactSurface, SplineCurve, SplineSurface  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Complex.Authoring.SplineEval import PointOnSurface  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.SplineNode import SplineNode  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.EmitJournal import EmitJournal  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.EmitStateSmb import EmitStateSmb  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.ReadJournal import ReadJournal  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Snapshot.EmitGeometry import EmitGeometry  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Snapshot.ReadGeometry import ReadGeometry  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Models.HistoryState import HistoryState  # noqa: E402
+from convert.Formats.Fusion.GeometryCodec.GeometryStamp import GeometryStamp  # noqa: E402
 
 from AuthoredModels import authored_models  # noqa: E402
 import NurbsMath  # noqa: E402

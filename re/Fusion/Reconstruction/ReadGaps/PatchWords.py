@@ -6,8 +6,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[4]
 sys.path.insert(0, str(ROOT / 'src'))
 
-import convert.formats.Fusion.BrepCodec.Journal.Spline.Reading.ReadPatches as Module
-from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
+import convert.Formats.Fusion.BrepCodec.Journal.Spline.Reading.ReadPatches as Module
+from convert.Formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
 
 FILES = (
     're/Fusion/LocalOracle/FormDocuments/Intervals/Plane4x4/Half.f3d',

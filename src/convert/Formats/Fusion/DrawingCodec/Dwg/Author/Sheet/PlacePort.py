@@ -1,0 +1,97 @@
+from collections.abc import Mapping
+
+from convert.Formats.Fusion.DrawingCodec.Dwg.Author.DraftBook import DraftBook
+from convert.Formats.Fusion.DrawingCodec.Dwg.Author.DraftLinks import (
+    HandleNumber,
+    HardOwner,
+    SoftPointer,
+)
+from convert.Formats.Fusion.DrawingCodec.Dwg.Author.DraftRow import DraftEed
+from convert.Formats.Fusion.DrawingCodec.Dwg.Author.DraftValue import KDraftValue
+from convert.Formats.Fusion.DrawingCodec.Dwg.Author.PlaceMut import (
+    AppendMut,
+    PlaceMut,
+)
+from convert.Formats.Fusion.DrawingCodec.Dwg.Author.Sheet.PlaceBlock import OwnMut
+from convert.Formats.Fusion.DrawingCodec.Dwg.Author.Sheet.PlaceFolder import (
+    PlaceFolderMut,
+)
+from convert.Formats.Fusion.DrawingCodec.Dwg.Author.Sheet.PlaceRecord import (
+    PlaceRecordMut,
+)
+from convert.Formats.Fusion.DrawingCodec.Dwg.Author.Sheet.PlaceScale import (
+    PlaceScaleMut,
+)
+from convert.Formats.Fusion.DrawingCodec.Dwg.Author.Sheet.SheetKeys import (
+    KLayoutViewports,
+    KOverallPort,
+    KPaperSpace,
+)
+from convert.Formats.Fusion.DrawingCodec.Dwg.Author.Sheet.SheetSizes import (
+    PaperSize,
+)
+
+# always on must remain consistent across callers so paper layouts retain consistent object ownership
+KAlwaysOn = 0x8000
+
+# grid beyond must remain consistent across callers so paper layouts retain consistent object ownership
+KGridBeyond = 0x40000
+
+# adaptive grid must remain consistent across callers so paper layouts retain consistent object ownership
+KAdaptiveGrid = 0x80000
+
+# the overall flags variants need one shared contract so drawing sheet authoring cannot omit a supported value shape
+KOverallFlags = KAlwaysOn | KGridBeyond | KAdaptiveGrid
+
+# scale record must remain consistent across callers so paper layouts retain consistent object ownership
+KScaleRecord = "ASDK_XREC_ANNOTATION_SCALE_INFO"
+
+
+# the port operation needs a consistent construction rule so paper layouts retain consistent object ownership
+def PlacePortMut(
+    Ledger: DraftBook,
+    KeyText: str,
+    CommonData: Mapping[str, KDraftValue],
+    ClassData: Mapping[str, KDraftValue],
+    EedBlocks: tuple[DraftEed, ...] = (),
+) -> str:
+    _ = PlaceMut(Ledger, KeyText, "VIEWPORT", CommonData, ClassData, EedBlocks)
+    AppendMut(Ledger, KLayoutViewports, SoftPointer(KeyText))
+    return OwnMut(Ledger, KPaperSpace, KeyText)
+
+
+# the overall operation needs a consistent construction rule so paper layouts retain consistent object ownership
+def PlaceOverallMut(Ledger: DraftBook, Paper: PaperSize) -> str:
+    Center = (Paper.PaperWidth / 2, Paper.PaperHeight / 2)
+    FolderKey = KOverallPort + "/Xdic"
+    _ = PlacePortMut(
+        Ledger,
+        KOverallPort,
+        {
+            "ReactorCount": 0,
+            "NoXdic": 0,
+            "Invisible": 0,
+            "Reactors": (),
+            "Xdic": HardOwner(FolderKey),
+        },
+        {
+            "Center": (*Center, 0.0),
+            "Width": Paper.PaperWidth,
+            "Height": Paper.PaperHeight,
+            "ViewTarget": (0.0, 0.0, 0.0),
+            "ViewDirection": (0.0, 0.0, 1.0),
+            "TwistAngle": 0.0,
+            "ViewHeight": Paper.PaperHeight,
+            "ViewCenter": Center,
+            "StatusFlags": KOverallFlags,
+            "UcsAtOrigin": 0,
+            "UcsOrigin": (0.0, 0.0, 0.0),
+            "UcsXAxis": (1.0, 0.0, 0.0),
+            "UcsYAxis": (0.0, 1.0, 0.0),
+        },
+    )
+    RecordKey = PlaceFolderMut(Ledger, FolderKey, KOverallPort, True, KScaleRecord)
+    ScaleKey = PlaceScaleMut(Ledger, 1.0)
+    return PlaceRecordMut(
+        Ledger, RecordKey, FolderKey, (("90", 1), ("340", HandleNumber(ScaleKey)))
+    )

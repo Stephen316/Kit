@@ -97,4 +97,4 @@ Do not load FreeCAD as a production fallback.
 - [Archive validation](../../../src/convert/adapters/freecad/Archive.py)
 - [Native interpretation](../../../src/convert/adapters/freecad/Native.py)
 - [Protocol tables](../../../src/convert/adapters/freecad/Protocol.py)
-- [FreeCAD integration coverage](../../../tests/convert/freecad/)
+- [FreeCAD integration coverage](../../../tests/Convert/Freecad/)

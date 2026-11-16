@@ -1,0 +1,25 @@
+from dataclasses import dataclass as MakeDataClass
+from typing import Literal, TypeAlias
+
+from convert.Formats.Fusion.DocumentCodec.PartFeatures.Model.ArcCurve import ArcCurve
+from convert.Formats.Fusion.DocumentCodec.PartFeatures.Model.CircleCurve import (
+    CircleCurve,
+)
+from convert.Formats.Fusion.DocumentCodec.PartFeatures.Model.LineCurve import (
+    LineCurve,
+)
+
+# the profile curve variants need one shared contract so parametric feature reconstruction cannot omit a supported value shape
+KProfileCurve: TypeAlias = LineCurve | ArcCurve | CircleCurve
+
+
+# extrude specification needs an explicit state contract so feature parameters remain connected to the resulting geometry
+@MakeDataClass(frozen=True, slots=True)
+class ExtrudeSpec:
+    Profile: tuple[KProfileCurve, ...]
+    DistanceMm: float
+    Operation: Literal["new", "join", "cut", "intersect"] = "new"
+    Extent: Literal["one", "flip", "symmetric", "two"] = "one"
+    AgainstMm: float = 0.0
+    SketchName: str = "Sketch"
+    FeatureName: str = "Extrude"

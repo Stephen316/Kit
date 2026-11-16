@@ -1,0 +1,14 @@
+from functools import cache as MakeCache
+
+from convert.Formats.Fusion.DrawingCodec.Dwg.Objects.RecordSpecs import KRecordSpecs
+from convert.Formats.Fusion.DrawingCodec.Dwg.Records.ParseSpec import ParseSpec
+from convert.Formats.Fusion.DrawingCodec.Dwg.Records.SpecOp import SpecOp
+
+
+# lookup specification must resolve unambiguously so section boundaries and object references remain consistent
+@MakeCache
+def LookupSpec(SpecKey: str) -> tuple[SpecOp, ...]:
+    SpecText = KRecordSpecs.get(SpecKey)
+    if SpecText is None:
+        raise ValueError(f"DWG record spec {SpecKey!r} is unknown")
+    return ParseSpec(SpecText)

@@ -18,4 +18,4 @@ Read tag 9 as a string with an 8-byte length. Accept it as program text only abo
 
 - [Cap prism probe](../../../../../re/Fusion/LocalOracle/FormDocuments/General/CapPrismsProbe.json)
 - [General conversion notes](../../../../../re/Fusion/Reconstruction/FormDocuments/General/GeneralNotes.md)
-- [Spline text tests](../../../../../tests/convert/formats/FusionCodec/Brep/Spline/SplineTextTests.py)
+- [Spline text tests](../../../../../tests/Convert/Formats/FusionCodec/Brep/Spline/SplineTextTests.py)

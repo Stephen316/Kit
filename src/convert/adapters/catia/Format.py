@@ -1,7 +1,7 @@
 from __future__ import annotations as Annotations
 from types import MappingProxyType
 from convert.adapters.base.AdapterInfo import AdapterInfo
-from interchange.enums.EnumDocument import Capability
+from interchange.Enums.EnumDocument import Capability
 
 # this binding exists because shared behavior needs one stable value
 KPartDocType = "CATPart"

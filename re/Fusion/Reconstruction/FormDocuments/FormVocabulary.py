@@ -10,13 +10,13 @@ from pathlib import Path
 BASE = Path(__file__).resolve().parent
 ROOT = BASE.parents[3]
 sys.path.insert(0, str(ROOT / 'src'))
-from convert.formats.Fusion.SegmentCodec.Metadata.ReadMetaWire import ReadMetaWire
+from convert.Formats.Fusion.SegmentCodec.Metadata.ReadMetaWire import ReadMetaWire
 
 REFLECTION = ROOT / 're/Fusion/LocalOracle/TSplineReflection/Versions.json'
 CORPUS = runpy.run_path(str(ROOT / 're/Fusion/Reconstruction/EntityGraph/CorpusProfiles.py'))
 PROFILE = CORPUS['PROFILE']
 PROFILE['GRAPH']['GraphCodec'].__init__.__globals__['SCHEMA_PATH'] = REFLECTION
-TARGET = ROOT / 'src/convert/formats/Fusion/DocumentCodec/Vocabulary/FormClasses.json'
+TARGET = ROOT / 'src/convert/Formats/Fusion/DocumentCodec/Vocabulary/FormClasses.json'
 SEGMENTS = ('FusionDesignSegmentType1', 'FusionACTSegmentType1', 'FusionBrowserSegmentType1')
 PREFIX = 'FusionAssetName[Active]/'
 
@@ -33,13 +33,13 @@ def sources():
 
 def existing():
     catalog = {}
-    raw = json.loads(lzma.decompress((ROOT / 'src/convert/formats/Fusion/EntityCodec/Vocabulary/NativeClasses.xz').read_bytes()))
+    raw = json.loads(lzma.decompress((ROOT / 'src/convert/Formats/Fusion/EntityCodec/Vocabulary/NativeClasses.xz').read_bytes()))
     for entry in raw['Classes']:
         catalog[(entry['ClassGuid'].upper(), entry['SchemaVersion'])] = entry
-    for relative in ('src/convert/formats/Fusion/DocumentCodec/Vocabulary/DesignClasses.json', 'src/convert/formats/Fusion/ContainerCodec/Assembly/ActClasses.json', 'src/convert/formats/Fusion/ContainerCodec/Browser/BrowserClasses.json'):
+    for relative in ('src/convert/Formats/Fusion/DocumentCodec/Vocabulary/DesignClasses.json', 'src/convert/Formats/Fusion/ContainerCodec/Assembly/ActClasses.json', 'src/convert/Formats/Fusion/ContainerCodec/Browser/BrowserClasses.json'):
         for entry in json.loads((ROOT / relative).read_text()):
             catalog.setdefault((entry['ClassGuid'].upper(), entry['SchemaVersion']), {key: entry[key] for key in ('ClassGuid', 'BaseGuid', 'SchemaVersion', 'Members', 'IsValue')})
-    from convert.formats.Fusion.DocumentCodec.Records.NativeAuxiliary import KAuxiliarySchemas
+    from convert.Formats.Fusion.DocumentCodec.Records.NativeAuxiliary import KAuxiliarySchemas
     for schema in KAuxiliarySchemas:
         catalog.setdefault((schema.ClassGuid.upper(), schema.SchemaVersion), {'auxiliary': schema.ClassGuid})
     return catalog
@@ -55,19 +55,19 @@ def segment_classes(path):
 
 
 def close_generic(added, reflection):
-    from convert.formats.Fusion.DocumentCodec.Records.ReadDocSchemas import ReadDocSchemas
-    from convert.formats.Fusion.EntityCodec.Vocabulary.ReadCatalog import ReadCatalog
-    from convert.formats.Fusion.EntityCodec.Vocabulary.ReadSchema import ReadSchema
-    from convert.formats.Fusion.EntityCodec.Vocabulary.SchemaClasses import SchemaClasses
+    from convert.Formats.Fusion.DocumentCodec.Records.ReadDocSchemas import ReadDocSchemas
+    from convert.Formats.Fusion.EntityCodec.Vocabulary.ReadCatalog import ReadCatalog
+    from convert.Formats.Fusion.EntityCodec.Vocabulary.ReadSchema import ReadSchema
+    from convert.Formats.Fusion.EntityCodec.Vocabulary.SchemaClasses import SchemaClasses
     from dataclasses import asdict
     root = '98542EB9-A4F2-4137-A808-DBB5B3CD6159'
     native = ReadCatalog().Classes
-    from convert.formats.Fusion.DocumentCodec.Records.NativeAuxiliary import KAuxiliarySchemas
+    from convert.Formats.Fusion.DocumentCodec.Records.NativeAuxiliary import KAuxiliarySchemas
     have = {key[0] for key in added} | {schema.ClassGuid.upper() for schema in KAuxiliarySchemas}
-    for relative in ('src/convert/formats/Fusion/DocumentCodec/Vocabulary/DesignClasses.json', 'src/convert/formats/Fusion/ContainerCodec/Assembly/ActClasses.json', 'src/convert/formats/Fusion/ContainerCodec/Browser/BrowserClasses.json'):
+    for relative in ('src/convert/Formats/Fusion/DocumentCodec/Vocabulary/DesignClasses.json', 'src/convert/Formats/Fusion/ContainerCodec/Assembly/ActClasses.json', 'src/convert/Formats/Fusion/ContainerCodec/Browser/BrowserClasses.json'):
         have.update(entry['ClassGuid'].upper() for entry in json.loads((ROOT / relative).read_text()))
     pending = [identity for entry in added.values() for identity in SchemaClasses(ReadSchema({key: entry[key] for key in ('ClassGuid', 'BaseGuid', 'SchemaVersion', 'Members', 'IsValue')}))]
-    raw = {(entry['ClassGuid'].upper(), entry['SchemaVersion']): entry for entry in json.loads(lzma.decompress((ROOT / 'src/convert/formats/Fusion/EntityCodec/Vocabulary/NativeClasses.xz').read_bytes()))['Classes']}
+    raw = {(entry['ClassGuid'].upper(), entry['SchemaVersion']): entry for entry in json.loads(lzma.decompress((ROOT / 'src/convert/Formats/Fusion/EntityCodec/Vocabulary/NativeClasses.xz').read_bytes()))['Classes']}
     result = []
     while pending:
         identity = pending.pop().upper()

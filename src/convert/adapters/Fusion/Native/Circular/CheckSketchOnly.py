@@ -8,7 +8,7 @@ from convert.adapters.Fusion.Native.Graph.GraphValues import MappingItems, Serie
 from convert.adapters.Fusion.Native.Graph.IntegerValue import IntegerValue
 from convert.adapters.Fusion.Native.Graph.NativeGraph import NativeGraph
 from convert.adapters.Fusion.Native.Graph.SketchContext import SketchContext
-from convert.formats.Fusion.DocumentCodec.Model.DocumentModel import DocumentModel
+from convert.Formats.Fusion.DocumentCodec.Model.DocumentModel import DocumentModel
 
 
 # invalid sketch only input must fail here so public geometry remains consistent with native circular topology

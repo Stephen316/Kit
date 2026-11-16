@@ -9,23 +9,23 @@ REPO = Path(__file__).resolve().parents[4]
 sys.path.insert(0, str(REPO / "src"))
 sys.dont_write_bytecode = True
 
-from convert.formats.Fusion.BulkSpans import ReadBulkSpans
-from convert.formats.Fusion.DocumentCodec.Records.MakeDesignProf import MakeDesignProf
-from convert.formats.Fusion.DocumentCodec.Records.ReadDocSchemas import ReadDocSchemas
-from convert.formats.Fusion.EntityCodec.DecodeEntities import DecodeEntities
-from convert.formats.Fusion.EntityCodec.EncodeEntities import EncodeEntities
-from convert.formats.Fusion.EntityCodec.Model.NamedValue import NamedValue
-from convert.formats.Fusion.EntityCodec.Model.ValueMap import ValueMap
-from convert.formats.Fusion.EntityCodec.Schema.ExternalTarget import ExternalTarget
-from convert.formats.Fusion.SegmentCodec.Bulk.BulkRecord import BulkRecord
-from convert.formats.Fusion.SegmentCodec.EmitSegment import EmitSegment
-from convert.formats.Fusion.SegmentCodec.Metadata.ReadMetaWire import ReadMetaWire
+from convert.Formats.Fusion.BulkSpans import ReadBulkSpans
+from convert.Formats.Fusion.DocumentCodec.Records.MakeDesignProf import MakeDesignProf
+from convert.Formats.Fusion.DocumentCodec.Records.ReadDocSchemas import ReadDocSchemas
+from convert.Formats.Fusion.EntityCodec.DecodeEntities import DecodeEntities
+from convert.Formats.Fusion.EntityCodec.EncodeEntities import EncodeEntities
+from convert.Formats.Fusion.EntityCodec.Model.NamedValue import NamedValue
+from convert.Formats.Fusion.EntityCodec.Model.ValueMap import ValueMap
+from convert.Formats.Fusion.EntityCodec.Schema.ExternalTarget import ExternalTarget
+from convert.Formats.Fusion.SegmentCodec.Bulk.BulkRecord import BulkRecord
+from convert.Formats.Fusion.SegmentCodec.EmitSegment import EmitSegment
+from convert.Formats.Fusion.SegmentCodec.Metadata.ReadMetaWire import ReadMetaWire
 
 DESIGN = "FusionAssetName[Active]/FusionDesignSegmentType1/"
 NAMES = {}
 for entry in json.loads((REPO / "re/Fusion/Reconstruction/BinaryClasses.json").read_text())["classes"]:
     NAMES.setdefault(entry["identifier"].upper(), entry["class"].split("::")[-1])
-for vocab in (REPO / "src/convert/formats/Fusion/DocumentCodec").rglob("*Classes.json"):
+for vocab in (REPO / "src/convert/Formats/Fusion/DocumentCodec").rglob("*Classes.json"):
     for entry in json.loads(vocab.read_text()):
         NAMES.setdefault(entry["ClassGuid"].upper(), entry["NameValue"])
 

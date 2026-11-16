@@ -1,47 +1,47 @@
 from dataclasses import dataclass as MakeDataClass, replace as ReplaceValue
 from typing import cast as CastValue
 
-from convert.formats.Fusion.BrepCodec.Journal.Attributes.AttribLinks import AttribLinks
-from convert.formats.Fusion.BrepCodec.Journal.Attributes.TagAttrib import TagAttrib
-from convert.formats.Fusion.BrepCodec.Journal.Attributes.TimeAttrib import TimeAttrib
-from convert.formats.Fusion.BrepCodec.Journal.Complex.Authoring.ExactSubtypes import (
+from convert.Formats.Fusion.BrepCodec.Journal.Attributes.AttribLinks import AttribLinks
+from convert.Formats.Fusion.BrepCodec.Journal.Attributes.TagAttrib import TagAttrib
+from convert.Formats.Fusion.BrepCodec.Journal.Attributes.TimeAttrib import TimeAttrib
+from convert.Formats.Fusion.BrepCodec.Journal.Complex.Authoring.ExactSubtypes import (
     PcurveSpline,
     SplineCurve,
 )
-from convert.formats.Fusion.BrepCodec.Journal.Complex.Authoring.NegateCurve import (
+from convert.Formats.Fusion.BrepCodec.Journal.Complex.Authoring.NegateCurve import (
     NegateCurve,
 )
-from convert.formats.Fusion.BrepCodec.Journal.Complex.Grammar.GrammarValue import (
+from convert.Formats.Fusion.BrepCodec.Journal.Complex.Grammar.GrammarValue import (
     KGrammarValue,
     KSubtypeEntry,
     SubtypeNode,
 )
-from convert.formats.Fusion.BrepCodec.Journal.Complex.Typed.CurveRecords import (
+from convert.Formats.Fusion.BrepCodec.Journal.Complex.Typed.CurveRecords import (
     ExactIntCur,
     ExpParCur,
 )
-from convert.formats.Fusion.BrepCodec.Journal.Complex.Subtypes.EntitySubtree import (
+from convert.Formats.Fusion.BrepCodec.Journal.Complex.Subtypes.EntitySubtree import (
     EntitySubtree,
 )
-from convert.formats.Fusion.BrepCodec.Journal.Complex.Subtypes.WalkSubtypes import (
+from convert.Formats.Fusion.BrepCodec.Journal.Complex.Subtypes.WalkSubtypes import (
     WalkSubtypes,
 )
-from convert.formats.Fusion.BrepCodec.Journal.Geometry.BodyNode import BodyNode
-from convert.formats.Fusion.BrepCodec.Journal.Geometry.CoedgeNode import CoedgeNode
-from convert.formats.Fusion.BrepCodec.Journal.Geometry.EdgeNode import EdgeNode
-from convert.formats.Fusion.BrepCodec.Journal.Geometry.EntityPrefix import EntityPrefix
-from convert.formats.Fusion.BrepCodec.Journal.Geometry.FaceNode import FaceNode
-from convert.formats.Fusion.BrepCodec.Journal.Geometry.JournalVector import (
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.BodyNode import BodyNode
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.CoedgeNode import CoedgeNode
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.EdgeNode import EdgeNode
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.EntityPrefix import EntityPrefix
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.FaceNode import FaceNode
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.JournalVector import (
     KJournalVector,
 )
-from convert.formats.Fusion.BrepCodec.Journal.Geometry.LoopNode import LoopNode
-from convert.formats.Fusion.BrepCodec.Journal.Geometry.LumpNode import LumpNode
-from convert.formats.Fusion.BrepCodec.Journal.Geometry.PointNode import PointNode
-from convert.formats.Fusion.BrepCodec.Journal.Geometry.ShellNode import ShellNode
-from convert.formats.Fusion.BrepCodec.Journal.Geometry.VertexNode import VertexNode
-from convert.formats.Fusion.BrepCodec.Journal.JournalEntity import KJournalEntity
-from convert.formats.Fusion.BrepCodec.Journal.JournalModel import JournalModel
-from convert.formats.Fusion.BrepCodec.Journal.Spline.Converted.FormBody import (
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.LoopNode import LoopNode
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.LumpNode import LumpNode
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.PointNode import PointNode
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.ShellNode import ShellNode
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.VertexNode import VertexNode
+from convert.Formats.Fusion.BrepCodec.Journal.JournalEntity import KJournalEntity
+from convert.Formats.Fusion.BrepCodec.Journal.JournalModel import JournalModel
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.Converted.FormBody import (
     FormBody,
     FormEdge,
     FormFace,
@@ -49,27 +49,27 @@ from convert.formats.Fusion.BrepCodec.Journal.Spline.Converted.FormBody import (
     FormUse,
     FormWindow,
 )
-from convert.formats.Fusion.BrepCodec.Journal.Spline.Converted.FormCurve import (
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.Converted.FormCurve import (
     FormCurve,
 )
-from convert.formats.Fusion.BrepCodec.Journal.Spline.IntcurveNode import IntcurveNode
-from convert.formats.Fusion.BrepCodec.Journal.Spline.PatchCell import PatchCell
-from convert.formats.Fusion.BrepCodec.Journal.Spline.PcurveNode import PcurveNode
-from convert.formats.Fusion.BrepCodec.Journal.Spline.SplineNode import SplineNode
-from convert.formats.Fusion.BrepCodec.Journal.Spline.SubtransNode import SubtransNode
-from convert.formats.Fusion.BrepCodec.Journal.Spline.SubtypeRef import SubtypeRef
-from convert.formats.Fusion.BrepCodec.Journal.Spline.TsplineSurf import TsplineSurf
-from convert.formats.Fusion.DocumentCodec.Model.DocumentModel import DocumentModel
-from convert.formats.Fusion.DocumentCodec.Reading.Materials.GroupFields import (
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.IntcurveNode import IntcurveNode
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.PatchCell import PatchCell
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.PcurveNode import PcurveNode
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.SplineNode import SplineNode
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.SubtransNode import SubtransNode
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.SubtypeRef import SubtypeRef
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.TsplineSurf import TsplineSurf
+from convert.Formats.Fusion.DocumentCodec.Model.DocumentModel import DocumentModel
+from convert.Formats.Fusion.DocumentCodec.Reading.Materials.GroupFields import (
     GroupFields,
 )
-from convert.formats.Fusion.EntityCodec.Model.EntityRecord import EntityRecord
-from convert.formats.Fusion.EntityCodec.Model.ValueMap import ValueMap
-from convert.formats.Fusion.EntityCodec.Model.ValueObject import ValueObject
-from convert.formats.Fusion.EntityCodec.Model.ValuePair import ValuePair
-from convert.formats.Fusion.EntityCodec.Model.ValueSeries import ValueSeries
-from convert.formats.Fusion.EntityCodec.Model.ValueTypes import KEntityValue
-from convert.formats.Fusion.SegmentCodec.Features.Model.LocalRef import LocalRef
+from convert.Formats.Fusion.EntityCodec.Model.EntityRecord import EntityRecord
+from convert.Formats.Fusion.EntityCodec.Model.ValueMap import ValueMap
+from convert.Formats.Fusion.EntityCodec.Model.ValueObject import ValueObject
+from convert.Formats.Fusion.EntityCodec.Model.ValuePair import ValuePair
+from convert.Formats.Fusion.EntityCodec.Model.ValueSeries import ValueSeries
+from convert.Formats.Fusion.EntityCodec.Model.ValueTypes import KEntityValue
+from convert.Formats.Fusion.SegmentCodec.Features.Model.LocalRef import LocalRef
 
 KFeatureGuid = "6C90740C-229E-4EE5-8F35-A4E5AE4F7C73"
 KBodyGuid = "D3937028-C20C-4E65-B010-94AD418A5C20"

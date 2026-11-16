@@ -2,19 +2,19 @@ from dataclasses import dataclass as MakeDataClass
 from typing import cast as CastValue
 from math import hypot as Hypot
 
-from convert.formats.Fusion.Extrudes.SolidCreators import IsSavedActive
-from convert.formats.Fusion.Scales.ConstructionCenter import KWorkPointStep
-from convert.formats.Fusion.SelectionRef import KSelectDesc
-from convert.formats.Fusion.Sketches.SketchPlacement import KSketchFeature
-from convert.geometry.Extrude.Polygon.PrismFrame import CheckPrismFrame, PlacePrismPoint
-from interchange.brep.topology.BrepMath import IsFiniteSpace
-from interchange.document.models.DocumentModel import CadDocument
-from interchange.features.FeatureBoundScale import BoundScale
-from interchange.features.FeatureStep import FeatureStep
-from interchange.geometry.models.GeometryCurves import ArcGeometry, PointGeometry
-from interchange.geometry.models.Selection import SelectPathElem, Selection
-from interchange.geometry.models.Transform import KOriginZero
-from interchange.geometry.models.VectorSpace import SpaceVector
+from convert.Formats.Fusion.Extrudes.SolidCreators import IsSavedActive
+from convert.Formats.Fusion.Scales.ConstructionCenter import KWorkPointStep
+from convert.Formats.Fusion.SelectionRef import KSelectDesc
+from convert.Formats.Fusion.Sketches.SketchPlacement import KSketchFeature
+from convert.Geometry.Extrude.Polygon.PrismFrame import CheckPrismFrame, PlacePrismPoint
+from interchange.brep.Topology.BrepMath import IsFiniteSpace
+from interchange.document.Models.DocumentModel import CadDocument
+from interchange.Features.FeatureBoundScale import BoundScale
+from interchange.Features.FeatureStep import FeatureStep
+from interchange.geometry.Models.GeometryCurves import ArcGeometry, PointGeometry
+from interchange.geometry.Models.Selection import SelectPathElem, Selection
+from interchange.geometry.Models.Transform import KOriginZero
+from interchange.geometry.Models.VectorSpace import SpaceVector
 
 
 # native scaling needs a point source that can continue driving the target after edits

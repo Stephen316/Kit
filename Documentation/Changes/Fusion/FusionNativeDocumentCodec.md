@@ -13,8 +13,8 @@ The initial document profiles are a parameter-only design, one circular sketch, 
 ```python
 from pathlib import Path
 
-from convert.formats.Fusion.DocumentCodec.EmitDocument import EmitDocument
-from convert.formats.Fusion.DocumentCodec.Model.DocumentSpec import DocumentSpec
+from convert.Formats.Fusion.DocumentCodec.EmitDocument import EmitDocument
+from convert.Formats.Fusion.DocumentCodec.Model.DocumentSpec import DocumentSpec
 
 Specification = DocumentSpec(
     Title="Native cylinder",

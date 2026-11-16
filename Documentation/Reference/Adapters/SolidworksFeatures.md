@@ -96,7 +96,7 @@ An incorrect cache can invalidate geometry or application behavior.
 
 ## Sources
 
-- [Resolved-feature implementation](../../../src/convert/adapters/solidworks/resolved/Core.py)
+- [Resolved-feature implementation](../../../src/convert/adapters/solidworks/Resolved/Core.py)
 - [Archive grammar](../../../re/solidworks/archive/Grammar.md)
 - [Segmentation study](../../../re/solidworks/archive/Segmentation.md)
 - [Historical imported reference](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/re/solidworks/archive/Grammar.md)

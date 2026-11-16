@@ -1,11 +1,11 @@
-from interchange.enums.EnumFeatures import FeatureKind
-from interchange.features.FeatureAngleRev import AngularRevolve
-from interchange.features.FeatureBoundPlane import BoundDatum
-from interchange.features.FeatureBoundScale import BoundScale
-from interchange.features.FeatureDistExt import DistanceExtrude
-from interchange.features.FeatureKinds import CombineFeature
-from interchange.features.FeaturePlaneExt import PlaneExtrude
-from interchange.features.FeaturePlaneRev import PlaneRevolve
+from interchange.Enums.EnumFeatures import FeatureKind
+from interchange.Features.FeatureAngleRev import AngularRevolve
+from interchange.Features.FeatureBoundPlane import BoundDatum
+from interchange.Features.FeatureBoundScale import BoundScale
+from interchange.Features.FeatureDistExt import DistanceExtrude
+from interchange.Features.FeatureKinds import CombineFeature
+from interchange.Features.FeaturePlaneExt import PlaneExtrude
+from interchange.Features.FeaturePlaneRev import PlaneRevolve
 
 # body generation must distinguish profile based creation from operations that require existing geometry
 KCreatorTypes = (DistanceExtrude, PlaneExtrude, AngularRevolve, PlaneRevolve)

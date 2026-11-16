@@ -22,13 +22,13 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 sys.dont_write_bytecode = True
 
 import EmitAuthored  # noqa: E402
-from convert.formats.Fusion.DocumentCodec.EmitDocument import EmitDocument  # noqa: E402
-from convert.formats.Fusion.DocumentCodec.PartFeatures.Design import AddPickMut, AddShellMut  # noqa: E402
-from convert.formats.Fusion.DocumentCodec.PartFeatures.History.FaceKey import FaceKey, FaceLabelOf  # noqa: E402
-from convert.formats.Fusion.DocumentCodec.PartFeatures.History.TagLedger import TagLedger  # noqa: E402
-from convert.formats.Fusion.DocumentCodec.PartFeatures.Shape.WallFace import WallFace  # noqa: E402
-from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.LineSpan import LineSpan  # noqa: E402
-from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.SpanMath import SpanHeading  # noqa: E402
+from convert.Formats.Fusion.DocumentCodec.EmitDocument import EmitDocument  # noqa: E402
+from convert.Formats.Fusion.DocumentCodec.PartFeatures.Design import AddPickMut, AddShellMut  # noqa: E402
+from convert.Formats.Fusion.DocumentCodec.PartFeatures.History.FaceKey import FaceKey, FaceLabelOf  # noqa: E402
+from convert.Formats.Fusion.DocumentCodec.PartFeatures.History.TagLedger import TagLedger  # noqa: E402
+from convert.Formats.Fusion.DocumentCodec.PartFeatures.Shape.WallFace import WallFace  # noqa: E402
+from convert.Formats.Fusion.DocumentCodec.PartFeatures.Solid.LineSpan import LineSpan  # noqa: E402
+from convert.Formats.Fusion.DocumentCodec.PartFeatures.Solid.SpanMath import SpanHeading  # noqa: E402
 
 OUTPUT = REPO / "re/Fusion/LocalOracle/FeatureAuthoring/Regressions"
 

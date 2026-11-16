@@ -10,8 +10,8 @@ sys.dont_write_bytecode = True
 
 
 def main():
-    from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
-    from convert.formats.Fusion.DocumentCodec.EmitParsed import EmitParsed
+    from convert.Formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
+    from convert.Formats.Fusion.DocumentCodec.EmitParsed import EmitParsed
 
     source_path = ROOT / 're/Fusion/LocalOracle/Authored/ProductionExtrusion.f3d'
     output_path = source_path.with_name('ProductionEdited.f3d')

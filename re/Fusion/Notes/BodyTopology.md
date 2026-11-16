@@ -9,7 +9,7 @@ to you under it immediately and permanently.
 
 [Fusion feature index](../README.md)
 
-See [SDK topology readers](../../../src/convert/formats/Fusion/Topology), [body selection tests](../../../tests/convert/formats/FusionBodyPickTests.py) and [ASM caches](AsmCaches.md).
+See [SDK topology readers](../../../src/convert/Formats/Fusion/Topology), [body selection tests](../../../tests/Convert/Formats/FusionBodyPickTests.py) and [ASM caches](AsmCaches.md).
 
 See also [ASM naming, attributes and identity](NativeNaming.md).
 

@@ -18,8 +18,8 @@ ROOT = BASE.parents[4]
 sys.path.insert(0, str(ROOT / 'src'))
 sys.path.insert(0, str(BASE.parent / 'Cages'))
 from ReadConverted import ReadConverted
-from convert.formats.Fusion.BrepCodec.Journal.Spline.Stencil.ConvertCage import ConvertCage
-from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.Stencil.ConvertCage import ConvertCage
+from convert.Formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
 
 ORACLE = 're/Fusion/LocalOracle/FormDocuments/'
 ARCHIVES = [ORACLE + 'Stencil/tmp/BoxWeightUniform/Base.f3d'] + [ORACLE + 'Stencil/tmp/BoxWeighted/' + label + '.f3d' for label in ('Base', 'X0', 'X3', 'Pair0_3', 'Scale0', 'RandomA')] + [ORACLE + 'CageDocuments/Saved/KitCreasedPlaneBent.f3d'] + [ORACLE + 'FourthDocuments/' + stage + '/' + side + case + '.f3d' for case in ('Valence7Fresh', 'Valence7Weighted', 'BoxWeightedFresh', 'Box3Weighted', 'Valence5Weighted') for stage, side in (('Loaded', 'Oracle'), ('Saved', 'Oracle'), ('Saved', 'Kit'))]

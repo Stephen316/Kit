@@ -13,9 +13,9 @@ sys.path.insert(0, str(BASE))
 
 
 def shapes(name):
-    import convert.formats.Fusion.BrepCodec.Journal.Round.ReadTorusNode as Module
-    from convert.formats.Fusion.BrepCodec.Journal.Round.TorusNode import TorusNode
-    from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
+    import convert.Formats.Fusion.BrepCodec.Journal.Round.ReadTorusNode as Module
+    from convert.Formats.Fusion.BrepCodec.Journal.Round.TorusNode import TorusNode
+    from convert.Formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
     seen = []
     check = Module.CheckRoundNode
 

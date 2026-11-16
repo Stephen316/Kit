@@ -138,9 +138,9 @@ def CheckRevolves(ZstdLibrary, CheckKit=False):
 def CheckKitRev(
     FilePath, ZstdLibrary, NativeFeature, Parsed, Graph, Expected, Reconstruction
 ):
-    from convert.formats.Fusion.DocumentRead import ReadFusionDoc
-    from interchange.document.models.DocumentModel import CadDocument
-    from interchange.features.FeaturePlaneRev import PlaneRevolve
+    from convert.Formats.Fusion.DocumentRead import ReadFusionDoc
+    from interchange.document.Models.DocumentModel import CadDocument
+    from interchange.Features.FeaturePlaneRev import PlaneRevolve
 
     Codec = None
     if ZstdLibrary is not None or not hasattr(ZipModule, "ZIP_ZSTANDARD"):

@@ -3,7 +3,7 @@ from re import fullmatch as FullMatch
 from convert.adapters.freecad.EditShape.CylinderRims import KAngleTolerance
 from convert.adapters.freecad.EditShape.TrimBind import TrimBinding
 from convert.adapters.freecad.EditShape.TrimGeometry import IsUnitPair, TrimCurve
-from convert.geometry.Opencascade import DecodeFailure, ReadCount, Tokens
+from convert.Geometry.Opencascade import DecodeFailure, ReadCount, Tokens
 
 
 # known planar and rotational trims require only exact line and circle parameters

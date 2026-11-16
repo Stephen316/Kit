@@ -14,9 +14,9 @@ It does not specify complete format support.
 | Engine        | Coordinate the read and write operations                | [Engine](../../../src/convert/engine/EngineConvert.py)                      |
 | Registry      | Discover adapters and apply selection and output policy | [Registry](../../../src/convert/adapters/registry/)                         |
 | Reader        | Decode source information into the neutral model        | [Adapter protocols](../../../src/convert/adapters/base/AdapterProtocols.py) |
-| Neutral model | Represent document information and validate references  | [Document model](../../../src/interchange/document/models/DocumentModel.py) |
+| Neutral model | Represent document information and validate references  | [Document model](../../../src/interchange/document/Models/DocumentModel.py) |
 | Writer        | Produce target structures and transfer evidence         | [Writer result](../../../src/convert/adapters/base/WriteResult.py)          |
-| Staging       | Separate policy checks from final destination writes    | [Staging](../../../src/convert/adapters/staging/)                           |
+| Staging       | Separate policy checks from final destination writes    | [Staging](../../../src/convert/adapters/Staging/)                           |
 
 ## Conversion boundary
 

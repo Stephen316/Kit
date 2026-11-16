@@ -350,7 +350,7 @@ provenance record `re/data/Serialization/SignatureTable.json`. `Container.py` lo
 `importlib.resources`; it holds no signature bytes of its own.
 
 `GenSignatureTable.py --check` re-extracts from an external licensed module.
-`tests/convert/solidworks/container/SolidworksSignatureTableTests.py` compares the CAD corpus with recorded table rows.
+`tests/Convert/Solidworks/Container/SolidworksSignatureTableTests.py` compares the CAD corpus with recorded table rows.
 Set `KIT_SOLIDWORKS_DLL` to additionally compare every table row with the matching external module.
 
 ### What this changes

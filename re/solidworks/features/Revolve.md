@@ -1,6 +1,6 @@
 # SOLIDWORKS revolve — `Contents/Config-0-ResolvedFeatures` field map
 
-Static corpus analysis only. **SOLIDWORKS was never launched**; no COM, no `tests/oracle`, no
+Static corpus analysis only. **SOLIDWORKS was never launched**; no COM, no `tests/Oracle`, no
 debugger. The independent ground truth is `swXmlContents/KeyWords`, which is plain XML in every
 part and carries the feature id, the feature name and the revolve angle.
 

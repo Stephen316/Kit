@@ -13,7 +13,7 @@ from convert.adapters.freecad.EditShape.TrimGeometry import (
     TrimCurve,
     TrimPoint,
 )
-from convert.geometry.Opencascade import (
+from convert.Geometry.Opencascade import (
     AssertReachable,
     DecodeFailure,
     EdgeData,
@@ -34,9 +34,9 @@ from convert.geometry.Opencascade import (
     VectorValue,
     ZeroTable,
 )
-from convert.geometry.Revolve.SweepVector import CrossVector, DotVector
-from interchange.brep.curves.BrepCurves import BrepCurve, CircleCurve, LineCurve
-from interchange.brep.surfaces.BrepSurfaces import (
+from convert.Geometry.Revolve.SweepVector import CrossVector, DotVector
+from interchange.brep.Curves.BrepCurves import BrepCurve, CircleCurve, LineCurve
+from interchange.brep.Surfaces.BrepSurfaces import (
     BrepSurface,
     CylinderSurface,
     PlaneSurface,

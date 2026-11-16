@@ -5,11 +5,11 @@ from pathlib import Path
 BASE = Path(__file__).resolve().parent
 ROOT = BASE.parents[3]
 sys.path.insert(0, str(ROOT / 'src'))
-from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
+from convert.Formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
 
 def classes():
     names = {}
-    for path in (ROOT / 'src/convert/formats/Fusion/DocumentCodec/Vocabulary').glob('*.json'):
+    for path in (ROOT / 'src/convert/Formats/Fusion/DocumentCodec/Vocabulary').glob('*.json'):
         data = json.loads(path.read_text())
         rows = data if isinstance(data, list) else data.get('Classes', data.get('classes', []))
         for row in rows:

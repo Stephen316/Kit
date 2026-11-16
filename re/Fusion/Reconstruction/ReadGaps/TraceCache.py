@@ -7,9 +7,9 @@ sys.path.insert(0, str(BASE))
 
 from CacheSpy import scene, where
 
-import convert.formats.Fusion.GraphicsCodec.Schema.GlobalVersions as Globals
-from convert.formats.Fusion.GraphicsCodec.ReadGraphics import ReadGraphics
-from convert.formats.Fusion.GraphicsCodec.Wire.SceneWire import SceneWire
+import convert.Formats.Fusion.GraphicsCodec.Schema.GlobalVersions as Globals
+from convert.Formats.Fusion.GraphicsCodec.ReadGraphics import ReadGraphics
+from convert.Formats.Fusion.GraphicsCodec.Wire.SceneWire import SceneWire
 
 LOG = collections.deque(maxlen=int(sys.argv[2]) if len(sys.argv) > 2 else 12)
 
@@ -19,8 +19,8 @@ def main():
     for item in [entry for entry in sys.argv[3:] if '=' in entry]:
         name, value = item.split('=')
         Globals.KGlobalVersions[name] = tuple(sorted(set(Globals.KGlobalVersions.get(name, ())) | {int(value)}))
-    import convert.formats.Fusion.GraphicsCodec.Worlds.XferGroupMut as Groups
-    from convert.formats.Fusion.GraphicsCodec.Model.State.SceneGlobals import SceneGlobals
+    import convert.Formats.Fusion.GraphicsCodec.Worlds.XferGroupMut as Groups
+    from convert.Formats.Fusion.GraphicsCodec.Model.State.SceneGlobals import SceneGlobals
 
     def lenient(state, value):
         count = state.CountValue(None)

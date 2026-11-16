@@ -21,7 +21,7 @@ The [term register](../../../Standards/Terminology.md) defines the new terms, an
 
 ## Audit
 
-A review of every writer under `src/convert/formats/Fusion/` at commit `1a3b554d0` found 15 items.
+A review of every writer under `src/convert/Formats/Fusion/` at commit `1a3b554d0` found 15 items.
 Fourteen items are donor or case-specific data, and the [donor data ban](../../../Reference/Research/FusionDonorBan.md#audit-of-the-fusion-writers) lists them with their general rules.
 The fifteenth item is an input guard in `Assembly/Solids/SnapshotScope.py`.
 It checks a fixed 12-byte prefix of a 96-byte workbook before an edit and refuses other layouts.
@@ -64,6 +64,6 @@ An item is fixed only when its captured data is gone from `src/` and local Fusio
 
 ## Verification
 
-The audit read each writer, each default table and each data file under `src/convert/formats/Fusion/`.
+The audit read each writer, each default table and each data file under `src/convert/Formats/Fusion/`.
 It traced each suspect value to the research script and control that produced it.
 Static checks ran locally; no local automated tests were run.

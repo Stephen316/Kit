@@ -1,6 +1,6 @@
 from dataclasses import dataclass as Dataclass
 
-from interchange.geometry.models.VectorSpace import SpaceVector
+from interchange.geometry.Models.VectorSpace import SpaceVector
 
 
 # oriented endpoint evidence retains axial and periodic coordinates separately

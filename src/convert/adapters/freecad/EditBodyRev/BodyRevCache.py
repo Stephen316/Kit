@@ -3,9 +3,9 @@ from dataclasses import dataclass as MakeDataClass
 from convert.adapters.freecad.Brep import BrepModelBrep, FreeCADBrepWriteError
 from convert.adapters.freecad.EditBodyRev.BodyRevPlan import BodyRevPlan
 from convert.adapters.freecad.EditBodyRev.PrismOrder import ReadPrismOrder
-from convert.geometry.Revolve.SweepVector import DotVector
-from interchange.document.models.DocumentModel import CadDocument
-from interchange.geometry.models.VectorSpace import SpaceVector
+from convert.Geometry.Revolve.SweepVector import DotVector
+from interchange.document.Models.DocumentModel import CadDocument
+from interchange.geometry.Models.VectorSpace import SpaceVector
 
 
 # each feature owns its starting solid and the axis link already resolves on first load

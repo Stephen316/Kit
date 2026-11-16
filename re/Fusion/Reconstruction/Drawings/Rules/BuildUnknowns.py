@@ -42,7 +42,7 @@ import BuildPruned2  # noqa: E402
 import BuildVariants  # noqa: E402
 from PruneDwg import field, with_fields  # noqa: E402
 
-from convert.formats.Fusion.DrawingCodec.Dwg.ReadDwgFile import ReadDwgFile  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.ReadDwgFile import ReadDwgFile  # noqa: E402
 
 PLAN = 'PlanUnknowns.json'
 ZEROS = {

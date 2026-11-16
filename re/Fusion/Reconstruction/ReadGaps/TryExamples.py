@@ -8,8 +8,8 @@ sys.setrecursionlimit(20000)
 
 from ExampleRecords import documents
 from SweepOne import failure
-from convert.formats.Fusion.DocumentCodec.EmitParsed import EmitParsed
-from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
+from convert.Formats.Fusion.DocumentCodec.EmitParsed import EmitParsed
+from convert.Formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
 
 
 def main():

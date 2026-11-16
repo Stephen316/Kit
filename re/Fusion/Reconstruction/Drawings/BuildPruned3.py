@@ -21,8 +21,8 @@ import BuildPruned2  # noqa: E402
 import BuildVariants  # noqa: E402
 from PruneDwg import Graph, field, prune, target, with_fields  # noqa: E402
 
-from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgRecord import DwgField, DwgRecord  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Dwg.ReadDwgFile import ReadDwgFile  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.Model.DwgRecord import DwgField, DwgRecord  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.ReadDwgFile import ReadDwgFile  # noqa: E402
 
 VIEW_REPS = {'ACDBVIEWREP', 'ACDBASSOCEXTERNALPERSSUBENTIDHOLDER', 'ACDBASSOCPROJECTEDENTITYPERSSUBENTIDHOLDER'}
 

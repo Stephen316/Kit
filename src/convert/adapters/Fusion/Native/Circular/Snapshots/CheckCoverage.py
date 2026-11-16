@@ -1,13 +1,13 @@
-from convert.formats.Fusion.BrepCodec.Journal.Snapshot.GeometryState import (
+from convert.Formats.Fusion.BrepCodec.Journal.Snapshot.GeometryState import (
     GeometryState,
 )
-from convert.formats.Fusion.BrepCodec.Journal.Geometry.EdgeNode import EdgeNode
-from convert.formats.Fusion.BrepCodec.Journal.Geometry.VertexNode import VertexNode
-from convert.formats.Fusion.BrepCodec.Journal.Geometry.PointNode import PointNode
-from convert.formats.Fusion.BrepCodec.Journal.Geometry.EllipseNode import EllipseNode
-from convert.formats.Fusion.BrepCodec.Journal.Geometry.FaceNode import FaceNode
-from convert.formats.Fusion.BrepCodec.Journal.Geometry.PlaneNode import PlaneNode
-from convert.formats.Fusion.BrepCodec.Journal.Geometry.ConeNode import ConeNode
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.EdgeNode import EdgeNode
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.VertexNode import VertexNode
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.PointNode import PointNode
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.EllipseNode import EllipseNode
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.FaceNode import FaceNode
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.PlaneNode import PlaneNode
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.ConeNode import ConeNode
 
 
 # invalid coverage input must fail here so public geometry remains consistent with native circular topology

@@ -6,9 +6,9 @@ import struct as Struct
 from typing import Any as AnyInfo
 from black import FileMode as BlackMode
 from black import format_str as FormatBlack
-from convert.adapters.solidworks.container.Archive import ReadString
-from convert.adapters.solidworks.container.Container import SldprtArchive
-from convert.adapters.solidworks.container.Format import (
+from convert.adapters.solidworks.Container.Archive import ReadString
+from convert.adapters.solidworks.Container.Container import SldprtArchive
+from convert.adapters.solidworks.Container.Format import (
     RESOLVED_FEATURES_STREAM as ResolvedStream,
 )
 

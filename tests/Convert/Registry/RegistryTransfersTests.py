@@ -1,0 +1,200 @@
+from __future__ import annotations
+
+from dataclasses import replace as ReplaceValue
+from io import BytesIO
+
+import pytest as Pytest
+
+from convert.adapters import (
+    AdapterInfo,
+    AdapterRegistry,
+    ApplicationUsabilityError,
+    CarrierReason,
+    CapabilityTransfer,
+    Destination,
+    TransferMode,
+    WriteOptions,
+    WriteResult,
+)
+from interchange import CadDocument, Capability
+from interchange.document.Models.DocumentCaps import InferCaps
+from tests.Convert.Registry.RegistryTestSupport import BuildSource, ResultAdapter
+
+from typing_extensions import override as Override
+
+
+# one sorted capability view keeps transfer fixtures deterministic across hash seeds
+def GetCapabilities(DocumentData: CadDocument) -> tuple[Capability, ...]:
+    ReturnCaps = DocumentData.Capabilities | InferCaps(
+        DocumentData,
+        RoundtripMeta=Capability.KRoundtripMeta in DocumentData.Capabilities,
+    )
+
+    # capability wire names provide stable ordering for transfer assertions across runs
+    return tuple(sorted(ReturnCaps, key=lambda CapabilityData: CapabilityData.value))
+
+
+# compat protocol marker exempts paired wrappers from naming constraints
+class PairProtocol:
+    pass
+
+
+# mixed adapter keeps the historical surface because callers depend on it directly
+class MixedAdapter(PairProtocol, ResultAdapter):
+
+    # one native transfer plus writer gaps exercises mixed preservation without capability loss
+    @Override
+    @Override
+    def write(
+        self,
+        document: CadDocument,
+        destination: Destination,
+        options: WriteOptions | None = None,
+    ) -> WriteResult:
+        ResultData = super().write(document, destination, options)
+        TransferValues = tuple(
+            CapabilityTransfer(
+                CapabilityData,
+                TransferMode.KNative if IndexValue == 0 else TransferMode.KCarrier,
+            )
+            for IndexValue, CapabilityData in enumerate(GetCapabilities(document))
+        )
+        return ReplaceValue(
+            ResultData,
+            transfers=TransferValues,
+            application_usable=True,
+            vendor_loadable=True,
+        )
+
+
+# default policy rejects writer gaps even when resulting bytes are vendor loadable
+def CheckWriterGap() -> None:
+    InfoData = AdapterInfo(
+        "format.mixed-gap",
+        "Mixed gap",
+        "1",
+        (".mixed",),
+        capabilities=frozenset(Capability),
+    )
+    RegistryData = AdapterRegistry()
+    RegistryData.register(MixedAdapter(InfoData))
+    TargetData = BytesIO()
+    with Pytest.raises(ApplicationUsabilityError) as ErrorInfo:
+        _ = RegistryData.write(BuildSource(), TargetData, format_id=InfoData.format_id)
+    assert TargetData.getvalue() == b""
+    assert ErrorInfo.value.application_usable is True
+    assert ErrorInfo.value.vendor_loadable is True
+    assert "unimplemented_translation" in ErrorInfo.value.issues
+    assert ErrorInfo.value.unimplemented_capabilities
+
+
+# target format limits remain truthful reversible carriers rather than implementation gaps
+class TargetAdapter(PairProtocol, ResultAdapter):
+
+    # native seed plus intrinsic carriers proves near losslessness accepts target limitations
+    @Override
+    @Override
+    def write(
+        self,
+        document: CadDocument,
+        destination: Destination,
+        options: WriteOptions | None = None,
+    ) -> WriteResult:
+        ResultData = super().write(document, destination, options)
+        TransferValues = tuple(
+            CapabilityTransfer(
+                CapabilityData,
+                TransferMode.KNative if IndexValue == 0 else TransferMode.KCarrier,
+                None if IndexValue == 0 else CarrierReason.KTargetGap,
+            )
+            for IndexValue, CapabilityData in enumerate(GetCapabilities(document))
+        )
+        return ReplaceValue(
+            ResultData,
+            transfers=TransferValues,
+            application_usable=True,
+            vendor_loadable=True,
+        )
+
+
+# intrinsic target limitations remain acceptable when output is usable and reversible
+def CheckTargetGap() -> None:
+    InfoData = AdapterInfo(
+        "format.target-limited",
+        "Target limited",
+        "1",
+        (".limited",),
+        capabilities=frozenset(Capability),
+    )
+    RegistryData = AdapterRegistry()
+    RegistryData.register(TargetAdapter(InfoData))
+    TargetData = BytesIO()
+    ResultData = RegistryData.write(
+        BuildSource(),
+        TargetData,
+        format_id=InfoData.format_id,
+    )
+    assert TargetData.getvalue()
+    assert ResultData.application_usable is True
+    assert ResultData.vendor_loadable is True
+    assert ResultData.carrier_capabilities
+    assert ResultData.near_lossless is True
+    assert all(
+        TransferData.carrier_reason is CarrierReason.KTargetGap
+        for TransferData in ResultData.transfers
+        if TransferData.mode is TransferMode.KCarrier
+    )
+
+
+# carrier only target limits model formats with no native representation for this document
+class OnlyCarrier(PairProtocol, ResultAdapter):
+
+    # every intrinsic carrier proves native emptiness alone does not make usable output invalid
+    @Override
+    @Override
+    def write(
+        self,
+        document: CadDocument,
+        destination: Destination,
+        options: WriteOptions | None = None,
+    ) -> WriteResult:
+        ResultData = super().write(document, destination, options)
+        TransferValues = tuple(
+            CapabilityTransfer(
+                CapabilityData,
+                TransferMode.KCarrier,
+                CarrierReason.KTargetGap,
+            )
+            for CapabilityData in GetCapabilities(document)
+        )
+        return ReplaceValue(
+            ResultData,
+            transfers=TransferValues,
+            application_usable=True,
+            vendor_loadable=True,
+        )
+
+
+# usable carrier only documents remain near lossless when every carrier is intrinsic
+def CheckOnlyCar() -> None:
+    InfoData = AdapterInfo(
+        "format.target-empty",
+        "Target empty",
+        "1",
+        (".empty",),
+        capabilities=frozenset(Capability),
+    )
+    RegistryData = AdapterRegistry()
+    RegistryData.register(OnlyCarrier(InfoData))
+    TargetData = BytesIO()
+    ResultData = RegistryData.write(
+        BuildSource(),
+        TargetData,
+        format_id=InfoData.format_id,
+    )
+    assert TargetData.getvalue()
+    assert ResultData.native_capabilities == frozenset()
+    assert ResultData.carrier_capabilities == ResultData.transferred_capabilities
+    assert ResultData.application_usable is True
+    assert ResultData.vendor_loadable is True
+    assert ResultData.near_lossless is True

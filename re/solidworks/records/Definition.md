@@ -7,7 +7,7 @@ The stream is document-level. It carries **no geometry, no feature, no sketch an
 data**. It is a scalar preamble followed by a seven-class `su_CArchive` object graph holding the
 drafting standard, the line-style table, the annotation-to-line-font bindings, the user model
 environment, the BOM manager and the design-journal record. Kit emits it from
-`src/convert/adapters/solidworks/container/Definition.py`.
+`src/convert/adapters/solidworks/Container/Definition.py`.
 
 `../measurements/Measure.md` classes this stream load-critical: deleting it from a vendor file
 crashes SOLIDWORKS on open. Before this work it was the only load-critical stream with no recorded
@@ -251,7 +251,7 @@ rejection, not session flakiness.
 
 ## 5. How Kit emits it
 
-`src/convert/adapters/solidworks/container/Definition.py`. The preamble is built from named fields with
+`src/convert/adapters/solidworks/Container/Definition.py`. The preamble is built from named fields with
 `view_count = 0` and a zeroed camera, which is honest for a freshly written document and is the
 branch measured opening. The body is written from the declared tables with two parameterised holes,
 the drafting-standard class name and the user name. Default output is deterministic:
@@ -263,7 +263,7 @@ the drafting-standard class name and the user name. Default output is determinis
 Do **not** copy a donor's `Definition` and do **not** substitute one from an arbitrary corpus file —
 that is measured as a crash whenever the donor's generation differs from the host's.
 
-`tests/convert/solidworks/configuration/SolidworksDefinitionTests.py` retains the quality checks for
+`tests/Convert/Solidworks/Configuration/SolidworksDefinitionTests.py` retains the quality checks for
 complete typed-byte accounting and the absence of encoded vendor blocks. Stream-level unit tests
 have been removed; complete document writing and vendor-oracle coverage remain in the higher-level
 suites.

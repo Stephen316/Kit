@@ -85,7 +85,7 @@ Keep measurements tied to the exact generated file.
 
 ## Sources
 
-- [B-rep model](../../../src/interchange/brep/topology/BrepModel.py)
-- [Topology records](../../../src/interchange/brep/topology/BrepTopology.py)
-- [B-rep validation](../../../src/interchange/brep/validation/BrepValidate.py)
-- [Geometry modules](../../../src/convert/geometry/)
+- [B-rep model](../../../src/interchange/brep/Topology/BrepModel.py)
+- [Topology records](../../../src/interchange/brep/Topology/BrepTopology.py)
+- [B-rep validation](../../../src/interchange/brep/Validation/BrepValidate.py)
+- [Geometry modules](../../../src/convert/Geometry/)

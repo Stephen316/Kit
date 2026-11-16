@@ -8,8 +8,8 @@ from convert.adapters.Fusion.Native.Graph.GraphChecks import (
 from convert.adapters.Fusion.Native.Graph.GraphValues import ObjectFields, PointCoords
 from convert.adapters.Fusion.Native.Graph.NativeGraph import NativeGraph
 from convert.adapters.Fusion.Native.Graph.NativeNode import NativeNode
-from interchange.geometry.models.GeometryCurves import LineGeometry
-from interchange.geometry.models.VectorPlane import PlaneVector
+from interchange.geometry.Models.GeometryCurves import LineGeometry
+from interchange.geometry.Models.VectorPlane import PlaneVector
 
 
 # the line operation needs a distinct decoding boundary so public document claims remain grounded in native records

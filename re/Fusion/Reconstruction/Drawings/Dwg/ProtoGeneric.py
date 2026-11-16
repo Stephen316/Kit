@@ -6,7 +6,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from ProtoBits import Reader, Writer
 from ProtoObjects import read_ms, read_umc, handle_map
-from convert.formats.Fusion.DrawingCodec.Dwg.Integrity.CrcSixteen import CrcSixteen
+from convert.Formats.Fusion.DrawingCodec.Dwg.Integrity.CrcSixteen import CrcSixteen
 
 
 class Obj:

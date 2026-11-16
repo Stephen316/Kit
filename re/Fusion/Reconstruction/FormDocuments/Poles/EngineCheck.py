@@ -16,16 +16,16 @@ import numpy as np
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from PoleData import GENERAL, OLD_LABELS, general_saved, general_surface, grip_array, old_surface, read_tables, saved_faces, table_faces, table_matrix  # noqa: E402
 
-from convert.formats.Fusion.BrepCodec.Journal.Spline.Capped.CageGraph import ReadGraph  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Spline.Capped.CappedLayout import CappedLayout, KnotScale  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Spline.Poles.CapFrames import BaseRow, RegionFrames  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Spline.Poles.CapPlaces import SectorKnots  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Spline.Poles.FaceNets import MeshLevels  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Spline.Poles.GridPoles import IsCompound  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Spline.Poles.PoleMesh import MeshFromCage  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Spline.Poles.PoleKnots import CapPoints  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Spline.Poles.PoleTable import BuildTable, FacePlans  # noqa: E402
-from convert.formats.Fusion.TSplineCodec.ReadTspline import ReadTspline  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.Capped.CageGraph import ReadGraph  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.Capped.CappedLayout import CappedLayout, KnotScale  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.Poles.CapFrames import BaseRow, RegionFrames  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.Poles.CapPlaces import SectorKnots  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.Poles.FaceNets import MeshLevels  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.Poles.GridPoles import IsCompound  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.Poles.PoleMesh import MeshFromCage  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.Poles.PoleKnots import CapPoints  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.Poles.PoleTable import BuildTable, FacePlans  # noqa: E402
+from convert.Formats.Fusion.TSplineCodec.ReadTspline import ReadTspline  # noqa: E402
 
 EXACT = ('Box', 'Box3', 'Valence5', 'Valence6', 'Valence7', 'Valence8')
 

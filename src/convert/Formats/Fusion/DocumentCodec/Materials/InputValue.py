@@ -1,0 +1,27 @@
+from convert.Formats.Fusion.DocumentCodec.Materials.StoredValue import KInputValue
+from convert.Formats.Fusion.DocumentCodec.Materials.Vocabulary.MaterialUnits import (
+    KMaterialUnits,
+    KUnitScales,
+)
+from convert.Formats.Fusion.MaterialCodec.Models.ColorValue import ColorValue
+from convert.Formats.Fusion.MaterialCodec.Models.PropertyValue import KMaterialValue
+from convert.Formats.Fusion.MaterialCodec.Models.UnitValue import UnitValue
+from convert.Formats.Fusion.MaterialCodec.Package.Model.SchemaNode import SchemaNode
+
+
+# input value needs an explicit validity boundary so appearance references remain connected to their owning entities
+def InputValue(Declared: SchemaNode, Value: KMaterialValue) -> KInputValue:
+    if isinstance(Value, UnitValue):
+        UnitName = (
+            "MilliMeter"
+            if Declared.TagName == "Distance"
+            else dict(Declared.Attributes).get("unit", "")
+        )
+        if KMaterialUnits.get(UnitName) != Value.UnitCode:
+            raise ValueError("Fusion material value unit differs from its schema")
+        Scale = KUnitScales[UnitName]
+        Factor = 10.0 ** abs(Scale)
+        return Value.Magnitude / Factor if Scale >= 0 else Value.Magnitude * Factor
+    if isinstance(Value, (bool, int, float, ColorValue)):
+        return Value
+    raise ValueError("Fusion material value has no semantic input form")

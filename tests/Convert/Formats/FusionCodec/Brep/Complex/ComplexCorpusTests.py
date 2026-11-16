@@ -1,0 +1,161 @@
+from pathlib import Path as FilePath
+from sys import version_info as PythonVersion
+
+from pytest import mark as TestMarks, raises as RaisesError
+
+from convert.Formats.Fusion.BrepCodec.Journal.Complex.ComplexEntity import (
+    KComplexTypes,
+)
+from convert.Formats.Fusion.BrepCodec.Journal.EmitJournal import EmitJournal
+from convert.Formats.Fusion.BrepCodec.Journal.EmitStateSmb import EmitStateSmb
+from convert.Formats.Fusion.BrepCodec.Journal.PermuteJournal import PermuteJournal
+from convert.Formats.Fusion.BrepCodec.Journal.ReadJournal import ReadJournal
+from convert.Formats.Fusion.BrepCodec.Journal.Reading.ReadEntityNode import (
+    ReadEntityNode,
+)
+from convert.Formats.Fusion.BrepCodec.Journal.Snapshot.EmitGeometry import EmitGeometry
+from convert.Formats.Fusion.BrepCodec.Journal.Snapshot.PermuteGeometry import (
+    PermuteGeometry,
+)
+from convert.Formats.Fusion.BrepCodec.Journal.Snapshot.ReadGeometry import ReadGeometry
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.CheckSubtypes import (
+    CheckSubtypes,
+)
+from convert.Formats.Fusion.BrepCodec.Journal.Writing.MakeEntityNode import (
+    MakeEntityNode,
+)
+from convert.Formats.Fusion.Topology.AsmEdge.AsmTable import ReadAsmTable
+from tests.Convert.Formats.FusionCodec.Brep.Complex.ComplexMembers import (
+    ComplexMember,
+    KComplexBounds,
+    KComplexMembers,
+)
+from tests.Convert.Formats.FusionCodec.Brep.Complex.ComplexOrders import (
+    ShuffleOrder,
+)
+from tests.Convert.Formats.FusionCodec.Brep.GeometryState.GeometryArchive import (
+    GeometryArchive,
+)
+from tests.Convert.Formats.FusionCodec.Brep.Journal.JournalArchive import JournalArchive
+
+# the history members cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
+KHistoryMembers = tuple(Value for Value in KComplexMembers if Value[1] == "smbh")
+
+# bound members needs one explicit bound so native document reconstruction cannot accept inconsistent resource or layout limits
+KBoundMembers = tuple(Value[:3] for Value in KComplexBounds)
+
+# the complex names cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
+KComplexNames = frozenset(
+    (
+        "spline-surface",
+        "intcurve-curve",
+        "pcurve",
+        "tcoedge-coedge",
+        "tedge-edge",
+        "tvertex-vertex",
+    )
+)
+
+
+# the member bytes contract needs boundary coverage so stored document relationships remain consistent
+@TestMarks.skipif(
+    PythonVersion < (3, 14), reason="native Fusion fixture requires ZIP Zstandard"
+)
+@TestMarks.parametrize("Relative,Suffix,Digest", KComplexMembers)
+def TestMemberBytes(TmpPath: FilePath, Relative: str, Suffix: str, Digest: str) -> None:
+    Payload = ComplexMember(Relative, Suffix, Digest)
+    if Suffix == "smbh":
+        Journal = ReadJournal(Payload)
+        assert EmitJournal(Journal) == Payload
+        assert JournalArchive(TmpPath / "ComplexHistory.zip", Payload) == Journal
+        Entities = Journal.Entities
+    else:
+        Geometry = ReadGeometry(Payload)
+        assert EmitGeometry(Geometry) == Payload
+        assert GeometryArchive(TmpPath / "ComplexGeometry.zip", Payload) == Geometry
+        Entities = Geometry.Entities
+    assert any(isinstance(Value, KComplexTypes) for Value in Entities)
+    CheckSubtypes(Entities)
+
+
+# the member order contract needs boundary coverage so stored document relationships remain consistent
+@TestMarks.skipif(
+    PythonVersion < (3, 14), reason="native Fusion fixture requires ZIP Zstandard"
+)
+@TestMarks.parametrize("Relative,Suffix,Digest", KComplexMembers)
+def TestMemberOrder(Relative: str, Suffix: str, Digest: str) -> None:
+    Payload = ComplexMember(Relative, Suffix, Digest)
+    if Suffix == "smbh":
+        Journal = ReadJournal(Payload)
+        Moved = PermuteJournal(
+            Journal, ShuffleOrder(Journal.Entities, Journal.ActiveCount, True)
+        )
+        Emitted = EmitJournal(Moved)
+        assert ReadJournal(Emitted) == Moved
+    else:
+        Geometry = ReadGeometry(Payload)
+        Shifted = PermuteGeometry(
+            Geometry, ShuffleOrder(Geometry.Entities, len(Geometry.Entities), True)
+        )
+        Emitted = EmitGeometry(Shifted)
+        assert ReadGeometry(Emitted) == Shifted
+    assert Emitted != Payload
+
+
+# the forward references contract needs boundary coverage so stored document relationships remain consistent
+@TestMarks.skipif(
+    PythonVersion < (3, 14), reason="native Fusion fixture requires ZIP Zstandard"
+)
+@TestMarks.parametrize("Relative,Suffix,Digest", KHistoryMembers)
+def TestForwardRefs(Relative: str, Suffix: str, Digest: str) -> None:
+    Journal = ReadJournal(ComplexMember(Relative, Suffix, Digest))
+    Order = ShuffleOrder(Journal.Entities, Journal.ActiveCount, False)
+    with RaisesError(ValueError, match="subtype reference"):
+        _ = EmitJournal(PermuteJournal(Journal, Order))
+
+
+# the member state contract needs boundary coverage so stored document relationships remain consistent
+@TestMarks.skipif(
+    PythonVersion < (3, 14), reason="native Fusion fixture requires ZIP Zstandard"
+)
+@TestMarks.parametrize("Relative,Suffix,Digest", KHistoryMembers)
+def TestMemberState(TmpPath: FilePath, Relative: str, Suffix: str, Digest: str) -> None:
+    Journal = ReadJournal(ComplexMember(Relative, Suffix, Digest))
+    Payload = EmitStateSmb(Journal)
+    State = GeometryArchive(TmpPath / "ComplexState.zip", Payload)
+    assert EmitGeometry(State) == Payload
+    assert len(State.Entities) == Journal.ActiveCount
+    LiveCount = sum(
+        isinstance(Value, KComplexTypes)
+        for Value in Journal.Entities[: Journal.ActiveCount]
+    )
+    assert LiveCount > 0
+    assert sum(isinstance(Value, KComplexTypes) for Value in State.Entities) == (
+        LiveCount
+    )
+    CheckSubtypes(State.Entities)
+
+
+# the member bound contract needs boundary coverage so stored document relationships remain consistent
+@TestMarks.skipif(
+    PythonVersion < (3, 14), reason="native Fusion fixture requires ZIP Zstandard"
+)
+@TestMarks.parametrize("Relative,Suffix,Digest", KBoundMembers)
+def TestMemberBound(Relative: str, Suffix: str, Digest: str) -> None:
+    Payload = ComplexMember(Relative, Suffix, Digest)
+    assert EmitJournal(ReadJournal(Payload)) == Payload
+
+
+# the bound nodes contract needs boundary coverage so stored document relationships remain consistent
+@TestMarks.skipif(
+    PythonVersion < (3, 14), reason="native Fusion fixture requires ZIP Zstandard"
+)
+@TestMarks.parametrize("Relative,Suffix,Digest", KBoundMembers)
+def TestBoundNodes(Relative: str, Suffix: str, Digest: str) -> None:
+    Table = ReadAsmTable(ComplexMember(Relative, Suffix, Digest))
+    Records = tuple(Record for Record in Table.Records if Record.Name in KComplexNames)
+    assert Records
+    for Record in Records:
+        Value = ReadEntityNode(Record)
+        assert isinstance(Value, KComplexTypes)
+        assert MakeEntityNode(Value) == Record

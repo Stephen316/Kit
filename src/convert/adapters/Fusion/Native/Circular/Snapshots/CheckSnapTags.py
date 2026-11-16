@@ -1,23 +1,23 @@
-from convert.formats.Fusion.BrepCodec.Journal.Geometry.LoopNode import LoopNode
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.LoopNode import LoopNode
 
 from dataclasses import replace as CopyData
 
 from convert.adapters.Fusion.Native.Circular.Snapshots.SnapAccess import SnapEntity
-from convert.formats.Fusion.BrepCodec.Journal.Snapshot.GeometryState import (
+from convert.Formats.Fusion.BrepCodec.Journal.Snapshot.GeometryState import (
     GeometryState,
 )
-from convert.formats.Fusion.BrepCodec.Journal.Geometry.FaceNode import FaceNode
-from convert.formats.Fusion.BrepCodec.Journal.Geometry.ConeNode import ConeNode
-from convert.formats.Fusion.BrepCodec.Journal.Geometry.EdgeNode import EdgeNode
-from convert.formats.Fusion.BrepCodec.Journal.Geometry.CoedgeNode import CoedgeNode
-from convert.formats.Fusion.BrepCodec.Journal.Geometry.EllipseNode import EllipseNode
-from convert.formats.Fusion.BrepCodec.Journal.Attributes.TagAttrib import TagAttrib
-from convert.formats.Fusion.BrepCodec.Journal.Attributes.SketchAttrib import (
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.FaceNode import FaceNode
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.ConeNode import ConeNode
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.EdgeNode import EdgeNode
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.CoedgeNode import CoedgeNode
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.EllipseNode import EllipseNode
+from convert.Formats.Fusion.BrepCodec.Journal.Attributes.TagAttrib import TagAttrib
+from convert.Formats.Fusion.BrepCodec.Journal.Attributes.SketchAttrib import (
     SketchAttrib,
 )
-from convert.formats.Fusion.BrepCodec.Models.FeatureTag import FeatureTag
-from convert.formats.Fusion.BrepCodec.Models.SketchLink import SketchLink
-from convert.formats.Fusion.BrepCodec.Models.TopologyTags import TopologyTags
+from convert.Formats.Fusion.BrepCodec.Models.FeatureTag import FeatureTag
+from convert.Formats.Fusion.BrepCodec.Models.SketchLink import SketchLink
+from convert.Formats.Fusion.BrepCodec.Models.TopologyTags import TopologyTags
 
 
 # invalid snapshot tags input must fail here so public geometry remains consistent with native circular topology

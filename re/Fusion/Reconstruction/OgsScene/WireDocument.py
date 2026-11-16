@@ -1,8 +1,8 @@
 from pathlib import Path
 from textwrap import dedent
 ROOT=Path(__file__).resolve().parents[4]
-BASE=ROOT/'src/convert/formats/Fusion'
-P='convert.formats.Fusion.'
+BASE=ROOT/'src/convert/Formats/Fusion'
+P='convert.Formats.Fusion.'
 def save(path,code):
  p=BASE/(path+'.py');p.parent.mkdir(parents=True,exist_ok=True);p.write_text(dedent(code).lstrip())
 def edit(path,old,new):
@@ -15,8 +15,8 @@ def IsGraphicPath(NameValue: str) -> bool:
     return FullMatch(r"OGS\.BlobFolder/OGS/DefaultScene/(world|stream_mesh_[0-9]{3})", NameValue) is not None
 ''')
 save('ContainerCodec/PartDirs','''
-from convert.formats.Fusion.ContainerCodec.Model.ContainerPart import ContainerPart
-from convert.formats.Fusion.ContainerCodec.ContainerLayout import KAssetPrefix
+from convert.Formats.Fusion.ContainerCodec.Model.ContainerPart import ContainerPart
+from convert.Formats.Fusion.ContainerCodec.ContainerLayout import KAssetPrefix
 
 
 def PartDirs(Values: tuple[ContainerPart, ...]) -> set[str]:
@@ -26,11 +26,11 @@ def PartDirs(Values: tuple[ContainerPart, ...]) -> set[str]:
         for Index in range(1, len(Entry.Name.split("/")))
     }
 ''')
-edit('ContainerCodec/CheckParts','from typing import cast as CastValue','from typing import cast as CastValue\nfrom convert.formats.Fusion.ContainerCodec.IsGraphicPath import IsGraphicPath')
+edit('ContainerCodec/CheckParts','from typing import cast as CastValue','from typing import cast as CastValue\nfrom convert.Formats.Fusion.ContainerCodec.IsGraphicPath import IsGraphicPath')
 edit('ContainerCodec/CheckParts','len(Sections) != 2\n            or not Sections[1]','(len(Sections) != 2 and (IsPreview or not IsGraphicPath(Entry.Name)))\n            or not Sections[1]')
-edit('ContainerCodec/ReadParts','from convert.formats.Fusion.ArchiveRead.IndexedArchive import IndexedArchive','from convert.formats.Fusion.ArchiveRead.IndexedArchive import IndexedArchive\nfrom convert.formats.Fusion.ContainerCodec.IsGraphicPath import IsGraphicPath')
+edit('ContainerCodec/ReadParts','from convert.Formats.Fusion.ArchiveRead.IndexedArchive import IndexedArchive','from convert.Formats.Fusion.ArchiveRead.IndexedArchive import IndexedArchive\nfrom convert.Formats.Fusion.ContainerCodec.IsGraphicPath import IsGraphicPath')
 edit('ContainerCodec/ReadParts','if len(Sections) != 2 or Sections[0] not in KPartFolders:','if (len(Sections) != 2 and not IsGraphicPath(Relative)) or Sections[0] not in KPartFolders:')
-edit('ContainerCodec/ContainerRows','from typing import cast as CastValue','from typing import cast as CastValue\nfrom convert.formats.Fusion.ContainerCodec.PartDirs import PartDirs')
+edit('ContainerCodec/ContainerRows','from typing import cast as CastValue','from typing import cast as CastValue\nfrom convert.Formats.Fusion.ContainerCodec.PartDirs import PartDirs')
 edit('ContainerCodec/ContainerRows','    Entries = [ZipAssetRow(Folder, b"", False) for Folder in sorted(Directories)]','    Directories.update(PartDirs(Value.Parts))\n    Entries = [ZipAssetRow(Folder, b"", False) for Folder in sorted(Directories)]')
 save('DocumentCodec/Auxiliary/Graphics/ReadSceneParts',f'''
 from {P}ContainerCodec.Model.ContainerPart import ContainerPart
@@ -107,15 +107,15 @@ def CheckDocScene(Value: DocumentModel) -> None:
         raise ValueError("Graphics references an absent document entity")
 ''')
 for name in ('DocumentParts','DocumentModel'):
- edit('DocumentCodec/Model/'+name,'from dataclasses import dataclass as MakeDataClass','from dataclasses import dataclass as MakeDataClass\nfrom convert.formats.Fusion.GraphicsCodec.Model.State.GraphicScene import GraphicScene')
+ edit('DocumentCodec/Model/'+name,'from dataclasses import dataclass as MakeDataClass','from dataclasses import dataclass as MakeDataClass\nfrom convert.Formats.Fusion.GraphicsCodec.Model.State.GraphicScene import GraphicScene')
  p=BASE/('DocumentCodec/Model/'+name+'.py');s=p.read_text();p.write_text(s+'    Graphics: GraphicScene | None = None\n')
-edit('DocumentCodec/Reading/ReadDocParts','from convert.formats.Fusion.ContainerCodec.Model.ContainerPart import ContainerPart','from convert.formats.Fusion.ContainerCodec.Model.ContainerPart import ContainerPart\nfrom convert.formats.Fusion.DocumentCodec.Auxiliary.Graphics.ReadSceneParts import ReadSceneParts')
+edit('DocumentCodec/Reading/ReadDocParts','from convert.Formats.Fusion.ContainerCodec.Model.ContainerPart import ContainerPart','from convert.Formats.Fusion.ContainerCodec.Model.ContainerPart import ContainerPart\nfrom convert.Formats.Fusion.DocumentCodec.Auxiliary.Graphics.ReadSceneParts import ReadSceneParts')
 edit('DocumentCodec/Reading/ReadDocParts','    for Value in Values:\n        if Value.Name.startswith("ProteinAssets.BlobParts/"):','    for Value in Values:\n        if Value.Name.startswith("OGS.BlobFolder/"):\n            continue\n        if Value.Name.startswith("ProteinAssets.BlobParts/"):')
 edit('DocumentCodec/Reading/ReadDocParts','tuple(Bodies), tuple(Materials), tuple(Snapshots), tuple(Configurations)','tuple(Bodies), tuple(Materials), tuple(Snapshots), tuple(Configurations), ReadSceneParts(Values)')
 for name in ('ReadDocument','EmitParsed'):
- edit('DocumentCodec/'+name,'from convert.formats.Fusion.DocumentCodec.Model.DocumentModel import DocumentModel','from convert.formats.Fusion.DocumentCodec.Model.DocumentModel import DocumentModel\nfrom convert.formats.Fusion.DocumentCodec.Auxiliary.Graphics.CheckDocScene import CheckDocScene')
+ edit('DocumentCodec/'+name,'from convert.Formats.Fusion.DocumentCodec.Model.DocumentModel import DocumentModel','from convert.Formats.Fusion.DocumentCodec.Model.DocumentModel import DocumentModel\nfrom convert.Formats.Fusion.DocumentCodec.Auxiliary.Graphics.CheckDocScene import CheckDocScene')
 edit('DocumentCodec/ReadDocument','        Parts.Configurations,','        Parts.Configurations,\n        Parts.Graphics,')
 edit('DocumentCodec/ReadDocument','    CheckDocConfig(Result)','    CheckDocConfig(Result)\n    CheckDocScene(Result)')
 edit('DocumentCodec/EmitParsed','    CheckDocConfig(Value)','    CheckDocConfig(Value)\n    CheckDocScene(Value)')
-edit('DocumentCodec/EmitParsed','from convert.formats.Fusion.ContainerCodec.EmitContainer import EmitContainer','from convert.formats.Fusion.ContainerCodec.EmitContainer import EmitContainer\nfrom convert.formats.Fusion.DocumentCodec.Auxiliary.Graphics.EmitSceneParts import EmitSceneParts')
+edit('DocumentCodec/EmitParsed','from convert.Formats.Fusion.ContainerCodec.EmitContainer import EmitContainer','from convert.Formats.Fusion.ContainerCodec.EmitContainer import EmitContainer\nfrom convert.Formats.Fusion.DocumentCodec.Auxiliary.Graphics.EmitSceneParts import EmitSceneParts')
 edit('DocumentCodec/EmitParsed','        + tuple(EmitConfigPart(Configuration) for Configuration in Value.Configurations)','        + tuple(EmitConfigPart(Configuration) for Configuration in Value.Configurations)\n        + EmitSceneParts(Value.Graphics)')

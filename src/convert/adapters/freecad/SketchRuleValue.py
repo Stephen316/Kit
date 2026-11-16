@@ -2,7 +2,7 @@ from collections.abc import Mapping
 
 from convert.adapters.base.WriteValidate import IsObjectMap
 from convert.adapters.freecad.Protocol import KRuleValueKindByCode
-from convert.geometry.Formula.FormulaUnits import KFormulaUnits
+from convert.Geometry.Formula.FormulaUnits import KFormulaUnits
 
 
 # unsigned source distances still need the direction of their ordered point references

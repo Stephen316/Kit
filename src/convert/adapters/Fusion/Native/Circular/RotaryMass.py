@@ -6,7 +6,7 @@ from convert.adapters.Fusion.Native.Graph.GraphValues import (
     PointCoords,
 )
 from convert.adapters.Fusion.Native.Graph.ExtrudeContext import ExtrudeContext
-from convert.formats.Fusion.GeometryCodec.Frustum.FrustumBody import FrustumBody
+from convert.Formats.Fusion.GeometryCodec.Frustum.FrustumBody import FrustumBody
 
 
 # the rotary mass contract needs a shared interpretation so public geometry remains consistent with native circular topology

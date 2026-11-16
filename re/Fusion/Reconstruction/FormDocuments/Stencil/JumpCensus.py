@@ -7,12 +7,12 @@ from pathlib import Path
 BASE = Path(__file__).resolve().parent
 ROOT = BASE.parents[4]
 sys.path.insert(0, str(ROOT / 'src'))
-from convert.formats.Fusion.BrepCodec.Journal.Complex.Authoring.ExactSubtypes import SplineCurve
-from convert.formats.Fusion.BrepCodec.Journal.JournalModel import JournalModel
-from convert.formats.Fusion.BrepCodec.Journal.Spline.Conversion.OrderJumps import CurveOrders, SurfaceOrders
-from convert.formats.Fusion.BrepCodec.Journal.Spline.IntcurveNode import IntcurveNode
-from convert.formats.Fusion.BrepCodec.Journal.Spline.ListTsplines import ListTsplines
-from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
+from convert.Formats.Fusion.BrepCodec.Journal.Complex.Authoring.ExactSubtypes import SplineCurve
+from convert.Formats.Fusion.BrepCodec.Journal.JournalModel import JournalModel
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.Conversion.OrderJumps import CurveOrders, SurfaceOrders
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.IntcurveNode import IntcurveNode
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.ListTsplines import ListTsplines
+from convert.Formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
 
 WORK = ROOT / 're/Fusion/LocalOracle/FormDocuments/Stencil'
 TARGET = BASE / 'JumpCensus.json'

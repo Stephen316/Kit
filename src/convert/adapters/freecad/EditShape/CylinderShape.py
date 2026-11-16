@@ -19,15 +19,15 @@ from convert.adapters.freecad.EditShape.CylinderShell import (
     HasCylShell,
     ReadCylFaces,
 )
-from convert.geometry.Extrude.Polygon.PrismFrame import CheckPrismFrame, PlacePrismPoint
-from convert.geometry.Opencascade import DecodeAsciiBrep
-from interchange.brep.surfaces.BrepSurfaces import (
+from convert.Geometry.Extrude.Polygon.PrismFrame import CheckPrismFrame, PlacePrismPoint
+from convert.Geometry.Opencascade import DecodeAsciiBrep
+from interchange.brep.Surfaces.BrepSurfaces import (
     BrepSurface,
     CylinderSurface,
     PlaneSurface,
 )
-from interchange.geometry.models.GeometryCurves import CircleGeometry
-from interchange.geometry.models.Transform import Transform
+from interchange.geometry.Models.GeometryCurves import CircleGeometry
+from interchange.geometry.Models.Transform import Transform
 
 # editable circular extrusions need only a small analytic shape payload
 KMaxCylinderBytes = 32_768

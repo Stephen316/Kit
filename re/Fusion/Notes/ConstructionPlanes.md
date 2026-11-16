@@ -9,7 +9,7 @@ to you under it immediately and permanently.
 
 [Fusion feature index](../README.md)
 
-See [plane controls](../../../src/convert/formats/Fusion/ConstructionPlane/PlaneControls.py) and [binding tests](../../../tests/convert/formats/FusionProof/FusionPlaneBindingTests.py).
+See [plane controls](../../../src/convert/Formats/Fusion/ConstructionPlane/PlaneControls.py) and [binding tests](../../../tests/Convert/Formats/FusionProof/FusionPlaneBindingTests.py).
 
 ## SDK coverage
 

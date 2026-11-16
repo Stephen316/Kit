@@ -1,7 +1,7 @@
 from pathlib import Path
 from textwrap import dedent
-BASE=Path(__file__).resolve().parents[4]/'src/convert/formats/Fusion/GraphicsCodec'
-P='convert.formats.Fusion.GraphicsCodec.'
+BASE=Path(__file__).resolve().parents[4]/'src/convert/Formats/Fusion/GraphicsCodec'
+P='convert.Formats.Fusion.GraphicsCodec.'
 def put(name,code):
  (BASE/(name+'.py')).write_text(dedent(code).lstrip())
 def read(name):return (BASE/(name+'.py')).read_text()

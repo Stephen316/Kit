@@ -18,10 +18,10 @@ ROOT = HERE.parents[4]
 
 from ExtractBody import extract, face_windows, native_marks, windows_by_tag, without_tags  # noqa: E402
 
-from convert.formats.Fusion.BrepCodec.Journal.Spline.Conversion.ConvertGrid import ConvertGrid  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Spline.Converted.CreateFormBrep import CreateFormBrep  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Spline.Converted.GridBody import GridBody  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Spline.Converted.FormMarks import FormMarks  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.Conversion.ConvertGrid import ConvertGrid  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.Converted.CreateFormBrep import CreateFormBrep  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.Converted.GridBody import GridBody  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.Converted.FormMarks import FormMarks  # noqa: E402
 
 DEFAULT = (
     're/Fusion/LocalOracle/FormDocuments/Grid/Primitives/Plane1x1.f3d',

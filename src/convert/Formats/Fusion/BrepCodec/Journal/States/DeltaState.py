@@ -1,0 +1,19 @@
+from dataclasses import dataclass as MakeDataClass
+
+from convert.Formats.Fusion.BrepCodec.Journal.States.BulletinBoard import BulletinBoard
+
+
+# delta state needs an explicit state contract so topology changes retain their native revision relationships
+@MakeDataClass(frozen=True, slots=True)
+class DeltaState:
+    StateId: int
+    RollsBack: bool
+    Hidden: bool
+    PreviousNode: int
+    NextNode: int
+    PartnerNode: int
+    MergedWith: int
+    OwnerStream: int
+    NameValue: str | None
+    Boards: tuple[BulletinBoard, ...]
+    StateLinks: tuple[int, ...]

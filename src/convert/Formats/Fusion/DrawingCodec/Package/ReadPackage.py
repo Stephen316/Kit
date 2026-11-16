@@ -1,0 +1,27 @@
+from collections.abc import Callable
+
+from convert.Formats.Fusion.AssetCodec.Zip.ZipNames import CheckZipPaths
+from convert.Formats.Fusion.DrawingCodec.Package.DrawingPackage import DrawingPackage
+from convert.Formats.Fusion.DrawingCodec.Package.PackageEntry import PackageEntry
+from convert.Formats.Fusion.DrawingCodec.Package.ReadCentral import ReadCentral
+from convert.Formats.Fusion.DrawingCodec.Package.ReadLocal import ReadLocal
+
+
+# the package operation needs a distinct decoding boundary so drawing members retain their sheet and model associations
+def ReadPackage(
+    DataValue: bytes, InflateZstd: Callable[[bytes, int], bytes] | None = None
+) -> DrawingPackage:
+    RowValues, CentralStart = ReadCentral(DataValue)
+    CheckZipPaths(tuple(RowValue.Name for RowValue in RowValues))
+    Entries: list[PackageEntry] = []
+    Position = 0
+    for RowValue in RowValues:
+        if RowValue.Offset != Position:
+            raise ValueError("Fusion drawing package entries are not contiguous")
+        Payload, Position = ReadLocal(DataValue, RowValue, CentralStart, InflateZstd)
+        Entries.append(PackageEntry(RowValue.Name, Payload, RowValue.Layout))
+    if Position != CentralStart:
+        raise ValueError(
+            "Unaccounted bytes before the Fusion drawing central directory"
+        )
+    return DrawingPackage(tuple(Entries))

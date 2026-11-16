@@ -1,0 +1,21 @@
+from convert.Formats.Fusion.EntityCodec.Schema.FieldSpec import FieldSpec
+from convert.Formats.Fusion.EntityCodec.Schema.WireType import WireType
+from convert.Formats.Fusion.EntityCodec.Vocabulary.WireJson import WireJson
+
+
+# the wire type operation needs a distinct decoding boundary so entity identifiers retain their schema and reference meaning
+def ReadWireType(Value: WireJson) -> WireType:
+    return WireType(
+        Value["KindValue"],
+        tuple(ReadWireType(Entry) for Entry in Value.get("Arguments", [])),
+        tuple(
+            FieldSpec(
+                Entry["FieldName"], ReadWireType(Entry["ValueType"]), Entry["IsSaved"]
+            )
+            for Entry in Value.get("Members", [])
+        ),
+        Value.get("ClassGuid", ""),
+        Value.get("FixedCount", 0),
+        tuple(Value.get("AllowedInts", [])),
+        Value.get("HasMatrixRows", False),
+    )

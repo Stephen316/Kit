@@ -20,7 +20,7 @@ from convert.adapters.freecad.EditBodyRev.BodyReadMap import ReadRimShadow
 from convert.adapters.freecad.EditBodyRev.BodyRevPlan import BodyRevPlan, ReadBodyRev
 from convert.adapters.freecad.EditBodyRev.PrismOrder import ReadPrismOrder
 from convert.adapters.freecad.EditRead.EditExtrusion import ReadEditDepth
-from interchange.document.models.DocumentModel import CadDocument
+from interchange.document.Models.DocumentModel import CadDocument
 
 
 # the saved compound history is accepted only when native controls and both body caches agree

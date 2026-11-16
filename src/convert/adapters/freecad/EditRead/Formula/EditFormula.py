@@ -3,7 +3,7 @@ from xml.etree.ElementTree import Element
 from convert.adapters.freecad.EditRead.Formula.FormulaOrder import ReadPlanOrder
 from convert.adapters.freecad.EditRead.Formula.FormulaValue import EvalSavedRow
 from convert.adapters.freecad.EditRead.Formula.SavedLiteral import ReadSavedLeaf
-from interchange.records.RecordParameter import Parameter
+from interchange.Records.RecordParameter import Parameter
 
 
 # saved leaves and reevaluated dependents enter the document as one coherent set of edits

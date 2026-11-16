@@ -7,16 +7,16 @@ sys.path.insert(0, str(ROOT / 'src'))
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from ExampleRecords import documents, segments
-from convert.formats.Fusion.DocumentCodec.Records.ReadDocSchemas import ReadDocSchemas
-from convert.formats.Fusion.DocumentCodec.Records.DocumentCatalog import DocumentCatalog
-from convert.formats.Fusion.EntityCodec.Records.BindRecords import BindRecords
-from convert.formats.Fusion.EntityCodec.Records.ReadEntity import ReadSlack
-from convert.formats.Fusion.EntityCodec.Schema.BindProfile import BindProfile
-from convert.formats.Fusion.EntityCodec.Schema.ClassSchema import ClassSchema
-from convert.formats.Fusion.EntityCodec.Schema.EntityProfile import EntityProfile
-from convert.formats.Fusion.EntityCodec.Schema.ExternalTarget import ExternalTarget
-from convert.formats.Fusion.EntityCodec.Vocabulary.NativeRoot import KNativeRoot
-from convert.formats.Fusion.SegmentCodec.Bulk.BulkRecord import BulkRecord
+from convert.Formats.Fusion.DocumentCodec.Records.ReadDocSchemas import ReadDocSchemas
+from convert.Formats.Fusion.DocumentCodec.Records.DocumentCatalog import DocumentCatalog
+from convert.Formats.Fusion.EntityCodec.Records.BindRecords import BindRecords
+from convert.Formats.Fusion.EntityCodec.Records.ReadEntity import ReadSlack
+from convert.Formats.Fusion.EntityCodec.Schema.BindProfile import BindProfile
+from convert.Formats.Fusion.EntityCodec.Schema.ClassSchema import ClassSchema
+from convert.Formats.Fusion.EntityCodec.Schema.EntityProfile import EntityProfile
+from convert.Formats.Fusion.EntityCodec.Schema.ExternalTarget import ExternalTarget
+from convert.Formats.Fusion.EntityCodec.Vocabulary.NativeRoot import KNativeRoot
+from convert.Formats.Fusion.SegmentCodec.Bulk.BulkRecord import BulkRecord
 
 CATALOG = DocumentCatalog(ReadDocSchemas())
 

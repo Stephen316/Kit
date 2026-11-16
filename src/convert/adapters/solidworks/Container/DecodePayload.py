@@ -1,0 +1,23 @@
+from zlib import crc32 as Checksum
+from convert.adapters.solidworks.Container.InflateStream import InflateStream
+from convert.adapters.solidworks.Container.SldprtFormat import SldprtFormat
+
+
+# the payload operation needs a distinct decoding boundary so stream contents retain their geometry and feature relationships
+def DecodePayload(
+    Payload: bytes,
+    NameValue: str,
+    ExpectedSize: int,
+    ChecksumValue: int,
+    IsCache: bool,
+) -> bytes | None:
+    DataValue = InflateStream(Payload, ExpectedSize)
+    if DataValue is None:
+        if IsCache:
+            return None
+        raise SldprtFormat(f"invalid compressed SLDPRT stream {NameValue!r}")
+    if Checksum(DataValue) & 4294967295 != ChecksumValue:
+        if IsCache:
+            return None
+        raise SldprtFormat(f"SLDPRT checksum mismatch for {NameValue!r}")
+    return DataValue

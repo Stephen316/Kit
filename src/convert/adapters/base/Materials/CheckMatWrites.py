@@ -1,7 +1,7 @@
 from convert.adapters.base.AdapterProtocols import CadWriterAdapter
 from convert.adapters.base.Materials.MaterialWriter import MaterialWriter
-from interchange.document.models.DocumentModel import CadDocument
-from interchange.document.models.DocumentWalk import WalkDocuments
+from interchange.document.Models.DocumentModel import CadDocument
+from interchange.document.Models.DocumentWalk import WalkDocuments
 
 
 # invalid mat writes input must fail here so format boundaries expose consistent document behavior

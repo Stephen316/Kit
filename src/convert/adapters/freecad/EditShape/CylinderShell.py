@@ -1,8 +1,8 @@
 from dataclasses import dataclass as MakeDataClass
 
-from interchange.brep.surfaces.BrepSurfaces import BrepSurface
-from interchange.brep.topology.BrepModel import BrepModel
-from interchange.brep.topology.BrepTopology import BrepCoedge
+from interchange.brep.Surfaces.BrepSurfaces import BrepSurface
+from interchange.brep.Topology.BrepModel import BrepModel
+from interchange.brep.Topology.BrepTopology import BrepCoedge
 
 # saved geometry must retain kernel sized tolerances around its analytic edges
 KMaxShapeTolerance = 1e-6

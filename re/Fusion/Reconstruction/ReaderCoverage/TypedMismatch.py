@@ -6,12 +6,12 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[4]
 sys.path.insert(0, str(ROOT / 'src'))
 
-import convert.formats.Fusion.BrepCodec.Frustum.ReadFrustumHist as FrustumModule
-import convert.formats.Fusion.BrepCodec.Prism.ReadPrismHist as PrismModule
-import convert.formats.Fusion.BrepCodec.ReadHistory as HistoryModule
-import convert.formats.Fusion.BrepCodec.ReadSnapshot as SnapshotModule
-from convert.formats.Fusion.DocumentCodec.Reading.PickBodyView import PickBodyView
-from convert.formats.Fusion.BrepCodec.Journal.ReadJournal import ReadJournal
+import convert.Formats.Fusion.BrepCodec.Frustum.ReadFrustumHist as FrustumModule
+import convert.Formats.Fusion.BrepCodec.Prism.ReadPrismHist as PrismModule
+import convert.Formats.Fusion.BrepCodec.ReadHistory as HistoryModule
+import convert.Formats.Fusion.BrepCodec.ReadSnapshot as SnapshotModule
+from convert.Formats.Fusion.DocumentCodec.Reading.PickBodyView import PickBodyView
+from convert.Formats.Fusion.BrepCodec.Journal.ReadJournal import ReadJournal
 
 found = []
 

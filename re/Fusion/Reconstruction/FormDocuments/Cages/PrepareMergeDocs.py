@@ -17,13 +17,13 @@ from pathlib import Path
 BASE = Path(__file__).resolve().parent
 ROOT = BASE.parents[4]
 sys.path.insert(0, str(ROOT / 'src'))
-import convert.formats.Fusion.DocumentCodec.Form.EmitFormDoc as EmitModule
-from convert.formats.Fusion.BrepCodec.Journal.JournalModel import JournalModel
-from convert.formats.Fusion.BrepCodec.Journal.Spline.Converted.ConvertForm import ConvertForm
-from convert.formats.Fusion.DocumentCodec.EmitParsed import EmitParsed
-from convert.formats.Fusion.DocumentCodec.Form.FormSpec import FormSpec
-from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
-from convert.formats.Fusion.TSplineCodec.ReadTspline import ReadTspline
+import convert.Formats.Fusion.DocumentCodec.Form.EmitFormDoc as EmitModule
+from convert.Formats.Fusion.BrepCodec.Journal.JournalModel import JournalModel
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.Converted.ConvertForm import ConvertForm
+from convert.Formats.Fusion.DocumentCodec.EmitParsed import EmitParsed
+from convert.Formats.Fusion.DocumentCodec.Form.FormSpec import FormSpec
+from convert.Formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
+from convert.Formats.Fusion.TSplineCodec.ReadTspline import ReadTspline
 
 ORACLE = 're/Fusion/LocalOracle/FormDocuments/'
 WORK = ROOT / ORACLE / 'MergeDocuments'
@@ -37,7 +37,7 @@ def digest(data):
 
 def class_names():
     found = {}
-    for path in (ROOT / 'src/convert/formats/Fusion').rglob('*.json'):
+    for path in (ROOT / 'src/convert/Formats/Fusion').rglob('*.json'):
         try:
             rows = json.loads(path.read_text())
         except (ValueError, UnicodeDecodeError):

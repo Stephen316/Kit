@@ -1,8 +1,8 @@
-from convert.adapters.solidworks.core.Adapter import (
+from convert.adapters.solidworks.Core.Adapter import (
     SldprtAdapter as SldprtAdapter,
     read_sldprt as ReadSldprt,
 )
-from convert.adapters.solidworks.assembly.Assembly import (
+from convert.adapters.solidworks.Assembly.Assembly import (
     NativeAssembly as NativeAsm,
     NativeAssemblyConfiguration as NativeAsmConfig,
     NativeAssemblyDefinition as NativeAsmDefinition,
@@ -21,14 +21,14 @@ from convert.adapters.solidworks.assembly.Assembly import (
     decode_tessellation_faces as DecodeTessellationFaces,
     expand_occurrence_paths as ExpandItemPaths,
 )
-from convert.adapters.solidworks.container.Container import (
+from convert.adapters.solidworks.Container.Container import (
     SldprtArchive as SldprtArchive,
     SldprtFormatError as SldprtFormatError,
     StreamRecord as StreamRecord,
     build_sldprt as BuildSldprt,
 )
-from convert.adapters.solidworks.core.Display import neutral_meshes as NeutralMeshes
-from convert.adapters.solidworks.core.Native import (
+from convert.adapters.solidworks.Core.Display import neutral_meshes as NeutralMeshes
+from convert.adapters.solidworks.Core.Native import (
     NativeClass as NativeClass,
     NativeConfiguration as NativeConfig,
     NativeConstraint as NativeRule,
@@ -46,7 +46,7 @@ from convert.adapters.solidworks.core.Native import (
     NativeSketch as NativeSketch,
     decode_native_model as DecodeNativeModel,
 )
-from convert.adapters.solidworks.container.Parasolid import (
+from convert.adapters.solidworks.Container.Parasolid import (
     ParasolidPayload as ParasolidPayload,
     ParasolidWriteError as ParasolidWriteError,
     contains_parasolid_payload as ContainsParasolidPayload,

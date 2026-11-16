@@ -1,11 +1,11 @@
 from dataclasses import dataclass as DataClass
 from inspect import Signature as FuncSig
 
-from interchange.enums.EnumDocument import Capability
-from interchange.features.FeatureBody import DesignBody
-from interchange.features.FeatureContract import FeatureDef
-from interchange.features.FeatureExtrude import ExtrudeEnd, ExtrudeFeature
-from interchange.features.FeatureKinds import (
+from interchange.Enums.EnumDocument import Capability
+from interchange.Features.FeatureBody import DesignBody
+from interchange.Features.FeatureContract import FeatureDef
+from interchange.Features.FeatureExtrude import ExtrudeEnd, ExtrudeFeature
+from interchange.Features.FeatureKinds import (
     ChamferFeature,
     CirclePattern,
     CombineFeature,
@@ -20,13 +20,13 @@ from interchange.features.FeatureKinds import (
     ScaleFeature,
     ShellFeature,
 )
-from interchange.features.FeatureStep import FeatureCfgState, FeatureStep
-from interchange.payloads.PayloadRecord import BrepPayload
-from interchange.payloads.PayloadRoles import PayloadRole
-from interchange.core.ModelBase import ModelBase
-from interchange.compatibility.PythonCompat import BindCompatMut
-from interchange.compatibility.PythonCompatHistoryMethods import BindHistoryMut
-from interchange.records.RecordTopology import TopologyCounts
+from interchange.Features.FeatureStep import FeatureCfgState, FeatureStep
+from interchange.Payloads.PayloadRecord import BrepPayload
+from interchange.Payloads.PayloadRoles import PayloadRole
+from interchange.Core.ModelBase import ModelBase
+from interchange.Compatibility.PythonCompat import BindCompatMut
+from interchange.Compatibility.PythonCompatHistoryMethods import BindHistoryMut
+from interchange.Records.RecordTopology import TopologyCounts
 
 # one shared empty set keeps capability defaults free of repeated constructor calls
 KEmptyCaps: frozenset[Capability] = frozenset()

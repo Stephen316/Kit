@@ -9,11 +9,11 @@ from interchange import CadDocument
 from convert.adapters.base.AdapterProtocols import CadWriterAdapter
 from convert.adapters.base.Materials.CheckMatWrites import CheckMatWrites
 from convert.adapters.base.ContractTypes import KTargetType
-from convert.adapters.staging.PathStaging import WritePathStaged
+from convert.adapters.Staging.PathStaging import WritePathStaged
 from convert.adapters.registry.RegistryErrors import CapLossError
 from convert.adapters.registry.RegistryErrors import NotFoundError
 from convert.adapters.registry.RegistrySelect import SelectWriter
-from convert.adapters.staging.StreamStaging import WriteStreamMut
+from convert.adapters.Staging.StreamStaging import WriteStreamMut
 from convert.adapters.base.WriteOptions import WriteOptions
 from convert.adapters.base.WritePolicy import GetDocumentCaps
 from convert.adapters.base.WritePolicy import GetWriteOptions

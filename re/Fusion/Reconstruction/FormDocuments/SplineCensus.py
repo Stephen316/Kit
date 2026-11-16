@@ -9,18 +9,18 @@ from pathlib import Path
 BASE = Path(__file__).resolve().parent
 ROOT = BASE.parents[3]
 sys.path.insert(0, str(ROOT / 'src'))
-from convert.formats.Fusion.BrepCodec.Journal.ReadJournal import ReadJournal
-from convert.formats.Fusion.BrepCodec.Journal.Snapshot.ReadGeometry import ReadGeometry
-from convert.formats.Fusion.BrepCodec.Journal.Spline.IntcurveNode import IntcurveNode
-from convert.formats.Fusion.BrepCodec.Journal.Spline.ListPrograms import ListPrograms
-from convert.formats.Fusion.BrepCodec.Journal.Spline.ListSubtypes import ListSubtypes
-from convert.formats.Fusion.BrepCodec.Journal.Spline.PcurveNode import PcurveNode
-from convert.formats.Fusion.BrepCodec.Journal.Spline.SplineNode import SplineNode
-from convert.formats.Fusion.BrepCodec.Journal.Spline.SubtransNode import SubtransNode
-from convert.formats.Fusion.BrepCodec.Journal.Spline.ListTsplines import ListTsplines
-from convert.formats.Fusion.BrepCodec.Journal.Spline.Writing.WritePatches import WritePatches
-from convert.formats.Fusion.TSplineCodec.EmitTspline import EmitTspline
-from convert.formats.Fusion.TSplineCodec.ReadTspline import ReadTspline
+from convert.Formats.Fusion.BrepCodec.Journal.ReadJournal import ReadJournal
+from convert.Formats.Fusion.BrepCodec.Journal.Snapshot.ReadGeometry import ReadGeometry
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.IntcurveNode import IntcurveNode
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.ListPrograms import ListPrograms
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.ListSubtypes import ListSubtypes
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.PcurveNode import PcurveNode
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.SplineNode import SplineNode
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.SubtransNode import SubtransNode
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.ListTsplines import ListTsplines
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.Writing.WritePatches import WritePatches
+from convert.Formats.Fusion.TSplineCodec.EmitTspline import EmitTspline
+from convert.Formats.Fusion.TSplineCodec.ReadTspline import ReadTspline
 
 ARCHIVES = sorted(set((ROOT / 're/Fusion/LocalOracle/TSpline').glob('*.f3d')) | set((ROOT / 're/Fusion/LocalOracle/TSplineCodec').glob('vendor_*.f3d')))
 

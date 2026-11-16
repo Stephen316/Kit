@@ -10,7 +10,7 @@ from convert.adapters.freecad.EditRead.Formula.SheetScope import ReadSheetObject
 from convert.adapters.freecad.EditRead.Formula.StandaloneCells import ReadSavedSheet
 from convert.adapters.freecad.FormulaSheet.SheetBinding import KFormulaSheetBinding
 from convert.adapters.freecad.FormulaSheet.SheetScope import CanEditSheet
-from interchange.document.models.DocumentModel import CadDocument
+from interchange.document.Models.DocumentModel import CadDocument
 
 
 # bound spreadsheets can replace only the parameter values verified against their source graph

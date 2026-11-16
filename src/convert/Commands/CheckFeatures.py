@@ -1,8 +1,8 @@
 from convert.Commands.CanGenerate import CanGenerate
 from convert.Commands.CheckStep import CheckStep, KFeatureError
 from convert.Commands.ProfileInputs import ProfileInputs
-from interchange.document.models.DocumentModel import CadDocument
-from interchange.enums.EnumFeatures import FeatureKind
+from interchange.document.Models.DocumentModel import CadDocument
+from interchange.Enums.EnumFeatures import FeatureKind
 
 
 # local geometry needs a complete active generator history before conversion can proceed

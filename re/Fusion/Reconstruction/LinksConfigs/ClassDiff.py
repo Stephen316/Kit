@@ -6,17 +6,17 @@ from pathlib import Path
 repository = Path(__file__).resolve().parents[4]
 sys.path.insert(0, str(repository / 'src'))
 
-from convert.formats.Fusion.MetaIndex import SegmentKind
-from convert.formats.Fusion.SegmentCodec.Metadata.ReadMetaWire import ReadMetaWire
+from convert.Formats.Fusion.MetaIndex import SegmentKind
+from convert.Formats.Fusion.SegmentCodec.Metadata.ReadMetaWire import ReadMetaWire
 
 names = {}
 for item in json.loads((repository / 're/Fusion/Reconstruction/BinaryClasses.json').read_text()).get('classes', []):
     names[item['identifier'].upper()] = item['class']
 vocab = {}
-for source in ('src/convert/formats/Fusion/DocumentCodec/Vocabulary/DesignClasses.json', 'src/convert/formats/Fusion/ContainerCodec/Assembly/ActClasses.json', 'src/convert/formats/Fusion/ContainerCodec/Browser/BrowserClasses.json'):
+for source in ('src/convert/Formats/Fusion/DocumentCodec/Vocabulary/DesignClasses.json', 'src/convert/Formats/Fusion/ContainerCodec/Assembly/ActClasses.json', 'src/convert/Formats/Fusion/ContainerCodec/Browser/BrowserClasses.json'):
     for item in json.loads((repository / source).read_text()):
         vocab[item['ClassGuid'].upper()] = item.get('NameValue')
-native = {item['ClassGuid'].upper() for item in json.loads(lzma.decompress((repository / 'src/convert/formats/Fusion/EntityCodec/Vocabulary/NativeClasses.xz').read_bytes()))['Classes']}
+native = {item['ClassGuid'].upper() for item in json.loads(lzma.decompress((repository / 'src/convert/Formats/Fusion/EntityCodec/Vocabulary/NativeClasses.xz').read_bytes()))['Classes']}
 
 kinds = {'FusionDesignSegmentType1': SegmentKind.KDesign, 'FusionACTSegmentType1': SegmentKind.KAct, 'FusionBrowserSegmentType1': SegmentKind.KBrowser}
 

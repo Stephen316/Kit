@@ -5,7 +5,7 @@ import sys as System
 # needed to keep reverse engineering responsibilities isolated and maintainable
 KRootInfo = Pathlib.Path(__file__).resolve().parents[3]
 System.path.insert(0, str(KRootInfo / "src"))
-from convert.adapters.solidworks.container.Container import SldprtArchive
+from convert.adapters.solidworks.Container.Container import SldprtArchive
 
 
 # needed to keep reverse engineering responsibilities isolated and maintainable

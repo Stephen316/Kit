@@ -6,8 +6,8 @@ from pathlib import Path
 repository = Path(__file__).resolve().parents[4]
 sys.path.insert(0, str(repository / 'src'))
 
-import convert.formats.Fusion.DocumentCodec.Records.ReadDocSchemas as SchemaModule
-from convert.formats.Fusion.DocumentCodec.Vocabulary.ReadVocabulary import ReadVocabulary
+import convert.Formats.Fusion.DocumentCodec.Records.ReadDocSchemas as SchemaModule
+from convert.Formats.Fusion.DocumentCodec.Vocabulary.ReadVocabulary import ReadVocabulary
 
 draft = Path(__file__).with_name('DraftClasses.json')
 original = SchemaModule.ReadDocSchemas
@@ -20,13 +20,13 @@ def patched():
 
 
 SchemaModule.ReadDocSchemas = patched
-import convert.formats.Fusion.DocumentCodec.ReadDocument as ReadModule
+import convert.Formats.Fusion.DocumentCodec.ReadDocument as ReadModule
 
 ReadModule.ReadDocSchemas = patched
-from convert.formats.Fusion.DocumentCodec.EmitParsed import EmitParsed
-import convert.formats.Fusion.EntityCodec.DecodeEntities
-DecodeModule = sys.modules["convert.formats.Fusion.EntityCodec.DecodeEntities"]
-import convert.formats.Fusion.MetaCursor as CursorModule
+from convert.Formats.Fusion.DocumentCodec.EmitParsed import EmitParsed
+import convert.Formats.Fusion.EntityCodec.DecodeEntities
+DecodeModule = sys.modules["convert.Formats.Fusion.EntityCodec.DecodeEntities"]
+import convert.Formats.Fusion.MetaCursor as CursorModule
 
 last_cursor = {}
 original_init = CursorModule.MetaCursor.__init__

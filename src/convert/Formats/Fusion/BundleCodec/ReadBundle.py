@@ -1,0 +1,31 @@
+from collections.abc import Callable
+
+from convert.Formats.Fusion.ArchiveRead.IndexedArchive import OpenFusionZip
+from convert.Formats.Fusion.BundleCodec.Json.ReadModel import ReadModel
+from convert.Formats.Fusion.BundleCodec.Model.BundleFile import BundleFile
+from convert.Formats.Fusion.BundleCodec.Model.FusionBundle import FusionBundle
+from convert.Formats.Fusion.BundleCodec.Validation.CheckModel import CheckModel
+
+
+# the bundle operation needs a distinct decoding boundary so linked archive members retain their document relationships
+def ReadBundle(
+    DataValue: bytes, InflateZstd: Callable[[bytes, int], bytes] | None = None
+) -> FusionBundle:
+    if len(DataValue) > 128 * 1024 * 1024:
+        raise ValueError("Fusion bundle exceeds archive limit")
+    with OpenFusionZip(DataValue, InflateZstd) as Archive:
+        Model = ReadModel(
+            Archive.ReadMember("Manifest.json", 4 * 1024 * 1024),
+            Archive.ReadMember("DesignDescription.json", 4 * 1024 * 1024),
+        )
+        CheckModel(Model)
+        Names = {Entry.MemberPath for Entry in Model.Graph.Objects}
+        if set(Archive.Entries) != Names | {"Manifest.json", "DesignDescription.json"}:
+            raise ValueError("Fusion bundle members disagree with design graph")
+        Documents = tuple(
+            BundleFile(
+                Entry.MemberPath, Archive.ReadMember(Entry.MemberPath, 64 * 1024 * 1024)
+            )
+            for Entry in Model.Graph.Objects
+        )
+    return FusionBundle(Model, Documents)

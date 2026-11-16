@@ -5,9 +5,9 @@
 The supported profile includes ordinary and nested worlds, group/geometry/text nodes, class-checked shared object identities, named rendering attributes and text styles. The profile also includes noninstanced position and position/normal/UV buffers, index buffers, BRep and sketch LOD framing, and texture-mapping caches. Float widths, optional-field presence, object identities, mesh allocations, registry order, and custom callback branches are explicit. Every world byte and every referenced mesh byte must be accounted for. Extra bytes, unresolved identities, incompatible classes, overlapping allocations, unknown serializers, and unsupported versions fail.
 
 ```python
-from convert.formats.Fusion.GraphicsCodec.ReadGraphics import ReadGraphics
-from convert.formats.Fusion.GraphicsCodec.EmitGraphics import EmitGraphics
-from convert.formats.Fusion.GraphicsCodec.Model.State.GraphicsStream import GraphicsStream
+from convert.Formats.Fusion.GraphicsCodec.ReadGraphics import ReadGraphics
+from convert.Formats.Fusion.GraphicsCodec.EmitGraphics import EmitGraphics
+from convert.Formats.Fusion.GraphicsCodec.Model.State.GraphicsStream import GraphicsStream
 
 Scene = ReadGraphics(WorldBytes, (GraphicsStream(0, MeshBytes),))
 Rebuilt = EmitGraphics(Scene)

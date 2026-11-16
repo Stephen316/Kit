@@ -12,10 +12,10 @@ sys.path.insert(0, str(ROOT / 'src'))
 
 from compression import zstd  # noqa: E402
 
-from convert.formats.Fusion.DrawingCodec.EmitDrawing import EmitDrawing  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.ReadDrawing import ReadDrawing  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.EmitDrawing import EmitDrawing  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.ReadDrawing import ReadDrawing  # noqa: E402
 
-TARGET = ROOT / 'tests/convert/formats/FusionCodec/Drawings/DrawingSources.xz'
+TARGET = ROOT / 'tests/Convert/Formats/FusionCodec/Drawings/DrawingSources.xz'
 REPORT = Path(__file__).resolve().parent / 'Fixtures.json'
 CACHE_PREFIX = re.compile(r'^.*/W\.login/F/')
 GUID = re.compile(r'[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}')

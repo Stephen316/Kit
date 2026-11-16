@@ -6,11 +6,11 @@ from typing import cast as CastValue
 from convert.adapters.base.WriteValidate import IsObjectMap, IsObjectTuple
 from convert.adapters.freecad.EditAxisRev.AxisEndpoints import WorldAxisLine
 from convert.adapters.freecad.EditRing.RingEndpoints import ReadRingEnds
-from interchange.core.Common import FreezeMapping
-from interchange.geometry.models.GeometryCurves import LineGeometry
-from interchange.geometry.models.Sketch import Sketch, SketchEntity
-from interchange.geometry.models.Transform import Transform
-from interchange.geometry.models.VectorSpace import SpaceVector
+from interchange.Core.Common import FreezeMapping
+from interchange.geometry.Models.GeometryCurves import LineGeometry
+from interchange.geometry.Models.Sketch import Sketch, SketchEntity
+from interchange.geometry.Models.Transform import Transform
+from interchange.geometry.Models.VectorSpace import SpaceVector
 
 # neutral edits retain the original native axis evidence separately from its live binding
 KBodyAxisEdit = "freecad.body_revolve_axis_edit"

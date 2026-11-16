@@ -9,8 +9,8 @@ from zipfile import ZipFile
 ROOT = Path(__file__).resolve().parents[4]
 FOLDER = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT / 'src'))
-from convert.formats.Fusion.BrepCodec.Frustum.EmitFrustumHist import EmitFrustumHist
-from convert.formats.Fusion.BrepCodec.Frustum.ReadFrustumHist import ReadFrustumHist
+from convert.Formats.Fusion.BrepCodec.Frustum.EmitFrustumHist import EmitFrustumHist
+from convert.Formats.Fusion.BrepCodec.Frustum.ReadFrustumHist import ReadFrustumHist
 
 
 def expectations(model):

@@ -4,7 +4,7 @@ from convert.adapters.freecad.FormulaSheet.FormulaPlans import (
     FormulaPlan,
     ReadFusionPlan,
 )
-from interchange.records.RecordParameter import Parameter
+from interchange.Records.RecordParameter import Parameter
 
 
 # only a verified snapshot graph can identify every locally editable cell

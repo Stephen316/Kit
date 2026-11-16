@@ -4,8 +4,8 @@ from pathlib import Path
 repository = Path(__file__).resolve().parents[4]
 sys.path.insert(0, str(repository / 'src'))
 
-from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
-from convert.formats.Fusion.EntityCodec.Model.CrossRef import CrossRef
+from convert.Formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
+from convert.Formats.Fusion.EntityCodec.Model.CrossRef import CrossRef
 
 
 def crosses(value, found):

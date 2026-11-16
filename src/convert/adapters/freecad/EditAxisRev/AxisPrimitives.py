@@ -1,10 +1,10 @@
-from convert.formats.Fusion.DesignZip import KDesignPrefix
-from convert.formats.Fusion.Sketches.SketchPrimitive import KSketchKinds
-from interchange.brep.topology.BrepMath import IsFinitePlane
-from interchange.enums.EnumGeometry import GeometryKind
-from interchange.geometry.models.GeometryCurves import LineGeometry, PointGeometry
-from interchange.geometry.models.Sketch import SketchEntity
-from interchange.geometry.models.VectorPlane import PlaneVector
+from convert.Formats.Fusion.DesignZip import KDesignPrefix
+from convert.Formats.Fusion.Sketches.SketchPrimitive import KSketchKinds
+from interchange.brep.Topology.BrepMath import IsFinitePlane
+from interchange.Enums.EnumGeometry import GeometryKind
+from interchange.geometry.Models.GeometryCurves import LineGeometry, PointGeometry
+from interchange.geometry.Models.Sketch import SketchEntity
+from interchange.geometry.Models.VectorPlane import PlaneVector
 
 
 # each input primitive must be an original native record with its own identity

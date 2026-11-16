@@ -30,24 +30,24 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[3]
 sys.path.insert(0, str(ROOT / 'src'))
 
-from convert.formats.Fusion.BrepCodec.Journal.Attributes.TagAttrib import TagAttrib  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Attributes.TimeAttrib import TimeAttrib  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Attributes.TrackAttrib import TrackAttrib  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Complex.Nodes.TcoedgeNode import TcoedgeNode  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Complex.Subtypes.RelinkSubtypes import RelinkSubtypes  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.EmitStateSmb import EmitStateSmb  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Geometry.BodyNode import BodyNode  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Geometry.CoedgeNode import CoedgeNode  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Geometry.FaceNode import FaceNode  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Materialize import Materialize  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.ReadJournal import ReadJournal  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Reading.ReadEntityNode import ReadEntityNode  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Snapshot.EmitGeometry import EmitGeometry  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Snapshot.GeometryState import GeometryState  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Snapshot.ReadGeometry import ReadGeometry  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Snapshot.SnapshotForm import SnapshotForm  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Writing.MakeEntityNode import MakeEntityNode  # noqa: E402
-from convert.formats.Fusion.Topology.AsmEdge.AsmTable import AsmRecord  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Attributes.TagAttrib import TagAttrib  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Attributes.TimeAttrib import TimeAttrib  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Attributes.TrackAttrib import TrackAttrib  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Complex.Nodes.TcoedgeNode import TcoedgeNode  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Complex.Subtypes.RelinkSubtypes import RelinkSubtypes  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.EmitStateSmb import EmitStateSmb  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.BodyNode import BodyNode  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.CoedgeNode import CoedgeNode  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.FaceNode import FaceNode  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Materialize import Materialize  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.ReadJournal import ReadJournal  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Reading.ReadEntityNode import ReadEntityNode  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Snapshot.EmitGeometry import EmitGeometry  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Snapshot.GeometryState import GeometryState  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Snapshot.ReadGeometry import ReadGeometry  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Snapshot.SnapshotForm import SnapshotForm  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Writing.MakeEntityNode import MakeEntityNode  # noqa: E402
+from convert.Formats.Fusion.Topology.AsmEdge.AsmTable import AsmRecord  # noqa: E402
 
 ATTRIBUTES = ('TimeAttrib', 'TrackAttrib', 'TagAttrib', 'SketchAttrib', 'StitchAttrib', 'VertedgeAttrib')
 MODES = ('exact', 'entity tags cleared', 'snapshot rule', 'all attributes removed')

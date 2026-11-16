@@ -1,6 +1,6 @@
 from xml.etree.ElementTree import Element, SubElement
 
-from interchange.geometry.models.VectorSpace import SpaceVector
+from interchange.geometry.Models.VectorSpace import SpaceVector
 
 
 # each native control has one typed payload that freecad can restore directly

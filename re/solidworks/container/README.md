@@ -84,7 +84,7 @@ feature families fail closed. See `../CorpusCoverage.md` for the current boundar
 
 `Container.py` carries no signature bytes of its own. The base85 literal that used to sit in it was
 removed; the table is loaded from the package resource through `importlib.resources`, and
-`tests/convert/solidworks/container/SolidworksSignatureTableTests.py` compares the CAD corpus with the recorded table.
+`tests/Convert/Solidworks/Container/SolidworksSignatureTableTests.py` compares the CAD corpus with the recorded table.
 Set `KIT_SOLIDWORKS_DLL` to additionally compare the full table with an external licensed module.
 
 ## Streams: droppable, stale-safe, load-critical

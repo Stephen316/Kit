@@ -10,8 +10,8 @@ from convert.adapters.freecad.EditRead.PlaneRev.ReadPlaneRevFields import (
     ReadPlaneRevFields,
 )
 from convert.adapters.freecad.EditRev.RevCacheProof import CheckRevSolid, CheckRevWire
-from interchange.document.models.DocumentModel import CadDocument
-from interchange.features.FeaturePlaneRev import PlaneRevolve
+from interchange.document.Models.DocumentModel import CadDocument
+from interchange.Features.FeaturePlaneRev import PlaneRevolve
 
 
 # native controls and both shape caches must agree before replacing source plane data

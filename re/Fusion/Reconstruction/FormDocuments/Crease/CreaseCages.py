@@ -21,12 +21,12 @@ from pathlib import Path
 BASE = Path(__file__).resolve().parent
 ROOT = BASE.parents[4]
 sys.path.insert(0, str(ROOT / 'src'))
-from convert.formats.Fusion.TSplineCodec.EmitTspline import EmitTspline
-from convert.formats.Fusion.TSplineCodec.MakeClosedCage import MakeClosedCage
-from convert.formats.Fusion.TSplineCodec.Model.ControlGrip import ControlGrip
-from convert.formats.Fusion.TSplineCodec.Model.CreaseData import CreaseData
-from convert.formats.Fusion.TSplineCodec.Model.SurfaceHeader import SurfaceHeader
-from convert.formats.Fusion.TSplineCodec.ReadTspline import ReadTspline
+from convert.Formats.Fusion.TSplineCodec.EmitTspline import EmitTspline
+from convert.Formats.Fusion.TSplineCodec.MakeClosedCage import MakeClosedCage
+from convert.Formats.Fusion.TSplineCodec.Model.ControlGrip import ControlGrip
+from convert.Formats.Fusion.TSplineCodec.Model.CreaseData import CreaseData
+from convert.Formats.Fusion.TSplineCodec.Model.SurfaceHeader import SurfaceHeader
+from convert.Formats.Fusion.TSplineCodec.ReadTspline import ReadTspline
 
 TARGET = ROOT / 're/Fusion/LocalOracle/FormDocuments/Crease'
 HEADER = SurfaceHeader(VersionCount=1)
@@ -210,7 +210,7 @@ def round_six():
 
 
 def replay(name, relative):
-    from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
+    from convert.Formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
     surface = ReadDocument((ROOT / relative).read_bytes()).Forms[0].Surface
     return name, surface, {'layout': 'replay', 'source': relative, 'fold_deg_per_row': [], 'scale': 1.0, 'loose_edges': []}
 
@@ -241,7 +241,7 @@ PLANE_MOVES = (('Plane31Xm0p4', 31, 'CoordX', -0.4), ('Plane31Xp0p4', 31, 'Coord
 
 
 def plane_move(name, grip, axis, step):
-    from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
+    from convert.Formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
     carrier = ReadDocument((ROOT / PLANE_CARRIER).read_bytes()).Forms[0].Surface
     grips = tuple(replace(item, **{axis: getattr(item, axis) + step}) if index == grip else item for index, item in enumerate(carrier.Grips))
     return name, replace(carrier, Grips=grips), {'layout': 'CreasedPlane carrier with one grip moved', 'source': PLANE_CARRIER, 'grip': grip, 'axis': axis, 'step_cm': step, 'fold_deg_per_row': [], 'scale': 1.0, 'loose_edges': []}

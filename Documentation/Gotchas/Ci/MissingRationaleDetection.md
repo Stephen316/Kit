@@ -20,4 +20,4 @@ The full scan does not subtract a rationale baseline.
 Keep `re/` excluded and fix missing comments in owned source files.
 
 See the [restoration entry](../../Changes/Policy/RationaleCommentEnforcement.md) and
-[checker](../../../tools/steering/SteeringCompliance.py).
+[checker](../../../tools/Steering/SteeringCompliance.py).

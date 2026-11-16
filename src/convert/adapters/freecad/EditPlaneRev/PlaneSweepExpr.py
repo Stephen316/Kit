@@ -1,6 +1,6 @@
 from convert.adapters.freecad.EditPlaneRev.PlanePoseExpr import VectorExpr
-from convert.geometry.Revolve.SweepVector import CrossVector
-from interchange.geometry.models.VectorSpace import SpaceVector
+from convert.Geometry.Revolve.SweepVector import CrossVector
+from interchange.geometry.Models.VectorSpace import SpaceVector
 
 # a zero sweep makes coincident planes fail instead of generating an unrelated solid
 KPlaneGuard = "0.00000006 deg"

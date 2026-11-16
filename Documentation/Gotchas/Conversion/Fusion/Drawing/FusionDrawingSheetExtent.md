@@ -4,7 +4,7 @@
 
 A Fusion drawing stores its sheet in the drawing members: `sheetWidth`, `sheetHeight`,
 `sheetSize`, `standard` and `units` in the sheet member that
-[`SheetCodec`](../../../../src/convert/formats/Fusion/DrawingCodec/Members/SheetCodec.py) reads and
+[`SheetCodec`](../../../../src/convert/Formats/Fusion/DrawingCodec/Members/SheetCodec.py) reads and
 writes. Changing those values should change the sheet.
 
 ## Actual behavior
@@ -59,11 +59,11 @@ so a layout edit keeps the document's own tail valid.
 
 ## Evidence
 
-| Case              | Change                    | Fusion sheet_mm | Views     | Dimensions |
-| ----------------- | ------------------------- | --------------- | --------- | ---------- |
-| `C20SheetA1`      | member only, A3 to A1     | `[420.0, 297.0]` | `[5,4,4]` | 1          |
-| `C21LayoutA1`     | `LAYOUT` only, A3 to A1   | `[841.0, 594.0]` | `[5,4,4]` | 1          |
-| `C24SheetName`    | member name only          | `[420.0, 297.0]` | `[5,4,4]` | 1          |
+| Case           | Change                  | Fusion sheet_mm  | Views     | Dimensions |
+| -------------- | ----------------------- | ---------------- | --------- | ---------- |
+| `C20SheetA1`   | member only, A3 to A1   | `[420.0, 297.0]` | `[5,4,4]` | 1          |
+| `C21LayoutA1`  | `LAYOUT` only, A3 to A1 | `[841.0, 594.0]` | `[5,4,4]` | 1          |
+| `C24SheetName` | member name only        | `[420.0, 297.0]` | `[5,4,4]` | 1          |
 
 Both cases come from `D1FreshLayout` and were opened in local Fusion 2706.1.17.
 The builders are

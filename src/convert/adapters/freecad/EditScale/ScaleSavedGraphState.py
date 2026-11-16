@@ -18,7 +18,7 @@ from convert.adapters.freecad.EditRead.XmlField import (
     OnlyEditChild,
 )
 from convert.adapters.freecad.Native import NativeObject
-from interchange.geometry.models.Transform import KTransformIdentity
+from interchange.geometry.Models.Transform import KTransformIdentity
 
 # native built in defaults are the only properties absent from the generated graph
 KCommonExtras = {

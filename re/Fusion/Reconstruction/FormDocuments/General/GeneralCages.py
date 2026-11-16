@@ -7,10 +7,10 @@ from pathlib import Path
 BASE = Path(__file__).resolve().parent
 ROOT = BASE.parents[4]
 sys.path.insert(0, str(ROOT / 'src'))
-from convert.formats.Fusion.TSplineCodec.MakeClosedCage import MakeClosedCage
-from convert.formats.Fusion.TSplineCodec.Model.ControlGrip import ControlGrip
-from convert.formats.Fusion.TSplineCodec.Model.CreaseData import CreaseData
-from convert.formats.Fusion.TSplineCodec.Model.SurfaceHeader import SurfaceHeader
+from convert.Formats.Fusion.TSplineCodec.MakeClosedCage import MakeClosedCage
+from convert.Formats.Fusion.TSplineCodec.Model.ControlGrip import ControlGrip
+from convert.Formats.Fusion.TSplineCodec.Model.CreaseData import CreaseData
+from convert.Formats.Fusion.TSplineCodec.Model.SurfaceHeader import SurfaceHeader
 
 HEADER = SurfaceHeader(VersionCount=1)
 

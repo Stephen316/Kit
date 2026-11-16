@@ -4,7 +4,7 @@ from convert.api.ApiWrite import WriteDocument
 from convert.Commands.CheckPortable import CheckPortable
 from convert.Commands.CliOptions import CliOptions
 from convert.Commands.WriteReport import WriteReport
-from convert.formats.SourceFormat import ResolveFormat
+from convert.Formats.SourceFormat import ResolveFormat
 
 
 # file conversion must preserve reader identity while enforcing portable data and native writer policy

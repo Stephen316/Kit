@@ -1,7 +1,7 @@
 from dataclasses import dataclass as MakeDataClass
 
-from interchange.geometry.models.Transform import Transform
-from interchange.geometry.models.VectorSpace import SpaceVector
+from interchange.geometry.Models.Transform import Transform
+from interchange.geometry.Models.VectorSpace import SpaceVector
 
 
 # ordered source targets retain their exact authored controls and evaluated branch

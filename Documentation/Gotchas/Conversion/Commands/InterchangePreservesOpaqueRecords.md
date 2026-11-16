@@ -18,5 +18,5 @@ guard is not evidence of vendor loadability or editable native conversion for
 documents that pass it.
 
 See [the guard](../../../../src/convert/Commands/CheckPortable.py),
-[process coverage](../../../../tests/convert/Commands/CliOpaqueTests.py), and
+[process coverage](../../../../tests/Convert/Commands/CliOpaqueTests.py), and
 [the change entry](../../../Changes/Commands/OpaqueConversionGuard.md).

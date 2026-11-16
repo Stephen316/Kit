@@ -1,5 +1,5 @@
 from convert.adapters.base.AdapterInfo import AdapterInfo
-from interchange.enums.EnumDocument import Capability
+from interchange.Enums.EnumDocument import Capability
 
 # reader info must remain consistent across callers so public document claims remain grounded in native records
 KReaderInfo = AdapterInfo(

@@ -6,10 +6,10 @@ from convert.adapters.freecad.FormulaSheet.FormulaPlans import (
     FormulaPlan,
     ReadFormulaRefs,
 )
-from convert.geometry.Formula.Arithmetic import EvalFormula, ReadFormula
-from convert.geometry.Formula.FormulaUnits import IsMatchingQty
-from interchange.enums.EnumValues import ValueKind
-from interchange.records.RecordParameter import Parameter, ParameterValue
+from convert.Geometry.Formula.Arithmetic import EvalFormula, ReadFormula
+from convert.Geometry.Formula.FormulaUnits import IsMatchingQty
+from interchange.Enums.EnumValues import ValueKind
+from interchange.Records.RecordParameter import Parameter, ParameterValue
 
 
 # a retained native operator tree must evaluate through exactly its declared inputs

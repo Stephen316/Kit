@@ -4,10 +4,10 @@ from dataclasses import field as MakeDataField
 from typing import Mapping as TypeMap
 
 from interchange.assembly.MateGroupView import MateGroupView
-from interchange.core.Common import FreezeMapping
-from interchange.core.ModelBase import ModelBase, ModelDataMut
-from interchange.core.ModelExtras import ModelExtras
-from interchange.records.RecordProvenance import Provenance
+from interchange.Core.Common import FreezeMapping
+from interchange.Core.ModelBase import ModelBase, ModelDataMut
+from interchange.Core.ModelExtras import ModelExtras
+from interchange.Records.RecordProvenance import Provenance
 
 
 # mate groups retain source ordering and hierarchy for editable organization

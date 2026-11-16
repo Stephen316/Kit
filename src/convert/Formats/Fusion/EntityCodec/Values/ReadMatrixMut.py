@@ -1,0 +1,15 @@
+from convert.Formats.Fusion.EntityCodec.Model.MatrixValue import MatrixValue
+from convert.Formats.Fusion.EntityCodec.Schema.WireType import WireType
+from convert.Formats.Fusion.EntityCodec.Wire.ReadAtomMut import ReadAtomMut
+from convert.Formats.Fusion.MetaCursor import MetaCursor
+
+
+# the matrix operation needs a distinct decoding boundary so entity identifiers retain their schema and reference meaning
+def ReadMatrixMut(Cursor: MetaCursor, Shape: WireType) -> MatrixValue:
+    if ReadAtomMut(Cursor, WireType("bool")):
+        return MatrixValue(None)
+    if not Shape.HasMatrixRows:
+        raise ValueError("Fusion entity profile does not qualify nonidentity matrices")
+    return MatrixValue(
+        tuple(float(ReadAtomMut(Cursor, WireType("f64"))) for _ in range(16))
+    )

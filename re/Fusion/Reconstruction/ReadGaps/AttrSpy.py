@@ -8,9 +8,9 @@ sys.path.insert(0, str(BASE))
 sys.setrecursionlimit(20000)
 
 from ExampleRecords import documents
-import convert.formats.Fusion.GraphicsCodec.Fields.XferSetBaseMut as SetBase
-from convert.formats.Fusion.GraphicsCodec.Schema.AttrRules import KAttrRules
-from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
+import convert.Formats.Fusion.GraphicsCodec.Fields.XferSetBaseMut as SetBase
+from convert.Formats.Fusion.GraphicsCodec.Schema.AttrRules import KAttrRules
+from convert.Formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
 
 SAMPLES = collections.defaultdict(list)
 NAME = re.compile(rb'(?:[\x08-\x40]\x00\x00\x00)((?:[A-Za-z]\x00){8,64})')

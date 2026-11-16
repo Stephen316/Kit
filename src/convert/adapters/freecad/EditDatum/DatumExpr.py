@@ -2,7 +2,7 @@ from convert.adapters.freecad.EditPlaneRev.PlanePoseExpr import (
     PlanePoseExpr,
     RotationExpr,
 )
-from interchange.features.FeatureBoundPlane import BoundDatum
+from interchange.Features.FeatureBoundPlane import BoundDatum
 
 
 # a whole placement expression preserves the reference basis and the signed live control

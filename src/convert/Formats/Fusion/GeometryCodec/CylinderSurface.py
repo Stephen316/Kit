@@ -1,0 +1,28 @@
+from convert.Formats.Fusion.GeometryCodec.CylinderBody import CylinderBody
+from convert.Formats.Fusion.GeometryCodec.GeometryRecord import GeometryRecord
+from convert.Formats.Fusion.GeometryCodec.KeywordToken import KeywordToken
+from convert.Formats.Fusion.GeometryCodec.MakeRecord import MakeRecord
+
+
+# the surface operation needs a consistent construction rule so geometric values retain their native record boundaries
+def BuildSurface(Model: CylinderBody) -> GeometryRecord:
+    Bound = KeywordToken("I")
+    return MakeRecord(
+        "cone-surface",
+        (
+            Model.BasePoint,
+            (0.0, 0.0, 1.0),
+            (Model.Radius, 0.0, 0.0),
+            1.0,
+            Bound,
+            Bound,
+            0.0,
+            1.0,
+            Model.Radius,
+            KeywordToken("forward"),
+            Bound,
+            Bound,
+            Bound,
+            Bound,
+        ),
+    )

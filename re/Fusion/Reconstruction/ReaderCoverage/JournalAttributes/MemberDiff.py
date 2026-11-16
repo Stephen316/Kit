@@ -16,8 +16,8 @@ def members(data):
 
 
 def emitted(path):
-    from convert.formats.Fusion.DocumentCodec.EmitParsed import EmitParsed
-    from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
+    from convert.Formats.Fusion.DocumentCodec.EmitParsed import EmitParsed
+    from convert.Formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
     data = (ROOT / path).read_bytes()
     return members(data), members(EmitParsed(ReadDocument(data)))
 

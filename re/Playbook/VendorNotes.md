@@ -40,7 +40,7 @@ the typed core, drawings. Use [ShapeCatalog.md](ShapeCatalog.md) tiers 2–6 to 
 ## Fusion (`.f3d`, `.f3z`)
 
 **State:** a research decoder and capture tooling in `re/Fusion/`, and a native reader and
-independent writer in `src/convert/formats/Fusion/` for qualified features. The data model is
+independent writer in `src/convert/Formats/Fusion/` for qualified features. The data model is
 consolidated in `Documentation/Reference/Research/FusionDataModel.md`.
 
 **Read first:** `re/Fusion/README.md` (feature index), `re/Fusion/Notes/Workflow.md`,

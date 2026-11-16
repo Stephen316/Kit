@@ -1,0 +1,112 @@
+from dataclasses import replace as ReplaceFields
+
+from convert.Formats.Fusion.DrawingCodec.Dwg.Classes.EmitClasses import EmitClasses
+from convert.Formats.Fusion.DrawingCodec.Dwg.Header.EmitHeads import (
+    KHeaderTrail,
+    EmitCrypt,
+    EmitFileHead,
+)
+from convert.Formats.Fusion.DrawingCodec.Dwg.Image.EncodeMaps import EncodeSectMap
+from convert.Formats.Fusion.DrawingCodec.Dwg.Image.LayPages import LayPages
+from convert.Formats.Fusion.DrawingCodec.Dwg.Image.PackSections import PackData
+from convert.Formats.Fusion.DrawingCodec.Dwg.Image.PageKinds import (
+    KDataPageType,
+    KPageBase,
+    KSectionMapType,
+)
+from convert.Formats.Fusion.DrawingCodec.Dwg.Image.SizePages import SizePages
+from convert.Formats.Fusion.DrawingCodec.Dwg.Metadata.EmitMetadata import (
+    EmitAppInfo,
+    EmitSummary,
+)
+from convert.Formats.Fusion.DrawingCodec.Dwg.Model.DwgCryptHeader import (
+    DwgCryptHeader,
+)
+from convert.Formats.Fusion.DrawingCodec.Dwg.Model.DwgFile import DwgFile
+from convert.Formats.Fusion.DrawingCodec.Dwg.Model.DwgFileHeader import DwgFileHeader
+from convert.Formats.Fusion.DrawingCodec.Dwg.Objects.EmitObjects import (
+    EmitHandles,
+    EmitObjects,
+)
+from convert.Formats.Fusion.DrawingCodec.Dwg.Sections.EncodeSections import (
+    EncodeSections,
+)
+
+
+# the contents operation needs a consistent construction rule so section boundaries and object references remain consistent
+def EncodeContents(DwgModel: DwgFile) -> dict[str, bytes]:
+    VersionText = DwgModel.FileHeader.VersionText
+    ObjectData, Offsets = EmitObjects(DwgModel.DwgObjects, VersionText)
+    Contents = {
+        "AcDb:AcDbObjects": ObjectData,
+        "AcDb:Handles": EmitHandles(Offsets),
+        "AcDb:Classes": EmitClasses(DwgModel.ClassTable, DwgModel.FileHeader),
+    }
+    if DwgModel.Summary is not None:
+        Contents["AcDb:SummaryInfo"] = EmitSummary(DwgModel.Summary)
+    if DwgModel.AppInfo is not None:
+        Contents["AcDb:AppInfo"] = EmitAppInfo(DwgModel.AppInfo)
+    Contents.update(
+        EncodeSections(DwgModel.HeaderVars, DwgModel.SectionVars, DwgModel.FileHeader)
+    )
+    Contents.update(DwgModel.RawSections)
+    return Contents
+
+
+# the derive file head contract needs a shared interpretation so section boundaries and object references remain consistent
+def DeriveFileHead(DwgModel: DwgFile, Offsets: dict[int, int]) -> DwgFileHeader:
+    FirstPages: dict[str, int] = {}
+    for PageImage in DwgModel.PageImages:
+        if PageImage.PageType == KDataPageType:
+            _ = FirstPages.setdefault(
+                PageImage.SectionName, Offsets[PageImage.PageNumber]
+            )
+
+    # the address of contract needs a consistent construction rule so section boundaries and object references remain consistent
+    def AddressOf(SectionName: str) -> int:
+        return FirstPages[SectionName] + 0x20 if SectionName in FirstPages else 0
+
+    return ReplaceFields(
+        DwgModel.FileHeader,
+        PreviewAddress=AddressOf("AcDb:Preview"),
+        SummaryAddress=AddressOf("AcDb:SummaryInfo"),
+        AppInfoAddress=AddressOf("AcDb:AppInfo"),
+        AppHistoryAddress=AddressOf("AcDb:AppInfoHistory"),
+    )
+
+
+# the derive crypt contract needs a shared interpretation so section boundaries and object references remain consistent
+def DeriveCrypt(
+    DwgModel: DwgFile, Offsets: dict[int, int], Sizes: dict[int, int], FileEnd: int
+) -> DwgCryptHeader:
+    MapNumber = DwgModel.PageImages[-1].PageNumber
+    SectNumber = next(
+        PageImage.PageNumber
+        for PageImage in DwgModel.PageImages
+        if PageImage.PageType == KSectionMapType
+    )
+    LastPage = max(PageImage.PageNumber for PageImage in DwgModel.PageImages)
+    return ReplaceFields(
+        DwgModel.CryptHeader,
+        LastPageId=LastPage,
+        LastPageEnd=Offsets[MapNumber] + Sizes[MapNumber] - KPageBase,
+        SecondAddress=FileEnd,
+        PageAmount=len(DwgModel.PageImages),
+        PageMapId=MapNumber,
+        PageMapAddress=Offsets[MapNumber] - KPageBase,
+        SectionMapId=SectNumber,
+        PageArraySize=LastPage,
+    )
+
+
+# the drawing file operation needs a consistent construction rule so section boundaries and object references remain consistent
+def EmitDwgFile(DwgModel: DwgFile) -> bytes:
+    Contents = EncodeContents(DwgModel)
+    Packed = PackData(DwgModel, Contents)
+    SectionMap = EncodeSectMap(DwgModel, Contents, Packed)
+    Sizes, Systems = SizePages(DwgModel, Packed, SectionMap)
+    PageBytes, Offsets = LayPages(DwgModel, Packed, Sizes, Systems)
+    FileEnd = KPageBase + len(PageBytes)
+    FileHeader = DeriveFileHead(DwgModel, Offsets)
+    Crypt = EmitCrypt(DeriveCrypt(DwgModel, Offsets, Sizes, FileEnd))
+    return EmitFileHead(FileHeader) + Crypt + KHeaderTrail + PageBytes + Crypt

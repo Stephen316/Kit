@@ -128,7 +128,7 @@ unit to `Config-0` (`boss_disjoint_revolve`, `boss_revcut` and `arcboss_cut_cut_
 sit one above it), a mid-plane end condition removes one (`boss_midplane` sits one below), and the
 extra document metadata of `arcboss_cut_cut_cut_through_rev_meta` puts its base at **337**.
 
-`resolve_base()` in `src/convert/adapters/solidworks/container/Archive.py` therefore treats that expression
+`resolve_base()` in `src/convert/adapters/solidworks/Container/Archive.py` therefore treats that expression
 as a **seed** and refines it against the stream. When the walk stops on a class reference at or
 above the trial base that no definition has produced, the counter offset of every definition
 already reached is known, so `reference index - offset` enumerates the bases that would resolve
@@ -314,7 +314,7 @@ sound discriminator for this shape.
 
 #### Where the version comes from
 
-`document_version()` in `src/convert/adapters/solidworks/container/Archive.py` reads it from the container's
+`document_version()` in `src/convert/adapters/solidworks/Container/Archive.py` reads it from the container's
 storage names: a `.SLDPRT` carries `_MO_VERSION_<n>/Biography`, `_MO_VERSION_<n>/History` and
 friends, and `<n>` is the modelling-object serialization generation. The highest `<n>` present
 wins. That is preferred over `swXmlContents/Features` `swVersion`, which agrees on all nine traced

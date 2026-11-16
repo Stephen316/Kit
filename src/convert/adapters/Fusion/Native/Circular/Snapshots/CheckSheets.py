@@ -3,12 +3,12 @@ from convert.adapters.Fusion.Native.Circular.Snapshots.SnapAccess import SnapEnt
 from convert.adapters.Fusion.Native.Circular.Snapshots.SnapFaces import FaceCoedges
 from convert.adapters.Fusion.Native.Circular.Snapshots.CheckCarriers import CheckPlane
 from convert.adapters.Fusion.Native.Circular.Snapshots.CheckRim import CheckRim
-from convert.formats.Fusion.BrepCodec.Journal.Snapshot.GeometryState import (
+from convert.Formats.Fusion.BrepCodec.Journal.Snapshot.GeometryState import (
     GeometryState,
 )
-from convert.formats.Fusion.BrepCodec.Journal.Geometry.FaceNode import FaceNode
-from convert.formats.Fusion.BrepCodec.Journal.Geometry.PlaneNode import PlaneNode
-from convert.formats.Fusion.BrepCodec.Journal.Geometry.EdgeNode import EdgeNode
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.FaceNode import FaceNode
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.PlaneNode import PlaneNode
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.EdgeNode import EdgeNode
 
 
 # invalid sheets input must fail here so public geometry remains consistent with native circular topology

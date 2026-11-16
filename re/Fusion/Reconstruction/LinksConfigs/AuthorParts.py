@@ -8,8 +8,8 @@ sys.path.insert(0, str(repository / 'src'))
 
 from convert.adapters.Fusion.Authoring.MakeFusionDoc import MakeFusionDoc
 from convert.adapters.Fusion.Bridge.EncodeDocument import EncodeDocument
-from convert.formats.Fusion.DocumentCodec.Model.DocumentSpec import DocumentSpec
-from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
+from convert.Formats.Fusion.DocumentCodec.Model.DocumentSpec import DocumentSpec
+from convert.Formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
 
 target = repository / 're/Fusion/LocalOracle/LinksConfigs/tmp/author'
 target.mkdir(parents=True, exist_ok=True)

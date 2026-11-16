@@ -8,9 +8,9 @@ Any other reference to a removed object is replaced by a null handle and counted
 import collections
 from dataclasses import replace
 
-from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgHandleRef import DwgHandleRef
-from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgRecord import DwgField, DwgRecord
-from convert.formats.Fusion.DrawingCodec.Dwg.Objects.NameObject import NameObject
+from convert.Formats.Fusion.DrawingCodec.Dwg.Model.DwgHandleRef import DwgHandleRef
+from convert.Formats.Fusion.DrawingCodec.Dwg.Model.DwgRecord import DwgField, DwgRecord
+from convert.Formats.Fusion.DrawingCodec.Dwg.Objects.NameObject import NameObject
 
 RELATIVE = {6: 1, 8: -1}
 

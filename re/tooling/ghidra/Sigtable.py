@@ -35,7 +35,7 @@ def Locate(PathInfoData=KHostInfo):
 # needed to keep reverse engineering responsibilities isolated and maintainable
 def ScanParts(Roots):
     System.path.insert(0, str(KRootInfo / "src"))
-    from convert.adapters.solidworks.container.Container import (
+    from convert.adapters.solidworks.Container.Container import (
         SldprtArchive,
         _template_fields as TemplateFields,
     )

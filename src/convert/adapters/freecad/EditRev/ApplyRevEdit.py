@@ -3,11 +3,11 @@ from dataclasses import replace as Replace
 from convert.adapters.freecad.EditRev.RebuildRevDoc import RebuildRevDoc
 from convert.adapters.freecad.EditRev.RevAngles import ReadRevAngles
 from convert.adapters.freecad.EditRing.RingChange import CheckRingEdit
-from interchange.document.models.DocumentModel import CadDocument
-from interchange.features.FeatureAngleRev import AngularRevolve
-from interchange.features.RevolveSpan import GetAngleSpan
-from interchange.geometry.models.Sketch import Sketch
-from interchange.records.RecordParameter import Expression, Parameter
+from interchange.document.Models.DocumentModel import CadDocument
+from interchange.Features.FeatureAngleRev import AngularRevolve
+from interchange.Features.RevolveSpan import GetAngleSpan
+from interchange.geometry.Models.Sketch import Sketch
+from interchange.Records.RecordParameter import Expression, Parameter
 
 
 # keep original native ownership and literal spelling when a saved angle is unchanged

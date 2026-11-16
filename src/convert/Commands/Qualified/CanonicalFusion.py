@@ -1,13 +1,13 @@
 from dataclasses import replace as ReplaceData
 
-from interchange.document.models.DocumentModel import CadDocument
+from interchange.document.Models.DocumentModel import CadDocument
 
 
 # geometry qualification needs a fresh authoritative sdk projection independent of supplied neutral geometry
 def CanonicalFusion(Document: CadDocument, ContractName: str) -> CadDocument:
     from convert.adapters.Fusion.Authoring.MakeFusionDoc import MakeFusionDoc
     from convert.adapters.Fusion.Bridge.CheckContract import CheckContract
-    from convert.formats.Fusion.DocumentCodec.Model.DocumentSpec import DocumentSpec
+    from convert.Formats.Fusion.DocumentCodec.Model.DocumentSpec import DocumentSpec
 
     Contract = Document.metadata[ContractName]
     if ContractName == "fusion.authoring":
@@ -20,7 +20,7 @@ def CanonicalFusion(Document: CadDocument, ContractName: str) -> CadDocument:
     from convert.adapters.Fusion.Bridge.NativeVersion import NativeVersion
     from convert.adapters.Fusion.Native.Projection.ProjectVendor import ProjectVendor
     from convert.adapters.Fusion.Projection.ProjectNative import ProjectNative
-    from convert.formats.Fusion.DocumentCodec.Model.DocumentModel import DocumentModel
+    from convert.Formats.Fusion.DocumentCodec.Model.DocumentModel import DocumentModel
 
     Version = NativeVersion(Contract)
     ModelValue = CheckContract(Contract, "model", Version)

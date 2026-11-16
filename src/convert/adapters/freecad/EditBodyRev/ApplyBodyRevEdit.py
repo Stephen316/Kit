@@ -17,12 +17,12 @@ from convert.adapters.freecad.EditBodyRev.RebuildBodyRev import RebuildBodyRev
 from convert.adapters.freecad.EditRev.ApplyRevEdit import SetRevAngle
 from convert.adapters.freecad.EditRev.RevAngles import ReadRevAngles
 from convert.adapters.freecad.EditRing.RingChange import SyncRingEdit
-from convert.geometry.Extrude.Polygon.PrismFrame import CheckPrismFrame
-from interchange.document.models.DocumentModel import CadDocument
-from interchange.features.FeatureAngleRev import AngularRevolve
-from interchange.features.FeatureDistExt import DistanceExtrude
-from interchange.geometry.models.Sketch import Sketch
-from interchange.geometry.models.Transform import Transform
+from convert.Geometry.Extrude.Polygon.PrismFrame import CheckPrismFrame
+from interchange.document.Models.DocumentModel import CadDocument
+from interchange.Features.FeatureAngleRev import AngularRevolve
+from interchange.Features.FeatureDistExt import DistanceExtrude
+from interchange.geometry.Models.Sketch import Sketch
+from interchange.geometry.Models.Transform import Transform
 
 
 # exact sketch and control ownership survive native edits to both linked solids

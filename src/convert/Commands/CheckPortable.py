@@ -5,13 +5,13 @@ from convert.Commands.CheckFeatures import CheckFeatures
 from convert.Commands.CheckRetained import CheckRetained
 from convert.Commands.Qualified.CheckGeometry import CheckGeometry
 from interchange.assembly.AssemblyEnums import ComponentKind
-from interchange.brep.curves.BrepCurves import NativeCurve
-from interchange.brep.curves.BrepPcurves import NativePcurve
-from interchange.brep.surfaces.BrepSurfaces import NativeSurface
-from interchange.document.models.DocumentModel import CadDocument
-from interchange.document.models.DocumentWalk import WalkDocuments
-from interchange.features.FeatureKinds import NativeFeature
-from interchange.geometry.models.GeometryCurves import NativeGeometry
+from interchange.brep.Curves.BrepCurves import NativeCurve
+from interchange.brep.Curves.BrepPcurves import NativePcurve
+from interchange.brep.Surfaces.BrepSurfaces import NativeSurface
+from interchange.document.Models.DocumentModel import CadDocument
+from interchange.document.Models.DocumentWalk import WalkDocuments
+from interchange.Features.FeatureKinds import NativeFeature
+from interchange.geometry.Models.GeometryCurves import NativeGeometry
 
 # unsupported records need a consistent inspection recovery path across structural guards
 KInspectText = (

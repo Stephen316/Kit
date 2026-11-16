@@ -30,11 +30,11 @@ import BuildPruned6  # noqa: E402
 import BuildPruned7  # noqa: E402
 import BuildVariants  # noqa: E402
 
-from convert.formats.Fusion.DrawingCodec.Dwg.Author.AuthorDwg import DayTime  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Dwg.Author.AuthorShell import CountClasses  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Dwg.Author.ShellParts import AuthorAppInfo, AuthorSummary, AuxHeader, FreeSpace, SaveShorts  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Dwg.Records.CoerceValue import AsHandle, AsText  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Dwg.Sections.RecordParts import NamedValue  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.Author.AuthorDwg import DayTime  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.Author.AuthorShell import CountClasses  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.Author.ShellParts import AuthorAppInfo, AuthorSummary, AuxHeader, FreeSpace, SaveShorts  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.Records.CoerceValue import AsHandle, AsText  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.Sections.RecordParts import NamedValue  # noqa: E402
 
 
 def with_section(dwg, name, record):

@@ -18,10 +18,10 @@ from convert.adapters.Fusion.Native.Graph.GraphValues import (
 from convert.adapters.Fusion.Native.Graph.NativeGraph import NativeGraph
 from convert.adapters.Fusion.Native.Graph.SketchContexts import KSketchContexts
 from convert.adapters.Fusion.Native.Circular.CircleShape import CircleShape
-from interchange.enums.EnumGeometry import GeometryKind
-from interchange.geometry.models.GeometryCurves import CircleGeometry, PointGeometry
-from interchange.geometry.models.Sketch import SketchEntity
-from interchange.geometry.models.VectorPlane import PlaneVector
+from interchange.Enums.EnumGeometry import GeometryKind
+from interchange.geometry.Models.GeometryCurves import CircleGeometry, PointGeometry
+from interchange.geometry.Models.Sketch import SketchEntity
+from interchange.geometry.Models.VectorPlane import PlaneVector
 
 
 # the circle operation needs a distinct decoding boundary so public geometry remains consistent with native circular topology

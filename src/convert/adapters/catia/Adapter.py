@@ -19,8 +19,8 @@ from convert.adapters.base import (
     WriteResult,
     is_binary_destination as IsBinaryTarget,
 )
-from convert.geometry.Opencascade import decode_ascii_brep as DecodeOpencascadeBrep
-from convert.geometry.Parasolid import decode_brep_model as DecodeParasolidBrep
+from convert.Geometry.Opencascade import decode_ascii_brep as DecodeOpencascadeBrep
+from convert.Geometry.Parasolid import decode_brep_model as DecodeParasolidBrep
 from interchange import (
     Body as BodyRecord,
     BrepModel,

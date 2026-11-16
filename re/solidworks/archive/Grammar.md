@@ -35,7 +35,7 @@ SOLIDWORKS. Claims marked PARTIAL or OPAQUE are called out as such.
 ## 1. Container framing (context, unchanged)
 
 The `.SLDPRT` is a SOLIDWORKS-proprietary archive of raw-deflate streams with a nibble-swapped
-name encoding. `src/convert/adapters/solidworks/container/Container.py` reads and writes it;
+name encoding. `src/convert/adapters/solidworks/Container/Container.py` reads and writes it;
 `build_sldprt(streams, template=<donor bytes>)` must be given a template because the
 `(file_id, local/central/end signature)` triplet has not been inverted. A wrong triplet
 hard-crashes SOLIDWORKS.
@@ -62,7 +62,7 @@ confirmation is in `Windbg.md`; the tags are:
 | `<u16 t>` with `t & 0x8000 == 0`, `t != 0`            | object _reference_: object map index `t`                                                                   |
 | `7f ff` then `<u32>`                                  | `wBigObjectTag` escape for indices ≥ 0x7fff (not seen in this corpus)                                      |
 
-So the constant `CLASS_MARKER = ff ff 01 00` in `src/convert/adapters/solidworks/container/Format.py` is
+So the constant `CLASS_MARKER = ff ff 01 00` in `src/convert/adapters/solidworks/Container/Format.py` is
 really `wNewClassTag` followed by **schema 1**. `probe_tags.py` scanned for `ff ff <any schema>`
 across seven representative files and found schema 1 for all 41–48 classes in each — so the
 existing 4-byte constant is safe for this SOLIDWORKS version, but it is a schema filter, not

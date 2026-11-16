@@ -68,7 +68,7 @@ what `Conversion/ConvertGrid.py` already writes. Since round 2, `BuildTable` rou
 
 ## src engine
 
-`src/convert/formats/Fusion/BrepCodec/Journal/Spline/Poles/PoleTable.py` `BuildTable(Surface,
+`src/convert/Formats/Fusion/BrepCodec/Journal/Spline/Poles/PoleTable.py` `BuildTable(Surface,
 CapSolver=FillCaps) -> StencilTable` ports the rules above with exact Fraction knots and sparse
 grip rows. It loads nothing from re/ and no stencil or shape file, and does no layout lookup.
 

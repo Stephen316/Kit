@@ -10,7 +10,7 @@ ROOT = BASE.parents[4]
 sys.path.insert(0, str(ROOT / 'src'))
 sys.path.insert(0, str(ROOT / 're/Fusion/Reconstruction/FormDocuments/Tables'))
 from StencilKey import StencilKey
-from convert.formats.Fusion.TSplineCodec.ReadTspline import ReadTspline
+from convert.Formats.Fusion.TSplineCodec.ReadTspline import ReadTspline
 
 WORK = ROOT / 're/Fusion/LocalOracle/FormDocuments/Stencil'
 TARGET = ROOT / 're/Fusion/Reconstruction/FormDocuments/Tables/FormStencils.xz'

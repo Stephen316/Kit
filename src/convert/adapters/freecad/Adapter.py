@@ -105,7 +105,7 @@ from convert.adapters.freecad.Protocol import (
     XML_TRUE_VALUES as XmlTrueValues,
 )
 from convert.adapters.freecad.ReconcileEdit import ReconcileEdit
-from interchange.features.FeatureBoundPlane import BoundDatum
+from interchange.Features.FeatureBoundPlane import BoundDatum
 
 # shared empty set keeps parameter defaults free of repeated constructor calls
 KNoNativeBreps: frozenset[NativeBrepKey] = frozenset()

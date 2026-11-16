@@ -6,11 +6,11 @@ ROOT = Path(__file__).resolve().parents[4]
 sys.path.insert(0, str(ROOT / 'src'))
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import TrialGrammar  # noqa: E402,F401
-from convert.formats.Fusion.MaterialCodec.Package.ReadPackage import ReadPackage  # noqa: E402
-from convert.formats.Fusion.MaterialCodec.Records import DecodeAsset as AssetModule  # noqa: E402
-from convert.formats.Fusion.MaterialCodec.Schema.SelectFields import SelectFields  # noqa: E402
-from convert.formats.Fusion.MaterialCodec.Values.DecodeLinks import DecodeLinks  # noqa: E402
-from convert.formats.Fusion.MaterialCodec.Values import DecodeValue as ValueModule  # noqa: E402
+from convert.Formats.Fusion.MaterialCodec.Package.ReadPackage import ReadPackage  # noqa: E402
+from convert.Formats.Fusion.MaterialCodec.Records import DecodeAsset as AssetModule  # noqa: E402
+from convert.Formats.Fusion.MaterialCodec.Schema.SelectFields import SelectFields  # noqa: E402
+from convert.Formats.Fusion.MaterialCodec.Values.DecodeLinks import DecodeLinks  # noqa: E402
+from convert.Formats.Fusion.MaterialCodec.Values import DecodeValue as ValueModule  # noqa: E402
 
 WATCH = set(sys.argv[2].split(','))
 
@@ -43,7 +43,7 @@ def chooser(reader, fields, definition):
     return original(reader, fields, definition)
 
 
-AssetModule.PropertyValue = __import__('convert.formats.Fusion.MaterialCodec.Models.PropertyValue', fromlist=['PropertyValue']).PropertyValue
+AssetModule.PropertyValue = __import__('convert.Formats.Fusion.MaterialCodec.Models.PropertyValue', fromlist=['PropertyValue']).PropertyValue
 AssetModule.DecodeFields = chooser
 path = Path(sys.argv[1])
 with ZipFile(path) as outer:

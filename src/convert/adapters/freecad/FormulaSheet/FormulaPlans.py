@@ -5,13 +5,13 @@ from typing import Mapping
 from typing import cast as CastValue
 
 from convert.adapters.freecad.LiteralQuantity import IsLiteralQty
-from convert.geometry.Formula.Arithmetic import (
+from convert.Geometry.Formula.Arithmetic import (
     EvalFormula,
     IsMatchingQty,
     ReadFormula,
     WriteFormula,
 )
-from interchange.records.RecordParameter import Expression, Parameter, ParameterValue
+from interchange.Records.RecordParameter import Expression, Parameter, ParameterValue
 from interchange.serialization.Deserialize import FromData
 
 

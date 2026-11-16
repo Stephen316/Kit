@@ -86,6 +86,6 @@ It does not establish that an independent application accepted the output.
 
 - [API option construction](../../../src/convert/api/ApiConvert.py)
 - [Output policy](../../../src/convert/adapters/base/WritePolicy.py)
-- [Path staging](../../../src/convert/adapters/staging/PathStaging.py)
-- [Stream staging](../../../src/convert/adapters/staging/StreamStaging.py)
+- [Path staging](../../../src/convert/adapters/Staging/PathStaging.py)
+- [Stream staging](../../../src/convert/adapters/Staging/StreamStaging.py)
 - [Result evaluation](../../Tasks/InspectResult.md)

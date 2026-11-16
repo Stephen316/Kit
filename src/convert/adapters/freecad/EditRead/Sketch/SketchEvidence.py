@@ -9,8 +9,8 @@ from convert.adapters.freecad.EditShape.SavedSketchWire import (
 )
 from convert.adapters.freecad.Native import NativeObject
 from convert.adapters.freecad.ReconcileEdit import ReadEditBrep
-from interchange.geometry.models.Sketch import Sketch
-from interchange.geometry.models.Transform import Transform
+from interchange.geometry.Models.Sketch import Sketch
+from interchange.geometry.Models.Transform import Transform
 
 
 # auxiliary timeline and internal shapes must not introduce another geometry result

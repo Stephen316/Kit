@@ -1,31 +1,31 @@
 from convert.adapters.Fusion.Authoring.MakeParams import MakeLength
-from convert.formats.Fusion.DocumentCodec.Model.DocumentSpec import DocumentSpec
-from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.ChamferSpec import (
+from convert.Formats.Fusion.DocumentCodec.Model.DocumentSpec import DocumentSpec
+from convert.Formats.Fusion.DocumentCodec.PartFeatures.Model.ChamferSpec import (
     ChamferSpec,
 )
-from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.ExtrudeSpec import (
+from convert.Formats.Fusion.DocumentCodec.PartFeatures.Model.ExtrudeSpec import (
     ExtrudeSpec,
 )
-from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.FilletSpec import (
+from convert.Formats.Fusion.DocumentCodec.PartFeatures.Model.FilletSpec import (
     FilletSpec,
 )
-from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.HoleSpec import HoleSpec
-from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.PartFeature import (
+from convert.Formats.Fusion.DocumentCodec.PartFeatures.Model.HoleSpec import HoleSpec
+from convert.Formats.Fusion.DocumentCodec.PartFeatures.Model.PartFeature import (
     KPartFeature,
 )
-from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.OffsetSpec import (
+from convert.Formats.Fusion.DocumentCodec.PartFeatures.Model.OffsetSpec import (
     OffsetSpec,
 )
-from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.PatternSpec import (
+from convert.Formats.Fusion.DocumentCodec.PartFeatures.Model.PatternSpec import (
     PatternSpec,
 )
-from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.PlaneSpec import PlaneSpec
-from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.BodyGridSpec import (
+from convert.Formats.Fusion.DocumentCodec.PartFeatures.Model.PlaneSpec import PlaneSpec
+from convert.Formats.Fusion.DocumentCodec.PartFeatures.Model.BodyGridSpec import (
     BodyGridSpec,
 )
-from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.ShellSpec import ShellSpec
-from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.LoftSpec import LoftSpec
-from interchange.records.RecordParameter import Parameter
+from convert.Formats.Fusion.DocumentCodec.PartFeatures.Model.ShellSpec import ShellSpec
+from convert.Formats.Fusion.DocumentCodec.PartFeatures.Model.LoftSpec import LoftSpec
+from interchange.Records.RecordParameter import Parameter
 
 
 # the driving length contract needs a shared interpretation so public document claims remain grounded in native records

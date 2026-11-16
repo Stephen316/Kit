@@ -7,7 +7,7 @@ from convert.adapters.base.ContractTypes import (
 from convert.adapters.base.ReadOptions import ReadOptions
 from convert.adapters.base.WriteOptions import WriteOptions
 from convert.engine.EngineResult import ConversionResult as ConvertResult
-from convert.formats.SourceFormat import ResolveFormat
+from convert.Formats.SourceFormat import ResolveFormat
 
 
 # conversion orchestration stays isolated so registry read and write contracts remain reusable

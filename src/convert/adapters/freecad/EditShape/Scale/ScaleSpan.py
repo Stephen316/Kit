@@ -1,7 +1,7 @@
 from dataclasses import dataclass as MakeDataClass
 from math import isfinite as IsFinite
 
-from convert.geometry.Opencascade import DecodeFailure, Tokens
+from convert.Geometry.Opencascade import DecodeFailure, Tokens
 
 
 # native degree one carriers need exact knot domains for later parameter correspondence

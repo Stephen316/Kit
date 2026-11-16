@@ -11,8 +11,8 @@ sys.dont_write_bytecode = True
 
 
 def main():
-    from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
-    from convert.formats.Fusion.DocumentCodec.EmitParsed import EmitParsed
+    from convert.Formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
+    from convert.Formats.Fusion.DocumentCodec.EmitParsed import EmitParsed
 
     parser = argparse.ArgumentParser()
     parser.add_argument('--source', type=Path, required=True)

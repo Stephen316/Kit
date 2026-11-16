@@ -6,15 +6,15 @@ from zipfile import ZipFile
 
 root = Path(__file__).resolve().parent
 sys.path.insert(0, str(root.parents[2] / 'src'))
-from convert.formats.Fusion.BrepCodec.EmitHistory import EmitHistory
-from convert.formats.Fusion.BrepCodec.EmitSnapshot import EmitSnapshot
-from convert.formats.Fusion.BrepCodec.Models.BodyIdentity import BodyIdentity
-from convert.formats.Fusion.BrepCodec.Models.FeatureTag import FeatureTag
-from convert.formats.Fusion.BrepCodec.Models.HistoryState import HistoryState
-from convert.formats.Fusion.BrepCodec.Models.SketchLink import SketchLink
-from convert.formats.Fusion.BrepCodec.Models.TopologyTags import TopologyTags
-from convert.formats.Fusion.GeometryCodec.CylinderBody import CylinderBody
-from convert.formats.Fusion.GeometryCodec.GeometryStamp import GeometryStamp
+from convert.Formats.Fusion.BrepCodec.EmitHistory import EmitHistory
+from convert.Formats.Fusion.BrepCodec.EmitSnapshot import EmitSnapshot
+from convert.Formats.Fusion.BrepCodec.Models.BodyIdentity import BodyIdentity
+from convert.Formats.Fusion.BrepCodec.Models.FeatureTag import FeatureTag
+from convert.Formats.Fusion.BrepCodec.Models.HistoryState import HistoryState
+from convert.Formats.Fusion.BrepCodec.Models.SketchLink import SketchLink
+from convert.Formats.Fusion.BrepCodec.Models.TopologyTags import TopologyTags
+from convert.Formats.Fusion.GeometryCodec.CylinderBody import CylinderBody
+from convert.Formats.Fusion.GeometryCodec.GeometryStamp import GeometryStamp
 
 model = CylinderBody(10.0, 19.0, (0.0, 0.0, 0.0))
 identity = BodyIdentity(0, 301, 4, 1794477991119457)

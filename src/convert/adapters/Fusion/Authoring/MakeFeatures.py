@@ -1,10 +1,10 @@
 from convert.adapters.Fusion.Authoring.MakePartSteps import MakePartSteps
 from convert.adapters.Fusion.Authoring.ProfileShape import HasSolid
-from convert.formats.Fusion.DocumentCodec.Model.DocumentSpec import DocumentSpec
-from interchange.enums.EnumFeatures import BooleanOp, FeatureKind
-from interchange.features.FeatureDistExt import DistanceExtrude
-from interchange.features.FeatureStep import FeatureStep
-from interchange.geometry.models.VectorSpace import SpaceVector
+from convert.Formats.Fusion.DocumentCodec.Model.DocumentSpec import DocumentSpec
+from interchange.Enums.EnumFeatures import BooleanOp, FeatureKind
+from interchange.Features.FeatureDistExt import DistanceExtrude
+from interchange.Features.FeatureStep import FeatureStep
+from interchange.geometry.Models.VectorSpace import SpaceVector
 
 
 # the features operation needs a consistent construction rule so public document claims remain grounded in native records

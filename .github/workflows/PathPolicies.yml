@@ -48,9 +48,12 @@ jobs:
           cache-dependency-glob: uv.lock
 
       - name: Synchronize the locked environment
-        run: uv sync --frozen --python 3.11
+        run: uv sync --frozen --extra dev --python 3.11
 
-      - name: Verify path policies
+      - name: Verify complete tracked tree
+        run: uv run python -m tools.Policy.CheckPaths
+
+      - name: Verify changed destination paths
         env:
           BASE_REF: ${{ github.event.pull_request.base.sha || github.event.merge_group.base_sha || '' }}
           HEAD_REF: ${{ github.event.pull_request.head.sha || github.event.merge_group.head_sha || '' }}
@@ -60,3 +63,8 @@ jobs:
             Arguments=(--base "$BASE_REF" --head "$HEAD_REF")
           fi
           uv run python -m tools.Policy.CheckPaths "${Arguments[@]}"
+
+      - name: Verify path policy at the command boundary
+        run: >-
+          uv run --extra dev pytest tests/Policy/DirectoryPolicyTests.py tests/Policy/DirectoryRenameTests.py
+          tests/Policy/PolicyCommandTest.py tests/Policy/GitModesTest.py

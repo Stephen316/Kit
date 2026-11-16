@@ -8,7 +8,7 @@ def walk(module, name):
     if key in seen: return
     seen.add(key)
     path=root.joinpath(*module.split('.')).with_suffix('.py')
-    if not path.exists() or not module.startswith('convert.formats.Fusion') or '.MeshCodec.' in module or name in ('DocumentMesh', 'JournalModel', 'SphereNode', 'TorusNode'): return
+    if not path.exists() or not module.startswith('convert.Formats.Fusion') or '.MeshCodec.' in module or name in ('DocumentMesh', 'JournalModel', 'SphereNode', 'TorusNode'): return
     tree=ast.parse(path.read_text())
     imports={alias.asname or alias.name:(node.module,alias.name) for node in ast.walk(tree) if isinstance(node,ast.ImportFrom) and node.module for alias in node.names}
     target=next((node for node in tree.body if isinstance(node,ast.ClassDef) and node.name==name),None)
@@ -22,8 +22,8 @@ def walk(module, name):
     for ident in names:
         if ident in imports: walk(*imports[ident])
         elif ident!=name: walk(module,ident)
-walk('convert.formats.Fusion.DocumentCodec.Model.DocumentModel','DocumentModel')
-walk('convert.formats.Fusion.DocumentCodec.Model.DocumentSpec','DocumentSpec')
+walk('convert.Formats.Fusion.DocumentCodec.Model.DocumentModel','DocumentModel')
+walk('convert.Formats.Fusion.DocumentCodec.Model.DocumentSpec','DocumentSpec')
 folder=Path('src/convert/adapters/Fusion/State/Types');folder.mkdir(parents=True,exist_ok=True)
 groups={}
 for module,name in sorted(classes): groups.setdefault(module.split('.')[3].replace('Codec',''),[]).append((module,name))

@@ -1,12 +1,12 @@
-from convert.formats.Fusion.DesignZip import KDesignPrefix
-from convert.formats.Fusion.Revolves.SketchAxis import KLineGuid
-from convert.formats.Fusion.SelectionProxy import KSelectProxy
-from convert.formats.Fusion.SelectionRef import KSelectDesc
-from convert.formats.Fusion.Sketches.SketchPick import KSketchLeaf
-from interchange.features.FeatureAngleRev import AngularRevolve
-from interchange.features.FeatureStep import FeatureStep
-from interchange.geometry.models.Selection import SelectPathElem, Selection
-from interchange.geometry.models.Sketch import Sketch
+from convert.Formats.Fusion.DesignZip import KDesignPrefix
+from convert.Formats.Fusion.Revolves.SketchAxis import KLineGuid
+from convert.Formats.Fusion.SelectionProxy import KSelectProxy
+from convert.Formats.Fusion.SelectionRef import KSelectDesc
+from convert.Formats.Fusion.Sketches.SketchPick import KSketchLeaf
+from interchange.Features.FeatureAngleRev import AngularRevolve
+from interchange.Features.FeatureStep import FeatureStep
+from interchange.geometry.Models.Selection import SelectPathElem, Selection
+from interchange.geometry.Models.Sketch import Sketch
 
 
 # the typed source path and line span identify the same selected sketch geometry

@@ -17,8 +17,8 @@ from convert.adapters.freecad.EditRead.Sketch.SketchGraph import (
     CheckObjState,
 )
 from convert.adapters.freecad.Native import NativeObject, ParseObjects
-from interchange.document.models.DocumentModel import CadDocument
-from interchange.geometry.models.Transform import KTransformIdentity
+from interchange.document.Models.DocumentModel import CadDocument
+from interchange.geometry.Models.Transform import KTransformIdentity
 
 # independent cache and solver witnesses qualify these live extrusion fields separately
 KLiveExtFields = frozenset({"Dir", "LengthFwd", "ExpressionEngine"})

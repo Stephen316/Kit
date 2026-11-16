@@ -11,15 +11,15 @@ repository = root.parents[2]
 sys.path.insert(0, str(repository / 'src'))
 sys.dont_write_bytecode = True
 
-from convert.formats.Fusion.ContainerCodec.EmitContainer import EmitContainer
-from convert.formats.Fusion.ContainerCodec.Model.AssetHeader import AssetHeader
-from convert.formats.Fusion.ContainerCodec.Model.ContainerPart import ContainerPart
-from convert.formats.Fusion.ContainerCodec.Model.DocumentHeader import DocumentHeader
-from convert.formats.Fusion.ContainerCodec.Model.FusionContainer import FusionContainer
-from convert.formats.Fusion.ContainerCodec.Model.SegmentSlot import SegmentSlot
-from convert.formats.Fusion.ContainerCodec.Model.SegmentStreams import SegmentStreams
-from convert.formats.Fusion.ContainerCodec.Preview.EmitPreview import EmitPreview
-from convert.formats.Fusion.MetaIndex import SegmentKind
+from convert.Formats.Fusion.ContainerCodec.EmitContainer import EmitContainer
+from convert.Formats.Fusion.ContainerCodec.Model.AssetHeader import AssetHeader
+from convert.Formats.Fusion.ContainerCodec.Model.ContainerPart import ContainerPart
+from convert.Formats.Fusion.ContainerCodec.Model.DocumentHeader import DocumentHeader
+from convert.Formats.Fusion.ContainerCodec.Model.FusionContainer import FusionContainer
+from convert.Formats.Fusion.ContainerCodec.Model.SegmentSlot import SegmentSlot
+from convert.Formats.Fusion.ContainerCodec.Model.SegmentStreams import SegmentStreams
+from convert.Formats.Fusion.ContainerCodec.Preview.EmitPreview import EmitPreview
+from convert.Formats.Fusion.MetaIndex import SegmentKind
 
 author = runpy.run_path(str(root.parent / 'Reconstruction/ContainerAuthoring/PrepareExtrusion.py'))
 spec = json.loads((root.parent / 'Reconstruction/DocumentAuthoring/Variants/ExtrudeSpecification.json').read_text())

@@ -93,5 +93,5 @@ See [error recovery](Troubleshoot.md).
 ## Sources
 
 - [Public signatures](../../src/convert/api/__init__.py)
-- [Stream staging](../../src/convert/adapters/staging/StreamStaging.py)
+- [Stream staging](../../src/convert/adapters/Staging/StreamStaging.py)
 - [JSON writer](../../src/convert/adapters/json/Writer.py)

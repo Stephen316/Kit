@@ -1,4 +1,4 @@
-from interchange.geometry.models.VectorSpace import SpaceVector
+from interchange.geometry.Models.VectorSpace import SpaceVector
 
 
 # native placement encodes the affine translation around the independently owned center

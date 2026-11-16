@@ -9,8 +9,8 @@ from convert.adapters.Fusion.Projection.NativeIndex import (
     StructFields,
 )
 from convert.adapters.Fusion.Projection.NativeMaterial import NativeMaterial
-from convert.formats.Fusion.DocumentCodec.Model.DocumentModel import DocumentModel
-from convert.formats.Fusion.DocumentCodec.Model.DocumentSpec import DocumentSpec
+from convert.Formats.Fusion.DocumentCodec.Model.DocumentModel import DocumentModel
+from convert.Formats.Fusion.DocumentCodec.Model.DocumentSpec import DocumentSpec
 
 
 # native profile needs an explicit validity boundary so public document claims remain grounded in native records

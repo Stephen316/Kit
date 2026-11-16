@@ -13,9 +13,9 @@ sys.path.insert(0, str(HERE.parents[4] / "src"))
 
 import BuildVariants
 
-from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgRecord import DwgField
-from convert.formats.Fusion.DrawingCodec.EmitDrawing import EmitDrawing
-from convert.formats.Fusion.DrawingCodec.ReadDrawing import ReadDrawing
+from convert.Formats.Fusion.DrawingCodec.Dwg.Model.DwgRecord import DwgField
+from convert.Formats.Fusion.DrawingCodec.EmitDrawing import EmitDrawing
+from convert.Formats.Fusion.DrawingCodec.ReadDrawing import ReadDrawing
 
 OLD = Path(
     os.environ.get(

@@ -9,14 +9,14 @@ sys.path.insert(0, str(HERE))
 sys.dont_write_bytecode = True
 
 from DecodeControls import NAMES
-from convert.formats.Fusion.ArchiveRead.IndexedArchive import OpenFusionZip
-from convert.formats.Fusion.DocumentCodec.Records.DocumentCatalog import DocumentCatalog
-from convert.formats.Fusion.DocumentCodec.Records.ReadDocSchemas import ReadDocSchemas
-from convert.formats.Fusion.SegmentCodec.Metadata.ReadMetaWire import ReadMetaWire
+from convert.Formats.Fusion.ArchiveRead.IndexedArchive import OpenFusionZip
+from convert.Formats.Fusion.DocumentCodec.Records.DocumentCatalog import DocumentCatalog
+from convert.Formats.Fusion.DocumentCodec.Records.ReadDocSchemas import ReadDocSchemas
+from convert.Formats.Fusion.SegmentCodec.Metadata.ReadMetaWire import ReadMetaWire
 
 CONTROLS = REPO / "re/Fusion/LocalOracle/FeatureAuthoring/Controls"
 SOURCES = tuple(sys.argv[1:]) or ("Combine", "SplitBody")
-TARGET = REPO / "src/convert/formats/Fusion/DocumentCodec/PartFeatures/Vocabulary"
+TARGET = REPO / "src/convert/Formats/Fusion/DocumentCodec/PartFeatures/Vocabulary"
 ROOT = "98542EB9-A4F2-4137-A808-DBB5B3CD6159"
 
 # Defaults are schema-neutral: null for references and optionals, zero, false,
@@ -90,7 +90,7 @@ REQUIRED = {
 
 def known_guids():
     result = set()
-    for vocab in (REPO / "src/convert/formats/Fusion/DocumentCodec").rglob("*Classes.json"):
+    for vocab in (REPO / "src/convert/Formats/Fusion/DocumentCodec").rglob("*Classes.json"):
         if "PartFeatures" in vocab.parts:
             continue
         for entry in json.loads(vocab.read_text()):
@@ -211,7 +211,7 @@ PASTE_REQUIRED = {
 def author_guids():
     result = set()
     for name in ("DesignClasses.json", "RectangleClasses.json"):
-        for entry in json.loads((REPO / "src/convert/formats/Fusion/DocumentCodec/Vocabulary" / name).read_text()):
+        for entry in json.loads((REPO / "src/convert/Formats/Fusion/DocumentCodec/Vocabulary" / name).read_text()):
             result.add(entry["ClassGuid"].upper())
     for entry in json.loads((TARGET / "FeatureClasses.json").read_text()):
         result.add(entry["ClassGuid"].upper())

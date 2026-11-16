@@ -17,7 +17,7 @@ from convert.adapters.freecad.Archive import (
 )
 from convert.adapters.freecad.EditScale.ScaleCache import ScaleCache
 from convert.adapters.freecad.EditScale.ScaleExpressions import ScaleExprs
-from interchange.geometry.models.VectorSpace import SpaceVector
+from interchange.geometry.Models.VectorSpace import SpaceVector
 
 
 # each result has a native source link and one independently seeded shape

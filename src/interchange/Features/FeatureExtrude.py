@@ -1,0 +1,58 @@
+from __future__ import annotations
+
+from dataclasses import dataclass as MakeDataClass
+
+from interchange.Enums.EnumBase import WireEnum
+from interchange.Features.ExtrudeSecond import (
+    ExtrudeSecond,  # lgtm[py/unsafe-cyclic-import]
+)
+from interchange.Features.FeatureContract import FeatureDef
+from interchange.Features.ExtrudeShape import (
+    ExtrudeShape,  # lgtm[py/unsafe-cyclic-import]
+)
+from interchange.Records.RecordParameter import ParameterValue
+from interchange.geometry.Models.VectorSpace import SpaceVector
+
+
+# extrusion bounds preserve editable termination intent instead of only distance
+class ExtrudeEnd(WireEnum):
+    BLIND = "blind"
+    THROUGH_ALL = "through_all"
+    UP_TO_FIRST = "up_to_first"
+    UP_TO_LAST = "up_to_last"
+    UP_TO_FACE = "up_to_face"
+    UP_TO_SHAPE = "up_to_shape"
+    UP_TO_VERTEX = "up_to_vertex"
+    TWO_LENGTHS = "two_lengths"
+    MID_PLANE = "mid_plane"
+    OFFSET_FROM_SURFACE = "offset_from_surface"
+    NATIVE = "native"
+    KBlind = "blind"
+    KThroughAll = "through_all"
+    KUpToFirst = "up_to_first"
+    KUpToLast = "up_to_last"
+    KUpToFace = "up_to_face"
+    KUpToShape = "up_to_shape"
+    KUpToVertex = "up_to_vertex"
+    KTwoLengths = "two_lengths"
+    KMidPlane = "mid_plane"
+    KOffsetSurface = "offset_from_surface"
+    KNative = "native"
+
+
+# extrusions retain directional and termination choices needed for reconstruction
+@MakeDataClass(frozen=True, slots=True)
+class ExtrudeFeature(ExtrudeShape, ExtrudeSecond, FeatureDef):
+    length: ParameterValue
+    end_condition: ExtrudeEnd | str = ExtrudeEnd.KBlind
+    reversed: bool = False
+    symmetric: bool = False
+    direction: SpaceVector | None = None
+    second_length: ParameterValue | None = None
+    second_end_condition: ExtrudeEnd | str | None = None
+    offset: ParameterValue | None = None
+    second_offset: ParameterValue | None = None
+    draft_angle: ParameterValue | None = None
+    second_draft_angle: ParameterValue | None = None
+    up_to_reference: str = ""
+    second_up_to_reference: str = ""

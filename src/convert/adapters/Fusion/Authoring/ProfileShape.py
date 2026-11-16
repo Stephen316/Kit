@@ -1,6 +1,6 @@
-from convert.formats.Fusion.DocumentCodec.Model.DocumentSpec import DocumentSpec
-from interchange.geometry.models.GeometryCurves import CircleGeometry, LineGeometry
-from interchange.geometry.models.VectorPlane import PlaneVector
+from convert.Formats.Fusion.DocumentCodec.Model.DocumentSpec import DocumentSpec
+from interchange.geometry.Models.GeometryCurves import CircleGeometry, LineGeometry
+from interchange.geometry.Models.VectorPlane import PlaneVector
 
 
 # the profile lines contract needs a shared interpretation so public document claims remain grounded in native records

@@ -30,7 +30,7 @@ def classes(payload):
 def main():
     known = {}
     for relative in ("DocumentCodec/Vocabulary/DesignClasses.json", "ContainerCodec/Assembly/ActClasses.json", "ContainerCodec/Browser/BrowserClasses.json"):
-        for row in json.loads((ROOT / "src/convert/formats/Fusion" / relative).read_bytes()):
+        for row in json.loads((ROOT / "src/convert/Formats/Fusion" / relative).read_bytes()):
             known[row["ClassGuid"].upper()] = row
     known["75CB256B-FDDE-44D6-AE08-4DB583875AB7"] = {"ClassGuid": "75CB256B-FDDE-44D6-AE08-4DB583875AB7", "BaseGuid": "6AE9DE8C-A6F6-40CB-B13D-4091AEA4968D", "SchemaVersion": 0}
     sources = sorted({row["archive"] for row in json.loads((BASE / "ContainerFields.json").read_text())["containers"]})

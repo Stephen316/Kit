@@ -79,7 +79,7 @@ Report unresolved component paths and constraint losses before acceptance.
 
 ## Sources
 
-- [Assembly model](../../../src/interchange/document/models/DocumentModel.py)
+- [Assembly model](../../../src/interchange/document/Models/DocumentModel.py)
 - [Component instance](../../../src/interchange/assembly/ComponentInstance.py)
 - [Mate constraint](../../../src/interchange/assembly/MateConstraint.py)
-- [Assembly validation](../../../src/interchange/document/validation/DocumentAssemblyValidate.py)
+- [Assembly validation](../../../src/interchange/document/Validation/DocumentAssemblyValidate.py)

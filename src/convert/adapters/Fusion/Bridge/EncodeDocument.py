@@ -5,12 +5,12 @@ from convert.adapters.Fusion.Bridge.CheckContract import CheckContract
 from convert.adapters.Fusion.Projection.ProjectNative import ProjectNative
 from convert.adapters.Fusion.Native.Projection.ProjectVendor import ProjectVendor
 from convert.adapters.Fusion.Bridge.NativeVersion import NativeVersion
-from convert.formats.Fusion.DocumentCodec.EmitDocument import EmitDocument
-from convert.formats.Fusion.DocumentCodec.EmitParsed import EmitParsed
-from convert.formats.Fusion.DocumentCodec.Model.DocumentModel import DocumentModel
-from convert.formats.Fusion.DocumentCodec.Model.DocumentSpec import DocumentSpec
-from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
-from interchange.document.models.DocumentModel import CadDocument
+from convert.Formats.Fusion.DocumentCodec.EmitDocument import EmitDocument
+from convert.Formats.Fusion.DocumentCodec.EmitParsed import EmitParsed
+from convert.Formats.Fusion.DocumentCodec.Model.DocumentModel import DocumentModel
+from convert.Formats.Fusion.DocumentCodec.Model.DocumentSpec import DocumentSpec
+from convert.Formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
+from interchange.document.Models.DocumentModel import CadDocument
 
 
 # the document operation needs a consistent construction rule so public document claims remain grounded in native records

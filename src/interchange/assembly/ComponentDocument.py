@@ -1,4 +1,4 @@
-from interchange.document.models.DocumentModel import (
+from interchange.document.Models.DocumentModel import (
     ComponentDoc,
 )
 

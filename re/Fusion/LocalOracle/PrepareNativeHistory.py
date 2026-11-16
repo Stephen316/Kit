@@ -8,8 +8,8 @@ from pathlib import Path
 root = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(root / 'src'))
 sys.dont_write_bytecode = True
-from convert.formats.Fusion.BrepCodec.ReadHistory import ReadHistory
-from convert.formats.Fusion.BrepCodec.EmitHistory import EmitHistory
+from convert.Formats.Fusion.BrepCodec.ReadHistory import ReadHistory
+from convert.Formats.Fusion.BrepCodec.EmitHistory import EmitHistory
 
 oracle = root / 're/Fusion/LocalOracle'
 source = oracle / 'Features/extrude_07mm.f3d'

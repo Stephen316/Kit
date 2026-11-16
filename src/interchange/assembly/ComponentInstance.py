@@ -5,10 +5,10 @@ from typing import Mapping as TypeMap
 
 from interchange.assembly.InstanceFlags import InstanceFlags
 from interchange.assembly.InstanceView import InstanceView
-from interchange.core.Common import FreezeMapping
-from interchange.core.ModelBase import ModelBase, ModelDataMut
-from interchange.core.ModelExtras import ModelExtras
-from interchange.records.RecordProvenance import Provenance
+from interchange.Core.Common import FreezeMapping
+from interchange.Core.ModelBase import ModelBase, ModelDataMut
+from interchange.Core.ModelExtras import ModelExtras
+from interchange.Records.RecordProvenance import Provenance
 from interchange.assembly.TransformMatrix import TransformMatrix, KIdentityMatrix
 
 

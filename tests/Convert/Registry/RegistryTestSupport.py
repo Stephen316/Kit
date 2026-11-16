@@ -1,0 +1,130 @@
+from __future__ import annotations
+
+from dataclasses import replace as ReplaceValue
+from pathlib import Path as FilePath
+
+from convert.adapters import (
+    AdapterInfo,
+    Destination,
+    ProbeResult,
+    Source,
+    WriteOptions,
+    WriteResult,
+)
+from convert.adapters.json import JsonAdapter
+from convert.api.ApiOpen import OpenDocument
+from interchange import CadDocument, Capability
+from tests.Convert.Api.ApiTestPaths import KSamplePath
+
+from typing_extensions import override as Override
+
+
+# compat protocol marker exempts paired wrappers from naming constraints
+class PairProtocol:
+    pass
+
+
+# result adapter keeps the historical surface because callers depend on it directly
+class ResultAdapter(PairProtocol, JsonAdapter):
+
+    # injected metadata and result names isolate each registry policy under test
+    def __init__(
+        self,
+        InfoData: AdapterInfo,
+        *,
+        ProbeFormat: str | None = None,
+        WriteFormat: str | None = None,
+    ) -> None:
+        super().__init__()
+        self.InfoData = InfoData
+        self.ProbeFormat = ProbeFormat
+        self.WriteFormat = WriteFormat
+
+    # injected metadata keeps tests independent from the json adapter singleton
+    @property
+    @Override
+    @Override
+    def info(self) -> AdapterInfo:
+        return self.InfoData
+
+    # probe rewriting exercises registry validation while retaining real json recognition
+    @Override
+    @Override
+    def probe(self, source: Source) -> ProbeResult:
+        ResultData = super().probe(source)
+        return ReplaceValue(
+            ResultData,
+            format_id=self.ProbeFormat or self.info.format_id,
+        )
+
+    # write rewriting exercises registry validation while retaining real output behavior
+    @Override
+    @Override
+    def write(
+        self,
+        document: CadDocument,
+        destination: Destination,
+        options: WriteOptions | None = None,
+    ) -> WriteResult:
+        ResultData = super().write(document, destination, options)
+        return ReplaceValue(
+            ResultData,
+            adapter=self.WriteFormat or self.info.format_id,
+        )
+
+
+# path only carrier output lets staging tests inspect rollback without format specific writers
+class CarrierAdapter(ResultAdapter):
+
+    # path restriction forces registry staging through its transactional filesystem branch
+    @Override
+    def CanSupport(
+        self,
+        DocValue: CadDocument,
+        Target: Destination,
+    ) -> bool:
+        return isinstance(Target, (str, FilePath))
+
+    supports = CanSupport
+
+    # unusable output exercises rollback after a writer creates the staged artifact
+    @Override
+    @Override
+    def write(
+        self,
+        document: CadDocument,
+        destination: Destination,
+        options: WriteOptions | None = None,
+    ) -> WriteResult:
+        if not isinstance(destination, (str, FilePath)):
+            raise TypeError("carrier adapter requires a filesystem destination")
+        OutputPath = FilePath(destination).expanduser().resolve()
+        OutputPath.parent.mkdir(parents=True, exist_ok=True)
+        _ = OutputPath.write_bytes(b"carrier")
+        return WriteResult(
+            OutputPath,
+            self.info.format_id,
+            len(b"carrier"),
+            application_usable=False,
+            vendor_loadable=False,
+        )
+
+
+# uniform metadata construction keeps registry policy tests focused on their behavioral difference
+def BuildAdapter(FormatId: str, **NamedValues: str) -> ResultAdapter:
+    return ResultAdapter(
+        AdapterInfo(
+            FormatId,
+            FormatId,
+            "1",
+            (f".{FormatId}",),
+            capabilities=frozenset(Capability),
+            native_capabilities=frozenset(Capability),
+        ),
+        **NamedValues,
+    )
+
+
+# shared fixture ownership prevents structural refactors from leaking old helper names here
+def BuildSource() -> CadDocument:
+    return OpenDocument(KSamplePath)

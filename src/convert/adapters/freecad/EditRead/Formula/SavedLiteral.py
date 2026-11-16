@@ -1,12 +1,12 @@
 from dataclasses import replace as Replace
 
 from convert.adapters.freecad.EditRead.Formula.SavedQuantity import KeepQuantity
-from convert.geometry.Formula.Arithmetic import (
+from convert.Geometry.Formula.Arithmetic import (
     EvalFormula,
     IsLiteralExpr,
     ReadFormula,
 )
-from interchange.records.RecordParameter import Parameter
+from interchange.Records.RecordParameter import Parameter
 
 
 # only editable literal leaves may change their authored text or typed value

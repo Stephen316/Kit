@@ -218,7 +218,7 @@ def validate(root, library, workers, baseline=None):
             "repository": "https://github.com/TryUniCAD/Kit",
             "commit": STYLE_REFERENCE,
             "rules": ".kiro/steering/RationaleComments.md",
-            "checker": "tools/steering/SteeringCompliance.py",
+            "checker": "tools/Steering/SteeringCompliance.py",
             "limitation": "Counts syntax and placement; explanatory purpose still needs human review",
         },
         "source_sha256": hashes,

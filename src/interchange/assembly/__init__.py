@@ -11,9 +11,9 @@ from interchange.assembly.ComponentInstance import ComponentInst
 from interchange.assembly.MateConstraint import MateConstraint
 from interchange.assembly.MateEntity import MateEntity
 from interchange.assembly.MateGroup import MateGroup
-from interchange.compatibility.PythonCompat import BindCompatMut
-from interchange.compatibility.PythonCompatAssemblyMethods import BindAssemblyMut
-from interchange.compatibility.PublicMetadata import BindModules
+from interchange.Compatibility.PythonCompat import BindCompatMut
+from interchange.Compatibility.PythonCompatAssemblyMethods import BindAssemblyMut
+from interchange.Compatibility.PublicMetadata import BindModules
 from interchange.assembly.TransformMatrix import TransformMatrix
 
 BindModules((ComponentKind, MateAlignment, MateEntityKind, MateKind), __name__)

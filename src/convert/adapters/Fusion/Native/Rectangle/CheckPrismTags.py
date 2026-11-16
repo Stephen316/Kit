@@ -6,10 +6,10 @@ from convert.adapters.Fusion.Native.Rectangle.CurveTags import CurveTag
 from convert.adapters.Fusion.Native.Rectangle.CheckSideRecipe import CheckSideRecipe
 from convert.adapters.Fusion.Native.Graph.ExtrudeContext import ExtrudeContext
 from convert.adapters.Fusion.Native.Rectangle.RectGeometry import RectGeometry
-from convert.formats.Fusion.BrepCodec.Models.FeatureTag import FeatureTag
-from convert.formats.Fusion.BrepCodec.Models.SketchLink import SketchLink
-from convert.formats.Fusion.BrepCodec.Prism.Models.PrismHistory import PrismHistory
-from convert.formats.Fusion.EntityCodec.Model.ValuePair import ValuePair
+from convert.Formats.Fusion.BrepCodec.Models.FeatureTag import FeatureTag
+from convert.Formats.Fusion.BrepCodec.Models.SketchLink import SketchLink
+from convert.Formats.Fusion.BrepCodec.Prism.Models.PrismHistory import PrismHistory
+from convert.Formats.Fusion.EntityCodec.Model.ValuePair import ValuePair
 
 
 # invalid prism tags input must fail here so public document claims remain grounded in native records

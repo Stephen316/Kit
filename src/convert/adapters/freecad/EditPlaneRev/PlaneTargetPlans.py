@@ -1,4 +1,4 @@
-from interchange.records.RecordParameter import Parameter
+from interchange.Records.RecordParameter import Parameter
 from collections.abc import Mapping
 from math import isclose as IsClose, pi as HalfTurn
 from typing import cast as CastValue
@@ -14,16 +14,16 @@ from convert.adapters.freecad.EditPlaneRev.PlaneRevTargets import (
     ReadTargetStep,
 )
 from convert.adapters.freecad.EditPlaneRev.PlaneTargetData import PlaneRevTarget
-from convert.formats.Fusion.AnglePlane.AnglePlaneBasis import IsSameAngPlane
-from convert.formats.Fusion.Revolves.PlaneRevInputs import ProfileLines
-from convert.formats.Fusion.Revolves.PlaneSweep import DerivePlaneSpan
-from convert.geometry.Revolve.SweepVector import DotVector
-from interchange.document.models.DocumentModel import CadDocument
-from interchange.features.FeatureBoundPlane import BoundDatum
-from interchange.features.FeaturePlaneRev import PlaneRevolve
-from interchange.features.FeatureStep import FeatureStep
-from interchange.geometry.models.Sketch import Sketch
-from interchange.geometry.models.SupportPlane import SupportPlane
+from convert.Formats.Fusion.AnglePlane.AnglePlaneBasis import IsSameAngPlane
+from convert.Formats.Fusion.Revolves.PlaneRevInputs import ProfileLines
+from convert.Formats.Fusion.Revolves.PlaneSweep import DerivePlaneSpan
+from convert.Geometry.Revolve.SweepVector import DotVector
+from interchange.document.Models.DocumentModel import CadDocument
+from interchange.Features.FeatureBoundPlane import BoundDatum
+from interchange.Features.FeaturePlaneRev import PlaneRevolve
+from interchange.Features.FeatureStep import FeatureStep
+from interchange.geometry.Models.Sketch import Sketch
+from interchange.geometry.Models.SupportPlane import SupportPlane
 
 
 # each source target retains a live scalar and a corroborating geometric root

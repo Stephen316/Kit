@@ -1,15 +1,15 @@
 from pathlib import Path
 
-from convert.formats.Fusion.DocumentCodec.Vocabulary.NativeSchema import NativeSchema
-from convert.formats.Fusion.DocumentCodec.Vocabulary.AuthorSchemas import AuthorSchemas
-from convert.formats.Fusion.DocumentCodec.Vocabulary.ReadVocabulary import (
+from convert.Formats.Fusion.DocumentCodec.Vocabulary.NativeSchema import NativeSchema
+from convert.Formats.Fusion.DocumentCodec.Vocabulary.AuthorSchemas import AuthorSchemas
+from convert.Formats.Fusion.DocumentCodec.Vocabulary.ReadVocabulary import (
     ReadVocabulary,
 )
 
 
 # the names operation needs a distinct decoding boundary so public document claims remain grounded in native records
 def ReadNames() -> tuple[NativeSchema, ...]:
-    RootPath = Path(__file__).parents[4] / "formats" / "Fusion"
+    RootPath = Path(__file__).parents[4] / "Formats" / "Fusion"
     Paths = (
         RootPath / "DocumentCodec/Vocabulary/DesignClasses.json",
         RootPath / "ContainerCodec/Assembly/ActClasses.json",

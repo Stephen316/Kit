@@ -29,7 +29,7 @@ import BuildPruned2  # noqa: E402
 import BuildTransplant as T  # noqa: E402
 import BuildVariants  # noqa: E402
 
-from convert.formats.Fusion.DrawingCodec.Dwg.Author.Sheet.SheetSizes import SheetSize  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.Author.Sheet.SheetSizes import SheetSize  # noqa: E402
 
 PLAN = 'PlanAsme.json'
 PAPERS = {'S1AsmeB': 'B Landscape', 'S2AsmeD': 'D Landscape', 'S3AsmeA': 'A Portrait'}

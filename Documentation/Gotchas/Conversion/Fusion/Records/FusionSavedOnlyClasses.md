@@ -8,10 +8,10 @@ The reader and the author can share one class vocabulary. A class that you add f
 
 `AuthorSchemas` writes every schema in `DesignClasses.json` into the class table of an authored Design segment. Fusion 2706.1.17 saves two classes that Kit does not author:
 
-| Class | Version | Corpus files | Records |
-| --- | --- | --- | --- |
-| `TransientEntityHolder` `D87EC2D8-35C1-4AA2-A308-09AF07C490FF` | 0 | 21 | 21 |
-| `DcDraftFeature` `F4163A07-9E71-4C46-BD92-ACE5B5B40BED` | 6 | 7 | 7 |
+| Class                                                          | Version | Corpus files | Records |
+| -------------------------------------------------------------- | ------- | ------------ | ------- |
+| `TransientEntityHolder` `D87EC2D8-35C1-4AA2-A308-09AF07C490FF` | 0       | 21           | 21      |
+| `DcDraftFeature` `F4163A07-9E71-4C46-BD92-ACE5B5B40BED`        | 6       | 7            | 7       |
 
 If these classes go into `DesignClasses.json`, every authored document gets two more class rows. The accepted authored bytes then change.
 
@@ -23,7 +23,7 @@ Put a class that only Fusion-saved documents use in `SavedClasses.json`. `ReadDo
 
 ## Evidence
 
-- [Saved class vocabulary](../../../../../src/convert/formats/Fusion/DocumentCodec/Vocabulary/SavedClasses.json)
+- [Saved class vocabulary](../../../../../src/convert/Formats/Fusion/DocumentCodec/Vocabulary/SavedClasses.json)
 - [Native registration versions](../../../../../re/Fusion/LocalOracle/Reflection/Versions.json)
 - [Native version differences](../../../../../re/Fusion/LocalOracle/Reflection/VersionDifferences.json)
 - [Native acceptance of re-emitted saves](../../../../../re/Fusion/LocalOracle/ReaderCoverage/NativeAcceptance.json)

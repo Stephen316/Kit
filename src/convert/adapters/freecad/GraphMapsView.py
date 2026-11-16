@@ -2,10 +2,10 @@ from __future__ import annotations
 
 from typing import Protocol as TypeProtocol
 
-from interchange.brep.curves.BrepCurves import BrepCurve
-from interchange.brep.curves.BrepPcurves import BrepPcurve
-from interchange.brep.surfaces.BrepSurfaces import BrepSurface
-from interchange.brep.topology.BrepTopology import (
+from interchange.brep.Curves.BrepCurves import BrepCurve
+from interchange.brep.Curves.BrepPcurves import BrepPcurve
+from interchange.brep.Surfaces.BrepSurfaces import BrepSurface
+from interchange.brep.Topology.BrepTopology import (
     BrepBody,
     BrepCoedge,
     BrepEdge,

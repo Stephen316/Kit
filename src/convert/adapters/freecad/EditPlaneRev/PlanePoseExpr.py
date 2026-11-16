@@ -1,7 +1,7 @@
 from math import atan2 as AtanTwo, degrees as Degrees, hypot as Hypot
 
-from convert.geometry.Revolve.SweepVector import OffsetVector
-from interchange.geometry.models.VectorSpace import SpaceVector
+from convert.Geometry.Revolve.SweepVector import OffsetVector
+from interchange.geometry.Models.VectorSpace import SpaceVector
 
 
 # native vector literals distinguish positions in millimetres from unit directions

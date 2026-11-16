@@ -2,7 +2,7 @@
 
 ## Behavior and usage
 
-The internal `convert.formats.Fusion.GeometryCodec` modules construct a solid cylinder from semantic dimensions without reading a source file, invoking a CAD runtime, or copying topology payloads.
+The internal `convert.Formats.Fusion.GeometryCodec` modules construct a solid cylinder from semantic dimensions without reading a source file, invoking a CAD runtime, or copying topology payloads.
 `CylinderBody(Radius, Height, BasePoint)` uses millimetres and a positive-Z axis.
 `GeometryStamp(Product, Version, SavedAt)` supplies explicit printable provenance.
 `EmitCylinderSmt(Model, Stamp)` returns an SMT text stream.

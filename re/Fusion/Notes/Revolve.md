@@ -9,7 +9,7 @@ to you under it immediately and permanently.
 
 [Fusion feature index](../README.md)
 
-See [SDK Revolve readers](../../../src/convert/formats/Fusion/Revolves) and [Revolve tests](../../../tests/convert/formats/FusionRevolveTests.py).
+See [SDK Revolve readers](../../../src/convert/Formats/Fusion/Revolves) and [Revolve tests](../../../tests/Convert/Formats/FusionRevolveTests.py).
 
 ## SDK coverage
 

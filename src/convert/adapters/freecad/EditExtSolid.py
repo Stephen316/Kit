@@ -1,9 +1,9 @@
-from convert.geometry.Extrude.Circular.CircularExtrude import BuildCircular
-from convert.geometry.Extrude.Polygon.PolygonExtrude import BuildPrism
-from interchange.brep.topology.BrepModel import BrepModel
-from interchange.geometry.models.BoundingBox import BoundingBox
-from interchange.geometry.models.GeometryCurves import CircleGeometry, LineGeometry
-from interchange.geometry.models.Transform import Transform
+from convert.Geometry.Extrude.Circular.CircularExtrude import BuildCircular
+from convert.Geometry.Extrude.Polygon.PolygonExtrude import BuildPrism
+from interchange.brep.Topology.BrepModel import BrepModel
+from interchange.geometry.Models.BoundingBox import BoundingBox
+from interchange.geometry.Models.GeometryCurves import CircleGeometry, LineGeometry
+from interchange.geometry.Models.Transform import Transform
 
 # source qualification and readback rebuild accept the same exact solid profile families
 KEditProfile = CircleGeometry | tuple[LineGeometry, ...]

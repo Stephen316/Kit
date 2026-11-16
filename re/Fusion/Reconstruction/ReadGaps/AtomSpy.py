@@ -8,8 +8,8 @@ BASE = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT / 'src'))
 sys.path.insert(0, str(BASE))
 
-import convert.formats.Fusion.EntityCodec.Values.ReadValueMut as Values
-import convert.formats.Fusion.EntityCodec.Values.ReadFieldsMut as Fields
+import convert.Formats.Fusion.EntityCodec.Values.ReadValueMut as Values
+import convert.Formats.Fusion.EntityCodec.Values.ReadFieldsMut as Fields
 from ExampleRecords import documents
 from RecordFailures import failures
 
@@ -38,8 +38,8 @@ def main():
         return tuple(result)
 
     Fields.ReadFieldsMut = fields
-    import convert.formats.Fusion.EntityCodec.Values.ReadGroupsMut as Groups
-    import convert.formats.Fusion.EntityCodec.Tags.ReadSketchMut as Sketch
+    import convert.Formats.Fusion.EntityCodec.Values.ReadGroupsMut as Groups
+    import convert.Formats.Fusion.EntityCodec.Tags.ReadSketchMut as Sketch
     Groups.ReadFieldsMut = fields
     Sketch.ReadFieldsMut = fields
     for name, data in documents():

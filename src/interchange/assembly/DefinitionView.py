@@ -3,7 +3,7 @@ from __future__ import annotations
 from typing import cast as CastValue
 
 from interchange.assembly.AssemblyEnums import ComponentKind
-from interchange.geometry.models.BoundingBox import BoundingBox
+from interchange.geometry.Models.BoundingBox import BoundingBox
 
 
 # definition consumers read identity and variant state through one typed view

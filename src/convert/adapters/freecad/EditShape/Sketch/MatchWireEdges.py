@@ -2,7 +2,7 @@ from collections import deque as Deque
 
 from convert.adapters.freecad.EditShape.Sketch.WireEdge import SavedEdge
 from convert.adapters.freecad.EditShape.Sketch.WireMatch import IsSameEdge, KSketchCurve
-from interchange.geometry.models.Transform import Transform
+from interchange.geometry.Models.Transform import Transform
 
 
 # overlapping tolerance windows need a complete assignment across all saved wires

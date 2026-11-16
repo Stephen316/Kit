@@ -7,7 +7,7 @@ sys.path.insert(0, str(BASE))
 
 from ExampleRecords import documents, segments
 from RecordFailures import failures, label
-import convert.formats.Fusion.EntityCodec.Values.ReadValueMut as Values
+import convert.Formats.Fusion.EntityCodec.Values.ReadValueMut as Values
 
 SEEN = collections.Counter()
 

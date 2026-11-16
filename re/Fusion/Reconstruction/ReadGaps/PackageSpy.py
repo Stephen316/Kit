@@ -6,7 +6,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[4]
 sys.path.insert(0, str(ROOT / 'src'))
 
-from convert.formats.Fusion.BundleCodec.ReadBundle import ReadBundle
+from convert.Formats.Fusion.BundleCodec.ReadBundle import ReadBundle
 
 
 def packages(data):

@@ -18,11 +18,11 @@ from convert.adapters.freecad.EditAxisRev.AxisRevExpr import AxisAngleExpr
 from convert.adapters.freecad.EditAxisRev.AxisRevPlan import AxisRevPlan, ReadAxisRev
 from convert.adapters.freecad.EditRead.Revolve.RevSheet import ReadRevSheet
 from convert.adapters.freecad.EditRev.RevCacheProof import CheckRevSolid
-from interchange.document.models.DocumentModel import CadDocument
-from interchange.features.FeatureAngleRev import AngularRevolve
-from interchange.geometry.models.GeometryCurves import LineGeometry
-from interchange.geometry.models.Sketch import Sketch
-from interchange.geometry.models.Transform import KOriginZero
+from interchange.document.Models.DocumentModel import CadDocument
+from interchange.Features.FeatureAngleRev import AngularRevolve
+from interchange.geometry.Models.GeometryCurves import LineGeometry
+from interchange.geometry.Models.Sketch import Sketch
+from interchange.geometry.Models.Transform import KOriginZero
 
 
 # older exports are equivalent only when native normalization cannot scale a translation

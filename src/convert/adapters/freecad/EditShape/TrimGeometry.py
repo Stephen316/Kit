@@ -7,16 +7,16 @@ from convert.adapters.freecad.EditShape.CylinderRims import (
     KAngleTolerance,
     KPositionTolerance,
 )
-from convert.geometry.Opencascade import LocationPoint
-from convert.geometry.Revolve.SweepVector import CrossVector, DotVector, OffsetVector
-from interchange.brep.curves.BrepCurves import CircleCurve, LineCurve
-from interchange.brep.surfaces.BrepSurfaces import (
+from convert.Geometry.Opencascade import LocationPoint
+from convert.Geometry.Revolve.SweepVector import CrossVector, DotVector, OffsetVector
+from interchange.brep.Curves.BrepCurves import CircleCurve, LineCurve
+from interchange.brep.Surfaces.BrepSurfaces import (
     BrepSurface,
     ConeSurface,
     CylinderSurface,
     PlaneSurface,
 )
-from interchange.geometry.models.VectorSpace import SpaceVector
+from interchange.geometry.Models.VectorSpace import SpaceVector
 
 
 # plane and cylinder pcurves only require two verified analytic curve families

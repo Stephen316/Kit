@@ -3,12 +3,12 @@ from typing import cast as CastValue
 
 from convert.adapters.Fusion.Native.Graph.NativeGraph import NativeGraph
 from convert.adapters.Fusion.Native.Graph.GraphChecks import SameNumbers
-from convert.formats.Fusion.BrepCodec.Prism.Models.PrismHistory import PrismHistory
-from convert.formats.Fusion.DocumentCodec.Auxiliary.PrismSnapshot.Models.PrismSnapshot import (
+from convert.Formats.Fusion.BrepCodec.Prism.Models.PrismHistory import PrismHistory
+from convert.Formats.Fusion.DocumentCodec.Auxiliary.PrismSnapshot.Models.PrismSnapshot import (
     PrismSnapshot,
 )
-from convert.formats.Fusion.DocumentCodec.Model.DocumentModel import DocumentModel
-from convert.formats.Fusion.GraphicsCodec.Model.Values.EntityRef import EntityRef
+from convert.Formats.Fusion.DocumentCodec.Model.DocumentModel import DocumentModel
+from convert.Formats.Fusion.GraphicsCodec.Model.Values.EntityRef import EntityRef
 
 
 # invalid auxiliary input must fail here so public document claims remain grounded in native records

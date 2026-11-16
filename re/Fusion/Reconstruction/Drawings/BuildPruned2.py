@@ -19,11 +19,11 @@ sys.path.insert(0, str(HERE / 'Dwg'))
 import BuildPruned  # noqa: E402
 import BuildVariants  # noqa: E402
 from PruneDwg import Graph, field, prune, refs_in, target  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgRecord import DwgRecord  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.Model.DwgRecord import DwgRecord  # noqa: E402
 
-from convert.formats.Fusion.DrawingCodec.EmitDrawing import EmitDrawing  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.ReadDrawing import ReadDrawing  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Dwg.ReadDwgFile import ReadDwgFile  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.EmitDrawing import EmitDrawing  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.ReadDrawing import ReadDrawing  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.ReadDwgFile import ReadDwgFile  # noqa: E402
 
 PURGE_KINDS = ('LAYER', 'LTYPE', 'STYLE', 'APPID', 'DIMSTYLE', 'VISUALSTYLE', 'MATERIAL', 'MLEADERSTYLE', 'TABLESTYLE', 'SCALE', 'MLINESTYLE', 'ACDBSECTIONVIEWSTYLE', 'ACDBDETAILVIEWSTYLE')
 PURGE_KEEP = ('0', 'Continuous', 'ByLayer', 'ByBlock', 'BYLAYER', 'BYBLOCK', 'Standard', 'Global', 'ACAD')

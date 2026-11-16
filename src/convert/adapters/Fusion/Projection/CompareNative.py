@@ -3,7 +3,7 @@ from re import Match, compile as CompilePattern
 from typing import cast as CastValue
 
 from convert.adapters.Fusion.State.EncodeState import EncodeState
-from convert.formats.Fusion.DocumentCodec.Model.DocumentModel import DocumentModel
+from convert.Formats.Fusion.DocumentCodec.Model.DocumentModel import DocumentModel
 
 # uuid pattern must remain consistent across callers so public document claims remain grounded in native records
 KUuidPattern = CompilePattern(

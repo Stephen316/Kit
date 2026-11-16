@@ -5,11 +5,11 @@ from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[4]
 sys.path.insert(0,str(ROOT/'src'))
-from convert.formats.Fusion.TSplineCodec.ReadTspline import ReadTspline
-from convert.formats.Fusion.TSplineCodec.EmitTspline import EmitTspline
-from convert.formats.Fusion.TSplineCodec.MakeClosedCage import MakeClosedCage
-from convert.formats.Fusion.TSplineCodec.Model.ControlGrip import ControlGrip
-from convert.formats.Fusion.TSplineCodec.Model.CageOrientation import CageOrientation
+from convert.Formats.Fusion.TSplineCodec.ReadTspline import ReadTspline
+from convert.Formats.Fusion.TSplineCodec.EmitTspline import EmitTspline
+from convert.Formats.Fusion.TSplineCodec.MakeClosedCage import MakeClosedCage
+from convert.Formats.Fusion.TSplineCodec.Model.ControlGrip import ControlGrip
+from convert.Formats.Fusion.TSplineCodec.Model.CageOrientation import CageOrientation
 
 SOURCE=ROOT/'re/Fusion/LocalOracle/TSpline'
 TARGET=ROOT/'re/Fusion/LocalOracle/TSplineCodec'

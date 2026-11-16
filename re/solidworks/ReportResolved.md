@@ -1,6 +1,6 @@
 # `Core.py` findings: feature flag words and the arc/circle record
 
-Scope: `src/convert/adapters/solidworks/resolved/Core.py` and `tests/convert/solidworks/resolved/SolidworksResolvedTests.py` only.
+Scope: `src/convert/adapters/solidworks/Resolved/Core.py` and `tests/Convert/Solidworks/Resolved/SolidworksResolvedTests.py` only.
 Evidence corpus: `re/solidworks/examples/Single Turbo Dual Overhead Cam V8 - KDP - 2024` (57 parts, 54 with
 `Contents/Config-0-ResolvedFeatures`), plus `.rescratch/corpus2` for the byte-identity round trips.
 
@@ -144,9 +144,9 @@ did for corners and depths. `FeatureLayout.arcs`, `FeatureLayout.radii_mm` and a
 
 ## 6. Verification
 
-- `uv run python -m pytest tests/convert/solidworks/resolved/SolidworksResolvedTests.py -q` → 55 passed (was 43).
-- `uv run python -m pytest tests/convert/solidworks/core/SolidworksTests.py tests/convert/solidworks/core/SolidworksWriterTests.py
-tests/convert/solidworks/core/SolidworksAdapterTests.py -q` → 2 failed, 132 passed. Both failures are the
+- `uv run python -m pytest tests/Convert/Solidworks/Resolved/SolidworksResolvedTests.py -q` → 55 passed (was 43).
+- `uv run python -m pytest tests/Convert/Solidworks/Core/SolidworksTests.py tests/Convert/Solidworks/Core/SolidworksWriterTests.py
+tests/Convert/Solidworks/Core/SolidworksAdapterTests.py -q` → 2 failed, 132 passed. Both failures are the
   GROUND_TRUTH §7 baseline ones (`test_protocol_literals_have_one_source_definition`, caused by
   `Native.py` duplicating the `Contents/DisplayLists` literal, and
   `test_entire_local_solidworks_corpus_decodes`). No new failures.

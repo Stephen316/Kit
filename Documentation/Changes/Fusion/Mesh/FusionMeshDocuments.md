@@ -3,8 +3,8 @@
 `DocumentCodec.ReadDocument` and `EmitParsed` now include `DocumentModel.Meshes`, a final tuple defaulting to empty. Each immutable `DocumentMesh` contains an asset-relative `Name` and a typed `MeshCodec.Model.ParaMesh`. Existing positional model construction and authored document profiles retain their previous behavior through the empty default.
 
 ```python
-from convert.formats.Fusion.DocumentCodec.EmitParsed import EmitParsed
-from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
+from convert.Formats.Fusion.DocumentCodec.EmitParsed import EmitParsed
+from convert.Formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
 
 model = ReadDocument(source_archive)
 for part in model.Meshes:

@@ -5,8 +5,8 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import SceneOnly
-from convert.formats.Fusion.GraphicsCodec.Schema.AttrRules import KAttrRules
-from convert.formats.Fusion.GraphicsCodec.Schema.GlobalVersions import KGlobalVersions
+from convert.Formats.Fusion.GraphicsCodec.Schema.AttrRules import KAttrRules
+from convert.Formats.Fusion.GraphicsCodec.Schema.GlobalVersions import KGlobalVersions
 
 KGlobalVersions['BillBoardAttribute'] = (1,)
 KAttrRules['BillBoardAttribute'] = KAttrRules['BillBoardAttribute'][:4]

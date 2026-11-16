@@ -4,11 +4,11 @@ from convert.adapters.Fusion.Native.Graph.GraphValues import NumberValue
 from convert.adapters.Fusion.Native.Graph.ExtrudeContext import ExtrudeContext
 from convert.adapters.Fusion.Native.Graph.GraphChecks import SameNumbers
 from convert.adapters.Fusion.Native.Circular.CircleShape import CircleShape
-from convert.formats.Fusion.BrepCodec.Models.HistoryModel import HistoryModel
-from convert.formats.Fusion.BrepCodec.Frustum.Models.FrustumHistory import (
+from convert.Formats.Fusion.BrepCodec.Models.HistoryModel import HistoryModel
+from convert.Formats.Fusion.BrepCodec.Frustum.Models.FrustumHistory import (
     FrustumHistory,
 )
-from convert.formats.Fusion.GeometryCodec.Frustum.FrustumBody import FrustumBody
+from convert.Formats.Fusion.GeometryCodec.Frustum.FrustumBody import FrustumBody
 
 
 # rotary shape needs an explicit validity boundary so public geometry remains consistent with native circular topology

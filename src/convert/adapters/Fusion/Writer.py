@@ -6,8 +6,8 @@ from convert.adapters.base.WriteResult import WriteResult
 from convert.adapters.Fusion.Bridge.EncodeDocument import EncodeDocument
 from convert.adapters.Fusion.Bridge.WritePayloadMut import WritePayloadMut
 from convert.adapters.Fusion.Bridge.WriterInfo import KWriterInfo
-from interchange.document.models.DocumentCaps import InferCaps
-from interchange.document.models.DocumentModel import CadDocument
+from interchange.document.Models.DocumentCaps import InferCaps
+from interchange.document.Models.DocumentModel import CadDocument
 
 
 # the fusion writer contract needs a dedicated boundary so public document claims remain grounded in native records

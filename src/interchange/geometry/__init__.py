@@ -1,4 +1,4 @@
-from interchange.geometry.models.GeometryConics import (
+from interchange.geometry.Models.GeometryConics import (
     ArcEllipseGeom,
     ArcHyperGeom,
     ArcParabGeom,
@@ -6,7 +6,7 @@ from interchange.geometry.models.GeometryConics import (
     HyperbolaGeom,
     ParabolaGeom,
 )
-from interchange.geometry.models.GeometryCurves import (
+from interchange.geometry.Models.GeometryCurves import (
     ArcGeometry,
     CircleGeometry,
     LineGeometry,
@@ -14,18 +14,18 @@ from interchange.geometry.models.GeometryCurves import (
     PointGeometry,
     SplineGeometry,
 )
-from interchange.geometry.models.GeometryTypes import KGeometryTypes
-from interchange.compatibility.PythonCompat import BindCompatMut
-from interchange.geometry.models.Selection import Selection, SelectPathElem
-from interchange.geometry.models.Sketch import (
+from interchange.geometry.Models.GeometryTypes import KGeometryTypes
+from interchange.Compatibility.PythonCompat import BindCompatMut
+from interchange.geometry.Models.Selection import Selection, SelectPathElem
+from interchange.geometry.Models.Sketch import (
     ConstraintRef,
     Sketch,
     SketchEntity,
     SketchRelation,
 )
-from interchange.geometry.models.SupportPlane import SupportPlane
-from interchange.geometry.models.VectorPlane import PlaneVector
-from interchange.geometry.models.VectorSpace import SpaceVector
+from interchange.geometry.Models.SupportPlane import SupportPlane
+from interchange.geometry.Models.VectorPlane import PlaneVector
+from interchange.geometry.Models.VectorSpace import SpaceVector
 
 # historical geometry typing remains available because consumers inspect union coverage
 Geometry = KGeometryTypes

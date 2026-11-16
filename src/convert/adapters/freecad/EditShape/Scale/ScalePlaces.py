@@ -1,12 +1,12 @@
 from convert.adapters.freecad.EditShape.CylinderRims import IsNearPoint, KAngleTolerance
 from convert.adapters.freecad.EditShape.Prism.PrismRaw import PrismRaw
-from convert.geometry.Opencascade import (
+from convert.Geometry.Opencascade import (
     DecodeFailure,
     EdgeData,
     FaceData,
     KIdentityLocation,
 )
-from interchange.geometry.models.VectorSpace import SpaceVector
+from interchange.geometry.Models.VectorSpace import SpaceVector
 
 
 # the shape root must independently corroborate the native scale placement

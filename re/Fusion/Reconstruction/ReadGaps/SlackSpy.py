@@ -5,15 +5,15 @@ BASE = Path(__file__).resolve().parent
 sys.path.insert(0, str(BASE))
 
 from ExampleRecords import documents, segments
-from convert.formats.Fusion.ContainerCodec.ReadContainer import ReadContainer
-from convert.formats.Fusion.DocumentCodec.Records.MakeDocProfile import MakeDocProfile
-from convert.formats.Fusion.DocumentCodec.Records.ReadDocSchemas import ReadDocSchemas
-from convert.formats.Fusion.EntityCodec.Records.BindRecords import BindRecords
-from convert.formats.Fusion.EntityCodec.Records.ReadEntity import ReadSlack
-from convert.formats.Fusion.EntityCodec.Schema.BindProfile import BindProfile
-from convert.formats.Fusion.SegmentCodec.Bulk.BulkRecord import BulkRecord
-from convert.formats.Fusion.SegmentCodec.Metadata.ReadMetaWire import ReadMetaWire
-from convert.formats.Fusion.BulkSpans import ReadBulkSpans
+from convert.Formats.Fusion.ContainerCodec.ReadContainer import ReadContainer
+from convert.Formats.Fusion.DocumentCodec.Records.MakeDocProfile import MakeDocProfile
+from convert.Formats.Fusion.DocumentCodec.Records.ReadDocSchemas import ReadDocSchemas
+from convert.Formats.Fusion.EntityCodec.Records.BindRecords import BindRecords
+from convert.Formats.Fusion.EntityCodec.Records.ReadEntity import ReadSlack
+from convert.Formats.Fusion.EntityCodec.Schema.BindProfile import BindProfile
+from convert.Formats.Fusion.SegmentCodec.Bulk.BulkRecord import BulkRecord
+from convert.Formats.Fusion.SegmentCodec.Metadata.ReadMetaWire import ReadMetaWire
+from convert.Formats.Fusion.BulkSpans import ReadBulkSpans
 
 
 def main():

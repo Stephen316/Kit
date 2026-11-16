@@ -20,7 +20,7 @@ BASE = Path(__file__).resolve().parent
 ROOT = BASE.parents[4]
 ACCEPT = ROOT / 're/Fusion/LocalOracle/FormDocuments/General' / (sys.argv[2] if len(sys.argv) > 2 else 'Accept')
 KEPT = ACCEPT / 'Fusion'
-CASES = ROOT / 'tests/convert/formats/FusionCodec/Documents/Form' / (sys.argv[3] if len(sys.argv) > 3 else 'GeneralCases.py')
+CASES = ROOT / 'tests/Convert/Formats/FusionCodec/Documents/Form' / (sys.argv[3] if len(sys.argv) > 3 else 'GeneralCases.py')
 VALUE_NAME = 'K' + CASES.stem
 
 

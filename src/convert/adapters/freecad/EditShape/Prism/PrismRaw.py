@@ -8,7 +8,7 @@ from convert.adapters.freecad.EditShape.Prism.PrismTrim import (
 )
 from convert.adapters.freecad.EditShape.TrimBind import TrimBinding
 from convert.adapters.freecad.EditShape.TrimGeometry import TrimCurve
-from convert.geometry.Opencascade import (
+from convert.Geometry.Opencascade import (
     AssertReachable,
     DecodeFailure,
     EdgeData,
@@ -28,8 +28,8 @@ from convert.geometry.Opencascade import (
     Tokens,
     ZeroTable,
 )
-from interchange.brep.curves.BrepCurves import BrepCurve
-from interchange.brep.surfaces.BrepSurfaces import BrepSurface
+from interchange.brep.Curves.BrepCurves import BrepCurve
+from interchange.brep.Surfaces.BrepSurfaces import BrepSurface
 
 # symbolic native datums distinguish real sharing from coincident independent topology
 KLocationChain = tuple[tuple[int, int], ...]

@@ -24,14 +24,14 @@ sys.path.insert(0, str(HERE))
 
 import AsmScan  # noqa: E402
 
-from convert.formats.Fusion.BrepCodec.Journal.Attributes.FeatureAttrib import FeatureAttrib  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Attributes.NoMergeAttrib import NoMergeAttrib  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.EmitJournal import EmitJournal  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Geometry.ShellNode import ShellNode  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Geometry.WireNode import WireNode  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.ReadJournal import ReadJournal  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Snapshot.EmitGeometry import EmitGeometry  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Snapshot.ReadGeometry import ReadGeometry  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Attributes.FeatureAttrib import FeatureAttrib  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Attributes.NoMergeAttrib import NoMergeAttrib  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.EmitJournal import EmitJournal  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.ShellNode import ShellNode  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.WireNode import WireNode  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.ReadJournal import ReadJournal  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Snapshot.EmitGeometry import EmitGeometry  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Snapshot.ReadGeometry import ReadGeometry  # noqa: E402
 
 OUT = ROOT / "re/Fusion/LocalOracle/ComplexGeometry/Bounds"
 STUDY = "re/Fusion/Study/"

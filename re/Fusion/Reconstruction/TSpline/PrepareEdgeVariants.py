@@ -8,7 +8,7 @@ ROOT = Path(__file__).resolve().parents[4]
 sys.path.insert(0, str(ROOT / 'src'))
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from convert.formats.Fusion.TSplineCodec.EmitTspline import EmitTspline
+from convert.Formats.Fusion.TSplineCodec.EmitTspline import EmitTspline
 from PrepareRootVariants import coordinates, face_roots, make_surface, vertex_roots
 
 

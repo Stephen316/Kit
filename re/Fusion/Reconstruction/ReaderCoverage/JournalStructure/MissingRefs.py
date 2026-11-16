@@ -9,16 +9,16 @@ sys.path.insert(0, str(Path(__file__).parent))
 
 from Journals import members, raw_model
 from Scope import scope
-from convert.formats.Fusion.BrepCodec.Journal.Reading.ReadEntitiesMut import ReadEntitiesMut
-from convert.formats.Fusion.BrepCodec.Journal.Reading.ReadModelHead import ReadModelHead
-from convert.formats.Fusion.BrepCodec.Journal.Validation.BuildAliases import BuildAliases
-from convert.formats.Fusion.BrepCodec.Journal.Validation.HasVertedge import HasVertedge
-from convert.formats.Fusion.BrepCodec.Journal.Validation.NextState import NextState
-from convert.formats.Fusion.BrepCodec.Journal.Validation.RequiredRefs import KRequiredRefs
-from convert.formats.Fusion.BrepCodec.Journal.Validation.ResolveSlot import ResolveSlot
-from convert.formats.Fusion.BrepCodec.Journal.Validation.UndoStateMut import UndoStateMut
-from convert.formats.Fusion.BrepCodec.Journal.Writing.MakeEntityNode import MakeEntityNode
-from convert.formats.Fusion.MetaCursor import MetaCursor
+from convert.Formats.Fusion.BrepCodec.Journal.Reading.ReadEntitiesMut import ReadEntitiesMut
+from convert.Formats.Fusion.BrepCodec.Journal.Reading.ReadModelHead import ReadModelHead
+from convert.Formats.Fusion.BrepCodec.Journal.Validation.BuildAliases import BuildAliases
+from convert.Formats.Fusion.BrepCodec.Journal.Validation.HasVertedge import HasVertedge
+from convert.Formats.Fusion.BrepCodec.Journal.Validation.NextState import NextState
+from convert.Formats.Fusion.BrepCodec.Journal.Validation.RequiredRefs import KRequiredRefs
+from convert.Formats.Fusion.BrepCodec.Journal.Validation.ResolveSlot import ResolveSlot
+from convert.Formats.Fusion.BrepCodec.Journal.Validation.UndoStateMut import UndoStateMut
+from convert.Formats.Fusion.BrepCodec.Journal.Writing.MakeEntityNode import MakeEntityNode
+from convert.Formats.Fusion.MetaCursor import MetaCursor
 
 
 # every live record whose required reference slot is -1, with the owning chain around it

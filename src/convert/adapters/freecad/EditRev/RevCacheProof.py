@@ -10,9 +10,9 @@ from convert.adapters.freecad.EditShape.SavedSketchWire import (
     KMaxSketchBytes,
 )
 from convert.adapters.freecad.ReconcileEdit import ReadEditBrep
-from interchange.document.models.DocumentModel import CadDocument
-from interchange.geometry.models.Sketch import Sketch
-from interchange.geometry.models.Transform import Transform
+from interchange.document.Models.DocumentModel import CadDocument
+from interchange.geometry.Models.Sketch import Sketch
+from interchange.geometry.Models.Transform import Transform
 
 
 # the saved profile cache must independently confirm the editable line geometry

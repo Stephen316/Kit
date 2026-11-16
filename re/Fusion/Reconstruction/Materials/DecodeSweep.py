@@ -10,7 +10,7 @@ ROOT = Path(__file__).resolve().parents[4]
 sys.path.insert(0, str(ROOT / 'src'))
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import TrialGrammar  # noqa: E402,F401
-from convert.formats.Fusion.MaterialCodec.Package.ReadPackage import ReadPackage  # noqa: E402
+from convert.Formats.Fusion.MaterialCodec.Package.ReadPackage import ReadPackage  # noqa: E402
 
 SWEEP = ROOT / 're/Fusion/LocalOracle/MaterialFamilies/Sweep'
 

@@ -81,7 +81,7 @@ A successful initial load is insufficient.
 
 ## Sources
 
-- [Feature step](../../../src/interchange/features/FeatureStep.py)
-- [Feature definitions](../../../src/interchange/features/)
-- [Feature validation](../../../src/interchange/document/validation/DocumentFeatureValidate.py)
+- [Feature step](../../../src/interchange/Features/FeatureStep.py)
+- [Feature definitions](../../../src/interchange/Features/)
+- [Feature validation](../../../src/interchange/document/Validation/DocumentFeatureValidate.py)
 - [SOLIDWORKS feature records](../Adapters/SolidworksFeatures.md)

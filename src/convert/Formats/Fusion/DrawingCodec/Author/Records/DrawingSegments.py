@@ -1,0 +1,140 @@
+from dataclasses import replace as Replace
+
+from convert.Formats.Fusion.DocumentCodec.EnvelopePolicy import KSoftwareVersion
+from convert.Formats.Fusion.DocumentCodec.Model.ParsedSegment import ParsedSegment
+from convert.Formats.Fusion.DocumentCodec.Records.EmitDocSegment import EmitDocSegment
+from convert.Formats.Fusion.DrawingCodec.Author.Defaults.ActClasses import KActClasses
+from convert.Formats.Fusion.DrawingCodec.Author.Defaults.ActRecords import KActRecords
+from convert.Formats.Fusion.DrawingCodec.Author.Defaults.DesignClasses import (
+    KDesignClasses,
+)
+from convert.Formats.Fusion.DrawingCodec.Author.Defaults.DrawingPolicy import (
+    KActProps,
+    KDesignProps,
+    KMetaMagic,
+    KMetaVersion,
+    KZeroGuid,
+)
+from convert.Formats.Fusion.DrawingCodec.Author.Model.ClassRow import ClassRow
+from convert.Formats.Fusion.DrawingCodec.Author.Model.DrawingSpec import DrawingSpec
+from convert.Formats.Fusion.DrawingCodec.Author.Model.SaveState import SaveState
+from convert.Formats.Fusion.DrawingCodec.Author.Records.DesignRecords import (
+    DesignNextId,
+    DesignRecords,
+)
+from convert.Formats.Fusion.DrawingCodec.Segments.DrawingProfile import DrawingProfile
+from convert.Formats.Fusion.EntityCodec.Model.EntityRecord import EntityRecord
+from convert.Formats.Fusion.MetaIndex import KSegmentLayout, SegmentKind
+from convert.Formats.Fusion.SegmentCodec.Metadata.MetaHeader import MetaHeader
+from convert.Formats.Fusion.SegmentCodec.Metadata.MetaRows import (
+    MetaClass,
+    MetaProperty,
+)
+from convert.Formats.Fusion.SegmentCodec.Metadata.MetaSegment import MetaSegment
+from convert.Formats.Fusion.SegmentCodec.Metadata.ReadMetaWire import ReadMetaWire
+
+# storage space must remain consistent across callers so sheet objects retain their intended document relationships
+KStorageSpace = "FusionDoc"
+
+
+# the drawing segments contract needs a shared interpretation so sheet objects retain their intended document relationships
+def DrawingSegments(
+    SpecValue: DrawingSpec, FileName: str, History: SaveState
+) -> tuple[ParsedSegment, ...]:
+    DesignRows = OrderRows(KDesignClasses, History.DesignOrder)
+    ActRows = OrderRows(KActClasses, History.ActOrder)
+    DesignItems = AssignTypes(DesignRecords(SpecValue, FileName, History), DesignRows)
+    ActItems = AssignTypes(KActRecords, ActRows)
+    NextId = DesignNextId(SpecValue, History)
+    Metas = (
+        SegmentMeta(
+            SegmentKind.KDrawingDesign, DesignRows, DesignItems, NextId, KDesignProps
+        ),
+        SegmentMeta(
+            SegmentKind.KDrawingAct, ActRows, ActItems, ActNextId(History), KActProps
+        ),
+    )
+    Result: list[ParsedSegment] = []
+    for MetaValue, Records in zip(Metas, (DesignItems, ActItems), strict=True):
+        Profile = DrawingProfile(Metas, MetaValue.Header.SegmentId)
+        Streams = EmitDocSegment(ParsedSegment(MetaValue, Records, Profile))
+        Final = ReadMetaWire(Streams.Metadata, Segment=MetaValue.Header.Segment)
+        Result.append(ParsedSegment(Final, Records, Profile))
+    return tuple(Result)
+
+
+# the order rows contract needs a stable decomposition so sheet objects retain their intended document relationships
+def OrderRows(
+    ClassRows: tuple[ClassRow, ...], Order: tuple[str, ...]
+) -> tuple[ClassRow, ...]:
+    Known = {RowValue.ClassGuid: RowValue for RowValue in ClassRows}
+    if len(Order) != len(Known) or set(Order) != set(Known):
+        raise ValueError("Fusion drawing class order must permute the known classes")
+    return tuple(Known[ClassGuid] for ClassGuid in Order)
+
+
+# the assign types contract needs a shared interpretation so sheet objects retain their intended document relationships
+def AssignTypes(
+    Records: tuple[EntityRecord, ...], ClassRows: tuple[ClassRow, ...]
+) -> tuple[EntityRecord, ...]:
+    Codes = {
+        RowValue.ClassGuid.upper(): 256 + Index
+        for Index, RowValue in enumerate(ClassRows)
+    }
+    return tuple(
+        Replace(Record, TypeCode=Codes[Record.Groups[0].ClassGuid.upper()])
+        for Record in Records
+    )
+
+
+# segment meta needs an explicit validity boundary so sheet objects retain their intended document relationships
+def SegmentMeta(
+    KindValue: SegmentKind,
+    ClassRows: tuple[ClassRow, ...],
+    Records: tuple[EntityRecord, ...],
+    NextId: int,
+    Props: tuple[tuple[str, int], ...],
+) -> MetaSegment:
+    SegmentId, StorageWords = KSegmentLayout[KindValue]
+    if SegmentId is None:
+        raise ValueError("Fusion drawing segments need a fixed segment identity")
+    Header = MetaHeader(
+        KindValue,
+        SegmentId,
+        KZeroGuid,
+        KMetaMagic,
+        KMetaVersion,
+        (KSoftwareVersion & 0xFFFFFFFF, KSoftwareVersion >> 32),
+        KindValue.value,
+        KStorageSpace,
+        StorageWords,
+    )
+    Classes = tuple(
+        MetaClass(
+            RowValue.ClassGuid,
+            RowValue.BaseGuid,
+            RowValue.SchemaVersion,
+            RowValue.ClassSpace,
+            tuple(
+                Record.ObjectId
+                for Record in Records
+                if Record.IsPrimary
+                and Record.Groups[0].ClassGuid.upper() == RowValue.ClassGuid.upper()
+            ),
+        )
+        for RowValue in ClassRows
+    )
+    Stored = tuple(
+        Record.ObjectId
+        for Record in Records
+        if Record.IsPrimary and Record.Frame.RootId
+    )
+    Properties = tuple(MetaProperty(NameValue, Value) for NameValue, Value in Props)
+    return MetaSegment(Header, Classes, Stored, (), (), NextId, 0, Properties)
+
+
+# the act next id contract needs a shared interpretation so sheet objects retain their intended document relationships
+def ActNextId(History: SaveState) -> int:
+    if History.ActNextId is not None:
+        return History.ActNextId
+    return 1 + max(Record.ObjectId for Record in KActRecords)

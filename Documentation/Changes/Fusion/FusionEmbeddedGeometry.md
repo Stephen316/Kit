@@ -8,8 +8,8 @@ Kit now includes independent serializers for the controlled circular-extrusion s
 Both serializers construct every geometry, topology, attribute, and journal record from typed inputs.
 They read no research artifact, fixture, vendor payload, or CAD runtime.
 
-The [snapshot writer](../../../src/convert/formats/Fusion/BrepCodec/EmitSnapshot.py) emits 59 records.
-The [history writer](../../../src/convert/formats/Fusion/BrepCodec/EmitHistory.py) emits 35 records and two history states.
+The [snapshot writer](../../../src/convert/Formats/Fusion/BrepCodec/EmitSnapshot.py) emits 59 records.
+The [history writer](../../../src/convert/Formats/Fusion/BrepCodec/EmitHistory.py) emits 35 records and two history states.
 The existing `CylinderBody` model supplies positive radius and height, plus base position, in millimeters.
 The writers convert positional values to the native centimeter representation.
 

@@ -9,9 +9,9 @@ sys.setrecursionlimit(20000)
 
 from CacheSpy import ROOT
 
-from convert.formats.Fusion.BundleCodec.ReadBundle import ReadBundle
-import convert.formats.Fusion.DocumentCodec.ReadDocument as Reader
-from convert.formats.Fusion.GraphicsCodec.Model.Values.EntityRef import EntityRef
+from convert.Formats.Fusion.BundleCodec.ReadBundle import ReadBundle
+import convert.Formats.Fusion.DocumentCodec.ReadDocument as Reader
+from convert.Formats.Fusion.GraphicsCodec.Model.Values.EntityRef import EntityRef
 
 
 KINDS = collections.Counter()

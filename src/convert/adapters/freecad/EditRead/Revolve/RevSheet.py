@@ -10,13 +10,13 @@ from convert.adapters.freecad.EditRead.Formula.SheetScaffold import (
 from convert.adapters.freecad.EditRead.Formula.SheetScope import KSheetFields
 from convert.adapters.freecad.EditRead.XmlField import EditChild
 from convert.adapters.freecad.Native import NativeObject
-from convert.geometry.Formula.Arithmetic import (
+from convert.Geometry.Formula.Arithmetic import (
     EvalFormula,
     IsLiteralExpr,
     ReadFormula,
 )
-from convert.geometry.Formula.FormulaUnits import IsMatchingQty
-from interchange.records.RecordParameter import Parameter
+from convert.Geometry.Formula.FormulaUnits import IsMatchingQty
+from interchange.Records.RecordParameter import Parameter
 from interchange.serialization.EncodeData import ToData
 
 

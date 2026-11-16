@@ -8,8 +8,8 @@ root = Path(__file__).resolve().parent
 repository = root.parents[2]
 sys.path.insert(0, str(repository / "src"))
 
-from convert.formats.Fusion.BundleCodec.EmitBundle import EmitBundle
-from convert.formats.Fusion.BundleCodec.ReadBundle import ReadBundle
+from convert.Formats.Fusion.BundleCodec.EmitBundle import EmitBundle
+from convert.Formats.Fusion.BundleCodec.ReadBundle import ReadBundle
 
 
 source = repository / "re/Fusion/examples/.f3z/example1.f3z"
@@ -29,8 +29,8 @@ report = {
     "output": str(archive.relative_to(repository)),
     "output_sha256": hashlib.sha256(output_data).hexdigest(),
     "output_bytes": len(output_data),
-    "producer": "convert.formats.Fusion.BundleCodec.EmitBundle",
-    "reader": "convert.formats.Fusion.BundleCodec.ReadBundle",
+    "producer": "convert.Formats.Fusion.BundleCodec.EmitBundle",
+    "reader": "convert.Formats.Fusion.BundleCodec.ReadBundle",
     "root_member": bundle.Description.RootPath,
     "root_ids": bundle.Description.Graph.RootIds,
     "document_count": len(bundle.Documents),

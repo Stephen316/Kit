@@ -7,8 +7,8 @@ sys.path.insert(0, str(ROOT / 'src'))
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import Probe
-import convert.formats.Fusion.GraphicsCodec.Nodes.XferLodsMut as LodsModule
-from convert.formats.Fusion.GraphicsCodec.Nodes.XferPayloadMut import XferPayloadMut
+import convert.Formats.Fusion.GraphicsCodec.Nodes.XferLodsMut as LodsModule
+from convert.Formats.Fusion.GraphicsCodec.Nodes.XferPayloadMut import XferPayloadMut
 
 kinds = collections.Counter()
 

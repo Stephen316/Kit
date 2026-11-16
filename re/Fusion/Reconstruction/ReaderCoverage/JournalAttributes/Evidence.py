@@ -11,8 +11,8 @@ sys.path.insert(0, str(HERE))
 from ProbeFailures import entities
 from Shapes import corpus
 
-from convert.formats.Fusion.BrepCodec.Journal.Reading.ReadEntityNode import ReadEntityNode
-from convert.formats.Fusion.BrepCodec.Journal.Writing.MakeEntityNode import MakeEntityNode
+from convert.Formats.Fusion.BrepCodec.Journal.Reading.ReadEntityNode import ReadEntityNode
+from convert.Formats.Fusion.BrepCodec.Journal.Writing.MakeEntityNode import MakeEntityNode
 
 KKINDS = ('int64_attrib-name_attrib-gen-attrib', 'name_attrib-gen-attrib', 'no_merge_attribute-st-attrib', 'wire')
 KNESTED = ((7, 'generic_tag_attrib_def'), (4, 3), (4, 3), (4, -1), (7, 'generic_tag_attrib_def '), (4, 1), (4, 0), (7, ''))

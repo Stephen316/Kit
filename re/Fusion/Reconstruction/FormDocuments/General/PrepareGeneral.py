@@ -6,8 +6,8 @@ from pathlib import Path
 BASE = Path(__file__).resolve().parent
 sys.path.insert(0, str(BASE))
 from GeneralCages import ROOT, band, box, closed, polycube, prism, sharp_box_edges, torus, warp
-from convert.formats.Fusion.TSplineCodec.EmitTspline import EmitTspline
-from convert.formats.Fusion.TSplineCodec.ReadTspline import ReadTspline
+from convert.Formats.Fusion.TSplineCodec.EmitTspline import EmitTspline
+from convert.Formats.Fusion.TSplineCodec.ReadTspline import ReadTspline
 
 TARGET = ROOT / 're/Fusion/LocalOracle/FormDocuments/General'
 LSHAPE = [(0, 0, 0), (1, 0, 0), (0, 1, 0)]

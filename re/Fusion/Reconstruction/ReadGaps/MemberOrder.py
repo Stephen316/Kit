@@ -9,7 +9,7 @@ ROOT = Path(__file__).resolve().parents[4]
 BASE = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT / 'src'))
 
-from convert.formats.Fusion.BundleCodec.ReadBundle import ReadBundle
+from convert.Formats.Fusion.BundleCodec.ReadBundle import ReadBundle
 
 
 def main():

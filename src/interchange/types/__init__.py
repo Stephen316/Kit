@@ -1,22 +1,22 @@
-from interchange.core.Common import FreezeMapping, KJsonScalar, KJsonValue
-from interchange.enums.EnumDocument import Capability, Severity
-from interchange.enums.EnumFeatures import BooleanOp, FeatureKind
-from interchange.enums.EnumGeometry import ConstraintKind, GeometryKind
-from interchange.enums.EnumUnits import UnitSystem
-from interchange.enums.EnumValues import ParameterRole, ValueKind
-from interchange.records.RecordConfig import Configuration, ParamOverride
-from interchange.records.RecordDiagnostic import Diagnostic
-from interchange.records.RecordParameter import Expression, Parameter, ParameterValue
-from interchange.records.RecordProvenance import Provenance, ProvenanceSpan
-from interchange.records.RecordSource import CadSource
-from interchange.records.RecordTopology import TopologyCounts
-from interchange.compatibility.PythonCompat import BindCompatMut
-from interchange.compatibility.PublicMetadata import (
+from interchange.Core.Common import FreezeMapping, KJsonScalar, KJsonValue
+from interchange.Enums.EnumDocument import Capability, Severity
+from interchange.Enums.EnumFeatures import BooleanOp, FeatureKind
+from interchange.Enums.EnumGeometry import ConstraintKind, GeometryKind
+from interchange.Enums.EnumUnits import UnitSystem
+from interchange.Enums.EnumValues import ParameterRole, ValueKind
+from interchange.Records.RecordConfig import Configuration, ParamOverride
+from interchange.Records.RecordDiagnostic import Diagnostic
+from interchange.Records.RecordParameter import Expression, Parameter, ParameterValue
+from interchange.Records.RecordProvenance import Provenance, ProvenanceSpan
+from interchange.Records.RecordSource import CadSource
+from interchange.Records.RecordTopology import TopologyCounts
+from interchange.Compatibility.PythonCompat import BindCompatMut
+from interchange.Compatibility.PublicMetadata import (
     BindFunctionMut,
     BindModules,
     BindNameMut,
 )
-from interchange.geometry.models.Vectors import (
+from interchange.geometry.Models.Vectors import (
     BoundingBox,
     PlaneVector,
     SpaceVector,

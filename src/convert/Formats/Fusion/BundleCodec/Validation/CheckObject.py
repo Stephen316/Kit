@@ -1,0 +1,28 @@
+from convert.Formats.Fusion.AssetCodec.Zip.ZipNames import EncodeZipName
+from convert.Formats.Fusion.BundleCodec.Model.BundleObject import BundleObject
+from convert.Formats.Fusion.BundleCodec.Validation.CheckRefs import CheckRefs
+
+
+# invalid object input must fail here so linked archive members retain their document relationships
+def CheckObject(Value: BundleObject, ObjectIds: set[int]) -> None:
+    _ = EncodeZipName(Value.MemberPath)
+    if (
+        "/" in Value.MemberPath
+        or Value.DownloadAs != Value.MemberPath
+        or not Value.MemberPath.endswith("." + Value.ContentType)
+        or Value.Version < 1
+        or Value.ObjectId < 1
+    ):
+        raise ValueError("Invalid Fusion bundle document identity")
+    if not Value.VersionUrn.endswith(f"?version={Value.Version}"):
+        raise ValueError("Fusion bundle version URN disagrees")
+    if not Value.LineageUrn.startswith("urn:") or not Value.VersionUrn.startswith(
+        "urn:"
+    ):
+        raise ValueError("Invalid Fusion bundle lineage or version URN")
+    if not Value.StorageUrn.startswith("urn:adsk.objects:os.object:"):
+        raise ValueError("Invalid Fusion bundle storage URN")
+    if len({Group.KindValue for Group in Value.References}) != len(Value.References):
+        raise ValueError("Duplicate Fusion bundle reference group")
+    for Group in Value.References:
+        CheckRefs(Group, ObjectIds)

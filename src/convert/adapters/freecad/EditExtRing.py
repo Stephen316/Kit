@@ -1,10 +1,10 @@
 from convert.adapters.base.WriteValidate import IsObjectTuple
 from convert.adapters.freecad.EditRing.RingInputs import ReadRingInput
-from convert.formats.Fusion.Profiles.ProfileRef import KLoopGuid, KProfileGuid
-from interchange.enums.EnumFeatures import FeatureKind
-from interchange.features.FeatureStep import FeatureStep
-from interchange.geometry.models.GeometryCurves import LineGeometry
-from interchange.geometry.models.Sketch import Sketch
+from convert.Formats.Fusion.Profiles.ProfileRef import KLoopGuid, KProfileGuid
+from interchange.Enums.EnumFeatures import FeatureKind
+from interchange.Features.FeatureStep import FeatureStep
+from interchange.geometry.Models.GeometryCurves import LineGeometry
+from interchange.geometry.Models.Sketch import Sketch
 
 
 # only native whole profile membership can identify an editable line ring

@@ -16,8 +16,8 @@ from pathlib import Path
 BASE = Path(__file__).resolve().parent
 ROOT = BASE.parents[4]
 sys.path.insert(0, str(ROOT / 'src'))
-from convert.formats.Fusion.TSplineCodec.EmitTspline import EmitTspline  # noqa: E402
-from convert.formats.Fusion.TSplineCodec.ReadTspline import ReadTspline  # noqa: E402
+from convert.Formats.Fusion.TSplineCodec.EmitTspline import EmitTspline  # noqa: E402
+from convert.Formats.Fusion.TSplineCodec.ReadTspline import ReadTspline  # noqa: E402
 
 TARGET = ROOT / 're/Fusion/LocalOracle/FormDocuments/Partition'
 SOURCES = {name: ROOT / 're/Fusion/LocalOracle/FormDocuments/Stencil' / (name + '.tsm') for name in ('Mixed56', 'Mixed78')}

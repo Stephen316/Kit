@@ -3,13 +3,13 @@ from convert.adapters.freecad.EditShape.Prism.PrismExpected import (
     ExpectedPrism,
     RingKey,
 )
-from convert.geometry.Revolve.SweepVector import OffsetVector
-from interchange.brep.curves.BrepCurves import LineCurve
-from interchange.brep.surfaces.BrepSurfaces import PlaneSurface
-from interchange.brep.topology.BrepModel import BrepModel
-from interchange.brep.topology.BrepTopology import BrepCoedge, BrepEdge, BrepLoop
-from interchange.geometry.models.Transform import KTransformIdentity
-from interchange.geometry.models.VectorSpace import SpaceVector
+from convert.Geometry.Revolve.SweepVector import OffsetVector
+from interchange.brep.Curves.BrepCurves import LineCurve
+from interchange.brep.Surfaces.BrepSurfaces import PlaneSurface
+from interchange.brep.Topology.BrepModel import BrepModel
+from interchange.brep.Topology.BrepTopology import BrepCoedge, BrepEdge, BrepLoop
+from interchange.geometry.Models.Transform import KTransformIdentity
+from interchange.geometry.Models.VectorSpace import SpaceVector
 
 
 # expected loops retain neutral identity and orientation when native records use a different order

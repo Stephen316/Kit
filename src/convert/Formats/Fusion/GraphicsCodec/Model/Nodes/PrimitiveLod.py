@@ -1,0 +1,14 @@
+from convert.Formats.Fusion.GraphicsCodec.Model.Values.ObjectRef import ObjectRef
+from dataclasses import dataclass as MakeDataClass
+from convert.Formats.Fusion.GraphicsCodec.Model.Nodes.NodePayload import NodePayload
+
+
+# primitive lod needs an explicit state contract so display geometry retains its entity and scene relationships
+@MakeDataClass(frozen=True, slots=True)
+class PrimitiveLod:
+    NodeData: NodePayload
+    LodMask: int
+    Geometry: ObjectRef | None
+    Bounds: tuple[float, ...]
+    UseClosest: bool
+    Primitive: ObjectRef | None

@@ -1,0 +1,13 @@
+from convert.Formats.Fusion.GeometryCodec.EntityRef import EntityRef
+from convert.Formats.Fusion.GeometryCodec.GeometryRecord import GeometryRecord
+from convert.Formats.Fusion.GeometryCodec.GeometryValue import KGeometryValue
+
+
+# the offset record contract needs a shared interpretation so topology identity survives native history reconstruction
+def OffsetRecord(Record: GeometryRecord) -> GeometryRecord:
+    Values: list[KGeometryValue] = []
+    for Value in Record.Fields:
+        if isinstance(Value, EntityRef) and Value.Index >= 2:
+            Value = EntityRef(Value.Index + 2)
+        Values.append(Value)
+    return GeometryRecord(Record.NameValue, tuple(Values))

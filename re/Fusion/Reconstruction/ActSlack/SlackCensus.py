@@ -8,11 +8,11 @@ from pathlib import Path
 BASE = Path(__file__).resolve().parent
 ROOT = BASE.parents[3]
 sys.path.insert(0, str(ROOT / 'src'))
-from convert.formats.Fusion.ContainerCodec.ReadContainer import ReadContainer
-from convert.formats.Fusion.DocumentCodec.EmitParsed import EmitParsed
-from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
-from convert.formats.Fusion.DocumentCodec.Records.EmitDocSegment import EmitDocSegment
-from convert.formats.Fusion.MetaIndex import SegmentKind
+from convert.Formats.Fusion.ContainerCodec.ReadContainer import ReadContainer
+from convert.Formats.Fusion.DocumentCodec.EmitParsed import EmitParsed
+from convert.Formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
+from convert.Formats.Fusion.DocumentCodec.Records.EmitDocSegment import EmitDocSegment
+from convert.Formats.Fusion.MetaIndex import SegmentKind
 
 PATTERNS = ('re/Fusion/LocalOracle/**/*.f3d', 'tests/**/*.f3d')
 FOCUS = BASE / 'SlackFocus.txt'

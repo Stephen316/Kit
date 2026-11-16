@@ -103,9 +103,9 @@ See [result evaluation](../../Tasks/InspectResult.md).
 
 ## Sources
 
-- [Adapter implementation](../../../src/convert/adapters/solidworks/core/Adapter.py)
-- [Format metadata](../../../src/convert/adapters/solidworks/container/Format.py)
-- [Container](../../../src/convert/adapters/solidworks/container/Container.py)
-- [Archive](../../../src/convert/adapters/solidworks/container/Archive.py)
+- [Adapter implementation](../../../src/convert/adapters/solidworks/Core/Adapter.py)
+- [Format metadata](../../../src/convert/adapters/solidworks/Container/Format.py)
+- [Container](../../../src/convert/adapters/solidworks/Container/Container.py)
+- [Archive](../../../src/convert/adapters/solidworks/Container/Archive.py)
 - [Research grammar](../../../re/solidworks/archive/Grammar.md)
 - [SOLIDWORKS research index](../../../re/solidworks/README.md)

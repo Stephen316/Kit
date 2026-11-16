@@ -3,8 +3,8 @@
 `BrepCodec.Frustum` adds a qualified reader and independent writer for the 35-record circular-frustum history profile. It recovers the semantic lower/upper radii, height and placement; body and topology identities; two-state insertion journal; provenance strings; and explicit cone/rim parameterization. It generates every record from those typed values without retaining source records, payload blocks, templates or a CAD runtime dependency.
 
 ```python
-from convert.formats.Fusion.BrepCodec.Frustum.EmitFrustumHist import EmitFrustumHist
-from convert.formats.Fusion.BrepCodec.Frustum.ReadFrustumHist import ReadFrustumHist
+from convert.Formats.Fusion.BrepCodec.Frustum.EmitFrustumHist import EmitFrustumHist
+from convert.Formats.Fusion.BrepCodec.Frustum.ReadFrustumHist import ReadFrustumHist
 
 Parsed = ReadFrustumHist(HistoryBytes)
 Rebuilt = EmitFrustumHist(

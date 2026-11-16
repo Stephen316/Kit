@@ -13,8 +13,8 @@ from convert.adapters.freecad.EditRead.Revolve.ReadRevFields import ReadRevField
 from convert.adapters.freecad.EditRev.ApplyRevEdit import ApplyRevEdit
 from convert.adapters.freecad.EditRev.RevBinding import KRevBinding
 from convert.adapters.freecad.EditRev.RevCacheProof import CheckRevSolid, CheckRevWire
-from interchange.document.models.DocumentModel import CadDocument
-from interchange.features.FeatureAngleRev import AngularRevolve
+from interchange.document.Models.DocumentModel import CadDocument
+from interchange.Features.FeatureAngleRev import AngularRevolve
 
 
 # only a saved solid and profile consistent with all native controls may replace the snapshot

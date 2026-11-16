@@ -8,7 +8,7 @@ from convert.adapters.base.WriteResult import WriteResult
 from convert.adapters.json.Metadata import JsonMetadata
 from convert.adapters.json.Reader import JsonReader
 from convert.adapters.json.Writer import JsonWriter
-from interchange.document.models.DocumentModel import CadDocument
+from interchange.document.Models.DocumentModel import CadDocument
 
 
 # compat protocol marker exempts paired wrappers from naming constraints

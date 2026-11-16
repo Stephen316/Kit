@@ -3,15 +3,15 @@ from convert.adapters.freecad.EditExtScope import (
     HasEditState,
     ReadSketchInput,
 )
-from convert.formats.Fusion.Revolves.SketchAxis import KFrameGuid, KSketchGuid
-from convert.formats.Fusion.Sketches.SketchPlacement import KSketchBase, KSketchFeature
-from interchange.document.models.DocumentModel import CadDocument
-from interchange.enums.EnumFeatures import BooleanOp, FeatureKind
-from interchange.enums.EnumUnits import UnitSystem
-from interchange.features.FeatureStep import FeatureStep
-from interchange.geometry.models.Sketch import Sketch
-from interchange.geometry.models.SupportPlane import SupportPlane
-from interchange.payloads.PayloadRoles import PayloadRole
+from convert.Formats.Fusion.Revolves.SketchAxis import KFrameGuid, KSketchGuid
+from convert.Formats.Fusion.Sketches.SketchPlacement import KSketchBase, KSketchFeature
+from interchange.document.Models.DocumentModel import CadDocument
+from interchange.Enums.EnumFeatures import BooleanOp, FeatureKind
+from interchange.Enums.EnumUnits import UnitSystem
+from interchange.Features.FeatureStep import FeatureStep
+from interchange.geometry.Models.Sketch import Sketch
+from interchange.geometry.Models.SupportPlane import SupportPlane
+from interchange.Payloads.PayloadRoles import PayloadRole
 
 
 # this native route owns exactly two linked solids in the same standalone history

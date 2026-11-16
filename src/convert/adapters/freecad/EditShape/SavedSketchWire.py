@@ -2,17 +2,17 @@ from convert.adapters.freecad.EditShape.Sketch.MatchWireEdges import IsEdgeMatch
 from convert.adapters.freecad.EditShape.Sketch.SavedWireData import ReadSavedWire
 from convert.adapters.freecad.EditShape.Sketch.WireMatch import KSketchCurve
 from convert.adapters.freecad.EditShape.Sketch.WireProof import ReadRootMut
-from convert.geometry.Extrude.Polygon.PrismFrame import PlacePrismPoint
-from convert.geometry.Opencascade import DecodeFailure
-from interchange.geometry.models.GeometryCurves import (
+from convert.Geometry.Extrude.Polygon.PrismFrame import PlacePrismPoint
+from convert.Geometry.Opencascade import DecodeFailure
+from interchange.geometry.Models.GeometryCurves import (
     ArcGeometry,
     CircleGeometry,
     LineGeometry,
     PointGeometry,
 )
-from interchange.geometry.models.Sketch import Sketch
-from interchange.geometry.models.Transform import Transform
-from interchange.geometry.models.VectorSpace import SpaceVector
+from interchange.geometry.Models.Sketch import Sketch
+from interchange.geometry.Models.Transform import Transform
+from interchange.geometry.Models.VectorSpace import SpaceVector
 
 # analytic sketch archives remain bounded before reading native shape tokens
 KMaxSketchBytes = 262_144

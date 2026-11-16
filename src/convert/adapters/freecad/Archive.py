@@ -1,5 +1,5 @@
 from __future__ import annotations as Annotations
-from interchange.geometry.models.VectorSpace import SpaceVector
+from interchange.geometry.Models.VectorSpace import SpaceVector
 from collections.abc import Callable, Sequence as ValueSequence
 import base64 as BaseSixFour
 import copy as CopyValue
@@ -35,7 +35,7 @@ from convert.adapters.freecad.ArchiveEditPlan import (
 )
 from convert.adapters.freecad.EditDatum.DatumBinding import KDatumGroup
 from convert.adapters.freecad.EditDatum.DatumPlan import ReadDatumPlan
-from interchange.features.FeatureBoundPlane import BoundDatum
+from interchange.Features.FeatureBoundPlane import BoundDatum
 from interchange.serialization.Wire import GetWireType
 from convert.adapters.freecad.EditAxisRev.AxisRevBinding import KAxisRevBinding
 from convert.adapters.freecad.EditAxisRev.AxisRevExpr import AxisAngleExpr

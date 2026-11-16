@@ -2,8 +2,8 @@ from collections.abc import Mapping
 from dataclasses import fields as DataFields, is_dataclass as IsDataClass
 from typing import cast as CastValue
 
-from interchange.document.models.DocumentModel import CadDocument
-from interchange.enums.EnumBase import WireEnum
+from interchange.document.Models.DocumentModel import CadDocument
+from interchange.Enums.EnumBase import WireEnum
 
 
 # qualified geometry comparisons must preserve semantics while excluding incidental provenance and annotations

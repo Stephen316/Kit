@@ -1,8 +1,8 @@
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[4]
-BASE = ROOT / 'src/convert/formats/Fusion/GraphicsCodec'
-PREFIX = 'convert.formats.Fusion.GraphicsCodec.Model.'
+BASE = ROOT / 'src/convert/Formats/Fusion/GraphicsCodec'
+PREFIX = 'convert.Formats.Fusion.GraphicsCodec.Model.'
 MODELS = {
  'Values/ObjectRef': ('', 'ClassName: str\nObjectId: str'),
  'Values/EntityRef': ('', 'SegmentId: int\nObjectId: int'),

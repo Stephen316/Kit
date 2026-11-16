@@ -1,7 +1,7 @@
 from collections.abc import Mapping, Set as AbstractSet
 
 from convert.adapters.freecad.BrepGraph import ModelGraph, Unsupported
-from interchange.brep.topology.BrepModel import BrepModel
+from interchange.brep.Topology.BrepModel import BrepModel
 
 
 # shared edge parity alone cannot decide the outward side of newly supported curved shells

@@ -27,10 +27,10 @@ from convert.adapters.freecad.EditRead.Revolve.RevGraphLinks import (
 )
 from convert.adapters.freecad.EditRead.Sketch.SketchDefaults import CheckExtensions
 from convert.adapters.freecad.Native import NativeObject
-from interchange.document.models.DocumentModel import CadDocument
-from interchange.features.FeaturePlaneRev import PlaneRevolve
-from interchange.geometry.models.SupportPlane import SupportPlane
-from interchange.geometry.models.Transform import KTransformIdentity
+from interchange.document.Models.DocumentModel import CadDocument
+from interchange.Features.FeaturePlaneRev import PlaneRevolve
+from interchange.geometry.Models.SupportPlane import SupportPlane
+from interchange.geometry.Models.Transform import KTransformIdentity
 
 
 # resolved feature and cache identities precede interpretation of changed native controls

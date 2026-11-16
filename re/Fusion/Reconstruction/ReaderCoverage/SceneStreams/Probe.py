@@ -6,9 +6,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[5]
 sys.path.insert(0, str(ROOT / 'src'))
 
-from convert.formats.Fusion.GraphicsCodec.Model.State.GraphicsStream import GraphicsStream
-from convert.formats.Fusion.GraphicsCodec.Wire.SceneCodec import SceneCodec
-from convert.formats.Fusion.GraphicsCodec.Worlds.XferWorldMut import XferWorldMut
+from convert.Formats.Fusion.GraphicsCodec.Model.State.GraphicsStream import GraphicsStream
+from convert.Formats.Fusion.GraphicsCodec.Wire.SceneCodec import SceneCodec
+from convert.Formats.Fusion.GraphicsCodec.Worlds.XferWorldMut import XferWorldMut
 
 PREFIX = 'FusionAssetName[Active]/OGS.BlobFolder/OGS/DefaultScene/'
 

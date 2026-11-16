@@ -21,7 +21,7 @@ import BuildPruned4  # noqa: E402
 import BuildVariants  # noqa: E402
 from PruneDwg import Graph, prune  # noqa: E402
 
-from convert.formats.Fusion.DrawingCodec.Dwg.ReadDwgFile import ReadDwgFile  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.ReadDwgFile import ReadDwgFile  # noqa: E402
 
 
 def main():

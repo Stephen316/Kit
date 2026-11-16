@@ -5,12 +5,12 @@ from convert.adapters.freecad.EditPlaneRev.PlaneRevPlan import PlaneRevPlan
 from convert.adapters.freecad.EditRev.ApplyRevEdit import SetRevAngle
 from convert.adapters.freecad.EditRev.RebuildRevDoc import RebuildRevDoc
 from convert.adapters.freecad.EditRing.RingChange import CheckRingEdit
-from convert.formats.Fusion.AnglePlane.AnglePlaneBasis import RotatePlane
-from convert.formats.Fusion.Revolves.PlaneRevInputs import ProfileLines
-from convert.formats.Fusion.Revolves.PlaneSweep import DerivePlaneSpan
-from interchange.document.models.DocumentModel import CadDocument
-from interchange.features.FeaturePlaneRev import PlaneRevolve
-from interchange.geometry.models.Sketch import Sketch
+from convert.Formats.Fusion.AnglePlane.AnglePlaneBasis import RotatePlane
+from convert.Formats.Fusion.Revolves.PlaneRevInputs import ProfileLines
+from convert.Formats.Fusion.Revolves.PlaneSweep import DerivePlaneSpan
+from interchange.document.Models.DocumentModel import CadDocument
+from interchange.Features.FeaturePlaneRev import PlaneRevolve
+from interchange.geometry.Models.Sketch import Sketch
 
 
 # the saved scalars rebuild authored planes before the selected sweep is reevaluated

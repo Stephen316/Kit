@@ -1,0 +1,26 @@
+from convert.Formats.Fusion.BrepCodec.Journal.Complex.Grammar.ReadRuleMut import (
+    ReadSubtypeMut,
+)
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.IntcurveNode import (
+    IntcurveNode,
+)
+from convert.Formats.Fusion.BrepCodec.Journal.Reading.FieldCursor import FieldCursor
+from convert.Formats.Fusion.BrepCodec.Journal.Reading.Fields.IsLogicalMut import (
+    IsLogicalMut,
+)
+from convert.Formats.Fusion.BrepCodec.Journal.Reading.Fields.ReadBoundMut import (
+    ReadBoundMut,
+)
+from convert.Formats.Fusion.BrepCodec.Journal.Reading.Fields.ReadPrefixMut import (
+    ReadPrefixMut,
+)
+
+
+# the intcurve operation needs a distinct decoding boundary so topology changes retain their native revision relationships
+def ReadIntcurve(Cursor: FieldCursor) -> IntcurveNode:
+    Prefix = ReadPrefixMut(Cursor)
+    Reversed = IsLogicalMut(Cursor)
+    Curve = ReadSubtypeMut(Cursor, "curve")
+    Lower = ReadBoundMut(Cursor)
+    Upper = ReadBoundMut(Cursor)
+    return IntcurveNode(Prefix, Reversed, Curve, Lower, Upper)

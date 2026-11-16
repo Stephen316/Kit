@@ -1,0 +1,29 @@
+from dataclasses import asdict as DataMapping
+from hashlib import sha256 as HashBytes
+from json import dumps as DumpJson
+
+from pytest import mark as MarkTests
+
+from convert.Formats.Fusion.TSplineCodec.EmitTspline import EmitTspline
+from convert.Formats.Fusion.TSplineCodec.ReadTspline import ReadTspline
+from tests.Convert.Formats.FusionCodec.TSpline.ReadTsmCases import ReadTsmCases
+from tests.Convert.Formats.FusionCodec.TSpline.ReadTsmFile import ReadTsmFile
+from tests.Convert.Formats.FusionCodec.TSpline.TsmCase import TsmCase
+
+
+# the tsm archive contract needs boundary coverage so stored document relationships remain consistent
+@MarkTests.parametrize(
+    "CaseValue", ReadTsmCases(), ids=lambda CaseValue: CaseValue["Name"]
+)
+def TestTsmArchive(CaseValue: TsmCase) -> None:
+    Payload = ReadTsmFile(CaseValue)
+    Model = ReadTspline(Payload)
+    Encoded = DumpJson(
+        DataMapping(Model), sort_keys=True, separators=(",", ":"), allow_nan=False
+    ).encode()
+    assert HashBytes(Encoded).hexdigest() == CaseValue["SemanticHash"]
+    assert len(Model.Topology.Faces) == CaseValue["Faces"]
+    assert len(Model.Topology.Vertices) == CaseValue["Vertices"]
+    assert len(Model.Grips) == CaseValue["Grips"]
+    assert EmitTspline(Model) == Payload
+    assert ReadTspline(EmitTspline(Model)) == Model

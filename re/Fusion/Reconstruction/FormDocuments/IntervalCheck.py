@@ -17,9 +17,9 @@ ROOT = BASE.parents[3]
 sys.path.insert(0, str(ROOT / 'src'))
 sys.path.insert(0, str(BASE / 'Cages'))
 from ReadConverted import ReadConverted
-from convert.formats.Fusion.BrepCodec.Journal.Spline.Conversion.GridJumps import SpanThirds
-from convert.formats.Fusion.BrepCodec.Journal.Spline.Converted.ConvertForm import ConvertForm
-from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.Conversion.GridJumps import SpanThirds
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.Converted.ConvertForm import ConvertForm
+from convert.Formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
 
 WORK = ROOT / 're/Fusion/LocalOracle/FormDocuments/Intervals'
 

@@ -14,10 +14,10 @@ from convert.adapters.freecad.EditRead.Sketch.RuleOperands import (
 from convert.adapters.freecad.EditRead.Sketch.SavedRuleTable import SavedRuleRow
 from convert.adapters.freecad.Protocol import KRuleValueKindByCode
 from convert.adapters.freecad.SketchRuleValue import GetRuleSign
-from convert.geometry.Formula.FormulaUnits import GetQuantity
-from interchange.enums.EnumValues import ValueKind
-from interchange.geometry.models.Sketch import SketchRelation
-from interchange.records.RecordParameter import Parameter
+from convert.Geometry.Formula.FormulaUnits import GetQuantity
+from interchange.Enums.EnumValues import ValueKind
+from interchange.geometry.Models.Sketch import SketchRelation
+from interchange.Records.RecordParameter import Parameter
 
 
 # native angle orientation follows the directed line order rather than an unsigned acos

@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Mapping as TypeMap
 
-from interchange.core.Common import FreezeMapping
+from interchange.Core.Common import FreezeMapping
 
 
 # enforced write values prevent callers from weakening portable self contained output guarantees

@@ -15,6 +15,30 @@ Push task branches with `--no-verify`.
 Run tests only in remote CI.
 Unit tests are prohibited by repository policy.
 
+## Code paths
+
+Path policies scan the complete tracked tree in PR and merge-group CI.
+File stems use PascalCase ASCII letters without digits.
+Directories contain at most 32 direct tracked files.
+Internal directories under `src/`, `tools/`, `typings/`, and `tests/` also use PascalCase ASCII letters without digits.
+The code roots retain their conventional spelling.
+
+Existing public package identities and the external `defusedxml` stub identity retain their exact lowercase names.
+The [compatibility directory list](../../../tools/Policy/CompatDirs.py) records each allowed path.
+An exception applies only to that directory.
+Its internal descendants must pass the directory rule.
+New lowercase packages cannot inherit an exception from a public ancestor.
+
+Use the complete index scan after staging path changes:
+
+```sh
+uv run python -m tools.Policy.CheckPaths
+```
+
+The checker reports `PTH001` for filenames, `PTH002` for directory density, and `PTH003` for internal directory names.
+The [directory migration](../../Changes/Policy/CodeDirectoryCasing.md) describes the renamed internal packages.
+See [directory casing coverage](../../Gotchas/Authoring/FileChecksMissDirectoryCasing.md) before interpreting older full-tree results.
+
 ## Documentation
 
 Each repository addition requires a new [change entry](../../Changes/Index.md).

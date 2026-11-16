@@ -6,11 +6,11 @@ sys.path.insert(0, str(BASE))
 
 from CacheSpy import ROOT, where
 
-from convert.formats.Fusion.BundleCodec.ReadBundle import ReadBundle
-from convert.formats.Fusion.DocumentCodec.EmitParsed import EmitParsed
-from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
-from convert.formats.Fusion.DocumentCodec.Auxiliary.Graphics.EmitSceneParts import EmitSceneParts
-from convert.formats.Fusion.ContainerCodec.ReadContainer import ReadContainer
+from convert.Formats.Fusion.BundleCodec.ReadBundle import ReadBundle
+from convert.Formats.Fusion.DocumentCodec.EmitParsed import EmitParsed
+from convert.Formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
+from convert.Formats.Fusion.DocumentCodec.Auxiliary.Graphics.EmitSceneParts import EmitSceneParts
+from convert.Formats.Fusion.ContainerCodec.ReadContainer import ReadContainer
 
 BUNDLES = ('re/Fusion/examples/.f3z/example1.f3z', 're/Fusion/LocalOracle/Bundles/kit_production_example1.f3z')
 

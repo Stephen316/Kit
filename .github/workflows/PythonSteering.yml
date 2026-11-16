@@ -69,8 +69,8 @@ jobs:
       - name: Verify tracked Python sources
         run: |
           mapfile -d '' PythonFiles < <(git ls-files -z -- '*.py')
-          uv run python -m tools.steering.SteeringCompliance \
-            --baseline-file tools/steering/SteeringBaseline.txt \
+          uv run python -m tools.Steering.SteeringCompliance \
+            --baseline-file tools/Steering/SteeringBaseline.txt \
             "${PythonFiles[@]}"
 
       - name: Verify no recorded payloads

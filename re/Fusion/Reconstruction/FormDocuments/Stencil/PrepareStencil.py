@@ -9,11 +9,11 @@ from pathlib import Path
 BASE = Path(__file__).resolve().parent
 ROOT = BASE.parents[4]
 sys.path.insert(0, str(ROOT / 'src'))
-from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
-from convert.formats.Fusion.TSplineCodec.EmitTspline import EmitTspline
-from convert.formats.Fusion.TSplineCodec.MakeClosedCage import MakeClosedCage
-from convert.formats.Fusion.TSplineCodec.Model.ControlGrip import ControlGrip
-from convert.formats.Fusion.TSplineCodec.ReadTspline import ReadTspline
+from convert.Formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
+from convert.Formats.Fusion.TSplineCodec.EmitTspline import EmitTspline
+from convert.Formats.Fusion.TSplineCodec.MakeClosedCage import MakeClosedCage
+from convert.Formats.Fusion.TSplineCodec.Model.ControlGrip import ControlGrip
+from convert.Formats.Fusion.TSplineCodec.ReadTspline import ReadTspline
 
 TARGET = ROOT / 're/Fusion/LocalOracle/FormDocuments/Stencil'
 WORK = TARGET / 'tmp'

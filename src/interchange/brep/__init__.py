@@ -1,4 +1,4 @@
-from interchange.brep.curves.BrepCurves import (
+from interchange.brep.Curves.BrepCurves import (
     BrepCurve,
     BrepEntity,
     CircleCurve,
@@ -8,15 +8,15 @@ from interchange.brep.curves.BrepCurves import (
     NativeCurve,
     NurbsCurve,
 )
-from interchange.brep.topology.BrepModel import BrepModel
-from interchange.brep.curves.BrepPcurves import (
+from interchange.brep.Topology.BrepModel import BrepModel
+from interchange.brep.Curves.BrepPcurves import (
     BrepPcurve,
     CirclePcurve,
     LinePcurve,
     NativePcurve,
     NurbsPcurve,
 )
-from interchange.brep.surfaces.BrepSurfaces import (
+from interchange.brep.Surfaces.BrepSurfaces import (
     BrepSurface,
     ConeSurface,
     CylinderSurface,
@@ -27,7 +27,7 @@ from interchange.brep.surfaces.BrepSurfaces import (
     SphereSurface,
     TorusSurface,
 )
-from interchange.brep.topology.BrepTopology import (
+from interchange.brep.Topology.BrepTopology import (
     BrepBody,
     BrepCoedge,
     BrepEdge,
@@ -40,8 +40,8 @@ from interchange.brep.topology.BrepTopology import (
     BrepVertex,
     BrepWire,
 )
-from interchange.compatibility.PythonCompat import BindCompatMut
-from interchange.compatibility.PythonCompatBrepMethods import BindBrepMut
+from interchange.Compatibility.PythonCompat import BindCompatMut
+from interchange.Compatibility.PythonCompatBrepMethods import BindBrepMut
 
 BindCompatMut(
     (

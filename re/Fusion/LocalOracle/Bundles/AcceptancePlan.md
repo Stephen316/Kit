@@ -90,7 +90,7 @@ They were read as source text without importing the native API.
 The passing Pyright invocation used the repository root as its working directory:
 
 ```sh
-uv run --python 3.14 --no-project --with 'pyright==1.1.414' --with 'pytest==9.1.1' python -m pyright src/convert/formats/Fusion/BundleCodec tests/convert/formats/FusionCodec/Bundles
+uv run --python 3.14 --no-project --with 'pyright==1.1.414' --with 'pytest==9.1.1' python -m pyright src/convert/Formats/Fusion/BundleCodec tests/Convert/Formats/FusionCodec/Bundles
 ```
 
 Both Pyright and Pytest are installed in the same temporary `uv` Python environment.

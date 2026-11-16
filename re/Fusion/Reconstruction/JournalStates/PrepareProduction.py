@@ -9,10 +9,10 @@ from zipfile import ZIP_DEFLATED, ZipFile
 ROOT = Path(__file__).resolve().parents[4]
 sys.path.insert(0, str(ROOT / 'src'))
 
-from convert.formats.Fusion.BrepCodec.Journal.EmitJournal import EmitJournal
-from convert.formats.Fusion.BrepCodec.Journal.Materialize import Materialize
-from convert.formats.Fusion.BrepCodec.Journal.PermuteJournal import PermuteJournal
-from convert.formats.Fusion.BrepCodec.Journal.ReadJournal import ReadJournal
+from convert.Formats.Fusion.BrepCodec.Journal.EmitJournal import EmitJournal
+from convert.Formats.Fusion.BrepCodec.Journal.Materialize import Materialize
+from convert.Formats.Fusion.BrepCodec.Journal.PermuteJournal import PermuteJournal
+from convert.Formats.Fusion.BrepCodec.Journal.ReadJournal import ReadJournal
 
 
 def main():

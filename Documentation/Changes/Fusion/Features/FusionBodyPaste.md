@@ -3,11 +3,11 @@
 `PasteSpec(SourceBody, FeatureName)` copies a visible body of a part in place. Fusion writes it as the timeline item that `comp.features.copyPasteBodies.add(body)` makes. The copy is a new visible body, and it follows its source when the source changes.
 
 ```python
-from convert.formats.Fusion.DocumentCodec.EmitDocument import EmitDocument
-from convert.formats.Fusion.DocumentCodec.Model.DocumentSpec import DocumentSpec
-from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.ExtrudeSpec import ExtrudeSpec
-from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.LineCurve import LineCurve
-from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.PasteSpec import PasteSpec
+from convert.Formats.Fusion.DocumentCodec.EmitDocument import EmitDocument
+from convert.Formats.Fusion.DocumentCodec.Model.DocumentSpec import DocumentSpec
+from convert.Formats.Fusion.DocumentCodec.PartFeatures.Model.ExtrudeSpec import ExtrudeSpec
+from convert.Formats.Fusion.DocumentCodec.PartFeatures.Model.LineCurve import LineCurve
+from convert.Formats.Fusion.DocumentCodec.PartFeatures.Model.PasteSpec import PasteSpec
 
 Corners = ((0.0, 0.0), (40.0, 0.0), (40.0, 30.0), (0.0, 30.0))
 Block = ExtrudeSpec(
@@ -49,14 +49,14 @@ Every emitted value comes from the vocabulary or from the part. Identifiers are 
 
 Each case ran in Fusion 2706.1.17 with no document open before or after the run. Every check matched the native control: the opened document, every rollback marker, `computeAll`, the edit, the reopened export and its `computeAll`. The base is a 40 × 30 × 20 mm block. Volumes are those of the opened Kit document after `computeAll`. Each edit changes the source, and the copy follows it.
 
-| Case | Features | Volume (cm³) | Faces, edges, vertices | Edits | Edited volume (cm³) |
-| --- | --- | ---: | --- | --- | ---: |
-| `PastePlain` | block, paste of the block | 2 × 24.00000000 | 6, 12, 8 each | Base extrude AlongDistance 25 mm | 2 × 30.00000000 |
-| `PasteFillet` | block, 3 mm round on one vertical edge, paste of the block | 2 × 23.96137167 | 7, 15, 10 each | Corner round 4 mm | 2 × 23.93132741 |
-| `PasteTwice` | block, two pastes of the block | 3 × 24.00000000 | 6, 12, 8 each | Base extrude AlongDistance 15 mm | 3 × 18.00000000 |
-| `PasteSecond` | block, 5 mm radius post as a new body, paste of the post | 24.00000000 + 2 × 1.57079633 | 6, 12, 8; 3, 2, 2 each | Post extrude AlongDistance 15 mm | 24.00000000 + 2 × 1.17809725 |
-| `PastePocket` | block, 3 mm radius pocket, paste of the block | 2 × 23.43451332 | 7, 14, 10 each | Pocket extrude AlongDistance 10 mm | 2 × 23.71725666 |
-| `PasteCombine` | block, 10 mm radius post on a block corner as a new body, paste of the post, cut of the block by the copy | 22.42920367 + 6.28318531 | 7, 15, 10; 3, 2, 2 | Post extrude AlongDistance 30 mm | 22.42920367 + 9.42477796 |
+| Case           | Features                                                                                                  |                 Volume (cm³) | Faces, edges, vertices | Edits                              |          Edited volume (cm³) |
+| -------------- | --------------------------------------------------------------------------------------------------------- | ---------------------------: | ---------------------- | ---------------------------------- | ---------------------------: |
+| `PastePlain`   | block, paste of the block                                                                                 |              2 × 24.00000000 | 6, 12, 8 each          | Base extrude AlongDistance 25 mm   |              2 × 30.00000000 |
+| `PasteFillet`  | block, 3 mm round on one vertical edge, paste of the block                                                |              2 × 23.96137167 | 7, 15, 10 each         | Corner round 4 mm                  |              2 × 23.93132741 |
+| `PasteTwice`   | block, two pastes of the block                                                                            |              3 × 24.00000000 | 6, 12, 8 each          | Base extrude AlongDistance 15 mm   |              3 × 18.00000000 |
+| `PasteSecond`  | block, 5 mm radius post as a new body, paste of the post                                                  | 24.00000000 + 2 × 1.57079633 | 6, 12, 8; 3, 2, 2 each | Post extrude AlongDistance 15 mm   | 24.00000000 + 2 × 1.17809725 |
+| `PastePocket`  | block, 3 mm radius pocket, paste of the block                                                             |              2 × 23.43451332 | 7, 14, 10 each         | Pocket extrude AlongDistance 10 mm |              2 × 23.71725666 |
+| `PasteCombine` | block, 10 mm radius post on a block corner as a new body, paste of the post, cut of the block by the copy |     22.42920367 + 6.28318531 | 7, 15, 10; 3, 2, 2     | Post extrude AlongDistance 30 mm   |     22.42920367 + 9.42477796 |
 
 The opened documents of the six cases have 4, 5, 5, 6, 6 and 7 rollback markers. Fusion left no stray document open.
 
@@ -66,10 +66,10 @@ The opened documents of the six cases have 4, 5, 5, 6, 6 and 7 rollback markers.
 
 ## Limits
 
-| Request                                                     | Status                     |
-| ----------------------------------------------------------- | -------------------------- |
-| Pastes of hidden bodies, tapered bodies or sweep bodies     | Rejected with `ValueError` |
-| Pastes of several bodies at once                            | Not authored               |
-| Pastes into another component or of a moved copy            | Not authored               |
-| Cut and paste, which moves the body instead of copying it   | Not authored               |
-| The hidden body snapshot in the cache bodies part           | Not written; Fusion rebuilds it on recompute |
+| Request                                                   | Status                                       |
+| --------------------------------------------------------- | -------------------------------------------- |
+| Pastes of hidden bodies, tapered bodies or sweep bodies   | Rejected with `ValueError`                   |
+| Pastes of several bodies at once                          | Not authored                                 |
+| Pastes into another component or of a moved copy          | Not authored                                 |
+| Cut and paste, which moves the body instead of copying it | Not authored                                 |
+| The hidden body snapshot in the cache bodies part         | Not written; Fusion rebuilds it on recompute |

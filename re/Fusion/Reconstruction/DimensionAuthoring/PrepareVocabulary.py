@@ -7,7 +7,7 @@ import sys
 
 sys.dont_write_bytecode = True
 Root = Path(__file__).resolve().parents[4]
-Source = Root / "src/convert/formats/Fusion/EntityCodec/Vocabulary/NativeClasses.xz"
+Source = Root / "src/convert/Formats/Fusion/EntityCodec/Vocabulary/NativeClasses.xz"
 Evidence = Root / "re/Fusion/Reconstruction/SketchConstraints/ConstraintGraphs.json.xz"
 Archive = Root / "re/Fusion/LocalOracle/RectangleConstraints/WidthDepthDimensions.f3d"
 Catalog = json.loads(lzma.decompress(Source.read_bytes()))["Classes"]
@@ -24,7 +24,7 @@ for Name in Names:
     Declaration = next(Entry for Entry in Schemas.values() if Entry["className"] == Name + "MetaType")
     Entry = next(Entry for Entry in Catalog if Entry["ClassGuid"].upper() == Declaration["classId"] and Entry["SchemaVersion"] == Declaration["schemaVersion"])
     Selected.append(dict(Entry, NameValue=Name, ClassSpace=Spaces[Entry["ClassGuid"].upper()]))
-Target = Root / "src/convert/formats/Fusion/DocumentCodec/Rectangle/Dimensions/DimensionClasses.json"
+Target = Root / "src/convert/Formats/Fusion/DocumentCodec/Rectangle/Dimensions/DimensionClasses.json"
 Target.parent.mkdir(parents=True, exist_ok=True)
 Target.write_text(json.dumps(Selected, indent=2) + "\n")
 Report = {

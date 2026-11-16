@@ -19,8 +19,8 @@ The bundle layer does not claim to decode or convert a member's parametric or dr
 Import the public functions from their defining modules:
 
 ```python
-from convert.formats.Fusion.BundleCodec.EmitBundle import EmitBundle
-from convert.formats.Fusion.BundleCodec.ReadBundle import ReadBundle
+from convert.Formats.Fusion.BundleCodec.EmitBundle import EmitBundle
+from convert.Formats.Fusion.BundleCodec.ReadBundle import ReadBundle
 
 Bundle = ReadBundle(SourceBytes)
 OutputBytes = EmitBundle(Bundle)

@@ -6,15 +6,15 @@ from convert.adapters.freecad.EditShape.CylinderRims import (
 )
 from convert.adapters.freecad.EditShape.Prism.PrismExpected import ExpectedPrism
 from convert.adapters.freecad.EditShape.Prism.PrismRaw import KLocationChain, PrismRaw
-from convert.geometry.Opencascade import (
+from convert.Geometry.Opencascade import (
     DecodeFailure,
     EdgeData,
     LocationPoint,
     Reference,
     VertexData,
 )
-from convert.geometry.Revolve.SweepVector import OffsetVector
-from interchange.brep.curves.BrepCurves import LineCurve
+from convert.Geometry.Revolve.SweepVector import OffsetVector
+from interchange.brep.Curves.BrepCurves import LineCurve
 
 # the same native record at another location is a different topological instance
 KPlacedKey = tuple[int, KLocationChain]

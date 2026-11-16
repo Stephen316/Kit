@@ -6,18 +6,18 @@ ROOT = Path(__file__).resolve().parents[4]
 sys.path.insert(0, str(ROOT / 'src'))
 
 from convert.adapters.Fusion.State.EncodeState import EncodeState
-from convert.formats.Fusion.DocumentCodec.EmitDocument import EmitDocument
-from convert.formats.Fusion.DocumentCodec.Materials.Model.DirectionValue import DirectionValue
-from convert.formats.Fusion.DocumentCodec.Materials.Model.FinishSpec import FinishSpec
-from convert.formats.Fusion.DocumentCodec.Materials.Model.MaterialSpec import MaterialSpec
-from convert.formats.Fusion.DocumentCodec.Materials.Model.MechanicSpec import MechanicSpec
-from convert.formats.Fusion.DocumentCodec.Materials.Model.ThermalSpec import ThermalSpec
-from convert.formats.Fusion.DocumentCodec.Model.DocumentSpec import DocumentSpec
-from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
-from convert.formats.Fusion.MaterialCodec.Models.ColorValue import ColorValue
+from convert.Formats.Fusion.DocumentCodec.EmitDocument import EmitDocument
+from convert.Formats.Fusion.DocumentCodec.Materials.Model.DirectionValue import DirectionValue
+from convert.Formats.Fusion.DocumentCodec.Materials.Model.FinishSpec import FinishSpec
+from convert.Formats.Fusion.DocumentCodec.Materials.Model.MaterialSpec import MaterialSpec
+from convert.Formats.Fusion.DocumentCodec.Materials.Model.MechanicSpec import MechanicSpec
+from convert.Formats.Fusion.DocumentCodec.Materials.Model.ThermalSpec import ThermalSpec
+from convert.Formats.Fusion.DocumentCodec.Model.DocumentSpec import DocumentSpec
+from convert.Formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
+from convert.Formats.Fusion.MaterialCodec.Models.ColorValue import ColorValue
 
 FAMILIES = ROOT / 're/Fusion/LocalOracle/MaterialFamilies'
-VOCABULARY = ROOT / 'src/convert/formats/Fusion/DocumentCodec/Materials/Vocabulary/MaterialSchemas.json'
+VOCABULARY = ROOT / 'src/convert/Formats/Fusion/DocumentCodec/Materials/Vocabulary/MaterialSchemas.json'
 TO_SI = {
     'Kilopascal': 1e3, 'Pascal': 1.0, 'KilogramPerCubicMeter': 1.0, 'WattPerMeterKelvin': 1.0,
     'JoulePerGramCelsius': 1e3, 'JoulePerGram': 1e3, 'MicrometerPerMeterCelsius': 1e-6, 'InvCelsius': 1.0,

@@ -89,4 +89,4 @@ See [security boundaries](../Operations/Security.md).
 - [Wire data](../../../src/interchange/serialization/WireData.py)
 - [Field mappings](../../../src/interchange/serialization/WireFields.py)
 - [JSON codec](../../../src/interchange/serialization/JsonCodec.py)
-- [Payload model](../../../src/interchange/payloads/PayloadRecord.py)
+- [Payload model](../../../src/interchange/Payloads/PayloadRecord.py)

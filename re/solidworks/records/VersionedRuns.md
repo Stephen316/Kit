@@ -138,7 +138,7 @@ zero makes the body end land exactly on the parent's `scope_end` in all 27 trace
 `ClassLayoutsDecompiled.json` uses a `conditional` rule with `at = 48`, `predicate_at = 0`,
 `predicate_width = 1`, `width = 72`, `tail = 65`. `VerifyClassLayouts.py` adds `predicate_width` to
 the run length and gets 114 and 186, which are correct. `_element_length` in
-`src/convert/adapters/solidworks/container/Archive.py` returns `element.at + present + element.tail` and does
+`src/convert/adapters/solidworks/Container/Archive.py` returns `element.at + present + element.tail` and does
 not add `predicate_width`, so it gets 113 and 185. In donor `arcboss_cut_cut_cut_through` the class
 definition tag sits at 4285, the header is 27, the body starts at 4312 and the lead ends at 4426; the
 segmenter read its next tag at 4425, one byte early, and reported
@@ -200,7 +200,7 @@ then exact document version:
 ```
 
 `re/solidworks/records/LayoutSchema.md` still describes the older gate-first shape with
-greatest-key-below-V fallthrough; the code in `src/convert/adapters/solidworks/container/Archive.py` takes an
+greatest-key-below-V fallthrough; the code in `src/convert/adapters/solidworks/Container/Archive.py` takes an
 exact version match and falls back to `runs`. The entries here follow the code, and where a
 generation is genuinely unresolved its version is deliberately left out so the segmenter refuses with
 the version named instead of taking the other era's constant.

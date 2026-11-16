@@ -15,13 +15,13 @@ from convert.adapters.freecad.EditShape.Revolution.RevTrimProof import (
     FaceTrim,
     KUvEdge,
 )
-from convert.geometry.Opencascade import (
+from convert.Geometry.Opencascade import (
     DecodeFailure,
     FaceData,
     OrderWireUses,
     Reference,
 )
-from interchange.brep.surfaces.BrepSurfaces import PlaneSurface
+from interchange.brep.Surfaces.BrepSurfaces import PlaneSurface
 
 
 # separate native use orientation determines the selected seam branch

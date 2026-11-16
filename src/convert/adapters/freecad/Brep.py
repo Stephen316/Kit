@@ -45,7 +45,7 @@ from interchange import (
     Vector2 as VectorTwo,
     Vector3 as VectorThree,
 )
-from interchange.geometry.models.VectorSpace import SpaceVector
+from interchange.geometry.Models.VectorSpace import SpaceVector
 from convert.adapters.freecad.BrepGraph import (
     FreeCadBrep,
     ModelGraph,
@@ -2795,7 +2795,7 @@ def BrepModelBrep(
 
 # this definition exists because focused behavior needs one stable owner
 def ProvenAsciiBrep(DataValue: bytes) -> bytes | None:
-    from convert.geometry.Opencascade import decode_ascii_brep as DecodeAsciiBrep
+    from convert.Geometry.Opencascade import decode_ascii_brep as DecodeAsciiBrep
 
     Model = DecodeAsciiBrep(DataValue, id_prefix="freecad:proof")
     if Model is None:

@@ -8,12 +8,12 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[5]
 sys.path.insert(0, str(ROOT / 'src'))
 
-import convert.formats.Fusion.Topology.AsmEdge.AsmTable as TableModule
+import convert.Formats.Fusion.Topology.AsmEdge.AsmTable as TableModule
 
 TableModule.KRecordTokens = 1 << 20
-from convert.formats.Fusion.BrepCodec.Journal.Reading.ReadModelHead import ReadModelHead
-from convert.formats.Fusion.MetaCursor import MetaCursor
-from convert.formats.Fusion.Topology.AsmEdge.AsmTable import ReadAsmName, ReadAsmRecord
+from convert.Formats.Fusion.BrepCodec.Journal.Reading.ReadModelHead import ReadModelHead
+from convert.Formats.Fusion.MetaCursor import MetaCursor
+from convert.Formats.Fusion.Topology.AsmEdge.AsmTable import ReadAsmName, ReadAsmRecord
 
 KMarks = ('Begin-of-ASM-History-Data', 'End-of-ASM-History-Section', 'End-of-ASM-data')
 

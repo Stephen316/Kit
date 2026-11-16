@@ -42,11 +42,11 @@ An absent field keeps its schema default.
 Thermal density, conductivity and specific heat default to the structural values.
 
 ```python
-from convert.formats.Fusion.DocumentCodec.Materials.Model.FinishSpec import FinishSpec
-from convert.formats.Fusion.DocumentCodec.Materials.Model.MaterialSpec import MaterialSpec
-from convert.formats.Fusion.DocumentCodec.Materials.Model.MechanicSpec import MechanicSpec
-from convert.formats.Fusion.DocumentCodec.Materials.Model.ThermalSpec import ThermalSpec
-from convert.formats.Fusion.MaterialCodec.Models.ColorValue import ColorValue
+from convert.Formats.Fusion.DocumentCodec.Materials.Model.FinishSpec import FinishSpec
+from convert.Formats.Fusion.DocumentCodec.Materials.Model.MaterialSpec import MaterialSpec
+from convert.Formats.Fusion.DocumentCodec.Materials.Model.MechanicSpec import MechanicSpec
+from convert.Formats.Fusion.DocumentCodec.Materials.Model.ThermalSpec import ThermalSpec
+from convert.Formats.Fusion.MaterialCodec.Models.ColorValue import ColorValue
 
 Glass = MaterialSpec(
     "Clear glass",
@@ -106,15 +106,15 @@ Nineteen held-out cases were accepted in local Fusion 2706.1.17.
 None of them is one of the 20 controls or the edit controls.
 Eighteen are library materials. The nineteenth is a Water copy with new values set through the API, because the library has one liquid.
 
-| Family     | Held-out materials                                                 |
-| ---------- | ------------------------------------------------------------------ |
-| Basic      | Polyisocyanurate, Slate                                            |
-| Gas        | Nitrogen, Oxygen                                                   |
-| Generic    | Marble, Glass Clear Glazing, PTFE, Tin                             |
-| Liquid     | Water copy with new values                                         |
-| Metal      | Aluminum 1100-O, Copper, Titanium 6Al-4V, Steel Paint Finish Blue  |
-| Plastic    | Nylon 6, Polycarbonate Clear, SAN, Acetal Resin Black              |
-| Wood       | Maple, Jarrah                                                      |
+| Family  | Held-out materials                                                |
+| ------- | ----------------------------------------------------------------- |
+| Basic   | Polyisocyanurate, Slate                                           |
+| Gas     | Nitrogen, Oxygen                                                  |
+| Generic | Marble, Glass Clear Glazing, PTFE, Tin                            |
+| Liquid  | Water copy with new values                                        |
+| Metal   | Aluminum 1100-O, Copper, Titanium 6Al-4V, Steel Paint Finish Blue |
+| Plastic | Nylon 6, Polycarbonate Clear, SAN, Acetal Resin Black             |
+| Wood    | Maple, Jarrah                                                     |
 
 For each case, Fusion assigned the library material to a 10 × 20 × 30 mm box, and the API read every value with its unit.
 A research script turned that reading into a Kit spec in SI units.

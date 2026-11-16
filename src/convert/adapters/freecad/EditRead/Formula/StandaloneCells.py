@@ -9,8 +9,8 @@ from convert.adapters.freecad.FormulaSheet.FormulaPlans import (
     FormulaPlan,
     ReadFusionPlan,
 )
-from convert.geometry.Formula.Arithmetic import IsLiteralExpr, ReadFormula
-from interchange.records.RecordParameter import Parameter
+from convert.Geometry.Formula.Arithmetic import IsLiteralExpr, ReadFormula
+from interchange.Records.RecordParameter import Parameter
 
 
 # independent sheet formulas can have several roots but still require a complete verified graph

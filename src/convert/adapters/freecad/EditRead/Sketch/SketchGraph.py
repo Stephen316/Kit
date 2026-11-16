@@ -10,7 +10,7 @@ from convert.adapters.freecad.EditRead.Sketch.SketchDefaults import (
 )
 from convert.adapters.freecad.EditRead.XmlField import CheckNoEditExpr, EditScalar
 from convert.adapters.freecad.Native import NativeObject, ParseObjects
-from interchange.geometry.models.Transform import KTransformIdentity
+from interchange.geometry.Models.Transform import KTransformIdentity
 
 # these mutable properties are validated separately or carry only presentation state
 KCheckedElsewhere = frozenset(

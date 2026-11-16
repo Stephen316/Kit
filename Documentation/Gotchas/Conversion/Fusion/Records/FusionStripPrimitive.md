@@ -16,7 +16,7 @@ Each observed strip has four vertices and no index buffer. Each strip is a flat 
 
 ## Evidence
 
-- [Mesh transfer](../../../../../src/convert/formats/Fusion/GraphicsCodec/Geometry/XferMeshMut.py)
+- [Mesh transfer](../../../../../src/convert/Formats/Fusion/GraphicsCodec/Geometry/XferMeshMut.py)
 - [Stream range script](../../../../../re/Fusion/Reconstruction/ReaderCoverage/StreamRanges.py)
 - [Native acceptance cases `StripCuboid` and `StripRectangle`](../../../../../re/Fusion/LocalOracle/ReaderCoverage/NativeAcceptance.json)
 - [Change entry](../../../../Changes/Fusion/Records/FusionSavedDocumentCoverage.md)

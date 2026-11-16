@@ -2,24 +2,24 @@ from collections.abc import Mapping
 
 from convert.adapters.base.WriteValidate import IsObjectMap, IsObjectTuple
 from convert.adapters.freecad.EditExtScope import HasEditState
-from convert.geometry.Formula.Arithmetic import (
+from convert.Geometry.Formula.Arithmetic import (
     EvalFormula,
     IsLiteralExpr,
     ReadFormula,
 )
-from convert.geometry.Formula.FormulaUnits import IsMatchingQty
-from interchange.document.models.DocumentModel import CadDocument
-from interchange.enums.EnumFeatures import FeatureKind
-from interchange.enums.EnumUnits import UnitSystem
-from interchange.features.FeatureStep import FeatureStep
-from interchange.geometry.models.GeometryCurves import (
+from convert.Geometry.Formula.FormulaUnits import IsMatchingQty
+from interchange.document.Models.DocumentModel import CadDocument
+from interchange.Enums.EnumFeatures import FeatureKind
+from interchange.Enums.EnumUnits import UnitSystem
+from interchange.Features.FeatureStep import FeatureStep
+from interchange.geometry.Models.GeometryCurves import (
     CircleGeometry,
     LineGeometry,
     PointGeometry,
 )
-from interchange.geometry.models.Sketch import Sketch
-from interchange.payloads.PayloadRoles import PayloadRole
-from interchange.records.RecordParameter import Parameter
+from interchange.geometry.Models.Sketch import Sketch
+from interchange.Payloads.PayloadRoles import PayloadRole
+from interchange.Records.RecordParameter import Parameter
 from interchange.serialization.WireData import ValidateWireMap
 
 # the versioned sketch binding identifies archives with independently verifiable edit semantics

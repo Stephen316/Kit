@@ -8,5 +8,5 @@ rationales, even though the functional repair touched only sketch history.
 
 Follow the current repository rule when authorized by the user. Add specific
 purpose comments without changing behavior or disabling the policy gate. Run
-`python -m tools.steering.CheckRationaleComments` as a static policy check; it does
+`python -m tools.Steering.CheckRationaleComments` as a static policy check; it does
 not run tests. See [the change entry](../../../Changes/Commands/CliRationaleCoverage.md).

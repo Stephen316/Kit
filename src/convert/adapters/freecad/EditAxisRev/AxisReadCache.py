@@ -16,8 +16,8 @@ from convert.adapters.freecad.EditShape.SavedSketchWire import (
 )
 from convert.adapters.freecad.Native import NativeObject
 from convert.adapters.freecad.ReconcileEdit import ReadEditBrep
-from interchange.geometry.models.GeometryCurves import PointGeometry
-from interchange.geometry.models.Sketch import Sketch, SketchEntity
+from interchange.geometry.Models.GeometryCurves import PointGeometry
+from interchange.geometry.Models.Sketch import Sketch, SketchEntity
 
 
 # cache ownership distinguishes live sketch geometry from optional native naming data
