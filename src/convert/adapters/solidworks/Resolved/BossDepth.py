@@ -48,6 +48,13 @@ class DepthDisplay(TypedDict):
     end: int
 
 
+# the saved distance points establish placement independently of the positive parameter
+class DepthReference(TypedDict):
+    points_offset: int
+    points_metres: tuple[float, ...]
+    vectors: tuple[float, ...]
+
+
 # the handle may proceed only along its empty component and transform route
 def ReadFeatHandle(Cursor: ArchiveCursor, KindValue: str) -> FeatureHandle:
     Offset = Cursor.Offset
@@ -64,6 +71,14 @@ def ReadFeatHandle(Cursor: ArchiveCursor, KindValue: str) -> FeatureHandle:
 
 # the typed distance dimension is independent of the two presentation copies
 def ReadParDepthMut(Cursor: ArchiveCursor, KindValue: str) -> DepthParam:
+    Parameter, _ = ReadDepthRefMut(Cursor, KindValue)
+    return Parameter
+
+
+# callers with start offsets need both the typed parameter and the signed reference points
+def ReadDepthRefMut(
+    Cursor: ArchiveCursor, KindValue: str
+) -> tuple[DepthParam, DepthReference]:
     Offset = Cursor.Offset
     _, _, Index = Cursor.TakePointer(
         ("ParallelPlaneDistanceDim_c",), KindValue, CompactOnly=True
@@ -75,14 +90,15 @@ def ReadParDepthMut(Cursor: ArchiveCursor, KindValue: str) -> DepthParam:
         raise ArchiveError("unbound boss depth parameter")
     NameValue, Depth = ParameterValue
     Cursor.Offset, Cursor.NextIndex = Local.Offset, Local.NextIndex
-    _ = Cursor.ReadPoint(9)
+    PointsAt = Cursor.Offset
+    Points = Cursor.ReadPoint(9)
     RequireArch(Cursor.ReadInts("<H"), (1,), "present parallel dimension vectors")
-    _ = Cursor.ReadPoint(6)
+    Vectors = Cursor.ReadPoint(6)
     RequireArch(Cursor.ReadInts("<H"), (1,), "present parallel dimension transform")
     _ = ReadLocalPose(Cursor)
     RequireArch(Cursor.ReadInts("<4H"), (0,) * 4, "empty dimension presentation groups")
     ReadPlacement(Cursor)
-    return {
+    ParameterData: DepthParam = {
         "offset": Offset,
         "object_index": Index,
         "native_dimension_id": DimId,
@@ -92,12 +108,17 @@ def ReadParDepthMut(Cursor: ArchiveCursor, KindValue: str) -> DepthParam:
         "value_offset": Local.ScalarOffsets[Parameter],
         "end": Cursor.Offset,
     }
+    return ParameterData, {
+        "points_offset": PointsAt,
+        "points_metres": Points,
+        "vectors": Vectors,
+    }
 
 
 # the typed favorite closes this display and exposes the next operation field
-def ReadDepthClose(Cursor: ArchiveCursor) -> int:
+def ReadDepthClose(Cursor: ArchiveCursor, KindValue: str = KClassRefKind) -> int:
     _, _, Favorite = Cursor.TakePointer(
-        ("moFavoriteHandle_c",), KClassRefKind, CompactOnly=True
+        ("moFavoriteHandle_c",), KindValue, CompactOnly=True
     )
     ReadDisplayTail(Cursor)
     return Favorite
@@ -107,17 +128,30 @@ def ReadDepthClose(Cursor: ArchiveCursor) -> int:
 def ReadBossDepth(
     Cursor: ArchiveCursor, KindValue: str = KDefinitionKind, *, DisplayMode: int = 201
 ) -> DepthDisplay:
+    Display, _ = ReadBossDepthRefs(Cursor, KindValue, DisplayMode=DisplayMode)
+    return Display
+
+
+# first and repeated displays take their own class routes while sharing value assembly
+def ReadBossDepthRefs(
+    Cursor: ArchiveCursor,
+    KindValue: str = KDefinitionKind,
+    *,
+    DisplayMode: int = 201,
+    DisplayKind: str = KClassRefKind,
+    FavoriteKind: str = KClassRefKind,
+) -> tuple[DepthDisplay, DepthReference]:
     Offset = Cursor.Offset
     _, _, Index = Cursor.TakePointer(
-        ("moDisplayDistanceDim_c",), KClassRefKind, CompactOnly=True
+        ("moDisplayDistanceDim_c",), DisplayKind, CompactOnly=True
     )
     ReadDisplayOpen(Cursor, DisplayMode=DisplayMode)
     Handle = ReadFeatHandle(Cursor, KindValue)
-    Depth = ReadParDepthMut(Cursor, KindValue)
+    Depth, Reference = ReadDepthRefMut(Cursor, KindValue)
     Copies = ReadCache(Cursor)
     RequireArch(Copies, (Depth["metres"],) * 2, "depth copies agree with parameter")
-    Favorite = ReadDepthClose(Cursor)
-    return {
+    Favorite = ReadDepthClose(Cursor, FavoriteKind)
+    Display: DepthDisplay = {
         "offset": Offset,
         "object_index": Index,
         "handle": Handle,
@@ -126,3 +160,4 @@ def ReadBossDepth(
         "favorite_object": Favorite,
         "end": Cursor.Offset,
     }
+    return Display, Reference
