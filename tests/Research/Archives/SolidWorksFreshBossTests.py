@@ -15,6 +15,9 @@ KFixtureIds = tuple(str(OwnedUuid(int=Index, version=4)) for Index in range(1, 1
 # database creation uses its own local wall clock in the ordinary package format
 KExchangeTime = "2026-07-09T12:30:28"
 
+# explicit colors keep the witness preview reproducible from the authored geometry
+KPreviewColors = ((246, 247, 249), (20, 32, 40), (148, 171, 188))
+
 # the fixture explicitly selects the measured ordinary header classification
 KFixtureLicense = {
     "package_code": 4,
@@ -28,6 +31,7 @@ KFreshContext = {
     "saved_path": r"C:\KitFixture\FreshBoss.SLDPRT",
     "created_utc": "2026-07-09T12:30:26+00:00",
     "appearance_asset": r"C:\KitFixture\data\graphics\materials\color.p2m",
+    "preview_colors": KPreviewColors,
     "block_id": KFixtureIds[0],
     "calendar": {"date": "2026-07-09", "utc_offset_minutes": 0},
     "license": KFixtureLicense,
@@ -96,8 +100,13 @@ def CheckFreshBoss() -> None:
     with MakeFolder() as TempRoot:
         Report = LoadCandidate(FilePath(TempRoot) / "FreshBoss.SLDPRT")
     Bounds = CastValue(list[list[float]], Report["bounds_metres"])
-    StreamCount = Report["stream_count"]
-    assert isinstance(StreamCount, int) and StreamCount >= 30
+    assert Report["stream_count"] == 32
+    PreviewDigests = Report["preview_sha256"]
+    assert isinstance(PreviewDigests, dict)
+    assert set(PreviewDigests) == {"Preview", "PreviewPNG"}
+    assert all(
+        isinstance(Value, str) and len(Value) == 64 for Value in PreviewDigests.values()
+    )
     assert Report["feature_ids"] == [26, 34]
     assert Report["dimension_ids"] == [72, 73, 74]
     assert Report["dimensions_mm"] == Approx([38.25, 22.5, -7.75])
