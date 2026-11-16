@@ -728,7 +728,7 @@ def CheckObjectDb() -> None:
     )
 
 
-# each authored width height and Boss length must own one saved annotation record
+# each authored width height and boss length must own one saved annotation record
 def CheckPmiDb() -> None:
     Report = LoadReport("VerifyPmiDatabase.py", 14)
     assert Report["counts"] == {"P01": 6, "P03": 8}
