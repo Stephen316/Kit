@@ -225,6 +225,15 @@ def CheckCfgDetail() -> None:
     )
 
 
+# the dimension styles must preserve native unit ownership and the annotation boundary
+def CheckDimStyles() -> None:
+    Report = LoadReport("VerifyDimensionStyles.py", 14)
+    assert (
+        Report["replay_sha256"]
+        == "5fe2c5a1d827b0eecd71310587752b208a99201a5f1891d4f62e5470ca83312e"
+    )
+
+
 # each configuration manager record needs separate pinned evidence from the subprocess
 def CheckCmgr() -> None:
     Report = LoadReport("VerifyCmgrColor.py")
