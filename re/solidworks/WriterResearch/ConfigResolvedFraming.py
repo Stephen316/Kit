@@ -6,6 +6,7 @@ from ConfigRoot import ConfigRootState, WriteConfigRoot
 from PartArchive import PartArchiveState, PartArchiveWriter
 from convert.adapters.solidworks.Config.RootLayout import KConfigGen, KRootClass
 from convert.adapters.solidworks.Container.Archive import (
+    ArchiveError,
     KClassRefKind,
     KDefinitionKind,
     KObjectRefKind,
@@ -17,7 +18,6 @@ from convert.adapters.solidworks.Container.ArchiveTags import (
     ResolveMapType,
 )
 from convert.adapters.solidworks.Container.Cmgr import KExtObjectClass
-
 
 PartArchiveAction = Callable[[PartArchiveWriter], None]
 
@@ -79,7 +79,9 @@ def EncodeResolvedHeader(State: PartArchiveState, RootCount: int) -> bytes:
     return pack("<iH", State.NextIndex, RootCount)
 
 
-def WriteResolvedEntry(Writer: PartArchiveWriter, WriteEntry: PartArchiveAction) -> None:
+def WriteResolvedEntry(
+    Writer: PartArchiveWriter, WriteEntry: PartArchiveAction
+) -> None:
     Before = Writer.Snapshot()
     Position = len(Writer.chunks)
     WriteEntry(Writer)
@@ -93,11 +95,15 @@ def WriteResolvedEntry(Writer: PartArchiveWriter, WriteEntry: PartArchiveAction)
     Classes, Objects = dict(Before.Classes), dict(Before.Objects)
     Schema = Tag.schema if Tag.kind == KDefinitionKind else 1
     NameValue = ResolveMapType(Tag, Classes, Objects, Schema)
+    if NameValue is None:
+        raise ArchiveError("resolved outer list entry must resolve an object")
     Index, _ = BindMapTagMut(Tag, Before.NextIndex, Classes, Objects, NameValue)
     RequireArch(Writer.objects.get(Index), NameValue, "tracked resolved outer object")
     if Tag.kind == KDefinitionKind:
         RequireArch(
-            Writer.classes.get(NameValue), Before.NextIndex, "tracked resolved outer class"
+            Writer.classes.get(NameValue),
+            Before.NextIndex,
+            "tracked resolved outer class",
         )
     if Tag.kind == KObjectRefKind:
         RequireArch(len(Data), Tag.size, "resolved object alias width")

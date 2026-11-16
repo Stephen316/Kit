@@ -21,7 +21,11 @@ from convert.adapters.solidworks.Container.Definition import ArchiveWriter
 
 # the name and value are prepared before allocating either owned archive node
 def DepthFields(NameValue: str, DepthMm: float) -> tuple[bytes, bytes]:
-    if not isinstance(NameValue, str) or not NameValue.strip() or "\0" in NameValue:
+    if (
+        not issubclass(type(NameValue), str)
+        or not NameValue.strip()
+        or "\0" in NameValue
+    ):
         raise ValueError("the depth parameter requires a nonempty local name")
     if type(DepthMm) not in (int, float) or not 0 < DepthMm <= FloatInfo.max:
         raise ValueError(

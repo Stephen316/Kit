@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from typing import override as Override
 
 from convert.adapters.solidworks.Container.Archive import KBigObjectTag, EncodeObjectRef
 from convert.adapters.solidworks.Container.ArchiveCheck import RequireArch
@@ -33,7 +34,7 @@ class PartArchiveState:
         RequireArch(
             len({Index for Index, _ in Slots}) == len(Slots)
             and all(
-                type(Index) is int and isinstance(Name, str) and Name
+                type(Index) is int and issubclass(type(Name), str) and Name
                 for Index, Name in Slots
             )
             and {Index for Index, _ in Slots}
@@ -63,9 +64,10 @@ class PartArchiveWriter(ArchiveWriter):
             self.classes.update((Name, Index) for Index, Name in State.Classes)
             self.objects.update(State.Objects)
 
+    @Override
     def BeginObject(self, NameValue: str, Schema: int) -> None:
         RequireArch(
-            isinstance(NameValue, str) and bool(NameValue),
+            issubclass(type(NameValue), str) and bool(NameValue),
             True,
             "nonempty archive class name",
         )
@@ -88,7 +90,7 @@ class PartArchiveWriter(ArchiveWriter):
     def ReserveObject(self, NameValue: str) -> int:
         ObjectIndex = self.next_index
         RequireArch(
-            isinstance(NameValue, str)
+            issubclass(type(NameValue), str)
             and bool(NameValue)
             and 0 < ObjectIndex < KBigObjectTag
             and ObjectIndex not in self.objects
@@ -103,7 +105,9 @@ class PartArchiveWriter(ArchiveWriter):
     # An alias occupies a stream entry but reuses the established object index.
     def ReferenceObject(self, Index: int, NameValue: str) -> None:
         RequireArch(type(Index) is int, True, "integer archive object alias index")
-        RequireArch(self.objects.get(Index), NameValue, "allocated archive object alias")
+        RequireArch(
+            self.objects.get(Index), NameValue, "allocated archive object alias"
+        )
         self.raw(EncodeObjectRef(Index))
 
     def Snapshot(self) -> PartArchiveState:
