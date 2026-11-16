@@ -259,14 +259,17 @@ public sealed class SolidWorksScopeControl
     {
         step = "access_scope_definition";
         var native = feature.GetDefinition() as IExtrudeFeatureData2;
-        Check(native != null && native.AccessSelections(doc, null), "Could not access the Cut definition for scope editing");
+        Check(native != null, "Could not obtain the Cut definition for scope editing");
+        bool scope = native.FeatureScope;
+        bool automatic = native.AutoSelect;
+        if (intended == null && scope && automatic) return false;
+        Check(native.AccessSelections(doc, null), "Could not access the Cut definition for scope editing");
         bool attempted = false;
         Exception failure = null;
         try
         {
             if (intended == null)
             {
-                if (native.FeatureScope && native.AutoSelect) return false;
                 step = "set_automatic_scope_definition";
                 native.FeatureScope = true;
                 native.AutoSelect = true;
@@ -274,7 +277,7 @@ public sealed class SolidWorksScopeControl
             }
             else
             {
-                Check(native.FeatureScope && native.AutoSelect, "The fallback did not recreate the automatic Cut scope");
+                Check(scope && automatic, "The fallback did not recreate the automatic Cut scope");
                 step = "resolve_rolled_back_scope_bodies";
                 var bodies = Bodies(doc);
                 var selected = intended.Select(id => (object)bodies[id]).ToArray();
@@ -382,13 +385,15 @@ public sealed class SolidWorksScopeControl
             .Any(parent => SameDocumentObject(doc.Extension, parent, profileFeature)),
             "The Cut does not consume its saved sketch");
         var native = (IExtrudeFeatureData2)feature.GetDefinition();
+        bool scope = native.FeatureScope;
+        bool auto = native.AutoSelect;
         Check(native.AccessSelections(doc, null), "Could not resolve native Cut scope selections");
         try
         {
-            bool scope = native.FeatureScope;
-            bool auto = native.AutoSelect;
+            bool accessAuto = native.AutoSelect;
             int end = native.GetEndCondition(true);
-            Check(scope && end == (int)swEndConditions_e.swEndCondThroughAll && !native.BothDirections && !native.ReverseDirection,
+            Check(scope && native.FeatureScope && end == (int)swEndConditions_e.swEndCondThroughAll
+                && !native.BothDirections && !native.ReverseDirection,
                 "The saved Cut switched away from the intended inward one-sided through-all scope");
             var selected = Items(native.FeatureScopeBodies);
             int selectedCount = native.GetFeatureScopeBodiesCount();
@@ -399,6 +404,7 @@ public sealed class SolidWorksScopeControl
             return Row("end_condition", "through_all", "direction_world", new[] { 0, 0, -1 }, "depth_mm", null,
                 "observed_policy", auto ? "automatic" : "explicit",
                 "native", Row("feature_scope", scope, "auto_select", auto, "feature_scope_body_ids", selectedIds,
+                    "auto_select_during_access", accessAuto,
                     "feature_scope_body_count", selectedCount, "end_condition", end,
                     "reverse_direction", native.ReverseDirection, "both_directions", native.BothDirections,
                     "raw_blind_depth_m", depth, "producer", Identity(feature), "support_body_id", "A",
@@ -421,7 +427,8 @@ public sealed class SolidWorksScopeControl
             && (automatic || nativeIds.SequenceEqual(
                 Strings(intended["input_body_ids"]).OrderBy(id => id))),
             "The freshly read Cut policy or selected bodies differ from the intended scope (AutoSelect: "
-            + native["auto_select"] + ", native bodies: [" + string.Join(",", nativeIds) + "], affected bodies: ["
+            + native["auto_select"] + ", during access: " + native["auto_select_during_access"]
+            + ", native bodies: [" + string.Join(",", nativeIds) + "], affected bodies: ["
             + string.Join(",", targets) + "])");
         Check(targets.SequenceEqual(Strings(intended["expected_affected_body_ids"]).OrderBy(id => id)),
             "The measured Cut did not affect exactly the intended bodies");
