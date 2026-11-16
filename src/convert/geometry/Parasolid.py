@@ -239,11 +239,6 @@ class ParaWriteError(ValueError):
     locals()["__slots__"] = ()
 
 
-# partition failures identify the rejected read boundary for generated output verification
-class ParaReadError(ValueError):
-    locals()["__slots__"] = ()
-
-
 # this declaration exists because focused behavior needs one stable owner
 def HasParaPayload(DataValue: bytes | bytearray) -> bool:
     Source = bytes(DataValue)
@@ -386,17 +381,12 @@ def ValidateSupport(Model: BrepModel) -> None:
 
 # this declaration exists because focused behavior needs one stable owner
 def VerifyBrepData(Model: BrepModel, PayloadData: bytes) -> None:
-    Header = PartHeaderData(PayloadData)
-    if Header is None:
-        raise ParaWriteError(
-            "generated Parasolid B-rep cannot be decoded: invalid part header"
-        )
-    try:
-        Decoded = ReadPartModel(PayloadData, Header)
-    except ParaReadError as Error:
-        raise ParaWriteError(
-            f"generated Parasolid B-rep cannot be decoded: {Error}"
-        ) from Error
+    Decoded, Reason = ReadBrepResult(PayloadData)
+    if Decoded is None:
+        raise ParaWriteError(f"generated Parasolid B-rep cannot be decoded ({Reason})")
+    Errors = Decoded.validate()
+    if Errors:
+        raise ParaWriteError(Errors[0])
     Collections = (
         "curves",
         "surfaces",
@@ -4199,20 +4189,20 @@ class RecordTables:
 
 # this declaration exists because focused behavior needs one stable owner
 def DecodeBrepModel(PayloadData: bytes | bytearray) -> BrepModel | None:
+    Model, _ = ReadBrepResult(PayloadData)
+    return Model
+
+
+# a generated payload must retain the reason that the public decoder treats as refusal
+def ReadBrepResult(PayloadData: bytes | bytearray) -> tuple[BrepModel | None, str]:
     DataValue = bytes(PayloadData)
-    Header = PartHeaderData(DataValue)
-    return None if Header is None else DecodePartModel(DataValue, Header)
-
-
-# the divider between part and delta streams gates both normal and verification reads
-def PartHeaderData(DataValue: bytes) -> ParaHeader | None:
     Header = ParaHeaderData(DataValue)
     if Header is None:
-        return None
+        return None, "invalid transmit header"
     DescValue = Header.description.casefold()
     if "delta" in DescValue or "transmit file" not in DescValue:
-        return None
-    return Header
+        return None, "unsupported transmit description"
+    return ReadPartResult(DataValue, Header)
 
 
 # this declaration exists because focused behavior needs one stable owner
@@ -4243,33 +4233,31 @@ def ParaHeaderData(DataValue: bytes) -> ParaHeader | None:
 
 # this declaration exists because focused behavior needs one stable owner
 def DecodePartModel(PayloadData: bytes, Header: ParaHeader) -> BrepModel | None:
-    try:
-        return ReadPartModel(PayloadData, Header)
-    except ParaReadError:
-        return None
+    Model, _ = ReadPartResult(PayloadData, Header)
+    return Model
 
 
-# the verifier needs the same partition guards with their first failure preserved
-def ReadPartModel(PayloadData: bytes, Header: ParaHeader) -> BrepModel:
+# the writer needs to distinguish record scanning from topology reconstruction and validation
+def ReadPartResult(
+    PayloadData: bytes, Header: ParaHeader
+) -> tuple[BrepModel | None, str]:
     BodyData = PayloadData[Header.body_offset :]
     if not BodyData or len(BodyData) > 268435456:
-        raise ParaReadError("empty or oversized partition")
+        return None, "invalid partition body length"
     Tables = ScanPartRecords(BodyData)
     if Tables is None:
-        raise ParaReadError("partition record scan exceeded its bounds")
+        return None, "partition record scan exceeded its limits"
     if not Tables.bridges:
-        raise ParaReadError("partition contains no supported face records")
+        return None, "partition contains no decoded faces"
     UnchangedIds, AttrOrders = SolidFaceData(BodyData)
     try:
         Model = BuildPartModel(Tables, UnchangedIds, AttrOrders)
-    except (KeyError, ValueError, OverflowError) as Error:
-        raise ParaReadError(
-            f"partition topology reconstruction failed: {Error}"
-        ) from Error
+    except (KeyError, ValueError, OverflowError) as Failure:
+        return None, f"invalid partition topology ({Failure})"
     Errors = Model.validate()
     if Errors:
-        raise ParaReadError(Errors[0])
-    return Model
+        return None, Errors[0]
+    return Model, ""
 
 
 # this declaration exists because focused behavior needs one stable owner

@@ -18,9 +18,13 @@ def MeasureLoop(Model: BrepModel, LoopValue: BrepLoop) -> float:
     }
     assert len(VertexIds) == len(LoopValue.coedge_ids) == 4
     Points = tuple(Vertices[VertexId] for VertexId in VertexIds)
+    AxisCoordinates = (
+        tuple(Point.x for Point in Points),
+        tuple(Point.y for Point in Points),
+        tuple(Point.z for Point in Points),
+    )
     Spans = sorted(
-        max(Coordinates) - min(Coordinates)
-        for Coordinates in zip(*((Point.x, Point.y, Point.z) for Point in Points))
+        max(Coordinates) - min(Coordinates) for Coordinates in AxisCoordinates
     )
     assert IsClose(Spans[0], 0, abs_tol=1e-7)
     return Spans[1] * Spans[2]
@@ -31,12 +35,12 @@ def VerifySwLoops(
     Model: BrepModel, GrossArea: float, HoleArea: float, CapCount: int
 ) -> None:
     Loops = {LoopValue.id: LoopValue for LoopValue in Model.loops}
-    Holed = [Face for Face in Model.faces if len(Face.loop_ids) > 1]
+    Holed = [CapFace for CapFace in Model.faces if len(CapFace.loop_ids) > 1]
     assert len(Holed) == CapCount
-    for Face in Holed:
-        Hole, Exterior = (Loops[LoopId] for LoopId in Face.loop_ids)
-        assert not Hole.outer and Exterior.outer
-        assert IsClose(MeasureLoop(Model, Hole), HoleArea, abs_tol=1e-7)
+    for CapFace in Holed:
+        HoleLoop, Exterior = (Loops[LoopId] for LoopId in CapFace.loop_ids)
+        assert not HoleLoop.outer and Exterior.outer
+        assert IsClose(MeasureLoop(Model, HoleLoop), HoleArea, abs_tol=1e-7)
         assert IsClose(MeasureLoop(Model, Exterior), GrossArea, abs_tol=1e-7)
 
 
