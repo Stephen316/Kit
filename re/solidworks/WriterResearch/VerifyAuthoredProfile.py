@@ -11,7 +11,6 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "authoring"))
 from AuthoredProfile import ReadAuthoredOpen, WriteAuthoredOpen
 from HeaderLogs import ReadHeaderLogs
 from OrdinaryResolved import BeginOrdinaryResolved, ReadResolvedSystem
-from PartArchive import PartArchiveWriter
 from RectangleFields import line_fields, measured_graph, point_fields
 from VerifyConfigRoot import CAPTURE_REVISION, principal_captures, require
 from VerifyOriginProxy import read_ghost, verify_proxy
@@ -23,6 +22,7 @@ from VerifyRectDims import verify_dims
 from VerifyRectDisplay import verify_display_list
 from VerifyRectLines import verify_lines
 from VerifyRectRegion import verify_region
+from VerifyRectTrim import verify_trim
 from convert.adapters.solidworks.Config.OrdinaryMap import ReadOrdinaryMap
 from convert.adapters.solidworks.Container.Archive import ContainerMo
 from convert.adapters.solidworks.Container.Container import SldprtArchive
@@ -143,7 +143,7 @@ def inspect_open(archive, measurement, construct):
         (*corners, proxy_point),
         measurement,
         generation,
-        PartArchiveWriter(map_state(cursor)) if construct else None,
+        writer,
     )
     display_proof = verify_display_list(
         cursor,
@@ -151,7 +151,7 @@ def inspect_open(archive, measurement, construct):
         corners,
         measurement,
         generation,
-        PartArchiveWriter(map_state(cursor)) if construct else None,
+        writer,
     )
     region_proof = verify_region(
         cursor,
@@ -161,17 +161,32 @@ def inspect_open(archive, measurement, construct):
         corners,
         measurement,
         generation,
-        PartArchiveWriter(map_state(cursor)) if construct else None,
+        writer,
     )
-    support_proof = verify_profile_support(
+    has_atom = model["atom_count"] == 1
+    support_proof, reference = verify_profile_support(
         cursor,
         profile,
         normal_system,
         origin,
-        model["atom_count"] == 1,
+        has_atom,
         generation,
-        construct,
+        writer,
     )
+    trim_proof = verify_trim(
+        cursor,
+        profile,
+        tuple(endpoints),
+        int(has_atom),
+        reference,
+        measurement,
+        generation,
+        writer,
+    )
+    if writer is not None:
+        require(
+            len(writer.build()) == cursor.Offset, "complete generated profile return"
+        )
     return (
         opening,
         corner_proof,
@@ -183,6 +198,7 @@ def inspect_open(archive, measurement, construct):
         display_proof,
         region_proof,
         support_proof,
+        trim_proof,
     )
 
 
@@ -198,6 +214,7 @@ def report(construct):
     display_rows = []
     region_rows = []
     support_rows = []
+    trim_rows = []
     for _, asset, data, _, measurement in principal_captures():
         archive = SldprtArchive.from_bytes(data, asset["path"])
         (
@@ -211,6 +228,7 @@ def report(construct):
             displays,
             region,
             support,
+            trim,
         ) = inspect_open(archive, measurement, construct)
         rows.append((asset["sha256"], *opening))
         corner_rows.append((asset["sha256"], *corners))
@@ -222,6 +240,7 @@ def report(construct):
         display_rows.append((asset["sha256"], *displays))
         region_rows.append((asset["sha256"], *region))
         support_rows.append((asset["sha256"], *support))
+        trim_rows.append((asset["sha256"], *trim))
     return {
         "capture_revision": CAPTURE_REVISION,
         "captures": {row[0]: row[-1] for row in rows},
@@ -253,6 +272,9 @@ def report(construct):
         ).hexdigest(),
         "support_replay_sha256": sha256(
             json.dumps(support_rows, separators=(",", ":")).encode()
+        ).hexdigest(),
+        "trim_replay_sha256": sha256(
+            json.dumps(trim_rows, separators=(",", ":")).encode()
         ).hexdigest(),
         "nonzero_regen_times": sum(row[-2] != 0.0 for row in rows),
         "replay_sha256": sha256(

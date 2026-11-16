@@ -14,6 +14,7 @@ from PartArchive import PartArchiveState, PartArchiveWriter
 from RectangleFields import measured_graph
 from RectangleRegion import CheckRectOutline
 from RectangleTrim import RectTrimState, TrimMember, WriteRectTrim
+from Resolved.EndMap import EncodeResolvedEnd
 from convert.adapters.solidworks.Config.OrdinaryMap import ReadOrdinaryMap
 from convert.adapters.solidworks.Container.Archive import ContainerMo, ReadTag
 from convert.adapters.solidworks.Container.Container import SldprtArchive
@@ -65,9 +66,9 @@ def read_file(stream, file_ref, after, generation):
 
 
 # every trim edge must attach to the independently measured perimeter in native order
-def inspect_trim(archive, measurement, construct):
-    generation = ContainerMo(archive.streams)
-    cursor, profile, edges, mode, reference = open_trim(archive, generation)
+def verify_trim(
+    cursor, profile, edges, mode, reference, measurement, generation, writer
+):
     start, before = cursor.Offset, map_state(cursor)
     owner = {
         "profile_object": profile.ObjectIndex,
@@ -92,12 +93,22 @@ def inspect_trim(archive, measurement, construct):
     )
     continuation = ReadRectEnd(cursor, bool(mode))
     raw = cursor.BlobValue[start:end]
-    if construct:
-        writer = PartArchiveWriter(before)
+    if writer is not None:
+        require(
+            writer.Snapshot() == before, "trim receives the live profile support map"
+        )
+        position = len(writer.build())
         file_index = WriteRectTrim(writer, generation, owner, edges, mode, state)
         require(file_index == file_ref["object_index"], "trim file object for reuse")
-        require(writer.build() == raw, "exact owned rectangle trim bytes")
+        require(writer.build()[position:] == raw, "exact owned rectangle trim bytes")
         require(writer.Snapshot() == after, "exact contour classes and objects")
+        if continuation == "resolved_list_end":
+            WriterEnd = EncodeResolvedEnd(Generation=generation, EntryCount=18)
+            require(
+                WriterEnd == cursor.BlobValue[end : cursor.Offset],
+                "exact resolved list close",
+            )
+            writer.raw(WriterEnd)
     return (
         start,
         end,
@@ -110,6 +121,16 @@ def inspect_trim(archive, measurement, construct):
         tuple((member.ClassName, member.EdgeId) for member in members),
         continuation,
         sha256(raw).hexdigest(),
+    )
+
+
+# The same verifier also accepts a fully generated system and sketch from the profile driver.
+def inspect_trim(archive, measurement, construct):
+    generation = ContainerMo(archive.streams)
+    cursor, profile, edges, mode, reference = open_trim(archive, generation)
+    writer = PartArchiveWriter(map_state(cursor)) if construct else None
+    return verify_trim(
+        cursor, profile, edges, mode, reference, measurement, generation, writer
     )
 
 

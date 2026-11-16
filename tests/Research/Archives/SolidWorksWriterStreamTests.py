@@ -74,6 +74,10 @@ def CheckProfile() -> None:
         Report["support_replay_sha256"]
         == "657ee948b0103e209898b259f1be7d1df580312c61afedd7deb3b01ceb6ca75d"
     )
+    assert (
+        Report["trim_replay_sha256"]
+        == "772dc555b6cfbe4264ca8701b15da6787d881f3496457c2c816953fb13bf511c"
+    )
 
 
 # the trimmed profile must return its shared file allocation with all side members intact

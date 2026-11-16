@@ -1,6 +1,5 @@
 from hashlib import sha256
 
-from PartArchive import PartArchiveWriter
 from RectangleSupport import WriteProfileChain, WriteProfileSupport
 from VerifyConfigRoot import require
 from VerifyResolvedPlanes import map_state
@@ -11,7 +10,7 @@ from convert.adapters.solidworks.Resolved.RectanglePart import ResolveDatum
 
 # The ordinary profile keeps its native perimeter order and references a system datum.
 def verify_profile_support(
-    cursor, profile, system, origin, has_atom, generation, construct
+    cursor, profile, system, origin, has_atom, generation, writer
 ):
     start = cursor.Offset
     before = map_state(cursor)
@@ -44,8 +43,11 @@ def verify_profile_support(
         "principal support reuses the owning part and allocates two objects",
     )
     raw = cursor.BlobValue[start:end]
-    if construct:
-        writer = PartArchiveWriter(before)
+    if writer is not None:
+        require(
+            writer.Snapshot() == before, "profile chain receives the live sketch map"
+        )
+        position = len(writer.build())
         WriteProfileChain(writer, tuple(sorted(perimeter)) if has_atom else None)
         require(writer.Snapshot() == chain_map, "body chain ownership map")
         WriteProfileSupport(
@@ -55,9 +57,12 @@ def verify_profile_support(
             datum.FeatureId,
             reference.TimeValue,
         )
-        require(writer.build() == raw, "exact rectangle chain and support records")
+        require(
+            writer.build()[position:] == raw,
+            "exact rectangle chain and support records",
+        )
         require(writer.Snapshot() == after, "rectangle support ownership map")
-    return (
+    proof = (
         start,
         chain_end,
         end,
@@ -67,3 +72,4 @@ def verify_profile_support(
         datum.FeatureId,
         sha256(raw).hexdigest(),
     )
+    return proof, reference
