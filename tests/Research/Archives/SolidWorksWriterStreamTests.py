@@ -292,6 +292,15 @@ def CheckCfgLabels() -> None:
     )
 
 
+# the finish and note definitions must reach the weld helper without allocations
+def CheckCfgHelpers() -> None:
+    Report = LoadReport("VerifyConfigFinishNote.py", 14)
+    assert (
+        Report["replay_sha256"]
+        == "2ceee3fcf4ba3de8a4a94aa881bebc97dddd865a246631912053b1c7c04ed70f"
+    )
+
+
 # each configuration manager record needs separate pinned evidence from the subprocess
 def CheckCmgr() -> None:
     Report = LoadReport("VerifyCmgrColor.py")

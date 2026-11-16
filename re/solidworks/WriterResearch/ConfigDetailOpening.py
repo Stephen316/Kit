@@ -128,12 +128,31 @@ def WritePlainCharFormat(Writer: ArchiveWriter, Generation: int, State: PlainCha
         True,
         "plain character face, system-unit height and line spacing",
     )
-    Writer.string(State.Face)
-    Writer.f64(State.Height)
+    WriteCharFields(Writer, State.Face, State.Height, State.LineSpacing)
+
+
+@dataclass(frozen=True, slots=True, kw_only=True)
+class UnsetCharFormat:
+    Face: str
+
+
+def WriteUnsetCharFormat(Writer: ArchiveWriter, Generation: int, State: UnsetCharFormat) -> None:
+    RequireArch(Generation, 19000, "generation 19000 inline character format")
+    RequireArch(
+        isinstance(State.Face, str) and bool(State.Face) and "\x00" not in State.Face,
+        True,
+        "nonempty default annotation face",
+    )
+    WriteCharFields(Writer, State.Face, -1.0, 0.001)
+
+
+def WriteCharFields(Writer: ArchiveWriter, Face: str, Height: float, LineSpacing: float) -> None:
+    Writer.string(Face)
+    Writer.f64(Height)
     Writer.i32(0)
     Writer.f64(0.0)
     Writer.u32(0)
-    Writer.f64(State.LineSpacing)
+    Writer.f64(LineSpacing)
     Writer.f64(1.0)
     Writer.f64(0.0)
     Writer.f64(0.0)
