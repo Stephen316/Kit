@@ -649,3 +649,14 @@ def CheckPropSections() -> None:
         Report["replay_sha256"]
         == "ef5afc4b0f93735ec5fb998d8931cd9a589e91ae638a53187b60e36b58a1b41a"
     )
+
+
+# the typed information dictionary keeps both formats and the optional body summary
+def CheckInfoProps() -> None:
+    Report = LoadReport("VerifyPartInformation.py", 14)
+    assert Report["counts"] == {"P01": 6, "P03": 8}
+    assert Report["with_mass_summary"] == 8
+    assert (
+        Report["replay_sha256"]
+        == "b27ac51f7278cbd4a125f9cc6f38391fe0402e849628ecb11f9656c2a118e573"
+    )

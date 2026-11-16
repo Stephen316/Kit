@@ -68,6 +68,12 @@ The two scopes construct document-summary and user-property sections in their ob
 
 The 14 P01/P03 captures matched all 28 generated payloads byte-for-byte. Each member had one observed payload. The aggregate replay SHA-256 is `ef5afc4b0f93735ec5fb998d8931cd9a589e91ae638a53187b60e36b58a1b41a`. [Receipt-pinned replay](../../../../../../re/solidworks/WriterResearch/VerifySectionProperties.py)
 
+## Standalone information property table
+
+The information stream writes the UTF-8 code-page property, 15 named document text values and 32 signed integer fields, including the saved unit setting and display preferences. Its dictionary binds the native IDs and derives each summary alias from the same property name. The first-configuration mass property appears in the saved Boss variant, after the long-date dictionary entries. The caller supplies the actual document metadata, units and optional mass-summary text. [Information constructor](../../../../../../re/solidworks/WriterResearch/PartInformation.py)
+
+All six P01 and eight P03 source members matched the generated XML byte-for-byte from the independently read typed fields. All eight Boss members include the mass-summary value. The replay SHA-256 is `b27ac51f7278cbd4a125f9cc6f38391fe0402e849628ecb11f9656c2a118e573`. This binds the table format and name ownership. Constructing the caller's complete fresh document information and verifying the whole file in SOLIDWORKS remain open. [Receipt-pinned replay](../../../../../../re/solidworks/WriterResearch/VerifyPartInformation.py)
+
 ## Retained P03 members
 
 The licensed omission run kept 33 of the original 37 physical members
@@ -95,11 +101,11 @@ be needed to omit another member. [Licensed omission measurements](../SolidWorks
 | Full typed payload | `docProps/OpenTime.xml` | `PartOpenTime.EncodePartOpenTime` for the measured fresh and once-open histories |
 | Full typed payload | `docProps/app.xml`, `docProps/core.xml`, `docProps/custom.xml` | `PartDocProperties.EncodeDocumentProperties` from caller metadata and the native fresh-property defaults |
 | Full typed payload | `docProps/Config-0-Properties.xml` | `PartSectionProperties.EncodeSectionProps` constructs the empty configuration scope |
-| Open | `docProps/ISolidWorksInformation.xml` | Typed SOLIDWORKS information metadata owners and serialization |
+| Typed payload with prerequisites | `docProps/ISolidWorksInformation.xml` | `PartInformation.EncodeInformation` emits the ordinary information table from caller-owned document and unit values |
 | Open | `swXmlContents/Features`, `swXmlContents/KeyWords` | XML derived from authored feature and document metadata or licensed omission evidence |
 
-There are 22 retained members with typed constructors, including two
+There are 23 retained members with typed constructors, including two
 fresh-document payloads and two manifests with property stream prerequisites.
-Eleven remain open. Native acceptance of a fully generated archive is pending.
+Ten remain open. Native acceptance of a fully generated archive is pending.
 [Package manifests and open timing](SolidWorksPackageMetadata.md)
 [Document property writers](SolidWorksDocumentProperties.md)
