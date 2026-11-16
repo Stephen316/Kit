@@ -53,7 +53,7 @@ The first list uses a schema-1 definition. The second defines another object thr
 
 The last version check is `0x46c2` at `0x4c21d464`. The presence predicate at `0x4b896b60` compares the two map sizes at manager members `+0x8a8` and `+0x8b8` with zero. Every measured modern save takes the empty branch, reaching EOF 68 bytes after the second list's class tag. The historical donor without this field reaches EOF 64 bytes after that tag. Populated data behind the selector needs independent evidence.
 
-The proof checked the same 25 [receipt-pinned saves](CmgrVisual.md#inputs-and-reproduction) and the generation-18000 comparison. Its terminal offsets are reproduced by applying the typed widths from the stream end, checking the exact class definition and class reference, reading the counted entries and reaching EOF again in the forward direction. Offsets below record the observed positions. P01 contains no linked-atom class. The earlier middle and archive map handoff remain separate work.
+The proof checked the same 25 [receipt-pinned saves](CmgrVisual.md#inputs-and-reproduction) and the generation-18000 comparison. Its terminal offsets are reproduced by applying the typed widths from the stream end, checking the exact class definition and class reference, reading the counted entries and reaching EOF again in the forward direction. Offsets below record the observed positions. [Earlier atom links and configuration aliases](CmgrAtoms.md)
 
 | Controls | First list definition offsets | Second list class-reference offsets |
 | --- | --- | --- |
