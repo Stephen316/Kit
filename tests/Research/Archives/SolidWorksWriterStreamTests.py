@@ -590,3 +590,14 @@ def CheckCfgEnd() -> None:
         Report["replay_sha256"]
         == "cd16fa11ca352bbc39545ff7c5d8c3afd78f4bdc61ef611cc1f92150c39c8e34"
     )
+
+
+# full native manifests must bind the three standard property targets
+def CheckManifests() -> None:
+    Report = LoadReport("VerifyPartManifests.py", 14)
+    assert Report["counts"] == {"P01": 6, "P03": 8}
+    assert Report["missing_target_refusals"] == 42
+    assert (
+        Report["replay_sha256"]
+        == "c01ca63bd2fc5c306aaf072423da0aeb0c4209fdd2636abf19603e3a02399b27"
+    )

@@ -50,6 +50,12 @@ The hosted proof compares all three complete typed outputs with each
 source member. [Verification](../../../../../../re/solidworks/WriterResearch/VerifyPartSidecars.py)
 [P03 receipt](../../../../../../re/automation/PairedCaptures/P03/solidworks-db1390476325/receipt.json)
 
+## Package manifests
+
+The ordinary standalone part emits two XML package manifests from its property inventory. Content types declare the relationship and extended-properties defaults plus exact overrides for the core and custom property parts. The relationship table links the actual `docProps/app.xml`, `docProps/core.xml` and `docProps/custom.xml` members in the saved order. The serializer constructs each element and attribute independently using the standard XML writer. The native package framing uses two declaration forms, with CRLF boundaries and no whitespace between elements. [Manifest writer](../../../../../../re/solidworks/WriterResearch/PartManifests.py)
+
+All six P01 and eight P03 receipt-pinned archives matched both generated streams byte-for-byte. The type manifest is 556 bytes with SHA-256 `a50ae48af011114c4a400111c09ca34e083c21db7e82a2f3e3c641c752b89f4d`. The 597-byte relationship manifest SHA-256 is `8fae89749a8d95ff5996361cf8f7dedb7c74a374c6ed87285d3d8c9e5a48717b`. All 42 individual missing-target controls were refused. The aggregate replay SHA-256 is `c01ca63bd2fc5c306aaf072423da0aeb0c4209fdd2636abf19603e3a02399b27`. [Receipt-pinned replay](../../../../../../re/solidworks/WriterResearch/VerifyPartManifests.py)
+
 ## Retained P03 members
 
 The licensed omission run kept 33 of the original 37 physical members
@@ -73,10 +79,10 @@ be needed to omit another member. [Licensed omission measurements](../SolidWorks
 | Open | `Contents/eModelLic` | Scoped native save-context semantics and a justified caller input |
 | Open | `Preview`, `PreviewPNG` | Native preview encoding from generated content or licensed omission evidence |
 | Open | `SwDocContentMgr/SwDocContentMgrInfo`, `ThirdPtyStore/VisualStates` | Content manager and visualization state constructors or licensed omission evidence |
-| Open | `[Content_Types].xml`, `_rels/.rels` | Content type and relationship manifests derived from the emitted metadata members |
+| Full typed payload | `[Content_Types].xml`, `_rels/.rels` | `PartManifests.EncodeManifests` binds the actual app, core and custom property targets |
 | Open | `docProps/Config-0-Properties.xml`, `docProps/ISolidWorksInformation.xml`, `docProps/OpenTime.xml`, `docProps/app.xml`, `docProps/core.xml`, `docProps/custom.xml` | Typed document, configuration and application metadata owners and serialization |
 | Open | `swXmlContents/Features`, `swXmlContents/KeyWords` | XML derived from authored feature and document metadata or licensed omission evidence |
 
-There are 13 retained members with standalone constructors, including two
-fresh-document payloads. Two are partially composed and 18 lack a
+There are 15 retained members with standalone constructors, including two
+fresh-document payloads. Two are partially composed and 16 lack a
 constructive owner. Native acceptance of a fully generated archive is pending.
