@@ -157,12 +157,34 @@ def WriteUnsetCharFormat(
     WriteCharFields(Writer, State.Face, -1.0, 0.001)
 
 
+@dataclass(frozen=True, slots=True, kw_only=True)
+class PointCharFormat:
+    Face: str
+    Points: int
+
+
+def WritePointCharFormat(
+    Writer: ArchiveWriter, Generation: int, State: PointCharFormat
+) -> None:
+    RequireArch(Generation, 19000, "generation 19000 inline character format")
+    RequireArch(isinstance(State.Face, str), True, "point label face type")
+    RequireArch(
+        bool(State.Face)
+        and "\x00" not in State.Face
+        and type(State.Points) is int
+        and State.Points == 12,
+        True,
+        "measured twelve-point label appearance",
+    )
+    WriteCharFields(Writer, State.Face, -1.0, 0.0, Points=State.Points)
+
+
 def WriteCharFields(
-    Writer: ArchiveWriter, Face: str, Height: float, LineSpacing: float
+    Writer: ArchiveWriter, Face: str, Height: float, LineSpacing: float, *, Points: int = 0
 ) -> None:
     Writer.string(Face)
     Writer.f64(Height)
-    Writer.i32(0)
+    Writer.i32(Points)
     Writer.f64(0.0)
     Writer.u32(0)
     Writer.f64(LineSpacing)

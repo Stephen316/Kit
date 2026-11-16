@@ -93,6 +93,30 @@ def CheckRectTrim() -> None:
     )
 
 
+# the first extrusion must carry the same profile and configuration owners into its chooser
+def CheckBossOpen() -> None:
+    Report = LoadReport("VerifyBossOpen.py", 8)
+    assert Report["constructed"] is True
+    assert Report["reverse_directions"] == 1
+    assert Report["nonzero_regen_times"] == 1
+    assert (
+        Report["opening_replay_sha256"]
+        == "43415df07de102cfb940542ade9ecf91df9afee9f4b24f39dfd4366b69a288ce"
+    )
+
+
+# genuine chooser references must distinguish first allocations and later cap aliases
+def CheckBossChoice() -> None:
+    Report = LoadReport("VerifyBossChoice.py", 8)
+    assert Report["constructed"] is True
+    assert Report["edge_orders"] == 2
+    assert Report["stale_boxes"] == 3
+    assert (
+        Report["choice_replay_sha256"]
+        == "bd4477321aea633bfb06579621443054a0bdefc134b081195d413b4fbef1f2a6"
+    )
+
+
 # the research writer and reader must agree on the full stream in real native files
 def CheckDefinition() -> None:
     Report = LoadReport("VerifyDefinition.py")
@@ -246,6 +270,16 @@ def CheckGhostRel() -> None:
     )
 
 
+# the composed prefix must carry the first split map through saved detail entry
+def CheckCfgHistory() -> None:
+    Report = LoadReport("VerifyConfigHistory.py", 14)
+    assert Report["constructed"] is True
+    assert (
+        Report["replay_sha256"]
+        == "37aaf6279b6d66aee9e03cfad8e35346caeeb98739573d03384938827619eb91"
+    )
+
+
 # authored log order and shared archive allocation must survive repeated edits
 def CheckModelHdr() -> None:
     Report = LoadReport("VerifyModelHeader.py")
@@ -328,6 +362,24 @@ def CheckCfgWeldTol() -> None:
     assert (
         Report["tolerance_replay_sha256"]
         == "7e2e03da49c28147edfe34010635b41553073c2ceaf74c859a450f9de11c6360"
+    )
+
+
+# the final detail settings must hand off to the native environment with the same map
+def CheckDetailEnd() -> None:
+    Report = LoadReport("VerifyConfigDetailEnd.py", 14)
+    assert (
+        Report["replay_sha256"]
+        == "3b099160e1ab5803a6a4d06712abe98aebbec950fef8dc5943c8a2647ad0429a"
+    )
+
+
+# the complete saved detail must reproduce the native span and map
+def CheckDetailMap() -> None:
+    Report = LoadReport("VerifyConfigDetailComposition.py", 14)
+    assert (
+        Report["replay_sha256"]
+        == "11a50a77b4c25deb5cfad5cc88fb3e0efe637d1d284d3550ebd36de06c721310"
     )
 
 
@@ -484,4 +536,13 @@ def CheckCfgAnnots() -> None:
     assert (
         Report["replay_sha256"]
         == "8a2cec83cdf5292b293cab777f8c11290a5b477c9bfb7a090158e51a2fabfc9d"
+    )
+
+
+# the native marker and thread allocations must leave the following model regions readable
+def CheckCfgLists() -> None:
+    Report = LoadReport("VerifyCfgModelLists.py", 14)
+    assert (
+        Report["replay_sha256"]
+        == "6c8aa5c122c06bb984a2bd519c74a5c0d2d165f34586c7c07ace6dee98154da0"
     )
