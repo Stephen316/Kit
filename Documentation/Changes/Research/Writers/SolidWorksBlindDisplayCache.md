@@ -1,0 +1,5 @@
+# Construct the SOLIDWORKS blind boss distance cache
+
+The research encoder constructs the 92-byte ordinary distance cache immediately after the blind boss display placement. Its only model value is the positive depth in metres. The archived display stores that depth in `BreakValue` and in the single-element native `CacheValueArray`. The writer derives the fresh display mask from the constructor. The reader reports the native load-fixup bit from a later save separately. [Field ownership and pinned archive evidence](../../../../re/solidworks/WriterResearch/DisplayCache.md)
+
+The hosted archive case checks the eight pinned P03 saves. It compares both measured lengths, the sole expected save-state difference, the unchanged archive map and the following favorite class reference. The packaged reader consumes the newly generated fragment. Read-only inspection of all eight source records passed and hosted execution for this change is pending. The separate closing favorite and licensed native reopen remain open. [Hosted archive boundary](../../../../tests/Research/Archives/SolidWorksCacheVerify.py)

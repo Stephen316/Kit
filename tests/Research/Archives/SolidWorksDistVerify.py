@@ -11,8 +11,9 @@ from convert.adapters.solidworks.Resolved.BossDepth import (
     ReadFeatHandle,
     ReadParDepthMut,
 )
+from tests.Research.Archives.SolidWorksCacheVerify import VerifyCacheSpan
 from tests.Research.Archives.SolidWorksDistCodecs import LoadPairMut, LoadTailMut
-from tests.Research.Archives.SolidWorksDistInputs import ReadDistInputs
+from tests.Research.Archives.SolidWorksDistInputs import DistInputs, ReadDistInputs
 
 # the prior archive walk independently bounded the optional point mask for every save
 KDistanceEnds = {
@@ -47,9 +48,8 @@ KWitnessOffset = 54
 
 # the writers receive the saved enclosure allocations and independent authored inputs
 def GenerateDisplay(
-    PatchValue: MonkeyPatch, Measurements: bytes, Variant: str, Generation: int
+    PatchValue: MonkeyPatch, Inputs: DistInputs, Generation: int
 ) -> tuple[bytes, bytes, bytes]:
-    Inputs = ReadDistInputs(Measurements, Variant)
     Handle, Distance = LoadPairMut(PatchValue)
     Writer = ArchiveWriter()
     Writer.classes.update(KParentClasses)
@@ -131,8 +131,9 @@ def VerifyDistChild(
         ChildEnd - SourceChild,
         DisplayEnd - ChildEnd,
     ) == (133, 346, 240)
+    Inputs = ReadDistInputs(Measurements, Variant)
     HandleBytes, DistanceBytes, OuterDisplay = GenerateDisplay(
-        PatchValue, Measurements, Variant, Generation
+        PatchValue, Inputs, Generation
     )
     assert HandleBytes == Resolved[SourceHandle:SourceChild]
     assert DistanceBytes == Resolved[SourceChild:ChildEnd]
@@ -145,3 +146,12 @@ def VerifyDistChild(
     assert OuterDisplay[KWitnessOffset:NextField] != SavedTail[KWitnessOffset:NextField]
     assert OuterDisplay[NextField:] == SavedTail[NextField:]
     ReadGenerated(Depth, HandleBytes, DistanceBytes, OuterDisplay)
+    VerifyCacheSpan(
+        PatchValue,
+        Resolved,
+        Generation,
+        DisplayEnd,
+        Depth["favorite_object"],
+        Inputs["depth_mm"] / 1000,
+        Variant not in ("baseline-a", "plane-yz", "direction-negative"),
+    )

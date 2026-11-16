@@ -9,6 +9,7 @@ from typing import Protocol, cast as CastValue
 
 from pytest import MonkeyPatch
 
+from convert.adapters.solidworks.Container.ArchiveCursor import ArchiveCursor
 from convert.adapters.solidworks.Container.Definition import ArchiveWriter
 from interchange.geometry.Models.Transform import Transform
 from interchange.geometry.Models.VectorSpace import SpaceVector
@@ -87,3 +88,32 @@ def LoadPairMut(PatchValue: MonkeyPatch) -> tuple[HandleCodec, DistCodec]:
 # the same isolated codec state provides the frame type for the outer serializer
 def LoadTailMut(PatchValue: MonkeyPatch) -> PlacementCodec:
     return CastValue(PlacementCodec, LoadResearchMut(PatchValue, "DisplayTail"))
+
+
+# cache generation accepts the authoritative source length without a saved mask
+class CacheCodec(Protocol):
+
+    # the fresh constructor supplies unchanged default state for the ordinary route
+    def EncodeBossCache(
+        self,
+        DepthMetres: float,
+        *,
+        Generation: int,
+        DisplayMode: int,
+        ConditionOne: bool,
+    ) -> bytes: ...
+
+    # observed native load state is distinct from the model depth
+    def ReadBossCache(
+        self,
+        Cursor: ArchiveCursor,
+        *,
+        Generation: int,
+        DisplayMode: int,
+        ConditionOne: bool,
+    ) -> tuple[float, bool]: ...
+
+
+# the guarded archive check loads the research cache by its exact local path
+def LoadCacheMut(PatchValue: MonkeyPatch) -> CacheCodec:
+    return CastValue(CacheCodec, LoadResearchMut(PatchValue, "DisplayCache"))

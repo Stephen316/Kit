@@ -28,4 +28,4 @@ The native receipt SHA-256 `f2308ae749f3d739746301873a49e997e2cf494f9d459e954403
 | Right plane | `2c544ba10037553953c246fe22d14fa4bb8d73da3ba669c46d73c2c471bce56a` |
 | Negative direction | `f90ea93f612853b758915afc9469c16dcaa06339f9ec7751028ca97bd8e43cef` |
 
-Hosted verification extends the existing eight archive cases. It compares the other 232 bytes to each pinned span, checks a distinct caller-supplied witness and gives the packaged reader the generated handle, distance child and placement fields together. The cache, closing favorite, full model writing and licensed reopen remain separate. [Hosted boundary](../../../tests/Research/Archives/SolidWorksDistVerify.py)
+Hosted verification extends the existing eight archive cases. It compares the other 232 bytes to each pinned span, checks a distinct caller-supplied witness and gives the packaged reader the generated handle, distance child and placement fields together. The cache has a separate scoped research encoder. The closing favorite, full model writing and licensed reopen remain open. [Hosted boundary](../../../tests/Research/Archives/SolidWorksDistVerify.py), [distance cache](DisplayCache.md)
