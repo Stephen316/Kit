@@ -1,0 +1,9 @@
+# Follow the first automatic-scope boss to its saved sketch
+
+Add `--inspect-map` to the [automatic-scope archive command](ProvisionalScopeArchive.md). It reads the complete configuration of each supplied pinned archive and uses its resulting allocation map to walk the start of `ResolvedFeatures`. The existing single-archive report and repeat report remain available through their documented options.
+
+Both private saves close `Config-0` at byte 25,498 with a next allocation index of 112. The resolved-list header independently records the same index and has a list count of 23. The typed archive walk reaches the empty relation manager after four atoms. The sketch-block manager stores raw concept words `(1, 1073741824, -1, 0)`. Its self-reference resolves to object 101. The lone annotation view is `*Top` at object 104. The meaning of the first concept word remains open.
+
+The resolved prefix reaches `ScopeBossASketch`, feature 26 and object 177, at byte 5,554. Its four saved edges resolve to the Front Plane datum. The trim record has zero cached surfaces and zero cached segments and closes at byte 8,350. The next typed node is `ScopeBossA`, feature 32 and object 219. Its compact profile reference at byte 8,423 resolves to the allocated sketch object 177. Feature 32 is also the first earlier producer identified by the later Cut scope record.
+
+The two-archive replay produced SHA-256 `923d34a8ab2989dd517c3def155c7b204befa78be1e559618a371ea3189b797e`. It matched the typed first profile and boss across both saves. The earlier report without this option reproduced SHA-256 `84d8a91c3f7fab14f870301c82621647c68f1110efe1070f929780df999fbace`. The result covers the two exact automatic archives. The later Boss and Cut allocation walk, Auto-select semantics, and freshly reopened explicit-scope controls remain open. [Automatic-scope repeats](AutomaticScopeRepeat.md)

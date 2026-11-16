@@ -28,6 +28,7 @@ from convert.adapters.solidworks.resolved.FaceIdentity import ReadFaceReturn
 from convert.adapters.solidworks.resolved.NamedNode import ReadNamedNode
 from convert.adapters.solidworks.resolved.cut.CutLinks import ReadCutLinks
 from convert.adapters.solidworks.resolved.cut.CutProof import ReadCutProof
+from SolidWorksScopePrefix import read_scope_prefix
 
 GENERATION = 19000
 BUILD = "34.4.1.1011"
@@ -213,7 +214,7 @@ def read_scope_body(cursor, first):
     }
 
 
-def read_provisional(data, spec, stream_sha256):
+def read_provisional(data, spec, stream_sha256, *, inspect_map=False):
     archive = SldprtArchive.from_bytes(data, "provisional-automatic.SLDPRT")
     blob = archive.require(RESOLVED)
     require(
@@ -286,7 +287,7 @@ def read_provisional(data, spec, stream_sha256):
         cursor.ReadInts("<2H") == (1, 2),
         "subsequent chooser lead disagrees with the scope-array return",
     )
-    return {
+    result = {
         "stream_sha256": stream_sha256,
         "stream_size_bytes": len(blob),
         "cut": cut,
@@ -304,6 +305,16 @@ def read_provisional(data, spec, stream_sha256):
         "scope_word": scope,
         "observed_auto_select": None,
     }
+    if inspect_map:
+        prefix = read_scope_prefix(archive, blob, spec, GENERATION)
+        first_boss = prefix["first_boss"]
+        require(
+            (first_boss["name"], first_boss["feature_id"], first_boss["start"])
+            == (producers["A"]["name"], producers["A"]["feature_id"], producers["A"]["record_offset"]),
+            "typed boss does not match the scope array's earlier owner",
+        )
+        result["resolved_prefix"] = prefix
+    return result
 
 
 def read_control(snapshot):
@@ -357,7 +368,7 @@ def read_control(snapshot):
     }
 
 
-def read_sample(path, snapshot, revision, source_sha256, size, archive_sha256, stream_sha256):
+def read_sample(path, snapshot, revision, source_sha256, size, archive_sha256, stream_sha256, *, inspect_map=False):
     with path.open("rb") as stream:
         data = stream.read(size + 1)
     require(
@@ -387,7 +398,7 @@ def read_sample(path, snapshot, revision, source_sha256, size, archive_sha256, s
         "input_case": "automatic",
         "campaign_completed": False,
         "full_incoming_class_map_verified": False,
-        **read_provisional(data, spec, stream_sha256),
+        **read_provisional(data, spec, stream_sha256, inspect_map=inspect_map),
     }
 
 
@@ -412,10 +423,11 @@ def compare_repeats(primary, repeat):
     return {"matched_scope_fields": list(fields), "matched_bodies": bodies}
 
 
-def report(path, repeat_path=None):
+def report(path, repeat_path=None, *, inspect_map=False):
     snapshot = GitSnapshot(ROOT)
     primary = read_sample(
         path, snapshot, SOURCE_REVISION, SOURCE_SHA256, PROVISIONAL_SIZE, PROVISIONAL_SHA256, PROVISIONAL_STREAM,
+        inspect_map=inspect_map,
     )
     control = read_control(snapshot)
     require(
@@ -435,9 +447,17 @@ def report(path, repeat_path=None):
     if repeat_path is not None:
         repeat = read_sample(
             repeat_path, snapshot, REPEAT_REVISION, REPEAT_SOURCE_SHA256, REPEAT_SIZE, REPEAT_SHA256, REPEAT_STREAM,
+            inspect_map=inspect_map,
         )
         result["repeat"] = repeat
         result["repeat_comparison"] = compare_repeats(primary, repeat)
+        if inspect_map:
+            left, right = primary["resolved_prefix"], repeat["resolved_prefix"]
+            require(
+                left["first_profile"] == right["first_profile"] and left["first_boss"] == right["first_boss"],
+                "typed first profile or boss differs across saves",
+            )
+            result["repeat_comparison"]["resolved_prefix_matched"] = True
     return result
 
 
@@ -445,9 +465,10 @@ def main():
     parser = ArgumentParser(description=__doc__)
     parser.add_argument("archive", type=Path)
     parser.add_argument("--compare-repeat", type=Path)
+    parser.add_argument("--inspect-map", action="store_true")
     arguments = parser.parse_args()
     try:
-        value = report(arguments.archive, arguments.compare_repeat)
+        value = report(arguments.archive, arguments.compare_repeat, inspect_map=arguments.inspect_map)
     except (ArchiveError, LookupError, OSError, ValueError) as error:
         parser.exit(1, f"scope archive refused: {error}\n")
     sys.stdout.buffer.write(
