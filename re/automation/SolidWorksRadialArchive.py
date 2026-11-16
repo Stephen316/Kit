@@ -11,6 +11,8 @@
 from math import dist, isclose
 
 from PairedCaptureIntake import require, sha256
+from SolidWorksRadialDisplay import read_display_return
+from SolidWorksRadialProfile import read_circular_region, read_profile_return
 from convert.adapters.solidworks.Config.OrdinaryMap import ReadOrdinaryMap
 from convert.adapters.solidworks.Container.Archive import (
     ContainerMo,
@@ -253,14 +255,15 @@ def read_display_prefix(cursor):
     }
 
 
-def inspect_archive(data):
+# Continue through the radial display and profile only for the explicit research mode.
+def inspect_archive(data, profile_return=False):
     cursor, profile, origin = open_profile(data)
     points = read_points(cursor)
     circle = read_circle(cursor, points)
     diameter = read_diameter(cursor, circle)
     coincidence = read_origin_join(cursor, points, circle, origin)
     display = read_display_prefix(cursor)
-    return {
+    result = {
         "resolved_stream": RESOLVED,
         "resolved_sha256": sha256(cursor.BlobValue),
         "profile": profile,
@@ -275,3 +278,9 @@ def inspect_archive(data):
             "complete_resolved_boss_graph",
         ],
     }
+    if profile_return:
+        result["display_return"] = read_display_return(cursor, profile, diameter)
+        result["region"] = read_circular_region(cursor, circle)
+        result["profile_return"] = read_profile_return(cursor, profile, circle, origin)
+        result["unresolved"] = ["complete_resolved_boss_graph"]
+    return result
