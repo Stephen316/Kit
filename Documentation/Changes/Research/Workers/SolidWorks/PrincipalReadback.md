@@ -12,6 +12,8 @@ python re/automation/PrincipalReadbackEvidence.py <copied-output-directory> --di
 
 The comparator verifies the dispatch phase, request-bound native owner, plan, receipt and measured output hashes. It checks the launcher, collector, specification, control and all fourteen saved files against their exact Git blobs at the worker revision. Original P01 and P03 receipt and measurement pins resolve independently at `89c25945f5833ad9c3a1c6c683df510b5702dd54`. The report keeps artifact hashes and native CAD identities. It omits host and process identifiers and workstation paths.
 
+The current launcher compiles `P04Readback.cs` and `P02Readback.cs` together. For that variant the comparator checks the exact launcher digest and both compiled source pins against the committed files and the same readback plan. Earlier single-source receipts retain their existing field coverage. This check still requires the completed dispatch and its measured outputs.
+
 | Artifact | SHA-256 or revision |
 | --- | --- |
 | Worker Git revision | `0d527bb9ec59f7728545cd6aacfa98eb5951549b` |

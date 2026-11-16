@@ -31,9 +31,18 @@ CONTROL = "re/solidworks/examples/.SLDPRT/example.SLDPRT"
 CONTROL_DIGEST = "d1bbca099ccac1330024619390df3c6b76320a6a6c281a5009578b2fb63e7408"
 OPERATION = "p01-p03-readback"
 BUILD = "34.4.1.1011"
+
+# principal field coverage depends on the exact sources compiled for the readback
 COLLECTORS = {
-    "1c58fcdec0b20e4a2fac86564466a735f2abb81654090bee381a62c43553aa21": False,
-    "16e4f1331adaba840dcfe57f81f5614ddff726c9505f1d281a706f56a2845c95": True,
+    "1c58fcdec0b20e4a2fac86564466a735f2abb81654090bee381a62c43553aa21": (False, None),
+    "16e4f1331adaba840dcfe57f81f5614ddff726c9505f1d281a706f56a2845c95": (True, None),
+    "82f988d46f463963cd2ec377966dcdcd268c1b699a7d6e24246ab525a086dd9d": (
+        True,
+        {
+            "launcher": "492dd92a76427b687d16587c3c2277150c7d2befaf275d9459230534463c9530",
+            "circle_collector": "b674dd765c133a53efd87da406ce9ec6cbcf218b25a2ee3329228eeee61a5023",
+        },
+    ),
 }
 DOCUMENTS = ("plan", "measurements", "receipt")
 PHASES = ("before_rebuild", "after_rebuild")
@@ -160,7 +169,23 @@ def read_sources(snapshot, plan):
         and sources["control"]["sha256"] == CONTROL_DIGEST,
         "worker specification or healthy control differs from the prescribed asset",
     )
-    require(sources["collector"]["sha256"] in COLLECTORS, "unsupported principal collector")
+    collector_digest = sources["collector"]["sha256"]
+    require(collector_digest in COLLECTORS, "unsupported principal collector")
+    _, bundle = COLLECTORS[collector_digest]
+    if bundle is None:
+        require(
+            "circle_collector" not in plan,
+            "legacy principal collector has an unexpected companion",
+        )
+    else:
+        companion = git_pin(snapshot, revision, f"{AUTHORING}/P02Readback.cs")
+        require(
+            companion == plan.get("circle_collector")
+            and companion["sha256"] == bundle["circle_collector"]
+            and sources["launcher"]["sha256"] == bundle["launcher"],
+            "worker compiled principal collector bundle differs from the approved sources",
+        )
+        sources["circle_collector"] = companion
     installed = {}
     for role in ("executable", "interop", "constants"):
         digest = plan[f"installed_{role}_sha256"]
@@ -680,7 +705,7 @@ def report(directory, digest):
     dispatch, plan, run, digests = read_dispatch(directory, digest)
     verify_owner(run, dispatch)
     sources, installed = read_sources(snapshot, plan)
-    has_boss_display = COLLECTORS[sources["collector"]["sha256"]]
+    has_boss_display, _ = COLLECTORS[sources["collector"]["sha256"]]
     specs = snapshot.document(CAPTURE_REVISION, SPEC)
     require(
         sha256(snapshot.blob(CAPTURE_REVISION, SPEC)) == SPEC_DIGEST,
