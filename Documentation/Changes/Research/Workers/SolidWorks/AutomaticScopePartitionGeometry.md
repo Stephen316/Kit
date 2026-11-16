@@ -2,7 +2,7 @@
 
 Add `--inspect-map` to the [pinned automatic-scope archive replay](ProvisionalScopeArchive.md). After replaying the resolved feature stream, the command independently reads the active `Contents/Config-0-Partition` payload. It follows the typed region, shell, face, loop and edge references. The two closed regions account for every boundary topology record. Each has ten planar faces, 24 edges and sixteen vertices.
 
-The archived geometry distinguishes the regions by their disjoint box bounds. That matches each region to its recipe and the corresponding typed resolved scope row. The decoded partition carries both regions under a single derived carrier and supplies no native Boss ID for either region. The correlation uses the unique spatial bounds.
+The geometry matches each region to a recipe independently by its disjoint box bounds. The ordinary decoder carries both regions under a single derived carrier. The opt-in replay now checks separate [native shell and atom links](AutomaticScopeBodyIdentity.md) to corroborate the resolved scope IDs.
 
 | Recipe body | Saved bounds in mm | Geometric volume in mm³ | Geometric centroid in mm | Resolved body and feature |
 | --- | --- | --- | --- | --- |
