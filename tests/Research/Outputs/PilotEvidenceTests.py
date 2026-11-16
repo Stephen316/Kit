@@ -153,7 +153,7 @@ def FixtureSources(RootPath: FilePath) -> dict[str, str]:
 # the pilot needs independent samples for wait before start and for job execution
 def CiJobs() -> list[dict[str, object]]:
     RunPath = "https://api.github.com/repos/example/kit/actions"
-    JobEntry: dict[str, object] = {
+    JobRow: dict[str, object] = {
         "id": 201,
         "run_id": 11,
         "run_attempt": 2,
@@ -167,23 +167,18 @@ def CiJobs() -> list[dict[str, object]]:
         "conclusion": "success",
     }
     return [
-        JobEntry,
-        JobEntry,
+        JobRow,
+        JobRow,
+        {**JobRow, "id": 202, "url": f"{RunPath}/jobs/202", "conclusion": "skipped"},
         {
-            **JobEntry,
-            "id": 202,
-            "url": f"{RunPath}/jobs/202",
-            "conclusion": "skipped",
-        },
-        {
-            **JobEntry,
+            **JobRow,
             "id": 203,
             "url": f"{RunPath}/jobs/203",
             "created_at": None,
             "conclusion": "failure",
         },
         {
-            **JobEntry,
+            **JobRow,
             "id": 204,
             "url": f"{RunPath}/jobs/204",
             "completed_at": None,
