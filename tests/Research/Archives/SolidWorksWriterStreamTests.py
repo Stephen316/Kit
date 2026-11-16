@@ -331,6 +331,15 @@ def CheckCfgWeldTol() -> None:
     )
 
 
+# the final detail settings must hand off to the native environment with the same map
+def CheckDetailEnd() -> None:
+    Report = LoadReport("VerifyConfigDetailEnd.py", 14)
+    assert (
+        Report["replay_sha256"]
+        == "3b099160e1ab5803a6a4d06712abe98aebbec950fef8dc5943c8a2647ad0429a"
+    )
+
+
 # each configuration manager record needs separate pinned evidence from the subprocess
 def CheckCmgr() -> None:
     Report = LoadReport("VerifyCmgrColor.py")
