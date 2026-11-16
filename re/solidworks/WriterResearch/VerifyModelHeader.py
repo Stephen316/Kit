@@ -2,6 +2,7 @@ from collections import Counter
 from hashlib import sha256
 import json
 from pathlib import Path
+from struct import unpack
 import sys
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -26,6 +27,8 @@ def verify_header_logs() -> dict[str, object]:
         stream = archive.require("Contents/Config-0-ModelHeader")
         RequireArch(stream == archive.require("Header2"), True, "ModelHeader duplicate")
         cursor, state = ReadHeaderLogs(stream, 19000)
+        _, update_stamp, _ = unpack("<3I", archive.require("ModelStamps"))
+        RequireArch(state.UpdateStamp, update_stamp, "ModelHeader shared update stamp")
         saved = stream[: cursor.Offset]
         actual = tuple(log.Name for log in state.Revisions[1:])
         measured = tuple(feature["name"] for feature in measurement["feature_tree"])
