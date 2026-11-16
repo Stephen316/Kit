@@ -1,0 +1,58 @@
+<!--
+SPDX-License-Identifier: LicenseRef-PolyForm-Strict-1.0.0
+SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin
+
+This SPDX license identifier and copyright notice must not be
+removed, altered, or obscured. Doing so is a material breach of
+the PolyForm Strict License 1.0.0 and voids all licenses granted
+to you under it immediately and permanently.
+-->
+
+# Strict Fusion source reading for the constrained XY first boss
+
+The packaged strict reader admits a millimeter, positive XY, first one-sided
+blind boss with an origin-coincident, fully constrained rectangle. The proof
+checks the exact ordered point operands, four line-axis rules, the distinct
+fixed origin, two separately owned sketch parameters, and the closed perimeter
+selected by the extrusion. It checks the reciprocal native parameter,
+feature, update, and compute graph. Blind depth and the explicit zero taper
+retain separate ownership. The existing body history and topology, material
+asset and mass-property, placement, scope, and snapshot checks still apply.
+
+Strict output carries the complete typed native state and a read-only marker.
+The existing partial reader retains the original archive bytes. The Fusion
+writer refuses the new strict output even if the caller removes the marker.
+This evidence records Fusion source reading. Target authoring, fresh native
+target edit and reopen, cross-CAD conversion qualification, and A05c completion
+remain separate.
+
+## Reproduce the pinned discovery report
+
+```sh
+uv run --frozen --no-default-groups --extra dev --python 3.14 python -B \
+  re/automation/FusionConstrainedPrismEvidence.py
+```
+
+The report reads the original P03 discovery commit
+`89c25945f5833ad9c3a1c6c683df510b5702dd54`. Fusion 2706.1.17 licensed
+readback used the same process for the baseline and three independent parameter
+edits. The repeat export uses a measurement taken before that export.
+SOLIDWORKS 34.4.1 supplies the separately reopened paired physical evidence.
+The independently recorded centroids and volumes agree with the checked body.
+The report retains the qualification blockers from both capture receipts.
+
+| Archive             | Width, height, depth in mm | Volume in mm³ |
+| ------------------- | -------------------------- | ------------- |
+| Baseline and repeat | 40, 20, 10                 | 8000          |
+| Width edit          | 41, 20, 10                 | 8200          |
+| Height edit         | 40, 23, 10                 | 9200          |
+| Depth edit          | 40, 20, 12                 | 9600          |
+
+The inch, YZ, and negative-direction discovery archives remain refused.
+Eight wire-readable in-memory mutations exercise a broken endpoint, duplicate
+axis assignment, third distinct dimension, translated placement, reference
+driver, unexpected rule, reciprocal nonzero taper, and an added unapproved
+Design entity.
+Eight earlier strict rectangle, prism, circular, cylindrical, and frustum
+controls retain their original neutral fingerprints. The normalized report
+SHA-256 is `b3324c35a37b1065e4d6fa325056a57afbf2f9f7f2a1067e8b64fbc607bb6bb6`.

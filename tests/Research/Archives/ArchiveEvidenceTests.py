@@ -68,6 +68,12 @@ from tests.Research.Archives.SwPlanarLoops import VerifySwExport, VerifySwLoops
             id="fusion-p03-boss-profile",
         ),
         Pytest.param(
+            "re/automation/FusionConstrainedPrismEvidence.py",
+            (),
+            "b3324c35a37b1065e4d6fa325056a57afbf2f9f7f2a1067e8b64fbc607bb6bb6",
+            id="fusion-p03-strict-constrained-prism",
+        ),
+        Pytest.param(
             "re/automation/RectanglePairEvidence.py",
             (),
             "4e0615e5153f12b313f8a3b61b73f81b19fef0768a9571a2c4c09c2806c6d2cc",
