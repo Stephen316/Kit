@@ -15,7 +15,7 @@ This census covers the six P01 sketch-only saves and eight P03 single-boss saves
 | [Base return](CmgrAtoms.md#base-return) | 1658–1692 | 1724–1758 | Constructed for default standalone configuration state with initialized modern thread references and empty collections. |
 | [Inline part and part return](CmgrAtoms.md#inline-part-configuration-object) | 1692–1804 | 1758–1878 | Constructed for the empty optional members and ordered zero-valued atom map. |
 | [Manager configuration aliases](CmgrAtoms.md#part-return-and-manager-aliases) | 1804–1818 | 1878–1892 | Constructed from the active part allocation, first configuration ID and one declared external object. |
-| [External file and manager continuation](CmgrTail.md#external-file-and-referenced-configuration) | 1818–first list | 1892–first list | Constructed from typed file metadata in the standalone profile. The hosted byte and allocator comparison covers 25 archive spans and awaits execution. |
+| [External file and manager continuation](CmgrTail.md#external-file-and-referenced-configuration) | 1818–first list | 1892–first list | Constructed from typed file metadata in the standalone profile. The hosted byte and allocator comparison passed across 25 archive spans at `f832a3b8`. |
 | [Manager lists and feature stamps](CmgrTail.md#root-and-feature-stamps) | First list–EOF | First list–EOF | Constructed with explicit feature stamps and the enclosing allocator. |
 
 | Captures | External path | First list | EOF | Map from first list to EOF |

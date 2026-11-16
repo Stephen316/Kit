@@ -34,6 +34,16 @@ def CheckDefinition() -> None:
     assert Report["preamble_view_forms"] == Report["line_font_orders"] == 2
 
 
+# authored log order and shared archive allocation must survive repeated edits
+def CheckModelHdr() -> None:
+    Report = LoadReport("VerifyModelHeader.py")
+    Encoded = JsonCodec.dumps(Report["captures"], sort_keys=True, separators=(",", ":"))
+    assert (
+        DigestBytes(Encoded.encode("ascii")).hexdigest()
+        == "3028ee71641c89df6c79c88c8bc299e464ad7c00d563c1396e751ac906554636"
+    )
+
+
 # each configuration manager record needs separate pinned evidence from the subprocess
 def CheckCmgr() -> None:
     Report = LoadReport("VerifyCmgrColor.py")

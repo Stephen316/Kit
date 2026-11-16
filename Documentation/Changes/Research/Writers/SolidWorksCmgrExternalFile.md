@@ -4,4 +4,4 @@ The A12 [research codec](../../../../re/solidworks/WriterResearch/CmgrExternal.p
 
 The independent read-only walk reached the first terminal list in 25 receipt-pinned saves at `466dcb172dfa3803463e07ccde963ba01671d200`. Eight saves have empty paths and 145- or 147-byte spans. Seventeen carry a prior path and have 375-byte spans. Every record allocates five slots for two class definitions and three objects. The canonical digest of the sorted archive-to-span SHA-256 map is `821c4d8dfda184b6641892ff54b6133a39a536f62aef3022f8097a05be033654`.
 
-Hosted `CheckCmgr` is wired to compare the generated external bytes and class allocator at the first list, then continue writing and reading both terminal lists through EOF. Hosted execution of that comparison and complete native authoring acceptance remain pending.
+Hosted `CheckCmgr` compared generated external bytes and the class allocator at the first list, then continued writing and reading both terminal lists through EOF. The archive step passed at `f832a3b8`. Complete native authoring acceptance remains pending. [Hosted archive step](https://github.com/TryUniCAD/Kit/actions/runs/43865736099/job/133293681800)

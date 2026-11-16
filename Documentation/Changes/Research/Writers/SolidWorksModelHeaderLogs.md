@@ -1,0 +1,7 @@
+# SOLIDWORKS ModelHeader revision logs
+
+The A12 [research codec](../../../../re/solidworks/WriterResearch/HeaderLogs.py) constructs the generation-19000 header from its root through the first self-reference boundary. The caller supplies the author string, document and object revision logs, root log time, next tree ID and current update stamp. Each revision log supplies an allocated tree ID, a name, its creation time and up to four later edit times. A later edit always uses the status for `Modified` and allocates a new `moStamp_c` object. [Native store sites and profile](../../../../re/solidworks/WriterResearch/ModelHeader.md#revision-log-construction)
+
+The read-only walk completed for all 25 receipt-pinned P01, P03 and P04 saves at `466dcb172dfa3803463e07ccde963ba01671d200`. It found 666 logs and 248 modifications. The recorded authored order matched the independent reopen measurements in every file. `Header2` and `Contents/Config-0-ModelHeader` were byte-identical in all 25 controls.
+
+The SHA-256 of the canonical sorted archive-to-prefix digest map is `3028ee71641c89df6c79c88c8bc299e464ad7c00d563c1396e751ac906554636`. Hosted `CheckModelHdr` is configured to compare the reconstructed prefix and live class allocator. The self-reference, spatial continuation and licensed reopen of a composed part remain open.

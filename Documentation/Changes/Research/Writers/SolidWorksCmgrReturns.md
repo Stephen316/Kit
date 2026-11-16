@@ -8,4 +8,4 @@ Read-only replay checked six P01 and eight P03 pinned saves. All fourteen base r
 
 The replay SHA-256 is `8820c1389e1b03f3e43d61138366cc471bdd577c6f265953566a0165157f1ba2`. Its compact JSON rows contain the file SHA-256, base start and return, base SHA-256, alias start and return, alias SHA-256 and next archive index, in receipt order. [Offsets and scope](../../../../re/solidworks/WriterResearch/CmgrCoverage.md)
 
-Hosted `CheckCmgr` appends the links, base return, part return and aliases to one archive writer for both families. It compares each saved boundary and verifies the final allocator and class map. The new hosted check, complete stream composition and native acceptance remain open.
+Hosted `CheckCmgr` appended the links, base return, part return and aliases to one archive writer for both families. It compared each saved boundary and verified the final allocator and class map at `f832a3b8`. Complete stream composition and native acceptance remain open. [Hosted archive step](https://github.com/TryUniCAD/Kit/actions/runs/43865736099/job/133293681800)

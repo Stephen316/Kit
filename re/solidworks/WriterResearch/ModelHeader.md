@@ -33,6 +33,19 @@ The compact UTF-8 JSON list of `[native filename, decompressed Header2 SHA-256, 
 
 The development snapshot's `ReadHeaderRefs` walked all 25 streams through both self handles and the full self-reference tail. It intentionally reports `header_complete=False`. It reached byte 2,141 in the 2,359-byte P03 baseline, with next archive index 74, and byte 2,529 in the 2,747-byte inch variant, with next index 79. Its stop always left 218 bytes. The offsets record observations. The byte-level rule uses the end of the counted configuration name and the self record's field layout.
 
+## Revision log construction
+
+Installed SOLIDWORKS `34.4.1.1011` uses `sldarchiveu.dll` with SHA-256 `fce17ce9f2b79e188ee0c20ca51cd36cd246d92bf2d35c2010a03f4bb5c304c6`. The `moHeader_c`, `moLogs_c` and `moStamp_c` virtual archive entries are `0x31a134f0`, `0x31a14830` and `0x31a148b0`, respectively. The [typed constructor](HeaderLogs.py) starts the ordinary archive map at slot 1 and continues through the fields immediately before `moExtObject_c`.
+
+| Record | Native store evidence |
+| --- | --- |
+| Root opening | `0x31a13575..86` writes the archive context flag. The calls at `0x31a13593` and `0x31a135a0` write the two string array pointers. `0x31a13626` writes the log list. |
+| Log members | `0x31a14845` writes the inline counted stamp list. `0x31a1485e` saves the tree ID from member `+0x48`, and `0x31a1487a` writes the name at `+0x50`. |
+| Stamp members | `0x31a148dd`, `0x31a148ea` and `0x31a148f7` store the low words of `+0x08`, `+0x0c` and `+0x10`. `0x31a1490e` saves the timestamp at `+0x18` and the return branch writes the CString at `+0x20`. The constructor at `0x31a12790` receives the status enum independently, and the exported `updateStamp` at `0x31a163e0` stores a new status and current time. |
+| Root continuation | `0x31a13665` stores the time from header `+0x50`. It agrees with the root document log creation time in the pinned profile. The standalone creation-time getter at `0x31a15160` refers separately to `+0x70`. `0x31a13671` saves next tree ID from `+0x08`, and `getHighestID` returns that member minus one at `0x31a15230`. The external list pointer at `0x31a1367e` is null. `0x31a136b3` saves the update stamp from `+0x40`, corroborated by its getter at `0x31a09810`. |
+
+The six P01, eight P03 and eleven P04 saved headers have 25, 26 and 28 logs respectively. All 666 logs begin with status 0 for creation. Their later 248 stamps use status 1, including repeated modifications in one log. The file log uses ID 0. The 23 default feature IDs occur in the fixed saved order `1..18,21..25`. Their names agree as a multiset with the independent native feature tree, which uses display order. All authored log names agree in order with that tree. The next ID remains an explicit input because other native objects can consume IDs without creating header logs. [Pinned replay and hosted comparison](../../../Documentation/Changes/Research/Writers/SolidWorksModelHeaderLogs.md)
+
 ## Continuation and spatial frame
 
 Let **C** be the byte immediately after the self record's counted configuration-name string. The stream has 234 bytes from **C** in all 25 controls. The snapshot decodes the first 16 as the self-reference's configuration ID and three additional 32-bit fields, with little-endian layout `<iiIi`. All four are zero in the controls. The following offsets are relative to **C**.
