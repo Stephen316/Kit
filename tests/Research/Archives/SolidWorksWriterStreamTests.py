@@ -691,3 +691,15 @@ def CheckInfoProps() -> None:
         Report["replay_sha256"]
         == "b27ac51f7278cbd4a125f9cc6f38391fe0402e849628ecb11f9656c2a118e573"
     )
+
+
+# the keyword and feature indices share the same saved document identity
+def CheckFeatureIndex() -> None:
+    Report = LoadReport("VerifyPartFeatureIndex.py", 14)
+    assert Report["counts"] == {"P01": 6, "P03": 8}
+    assert Report["dimension_orders"] == 2
+    assert Report["invalid_driver_refusals"] == 4
+    assert (
+        Report["replay_sha256"]
+        == "c60b495c59431b3b047a000390be782032f44d6b8a5260f58f9de11c2b9f4a49"
+    )

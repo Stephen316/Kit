@@ -74,6 +74,12 @@ The information stream writes the UTF-8 code-page property, 15 named document te
 
 All six P01 and eight P03 source members matched the generated XML byte-for-byte from the independently read typed fields. All eight Boss members include the mass-summary value. The replay SHA-256 is `b27ac51f7278cbd4a125f9cc6f38391fe0402e849628ecb11f9656c2a118e573`. This binds the table format and name ownership. Constructing the caller's complete fresh document information and verifying the whole file in SOLIDWORKS remain open. [Receipt-pinned replay](../../../../../../re/solidworks/WriterResearch/VerifyPartInformation.py)
 
+## Feature and keyword XML indices
+
+The feature index writes the three linked native file, model and configuration entries from the document creation time, saved path, display name, saved stamp and configuration reference. The keyword index uses that same creation time and reference. It emits the scoped built-in feature declarations in saved ID order, the rectangle's two ordered display dimensions, and the optional Boss with its own depth entry. The sketch carries the saved root flag only when the Boss is absent. A single observed byte, `0x86`, precedes the keyword XML. Its broader meaning is unverified. Display magnitudes are caller-supplied in saved document units. They are separate from the driving values in the feature streams.
+
+The six P01 and eight P03 captures matched all 28 generated members byte-for-byte. Both dimension orders, positive and reversed Boss witnesses, and the rounded inch display values replayed. The verifier also exercised XML escaping and refused four invalid driver declarations. The aggregate replay SHA-256 is `c60b495c59431b3b047a000390be782032f44d6b8a5260f58f9de11c2b9f4a49`. [Feature index](../../../../../../re/solidworks/WriterResearch/PartFeatureIndex.py), [keyword index](../../../../../../re/solidworks/WriterResearch/PartKeywords.py), [receipt-pinned replay](../../../../../../re/solidworks/WriterResearch/VerifyPartFeatureIndex.py)
+
 ## Retained P03 members
 
 The licensed omission run kept 33 of the original 37 physical members
@@ -102,11 +108,11 @@ be needed to omit another member. [Licensed omission measurements](../SolidWorks
 | Full typed payload | `docProps/app.xml`, `docProps/core.xml`, `docProps/custom.xml` | `PartDocProperties.EncodeDocumentProperties` from caller metadata and the native fresh-property defaults |
 | Full typed payload | `docProps/Config-0-Properties.xml` | `PartDocProperties.EncodeConfigurationProperties` validates and uses the shared empty section serializer |
 | Typed payload with prerequisites | `docProps/ISolidWorksInformation.xml` | `PartInformation.EncodeInformation` emits the ordinary information table from caller-owned document and unit values |
-| Open | `swXmlContents/Features`, `swXmlContents/KeyWords` | XML derived from authored feature and document metadata or licensed omission evidence |
+| Typed payload with prerequisites | `swXmlContents/Features`, `swXmlContents/KeyWords` | `PartFeatureIndex.EncodeFeatures` and `PartKeywords.EncodeKeywords` use the same document identity plus caller-owned sketch and optional Boss display state |
 
-There are 23 retained members with typed constructors, including two
+There are 25 retained members with typed constructors, including two
 fresh-document payloads and two manifests with property stream prerequisites.
-Ten remain open. Native acceptance of a fully generated archive is pending.
+Eight remain open. Native acceptance of a fully generated archive is pending.
 [Package manifests and open timing](SolidWorksPackageMetadata.md)
 [Document property writers](SolidWorksDocumentProperties.md)
 [Configuration property writer](SolidWorksConfigurationProperties.md)
