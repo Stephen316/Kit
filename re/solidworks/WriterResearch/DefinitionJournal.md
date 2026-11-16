@@ -75,6 +75,40 @@ The call at `0x4c20494b` reaches `suObList::Serialize` and then `su_CObList::Ser
 
 In all 25 receipt-pinned P01, P03 and P04 files, the two counter words end at notebook end `+21` and the zero list count ends at `+23`. The document then writes its own `CString` member `+0x1138` at `0x49710af3`. The document constructor initializes that member at `0x49758312`. Reading the next archive string directly at `+23` returns the empty Unicode string and advances to `+27` in every file. These observations establish the empty material manager's exact return boundary. Populated material records still need separate evidence.
 
+## Document rendering options
+
+After the string at notebook end `+23`, the same `uiModelDoc_c::Serialize` store branch emits the following document members. The constructor instantiates the two `suObList` members at `0x49758348` and `0x497581c0`, the strings at `0x49758335` and `0x49758320`, and the two string arrays at `0x497581ce` and `0x497581dc`.
+
+| Offset from notebook end | Member and archive value in all 25 saves | Store call |
+| --- | --- | --- |
+| +27 | Empty `suObList` at `+0x1158`, two-byte count | `0x49710b06` |
+| +29 | Empty Unicode `CString` at `+0x1150`, four bytes | `0x49710b13` |
+| +33 | Empty `suObList` at `+0x0f40`, two-byte count | `0x49710b26` |
+| +35 | Empty Unicode `CString` at `+0x1140`, four bytes | `0x49710b33` |
+| +39 | Two empty `su_CStringArray` members at `+0x0f88` and `+0x0fb0`, two bytes each | `0x49710b43`, `0x49710b53` |
+| +43 | Six zero signed `long` words from `+0x1348`, `+0x1350`, `+0x134c`, `+0x1354`, `+0x0a78`, `+0x1358` in order | `0x49710b62` through `0x49710bad` |
+
+The document constructor initializes those six scalar members at `0x49758fa1`, `0x49758fa8`, `0x49757d07` and `0x497584ca`. It calls the exported `PVDocSpecificOptionsData_c` constructor at `0x4a315c30` and retains the result in document member `+0x1370`. The store call at `0x49710bbd` and modern load call at `0x4971319c` pass that member to its exported serializer at `0x4a316280`. The serializer's modern load route reads the last five words under the version checks at `0x4a3163ee` (at least `0x147f`) and `0x4a316430` (at least `0x1825`).
+
+The rendering-options block uses little-endian `<6iI5i>`, with line color the single unsigned `long`. Direct exported getters and setters establish the field identities below. The default constructor initializes these values independently of the captures.
+
+| Member in wire order | Native field | Saved value |
+| --- | --- | --- |
+| `+0x08` | Flags with Bloom and direct caustics at bits 0 and 1 | 0 |
+| `+0x0c` | Bloom threshold | 100 |
+| `+0x10` | Bloom radius | 5 |
+| `+0x2c` | Contour or cartoon rendering active | 0 |
+| `+0x18` | Contour only | 0 |
+| `+0x1c` | Line thickness | 1 |
+| `+0x20` | Line color | 0 |
+| `+0x24` | Monte Carlo enabled | 0 |
+| `+0x28` | Ambient occlusion output | 0 |
+| `+0x14` | Has contour | 1 |
+| `+0x30` | Has cartoon edges | 0 |
+| `+0x34` | Has cartoon shading | 0 |
+
+Reading the six document members and six scalar words from notebook end `+27` reaches `+67` in all 25 receipt-pinned files. Reading the twelve rendering options consumes exactly 48 more bytes and reaches `+115`. At that boundary the next document `long`, member `+0x1388` written at `0x49710bfe`, is 1 in every capture. These measurements cover empty lists, empty strings and the constructor's rendering defaults.
+
 ## Part Definition tail
 
 In installed build `34.4.1.1011`, `sldprtu.dll` (SHA-256 `cb1e260f8411a39dc44f4d8a6255ea585c7a5e60b223d0e69d3f51a258ee96de`) has the primary `uiPartDoc_c` RTTI locator at `0x334e5cd8` and vtable at `0x334af0f0`. Slot 513 selects `0x333bb1b0`. The override calls the imported `uiModelDoc_c::Serialize` at `0x333bb1c8`. On the store branch it then writes `this+0x1688` with the archive double operator at `0x333bb31d` and returns. The part load branch reads the double at `0x333bb2f5` on the supported modern path.
