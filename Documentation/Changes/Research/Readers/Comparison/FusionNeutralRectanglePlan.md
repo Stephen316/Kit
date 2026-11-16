@@ -28,3 +28,18 @@ Run the report from the repository with Python 3.14. The canonical JSON SHA-256 
 ```sh
 uv run --frozen --python 3.14 python re/automation/FusionNeutralRectanglePlan.py
 ```
+
+## Source-derived Fusion research candidates
+
+`SourceRectangleProbe.py` derives the two lengths from the pinned SOLIDWORKS neutral drivers and independently measured side bindings. It generates a private Fusion archive for each positive XY P01 case. Offline readback resolves the reciprocal sketch feature and principal XY datum, the four-edge closed perimeter, four edge-axis relations, a distinct Origin and corner, and the two directly bound sketch-owned drivers. Each dimension's actual saved operands match its source side. The three perimeters matched with zero endpoint error for 40 × 20 mm, 41 × 20 mm and 40 × 23 mm.
+
+```sh
+python re/Fusion/Reconstruction/DimensionAuthoring/SourceRectangleProbe.py \
+  --output /private/P01Candidates
+python re/Fusion/Reconstruction/DimensionAuthoring/SourceRectangleProbe.py \
+  --prepare-baseline /private/P01Candidates --output /private/P01BaselineWitness
+```
+
+The second command rechecks the committed generators, original source receipt, exact target archive and typed bindings. It seals the baseline in the format of the existing two-process witness. The baseline plan retains the source archive and candidate-manifest pins in its copied proof. Run its two phases on separate fresh licensed Fusion processes using the [native witness procedure](../../../Fusion/Authoring/FusionOriginCoincidenceProbe.md#prepare-the-two-process-native-witness), and verify the sealed output with [the existing witness verifier](../../../Fusion/Authoring/FusionWitnessVerification.md).
+
+At `32b452c9f3cc58bd91a4831c6373bc60e5f01b24`, the three-archive candidate report SHA-256 was `3777e33430b8fcbf95915fad6cc49d548f9db15b0e847d68756b9162186b0a5b`. The prepared 57,976-byte baseline archive SHA-256 was `ab974f435ec27ce510e7949a026061e4a7a48111441929eb040882db0e63444f`, and the plan SHA-256 was `d92dc2914966d77bdba348355993c1eab757d89a99ac7c3f1c0553ec8df9ebe0`. The offline witness verifier re-read the sealed plan. Licensed execution of the source-derived baseline and the P03 Boss writer remain open. The separate [fixed Fusion native witnesses](https://github.com/TryUniCAD/Kit/pull/94#issuecomment-6921349933) already have licensed edit, restoration and reopen evidence.
