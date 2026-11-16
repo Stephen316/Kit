@@ -35,7 +35,7 @@ All four tested class definitions use schema 1, with `moConfigurationMgr_c`, `mo
 | DSPBR body | Absent | 795–1095 |
 | Visual record returns | 899 | 1095 |
 
-The optional record's store procedure at `0x3c78af90` writes 26 floats, one signed integer, 18 floats, one signed integer, two floats, five CStrings and one float. At `0x3c78b41e`, archive version `18101` or later adds two CStrings, one signed integer, six floats and two CStrings. At `0x3c78b508`, archive version `18802` or later adds two floats and three CStrings. All 25 records contain 55 floats, three integers and 12 CStrings. The only nonempty strings are `basic` and `2025x`. The 300-byte DSPBR body has SHA-256 `3b77a4c24f8a5953b871c3b9fa7b0df54008ddf61bacb11baffc7c78fba937a9` in every measured save. Its end leaves later configuration-manager members outside this proof.
+The optional record's store procedure at `0x3c78af90` writes 26 floats, one signed integer, 18 floats, one signed integer, two floats, five CStrings and one float. At `0x3c78b41e`, archive version `18101` or later adds two CStrings, one signed integer, six floats and two CStrings. At `0x3c78b508`, archive version `18802` or later adds two floats and three CStrings. All 25 records contain 55 floats, three integers and 12 CStrings. The only nonempty strings are `basic` and `2025x`. The 300-byte DSPBR body has SHA-256 `3b77a4c24f8a5953b871c3b9fa7b0df54008ddf61bacb11baffc7c78fba937a9` in every measured save. [Configuration manager terminal records](CmgrTail.md)
 
 ## Color appearance initialization
 
