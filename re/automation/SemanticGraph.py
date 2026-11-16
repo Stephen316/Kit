@@ -1,12 +1,15 @@
 import hashlib
 import json
 import math
+from collections import Counter
 from collections.abc import Mapping
 from dataclasses import fields, is_dataclass
 from enum import Enum
 from fractions import Fraction
 
 from interchange.Features.DistanceParam import KLengthFactors
+from interchange.Features.FeatureStep import FeatureStep
+from interchange.geometry.Models.Sketch import Sketch
 from interchange.Core.Reflection import CanonName
 from interchange.serialization.Wire import ResolveField
 
@@ -135,6 +138,13 @@ def build_graph(document, geometry_unit, *, max_nodes=4096, max_fields=100000):
     if type(max_fields) is not int or not 1 <= max_fields <= 200000:
         raise ValueError("field limit must be an integer from 1 through 200000")
     factor = KLengthFactors[geometry_unit]
+    if len(document.sketches) > max_nodes:
+        raise ValueError("semantic sketch inventory exceeds its node limit")
+    sketch_ids = (
+        Counter(value.id for value in document.sketches if isinstance(value, Sketch))
+        if isinstance(document.sketches, tuple)
+        else Counter()
+    )
     graph = {
         "nodes": {},
         "issues": [],
@@ -305,7 +315,25 @@ def build_graph(document, geometry_unit, *, max_nodes=4096, max_fields=100000):
             child = getattr(value, name)
             location = path + "/" + pointer(name)
             if kind == "FeatureStep" and name == "definition" and child is None:
-                issue(node["path"] + location, "missing_feature_definition")
+                if (
+                    isinstance(value, FeatureStep)
+                    and isinstance(document.feature_timeline, tuple)
+                    and path == ""
+                    and node["path"].startswith("/feature_timeline/")
+                    and tag(value.kind) == "reference"
+                    and value.operation is None
+                    and isinstance(value.sketch_id, str)
+                    and sketch_ids.get(value.sketch_id) == 1
+                ):
+                    graph["observations"].append(
+                        {
+                            "path": node["path"] + location,
+                            "classification": "declared_sketch_reference",
+                            "sketch_id": value.sketch_id,
+                        }
+                    )
+                else:
+                    issue(node["path"] + location, "missing_feature_definition")
             if name in {"id", "EntityId", "provenance"} or (
                 name in {"name", "EntityName"} and kind != "MaterialRecord"
             ):
