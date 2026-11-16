@@ -140,6 +140,16 @@ def CheckConfigView() -> None:
     )
 
 
+# the standard view group preserves its generated camera bases and archive allocations
+def CheckCfgViews() -> None:
+    Report = LoadReport("VerifyConfigSavedViews.py", 14)
+    assert Report["constructed"] is True
+    assert (
+        Report["replay_sha256"]
+        == "56fbc3f5a09c81918a8702d5598172b3c4650aba233901e3ddf293073abee395"
+    )
+
+
 # material handoff must retain actual ownership across both model box branches
 def CheckConfigBody() -> None:
     Report = LoadReport("VerifyConfigBody.py", 14)
