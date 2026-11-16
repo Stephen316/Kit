@@ -12,11 +12,16 @@ from tests.Research.Windows.VerifyCalTrial import VerifyCalTrial
 # the windows success fixture needs enough time for eight serial decoder sessions
 KSerialTrialSeconds = 45
 
+# hosted windows heartbeat processes need headroom for startup and scheduling delays
+KLeaseSeconds = 12
+
 
 # a fixed workload is necessary to verify that windows reports decoder measurements without recommending restricted concurrency
 @Pytest.mark.skipif(System.platform != "win32", reason="Windows process boundary")
 def CheckWinSweep(TmpPath: FilePath) -> None:
-    ManifestPath = BuildManifest(TmpPath, MaxSeconds=KSerialTrialSeconds)
+    ManifestPath = BuildManifest(
+        TmpPath, MaxSeconds=KSerialTrialSeconds, LeaseSeconds=KLeaseSeconds
+    )
     Manifest = JsonCodec.loads(ManifestPath.read_text(encoding="utf-8"))
     OutputPath = TmpPath / "Sweep"
     Report = RunCalibration(ManifestPath, OutputPath)

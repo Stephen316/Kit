@@ -254,8 +254,8 @@ def AssertSpools(Queue: DispatchHost, Harness: SessionHost) -> None:
     _ = Queue.WaitFile((Active / "phase.done").relative_to(Queue.Endpoint).as_posix())
     Fence = JsonCodec.loads((Queue.Endpoint / "fence.json").read_bytes())
     assert Archived.name != Active.name and Fence["job_id"] == Active.name
-    _ = CheckTimeout(Archived)
-    RequestHash = CheckTimeout(Active)
+    _ = VerifyTimeout(Archived)
+    RequestHash = VerifyTimeout(Active)
     StoredResult = JsonCodec.loads(JsonCodec.dumps(Harness.ReadResult("fixture:rearm")))
     Result = StoredResult["result"]
     assert Result["outcome"] == "waiting_application"
@@ -268,7 +268,7 @@ def AssertSpools(Queue: DispatchHost, Harness: SessionHost) -> None:
 
 
 # both retained spools must prove process cleanup for their exact timed out request
-def CheckTimeout(Spool: FilePath) -> str:
+def VerifyTimeout(Spool: FilePath) -> str:
     RequestHash = HashBytes(
         (Spool / "native-timeout-request.json").read_bytes()
     ).hexdigest()
