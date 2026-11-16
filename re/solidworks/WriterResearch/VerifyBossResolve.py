@@ -108,7 +108,7 @@ def compare_rendered(emitted, native, generated, start, display, props):
 
 
 # the native suffix begins at the full trim result and ends at the list's exact EOF
-def inspect_boss(archive, measurement, construct):
+def inspect_boss(archive, measurement, construct, compose=None):
     generation = ContainerMo(archive.streams)
     atom = read_atom(archive.require("Contents/Config-0"), generation)
     cursor, profile, edges, reference, file_index = open_boss(archive, generation)
@@ -146,17 +146,26 @@ def inspect_boss(archive, measurement, construct):
             state,
             draft,
         )
-        writer = PartArchiveWriter(before)
-        slots = WriteResolvedBoss(
-            writer,
-            generation,
-            profile.ObjectIndex,
-            file_index,
-            atom,
-            edges,
-            resolved,
-            EntryCount=entry_count,
-        )
+        if compose is None:
+            writer = PartArchiveWriter(before)
+            slots = WriteResolvedBoss(
+                writer,
+                generation,
+                profile.ObjectIndex,
+                file_index,
+                atom,
+                edges,
+                resolved,
+                EntryCount=entry_count,
+            )
+            emitted = writer.build()
+            written_map = writer.Snapshot()
+        else:
+            built = compose(resolved)
+            slots = built.Boss
+            require(slots is not None, "composed archive owns the requested boss")
+            emitted = built.Framed.Data[start:]
+            written_map = built.Framed.State
         require(
             (
                 slots.FeatureObject,
@@ -174,7 +183,6 @@ def inspect_boss(archive, measurement, construct):
             ),
             "new owners match the licensed archive allocation",
         )
-        emitted = writer.build()
         require(len(emitted) == len(raw), "complete generated boss width")
         child = before.Cursor(emitted, 0)
         generated = ReadRectBoss(
@@ -182,7 +190,7 @@ def inspect_boss(archive, measurement, construct):
         )
         verify_measured(generated, measurement)
         require(
-            writer.Snapshot() == map_state(child) == map_state(full),
+            written_map == map_state(child) == map_state(full),
             "one complete generated boss namespace",
         )
         compare_rendered(emitted, raw, generated, start, display, props_start - start)

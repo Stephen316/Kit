@@ -68,7 +68,7 @@ be needed to omit another member. [Licensed omission measurements](../SolidWorks
 | Full typed payload | `Contents/Config-0-ModelHeader`, `Header2` | `HeaderTail.WriteModelHdr`, with explicit source-owned time, feature IDs and saved state |
 | Full typed payload | `Contents/CusProps`, `Contents/OleItems`, `OleItemInformation/OLE_Item_Data` | `PartProperties.EncodePartProperties`, `PartOle.EncodePartOle` |
 | Fresh-document payload | `_MO_VERSION_19000/History`, `_MO_VERSION_19000/Biography` | `PartFraming.EncodeVersionStreams`, which creates fresh state from absence of prior saved history |
-| Partial content | `Contents/Config-0`, `Contents/Config-0-ResolvedFeatures` | `ConfigResolvedFraming` derives the framing and shared allocation. Both bodies need end-to-end authoring composition. |
+| Full typed payload | `Contents/Config-0`, `Contents/Config-0-ResolvedFeatures` | `OrdinaryConfig.BuildOrdinaryConfig` and `ResolvedPart.BuildOrdinaryResolved` share the generated configuration map. |
 | Open | `Contents/3DExperienceExchange2`, `Contents/3DExperienceExchange_ConfigHeader`, `Contents/PMISemanticDataDB` | Database stream constructors or licensed omission evidence |
 | Open | `Contents/eModelLic` | Scoped native save-context semantics and a justified caller input |
 | Open | `Preview`, `PreviewPNG` | Native preview encoding from generated content or licensed omission evidence |
@@ -78,8 +78,7 @@ be needed to omit another member. [Licensed omission measurements](../SolidWorks
 | Open | `docProps/Config-0-Properties.xml`, `docProps/ISolidWorksInformation.xml`, `docProps/app.xml`, `docProps/core.xml`, `docProps/custom.xml` | Typed document, configuration and application metadata owners and serialization |
 | Open | `swXmlContents/Features`, `swXmlContents/KeyWords` | XML derived from authored feature and document metadata or licensed omission evidence |
 
-There are 16 retained members with typed constructors, including two
+There are 18 retained members with typed constructors, including two
 fresh-document payloads and two manifests with property stream prerequisites.
-Two members are partially composed and 15 lack a constructive owner. Native
-acceptance of a fully generated archive is pending.
+Fifteen remain open. Native acceptance of a fully generated archive is pending.
 [Package manifests and open timing](SolidWorksPackageMetadata.md)

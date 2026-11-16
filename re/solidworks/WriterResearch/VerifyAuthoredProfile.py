@@ -14,14 +14,11 @@ from OrdinaryProfile import (
     OrdinaryProfile,
     ProfileAttachment,
     ProfileDisplay,
-    WriteOrdinaryProfile,
 )
-from OrdinaryResolved import (
-    BeginOrdinaryResolved,
-    BeginResolvedPart,
-    ReadResolvedSystem,
-)
+from OrdinaryResolved import BeginOrdinaryResolved, ReadResolvedSystem
 from RectangleFields import line_fields, measured_graph, point_fields
+from ResolvedPart import BuildOrdinaryResolved
+from VerifyBossResolve import inspect_boss
 from VerifyConfigRoot import CAPTURE_REVISION, principal_captures, require
 from VerifyOriginProxy import read_ghost, verify_proxy
 from VerifyProfileSupport import verify_profile_support
@@ -221,23 +218,34 @@ def inspect_open(archive, measurement, construct, configuration=None):
             ),
             saved_trim,
         )
-        writer, origin_slots = BeginResolvedPart(generation, configuration, system)
-        generated = WriteOrdinaryProfile(
-            writer, generation, configuration.History, origin_slots, state
-        )
         expected = bytearray(stream[: cursor.Offset])
         for offset in inactive:
             expected[offset : offset + 4] = bytes(4)
-        require(
-            writer.build() == expected,
-            "complete profile built from the generated config",
-        )
-        require(writer.Snapshot() == map_state(cursor), "generated profile return map")
-        require(
-            (generated.Feature, generated.Sketch, generated.File)
-            == (profile.ObjectIndex, profile.SketchIndex, trim_proof[4]),
-            "actual generated profile sketch and trim file aliases",
-        )
+
+        def compose(boss):
+            built = BuildOrdinaryResolved(
+                generation, configuration, system, state, boss
+            )
+            require(
+                built.Framed.Data[: cursor.Offset] == expected,
+                "complete profile built from the generated config",
+            )
+            require(
+                (built.Profile.Feature, built.Profile.Sketch, built.Profile.File)
+                == (profile.ObjectIndex, profile.SketchIndex, trim_proof[4]),
+                "actual generated profile sketch and trim file aliases",
+            )
+            return built
+
+        if has_atom:
+            inspect_boss(archive, measurement, True, compose=compose)
+        else:
+            built = compose(None)
+            require(
+                len(built.Framed.Data) == cursor.Offset
+                and built.Framed.State == map_state(cursor),
+                "complete generated sketch only map and footer",
+            )
     return (
         opening,
         corner_proof,
