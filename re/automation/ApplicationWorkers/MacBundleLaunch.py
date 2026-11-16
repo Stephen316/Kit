@@ -48,9 +48,14 @@ def available(expected_uid=None):
 
 def launch_bundle(
     source, bundle, earliest, old_peer, seconds, request_path, request_sha256,
-    *, dispatch_before=None,
+    *, dispatch_before=None, cold_start=False,
 ):
-    available(old_peer["uid"])
+    require(
+        cold_start == (old_peer is None) and (not cold_start or dispatch_before is not None),
+        "macOS launch requires either replacement or exact cold-start custody",
+    )
+    uid = os.getuid() if cold_start else old_peer["uid"]
+    available(uid)
     expected = bundle["executable"]
     application = expected.parents[2]
     with TemporaryDirectory(prefix="kit-mac-launch-") as temporary:
@@ -71,6 +76,8 @@ def launch_bundle(
         if dispatch_before is not None:
             require(time.time() < dispatch_before, "macOS replacement admission expired before provider start")
             arguments.append(str(dispatch_before))
+        if cold_start:
+            arguments.append("cold-start")
         invocation = subprocess.run(
             arguments,
             capture_output=True,
@@ -88,7 +95,7 @@ def launch_bundle(
         and reply["executable"] == str(expected)
         and type(pid) is int
         and pid > 0
-        and pid != old_peer["pid"]
+        and (cold_start or pid != old_peer["pid"])
         and type(dispatched) in (int, float)
         and earliest <= dispatched <= time.time(),
         "macOS provider returned a different or pre-existing application",
@@ -98,9 +105,9 @@ def launch_bundle(
     require(
         host is not None
         and peer["executable"] == expected
-        and peer["uid"] == old_peer["uid"]
+        and peer["uid"] == uid
         and peer["started_unix_microseconds"] / 1_000_000 >= dispatched
-        and peer["started_unix_microseconds"] > old_peer["started_unix_microseconds"]
+        and (cold_start or peer["started_unix_microseconds"] > old_peer["started_unix_microseconds"])
         and process_peer(pid) == peer,
         "macOS replacement does not match the exact fresh owned executable",
     )

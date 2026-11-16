@@ -1,6 +1,7 @@
 #include <Python.h>
+#import <Cocoa/Cocoa.h>
 
-int main(int argc, char *argv[]) {
+static int RunEmbedded(int argc, char *argv[]) {
     if (argc != 5) {
         return 64;
     }
@@ -25,4 +26,24 @@ int main(int argc, char *argv[]) {
         Py_ExitStatusException(status);
     }
     return Py_RunMain();
+}
+
+int main(int argc, char *argv[]) {
+    @autoreleasepool {
+        if (argc == 5) {
+            return RunEmbedded(argc, argv);
+        }
+        NSArray *arguments = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"KitColdStartFixture"];
+        if (![arguments isKindOfClass:[NSArray class]] || [arguments count] != 4) {
+            return 64;
+        }
+        char *supplied[] = {
+            argv[0], (char *)[arguments[0] UTF8String], (char *)[arguments[1] UTF8String],
+            (char *)[arguments[2] UTF8String], (char *)[arguments[3] UTF8String], NULL
+        };
+        NSApplication *application = [NSApplication sharedApplication];
+        [application setActivationPolicy:NSApplicationActivationPolicyAccessory];
+        [application finishLaunching];
+        return RunEmbedded(5, supplied);
+    }
 }

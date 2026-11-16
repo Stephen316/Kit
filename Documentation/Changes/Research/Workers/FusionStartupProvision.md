@@ -36,6 +36,8 @@ worker still performs its pinned healthy control and native acceptance checks.
 The tracked manifest remains manual by default. The tool leaves CAD launch,
 license sign-in, controller availability and restart custody under their
 existing owner procedures.
+The [owner cold-start command](FusionStartup/FusionOwnerColdStart.md) uses the provisioned
+profile to start an unavailable installation before Phase A.
 
 The hosted fixture runs the actual pinned bootstrap and Darwin peer checks
 across disposable processes. Its controlled vendor context, manual context,

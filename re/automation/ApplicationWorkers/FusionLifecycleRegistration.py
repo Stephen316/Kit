@@ -34,14 +34,14 @@ def installation_pin(config):
     return sha256(encoded(config))
 
 
-def checked_policy(config, resource):
+def checked_policy(config, resource, *, extra=()):
     require(
         macos_automatic_quit(config)
         and resource == f"application:{config['installation']}"
         and Path(config["source_root"]).resolve(strict=True) == ROOT,
         "automatic reservation requires the same pinned macOS owner controller and installation",
     )
-    for name in POLICY_FILES:
+    for name in (*POLICY_FILES, *extra):
         relative = f"re/automation/{name}"
         source = subprocess.run(
             [

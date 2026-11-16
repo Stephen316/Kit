@@ -39,8 +39,20 @@ def invoke(installation, lifecycle, *arguments, expected=0):
     return json.loads(outcome.stdout) if not expected else None
 
 
-def prepare(root, binary):
-    installation, endpoint = setup(root)
+def prepare(root, binary, *, installation=None):
+    if installation is None:
+        installation, endpoint = setup(root)
+    else:
+        endpoint = Path(json.loads(file_bytes(installation))["endpoint"])
+        write_new(
+            root / "config.json",
+            encoded(
+                {
+                    "allowed_root": str(ROOT / "re/automation/PairedCaptures"),
+                    "dispatch": str(installation),
+                }
+            ),
+        )
     profile = root / "Lifecycle.json"
     bundle = binary.parents[2]
     write_new(

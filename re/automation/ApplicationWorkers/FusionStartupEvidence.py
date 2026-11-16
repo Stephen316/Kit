@@ -13,6 +13,7 @@ ACTIVE = "active.json"
 ADDIN = "KitCaptureRunner"
 ADDIN_ID = "86fe0da5-2159-46d0-b155-75b61d237365"
 MAX_SECONDS = 30
+COLD_LAUNCH_ENV = "KIT_FUSION_OWNER_COLD_START"
 
 
 def starting_manifest(protocol, original):
@@ -144,6 +145,12 @@ class Startup:
             self.peer["executable"],
         )
         self.profile_sha256 = protocol["sha256"](self.raw)
+        challenge = os.environ.get(COLD_LAUNCH_ENV, "")
+        self.launch_binding = (
+            protocol["sha256"](challenge.encode("ascii"))
+            if re.fullmatch("[0-9a-f]{48}", challenge)
+            else None
+        )
 
     def pending(self):
         try:
@@ -166,18 +173,25 @@ class Startup:
 
     def matches(self, request):
         now = time.time()
+        expected = {
+            "version",
+            "scope",
+            "challenge",
+            "profile_sha256",
+            "peer",
+            "client",
+            "issued_at",
+            "deadline",
+        }
+        if "launch_binding_sha256" in request:
+            expected.add("launch_binding_sha256")
+            if (
+                self.launch_binding is None
+                or request["launch_binding_sha256"] != self.launch_binding
+            ):
+                return False
         return (
-            set(request)
-            == {
-                "version",
-                "scope",
-                "challenge",
-                "profile_sha256",
-                "peer",
-                "client",
-                "issued_at",
-                "deadline",
-            }
+            set(request) == expected
             and type(request["version"]) is int
             and request["version"] == 1
             and request["scope"] == REQUEST_SCOPE
@@ -246,6 +260,8 @@ class Startup:
             "fusion_version": app.version,
             "startup_context": "vendor_application_startup",
         }
+        if "launch_binding_sha256" in request:
+            value["launch_binding_sha256"] = self.launch_binding
         require(
             value["observed_at"] < request["deadline"],
             "Fusion startup challenge expired",
