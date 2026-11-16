@@ -54,6 +54,7 @@ from convert.adapters.freecad.EditRev.RevolveProps import MakeRevProps
 from convert.adapters.freecad.EditableExt import EditExtrude
 from convert.adapters.freecad.EditableRev import EditRevolve, ReadEditRevolve
 from convert.adapters.freecad.EditSketchPlan import IsSketchWire, KSketchEditBinding
+from convert.adapters.freecad.ExtrusionCache.InlineShape import MakeInlineShape
 from convert.adapters.freecad.Format import FORMAT_ID as FormatId
 from convert.adapters.freecad.FormulaSheet.FormulaClosure import BuildFusionExpr
 from convert.adapters.freecad.FormulaSheet.SheetBinding import KFormulaSheetBinding
@@ -7331,6 +7332,24 @@ def AddExtrudeMut(
     )
     Final = AddBoolMut(Context, FeatureInfo, ToolValue)
     TrackSolidMut(Features, FeatureInfo, Final)
+    if (
+        not FeatureInfo.BaseName
+        and not Context.NativeValues
+        and FeatureInfo.Operation in CreateOperationNames
+    ):
+        ShapeData = MakeInlineShape(
+            Context.Manifest,
+            FeatureInfo.FeatureId,
+            Direction,
+            Length,
+            SecondLength,
+            Symmetric,
+            Reversed,
+        )
+        if ShapeData is not None:
+            ShapeFile = AddBrepEntryMut(Features.PayloadEntries, Final.name, ShapeData)
+            ReplaceNameMut(Final.properties, "Shape", ShapeProp(ShapeFile))
+            Features.FinalShapeFile = ShapeFile
     return Final
 
 
@@ -8538,8 +8557,23 @@ def ChooseOuter(Context: DocContext, Features: DocFeatures) -> str:
     )
 
 
+# cached result metadata must name a shape owned by the current feature or existing representation
+def SetShapeFileMut(Context: DocContext, Features: DocFeatures) -> None:
+    Owners = {Features.CurrentName, *Features.DocBreps}
+    if Features.FinalShapeFile and not any(
+        PartValue.get("file") == Features.FinalShapeFile
+        for ObjectValue in Context.Graph.Objects
+        if ObjectValue.name in Owners
+        for Property in ObjectValue.properties
+        if Property.get("name") == "Shape"
+        for PartValue in Property.findall("Part")
+    ):
+        Features.FinalShapeFile = ""
+
+
 # this definition exists because outer target links and metadata must describe the finalized graph
 def SetOuterMut(Context: DocContext, Features: DocFeatures) -> None:
+    SetShapeFileMut(Context, Features)
     Features.OuterTarget = ChooseOuter(Context, Features)
     TargetObject = next(
         (
