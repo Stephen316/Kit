@@ -7,10 +7,18 @@ from uuid import UUID as OwnedUuid
 from pytest import approx as Approx
 
 # independent synthetic identities keep the authored archive stable across hosted runs
-KFixtureIds = tuple(str(OwnedUuid(int=Slot, version=4)) for Slot in range(1, 11))
+KFixtureIds = tuple(str(OwnedUuid(int=Index, version=4)) for Index in range(1, 11))
 
 # database creation uses its own local wall clock in the ordinary package format
 KExchangeTime = "2026-07-09T12:30:28"
+
+# the fixture explicitly selects the measured ordinary header classification
+KFixtureLicense = {
+    "package_code": 4,
+    "license_type": 2,
+    "visible_sketches": True,
+    "terminal_flag": 1,
+}
 
 # the source free case declares every save and appearance input away from the writer
 KFreshContext = {
@@ -19,12 +27,7 @@ KFreshContext = {
     "appearance_asset": r"C:\KitFixture\data\graphics\materials\color.p2m",
     "block_id": KFixtureIds[0],
     "calendar": {"date": "2026-07-09", "utc_offset_minutes": 0},
-    "license": {
-        "package_code": 4,
-        "license_type": 2,
-        "visible_sketches": True,
-        "terminal_flag": 1,
-    },
+    "license": KFixtureLicense,
     "definition": {
         "camera": [0.0, 0.0, 0.0, 1.0],
         "journal": {"name": "", "time": 0, "state": 0},
