@@ -28,6 +28,7 @@ from convert.adapters.solidworks.resolved.FaceIdentity import ReadFaceReturn
 from convert.adapters.solidworks.resolved.NamedNode import ReadNamedNode
 from convert.adapters.solidworks.resolved.cut.CutLinks import ReadCutLinks
 from convert.adapters.solidworks.resolved.cut.CutProof import ReadCutProof
+from SolidWorksScopePartition import read_scope_partition
 from SolidWorksScopePrefix import read_scope_prefix
 from SolidWorksScopeTerminal import comparable_terminal
 
@@ -350,6 +351,7 @@ def read_provisional(data, spec, stream_sha256, *, inspect_map=False):
             "typed Cut body or transfer identity differs from the earlier byte observations",
         )
         result["resolved_prefix"] = prefix
+        result["saved_partition"] = read_scope_partition(archive, spec, body_records)
     return result
 
 
@@ -500,6 +502,11 @@ def report(path, repeat_path=None, *, inspect_map=False):
             require(comparable_terminal(left["cut_terminal"]) == comparable_terminal(right["cut_terminal"]),
                     "typed Cut chooser, partition or extent differs across saves")
             result["repeat_comparison"]["cut_terminal_matched"] = True
+            require(
+                primary["saved_partition"]["regions"] == repeat["saved_partition"]["regions"],
+                "typed active partition region measurements differ across saves",
+            )
+            result["repeat_comparison"]["saved_partition_regions_matched"] = True
     return result
 
 
