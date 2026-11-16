@@ -257,16 +257,16 @@ def freeze(samples, encodings, tolerance):
         if len({expected.exact for expected in expecteds}) < 2:
             continue
         for offset in matching_offsets(samples, encoding, expecteds):
-            if len(found) == MAX_HYPOTHESES:
-                raise ValueError(
-                    "inference hypothesis limit exceeded before independent evaluation"
-                )
             observations = [
                 observe(sample, encoding, expected, offset)
                 for sample, expected in zip(samples, expecteds, strict=True)
             ]
             if len({row["bytes"] for row in observations}) < 2:
                 continue
+            if len(found) == MAX_HYPOTHESES:
+                raise ValueError(
+                    "inference hypothesis limit exceeded before independent evaluation"
+                )
             found.append(
                 (
                     encoding,
