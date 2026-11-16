@@ -4,13 +4,13 @@ from CmgrOpening import CmgrNodeState, ReadCmgrNode, WriteCmgrNode
 from ConfigSplitEdges import ReadSecondSplitStart, WriteSecondSplitStart
 from PartArchive import PartArchiveWriter
 from convert.adapters.solidworks.Container.Archive import (
+    KClassRefKind,
     KDefinitionKind,
     KStringMarker,
     EncodeNull,
 )
 from convert.adapters.solidworks.Container.ArchiveCheck import RequireArch
 from convert.adapters.solidworks.Container.ArchiveCursor import ArchiveCursor
-
 
 KAtomClass = "moAtom_c"
 KAtomNode = CmgrNodeState(1, 0)
@@ -40,9 +40,11 @@ def RequireBossBody(Body: BossAtomBody) -> None:
     )
 
 
+# all observed ordinary and merged geometric atoms share this body layout
 def WriteBossAtom(
-    Writer: PartArchiveWriter, AtomId: int, Body: BossAtomBody
+    Writer: PartArchiveWriter, AtomId: int, Body: BossAtomBody, *, Flags: int = 0
 ) -> ConfigAtomBinding:
+    RequireArch(type(Flags) is int and Flags in (0, 1), True, "geometric atom flags")
     Writer.BeginObject(KAtomClass, 1)
     ObjectIndex = Writer.next_index - 1
     Writer.raw(EncodeNull())
@@ -51,7 +53,7 @@ def WriteBossAtom(
     Writer.u16(0)  # empty atom node list
     Writer.i32(0)  # node list return
     Writer.i32(AtomId)
-    Writer.i32(0)  # initial atom flags
+    Writer.i32(Flags)
     Writer.i32(Body.FeatureId)
     Writer.i32(Body.FeatureId)
     Writer.u32(0)  # default stored atom attributes
@@ -81,10 +83,13 @@ def WriteConfigAtomManager(
     return Binding
 
 
-def ReadBossAtom(Cursor: ArchiveCursor, AtomId: int) -> ConfigAtomBinding:
-    _, _, ObjectIndex = Cursor.TakePointer(
-        (KAtomClass,), KDefinitionKind, CompactOnly=True
-    )
+# the retained base atom uses the established class and the witnessed flag bit
+def ReadBossAtom(
+    Cursor: ArchiveCursor, AtomId: int, *, Flags: int = 0
+) -> ConfigAtomBinding:
+    RequireArch(type(Flags) is int and Flags in (0, 1), True, "geometric atom flags")
+    Kind = KClassRefKind if Flags else KDefinitionKind
+    _, _, ObjectIndex = Cursor.TakePointer((KAtomClass,), Kind, CompactOnly=True)
     Cursor.ReadNull()
     RequireArch(
         Cursor.BlobValue.startswith(KStringMarker, Cursor.Offset + 16),
@@ -94,11 +99,22 @@ def ReadBossAtom(Cursor: ArchiveCursor, AtomId: int) -> ConfigAtomBinding:
     RequireArch(ReadCmgrNode(Cursor, -1), KAtomNode, "atom inherited node")
     Cursor.ReadNull()
     RequireArch(Cursor.ReadInts("<Hi"), (0, 0), "empty atom node list and return")
-    FileId, Flags, Feature, Source, Attributes, Mode = Cursor.ReadInts("<4iIi")
+    FileId, SavedFlags, Feature, Source, Attributes, Mode = Cursor.ReadInts("<4iIi")
     Blank, State, Mold, Primary, Solid, Secondary, Final = Cursor.ReadInts("<7i")
     RequireArch(
-        (FileId, Flags, Source, Attributes, Mode, Blank, State, Mold, Solid, Final),
-        (AtomId, 0, Feature, 0, 0, 0, 1, -1, 1, 6),
+        (
+            FileId,
+            SavedFlags,
+            Source,
+            Attributes,
+            Mode,
+            Blank,
+            State,
+            Mold,
+            Solid,
+            Final,
+        ),
+        (AtomId, Flags, Feature, 0, 0, 0, 1, -1, 1, 6),
         "ordinary geometric Boss atom state",
     )
     RequireArch(Secondary, Primary, "one referenced kernel body")
@@ -110,7 +126,9 @@ def ReadBossAtom(Cursor: ArchiveCursor, AtomId: int) -> ConfigAtomBinding:
 def ReadConfigAtomManager(
     Cursor: ArchiveCursor, Generation: int
 ) -> ConfigAtomBinding | None:
-    RequireArch(KAtomClass in Cursor.Classes.values(), False, "new ordinary atom manager")
+    RequireArch(
+        KAtomClass in Cursor.Classes.values(), False, "new ordinary atom manager"
+    )
     AtomIds = ReadSecondSplitStart(Cursor, Generation)
     Binding = ReadBossAtom(Cursor, AtomIds[0]) if AtomIds else None
     RequireArch(Cursor.ReadInts("<I"), (Generation,), "fresh atom manager generation")
