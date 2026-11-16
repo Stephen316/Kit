@@ -29,9 +29,16 @@ from convert.Formats.Fusion.BrepCodec.Journal.Geometry.TransformNode import (
     TransformNode,
 )
 from convert.Formats.Fusion.BrepCodec.Journal.Geometry.VertexNode import VertexNode
+from convert.Formats.Fusion.BrepCodec.Journal.JournalModel import JournalModel
 from convert.Formats.Fusion.BrepCodec.Journal.Snapshot.GeometryState import (
     GeometryState,
 )
+from convert.Formats.Fusion.BrepCodec.Journal.States.BulletinBoard import BulletinBoard
+from convert.Formats.Fusion.BrepCodec.Journal.States.BulletinChange import (
+    BulletinChange,
+)
+from convert.Formats.Fusion.BrepCodec.Journal.States.DeltaState import DeltaState
+from convert.Formats.Fusion.BrepCodec.Journal.States.StreamState import StreamState
 from convert.Formats.Fusion.BrepCodec.Models.BodyIdentity import BodyIdentity
 from convert.Formats.Fusion.BrepCodec.Models.BrepHeader import BrepHeader
 from convert.Formats.Fusion.BrepCodec.Models.EntityIds import EntityIds
@@ -76,7 +83,12 @@ KBrepTypes: tuple[type[object], ...] = (
     StraightNode,
     TransformNode,
     VertexNode,
+    JournalModel,
     GeometryState,
+    BulletinBoard,
+    BulletinChange,
+    DeltaState,
+    StreamState,
     BodyIdentity,
     BrepHeader,
     EntityIds,

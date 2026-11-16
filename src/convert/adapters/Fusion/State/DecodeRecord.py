@@ -4,6 +4,8 @@ from enum import Enum as EnumBase
 from typing import Protocol, cast as CastValue
 
 from convert.adapters.Fusion.State.StateTypes import KStateNames
+from convert.Formats.Fusion.BrepCodec.Journal.JournalModel import JournalModel
+from convert.Formats.Fusion.BrepCodec.Journal.Materialize import Materialize
 from convert.Formats.Fusion.DocumentCodec.Materials.Model.FinishSpec import FinishSpec
 from convert.Formats.Fusion.DocumentCodec.Materials.Model.MechanicSpec import (
     MechanicSpec,
@@ -54,7 +56,13 @@ def DecodeRecord(NameValue: object, Values: dict[str, object]) -> object:
         Field.name for Field in DataFields(ClassType)
     }:
         raise ValueError("Fusion semantic-state record fields disagree")
-    return CastValue(RecordMaker, ClassType)(**Values)
+    RecordValue = CastValue(RecordMaker, ClassType)(**Values)
+    if isinstance(RecordValue, JournalModel):
+        try:
+            _ = Materialize(RecordValue)
+        except (AttributeError, TypeError) as ErrorValue:
+            raise ValueError("Malformed Fusion semantic-state journal") from ErrorValue
+    return RecordValue
 
 
 # the enum operation needs a distinct decoding boundary so public document claims remain grounded in native records
