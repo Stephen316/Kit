@@ -1,0 +1,7 @@
+# Scope collector startup cleanup
+
+The standalone [through-all scope collector](ThroughAllScopeControl.md) still requires a licensed Windows host with SOLIDWORKS closed. It starts each authoring or reopen phase directly. Before accepting a COM reference, it checks the original launch handle for the expected PID, exact creation FILETIME, owner SID, desktop session, and canonical registered executable path and hash. The COM reference must resolve to the same live PID. A conflicting process is left untouched. [Windows process handles](https://learn.microsoft.com/en-us/windows/win32/procthread/process-handles-and-identifiers)
+
+An owned empty application still exits normally. If startup fails before the collector opens documents and the exact original process can be verified, cleanup can terminate that held process and wait up to five seconds for exit. Cleanup preserves processes whose identity cannot be verified. It also preserves a process with unexpected open documents or with unverified document state after collection begins. The launcher adds the disposition and available reason to the private `failure.json` under `cleanup` while retaining the original failure category and HRESULT.
+
+The collector compiled as a library with the .NET Framework 4.8 compiler against the installed `34.4.1.1011` SOLIDWORKS interop assemblies with warnings treated as errors. PowerShell syntax parsing also passed. This verification did not start CAD or exercise COM, process termination, license availability, or the explicit A and A+B controls.

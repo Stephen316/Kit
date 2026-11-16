@@ -1,13 +1,17 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
+using System.Security.Principal;
+using System.Text;
 using System.Threading;
 using System.Web.Script.Serialization;
+using Microsoft.Win32.SafeHandles;
 using SolidWorks.Interop.sldworks;
 using SolidWorks.Interop.swconst;
 
@@ -357,15 +361,162 @@ public sealed class SolidWorksScopeControl
         Check(Hash(path) == (string)archive["sha256"], "The scope control bytes changed during native readback");
     }
 
-    static ISldWorks AttachOwned(Process process)
+    const uint TokenQuery = 8;
+    const int TokenSessionId = 12;
+    const uint WaitObject = 0;
+    const uint WaitTimeout = 258;
+
+    [DllImport("kernel32.dll", SetLastError = true)]
+    static extern uint GetProcessId(SafeProcessHandle process);
+
+    [DllImport("kernel32.dll", SetLastError = true)]
+    static extern bool GetProcessTimes(SafeProcessHandle process, out long created, out long exited,
+        out long kernel, out long user);
+
+    [DllImport("kernel32.dll", CharSet = CharSet.Unicode, ExactSpelling = true, SetLastError = true)]
+    static extern bool QueryFullProcessImageNameW(SafeProcessHandle process, uint flags,
+        StringBuilder path, ref int length);
+
+    [DllImport("kernel32.dll", CharSet = CharSet.Unicode, ExactSpelling = true, SetLastError = true)]
+    static extern uint GetFinalPathNameByHandleW(SafeFileHandle file, StringBuilder path, uint capacity, uint flags);
+
+    [DllImport("advapi32.dll", SetLastError = true)]
+    static extern bool OpenProcessToken(SafeProcessHandle process, uint access, out SafeAccessTokenHandle token);
+
+    [DllImport("advapi32.dll", SetLastError = true)]
+    static extern bool GetTokenInformation(SafeAccessTokenHandle token, int kind, out int value, int size, out int length);
+
+    [DllImport("kernel32.dll", SetLastError = true)]
+    static extern uint WaitForSingleObject(SafeProcessHandle process, uint milliseconds);
+
+    [DllImport("kernel32.dll", SetLastError = true)]
+    static extern bool TerminateProcess(SafeProcessHandle process, uint exitCode);
+
+    static SecurityIdentifier ReadOwner(SafeProcessHandle process, out int session)
+    {
+        SafeAccessTokenHandle token;
+        if (!OpenProcessToken(process, TokenQuery, out token)) throw new Win32Exception();
+        using (token)
+        using (var identity = new WindowsIdentity(token.DangerousGetHandle()))
+        {
+            int length;
+            if (!GetTokenInformation(token, TokenSessionId, out session, sizeof(int), out length))
+                throw new Win32Exception();
+            var owner = identity.User;
+            Check(owner != null && length == sizeof(int), "The SOLIDWORKS process token identity is incomplete");
+            return owner;
+        }
+    }
+
+    static long CreatedAt(SafeProcessHandle process)
+    {
+        long created, exited, kernel, user;
+        if (!GetProcessTimes(process, out created, out exited, out kernel, out user)) throw new Win32Exception();
+        Check(created > 0, "The held process lacks a creation FILETIME");
+        return created;
+    }
+
+    static string CanonicalImage(string path)
+    {
+        using (var file = File.Open(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite | FileShare.Delete))
+        {
+            var resolved = new StringBuilder(32768);
+            uint length = GetFinalPathNameByHandleW(file.SafeFileHandle, resolved, (uint)resolved.Capacity, 0);
+            if (length == 0) throw new Win32Exception();
+            Check(length < resolved.Capacity, "The resolved SOLIDWORKS image path exceeds the Windows limit");
+            return resolved.ToString();
+        }
+    }
+
+    sealed class OwnedProcess
+    {
+        readonly SafeProcessHandle handle;
+        readonly SecurityIdentifier owner;
+        readonly int session;
+        readonly string image;
+        readonly string imageHash;
+        public readonly int Pid;
+        public readonly long Created;
+
+        public OwnedProcess(Process process, SecurityIdentifier caller, int desktop, string executable, string digest)
+        {
+            handle = process.SafeHandle;
+            Pid = process.Id;
+            Created = CreatedAt(handle);
+            owner = caller;
+            session = desktop;
+            image = executable;
+            imageHash = digest;
+        }
+
+        public bool Exited(uint milliseconds)
+        {
+            uint state = WaitForSingleObject(handle, milliseconds);
+            if (state == WaitObject) return true;
+            if (state == WaitTimeout) return false;
+            throw new Win32Exception();
+        }
+
+        public void Verify()
+        {
+            Check(!Exited(0) && GetProcessId(handle) == (uint)Pid && CreatedAt(handle) == Created,
+                "The direct SOLIDWORKS launch identity changed");
+            int measuredSession;
+            var measuredOwner = ReadOwner(handle, out measuredSession);
+            Check(owner.Equals(measuredOwner) && measuredSession == session,
+                "The direct SOLIDWORKS launch changed user or desktop session");
+            var path = new StringBuilder(32768);
+            int length = path.Capacity;
+            if (!QueryFullProcessImageNameW(handle, 0, path, ref length)) throw new Win32Exception();
+            string measuredImage = path.ToString();
+            Check(string.Equals(CanonicalImage(measuredImage), image, StringComparison.OrdinalIgnoreCase)
+                && Hash(measuredImage) == imageHash && !Exited(0),
+                "The held SOLIDWORKS process does not match the registered image");
+        }
+
+        public bool Stop()
+        {
+            if (Exited(0)) return false;
+            Verify();
+            if (!TerminateProcess(handle, 1))
+            {
+                int error = Marshal.GetLastWin32Error();
+                if (Exited(0)) return false;
+                throw new Win32Exception(error);
+            }
+            Check(Exited(5000), "Forced exit did not signal the held SOLIDWORKS process");
+            return true;
+        }
+    }
+
+    static void RequireIsolated(int ownedPid)
+    {
+        var processes = Process.GetProcessesByName("SLDWORKS");
+        try
+        {
+            Check(processes.All(process => process.Id == ownedPid),
+                "Use an isolated desktop with no unrelated SOLIDWORKS process");
+        }
+        finally
+        {
+            foreach (var process in processes) process.Dispose();
+        }
+    }
+
+    static ISldWorks AttachOwned(OwnedProcess process)
     {
         var elapsed = Stopwatch.StartNew();
-        while (!process.HasExited && elapsed.Elapsed.TotalSeconds < 60)
+        while (!process.Exited(0) && elapsed.Elapsed.TotalSeconds < 60)
         {
+            RequireIsolated(process.Pid);
+            object active = null;
             try
             {
-                var application = (ISldWorks)Marshal.GetActiveObject("SldWorks.Application");
-                Check(application.GetProcessID() == process.Id, "COM attached to a different SOLIDWORKS process");
+                active = Marshal.GetActiveObject("SldWorks.Application");
+                var application = (ISldWorks)active;
+                Check(application.GetProcessID() == process.Pid && !process.Exited(0),
+                    "COM returned a different SOLIDWORKS process");
+                active = null;
                 return application;
             }
             catch (COMException error)
@@ -374,49 +525,125 @@ public sealed class SolidWorksScopeControl
                     error.ErrorCode != unchecked((int)0x80010001)) throw;
                 Thread.Sleep(250);
             }
+            finally
+            {
+                if (active != null) Marshal.ReleaseComObject(active);
+            }
         }
         throw new InvalidOperationException("The directly launched SOLIDWORKS process did not expose its COM object");
     }
 
+    static void Release(ref ISldWorks application)
+    {
+        var current = application;
+        application = null;
+        if (current == null) return;
+        Marshal.FinalReleaseComObject(current);
+        GC.Collect();
+        GC.WaitForPendingFinalizers();
+    }
+
+    static void RequestExit(OwnedProcess process, ref ISldWorks application)
+    {
+        process.Verify();
+        try { application.ExitApp(); }
+        finally { Release(ref application); }
+    }
+
+    static Dictionary<string, object> Recover(OwnedProcess process, int pid, ref ISldWorks application, bool mayStop)
+    {
+        try
+        {
+            Check(process != null, "The original launch handle identity was not captured");
+            if (process.Exited(0)) return Row("status", "exit_observed", "pid", pid);
+            process.Verify();
+        }
+        catch (Exception error)
+        {
+            return Row("status", "preserved_unproven_identity", "pid", pid, "reason", error.Message);
+        }
+        try
+        {
+            if (application != null)
+            {
+                try
+                {
+                    if (application.GetDocumentCount() != 0)
+                        return Row("status", "preserved_open_documents", "pid", pid);
+                    mayStop = true;
+                    RequestExit(process, ref application);
+                    if (process.Exited(60000)) return Row("status", "exit_observed", "pid", pid);
+                }
+                catch (Exception error)
+                {
+                    if (process.Exited(0)) return Row("status", "exit_observed", "pid", pid);
+                    if (!mayStop)
+                        return Row("status", "preserved_unverified_documents", "pid", pid, "reason", error.Message);
+                }
+            }
+            if (!mayStop) return Row("status", "preserved_unverified_documents", "pid", pid);
+            return Row("status", process.Stop() ? "terminated_owned_process" : "exit_observed", "pid", pid);
+        }
+        catch (Exception error)
+        {
+            return Row("status", "owned_exit_unconfirmed", "pid", pid, "reason", error.Message);
+        }
+    }
+
     static string Phase(string specification, string directory, string executable, string priorJson)
     {
-        Check(Process.GetProcessesByName("SLDWORKS").Length == 0, "Use an isolated desktop with SOLIDWORKS stopped");
         var launch = new ProcessStartInfo(executable)
         {
             UseShellExecute = false,
             CreateNoWindow = true,
             WorkingDirectory = Path.GetDirectoryName(executable),
         };
+        string image = CanonicalImage(executable);
+        string digest = Hash(executable);
+        int session;
+        SecurityIdentifier owner;
+        using (var caller = Process.GetCurrentProcess()) owner = ReadOwner(caller.SafeHandle, out session);
+        RequireIsolated(0);
         using (var process = Process.Start(launch))
-        using (var caller = Process.GetCurrentProcess())
         {
-            Check(process != null && process.SessionId == caller.SessionId,
-                "The registered SOLIDWORKS image did not start in the current licensed desktop");
-            var started = process.StartTime.ToUniversalTime();
-            var application = AttachOwned(process);
-            var module = process.MainModule;
-            Check(Hash(module.FileName) == Hash(executable),
-                "Activation did not establish a fresh process for the registered SOLIDWORKS image");
-            var processRow = Row("pid", process.Id, "started_utc", started.ToString("O"));
-            Dictionary<string, object> output;
+            Check(process != null, "The registered SOLIDWORKS executable did not start");
+            int pid = 0;
+            OwnedProcess owned = null;
+            ISldWorks application = null;
+            bool mayStop = true;
             try
             {
-                Check(application.GetDocumentCount() == 0 && application.RevisionNumber() == "34.4.1"
-                    && module.FileVersionInfo.FileVersion == Build, "The expected licensed SOLIDWORKS build did not start empty");
+                pid = process.Id;
+                owned = new OwnedProcess(process, owner, session, image, digest);
+                owned.Verify();
+                application = AttachOwned(owned);
+                if (application.GetDocumentCount() != 0)
+                {
+                    mayStop = false;
+                    throw new InvalidOperationException("The licensed SOLIDWORKS launch did not start empty");
+                }
+                Check(application.RevisionNumber() == "34.4.1" && FileVersionInfo.GetVersionInfo(executable).FileVersion == Build,
+                    "The expected licensed SOLIDWORKS build did not start");
                 var worker = new SolidWorksScopeControl(application, ObjectValue(Json.DeserializeObject(specification)));
-                output = worker.Collect(directory, priorJson, processRow);
+                var started = DateTime.FromFileTimeUtc(owned.Created);
+                var processRow = Row("pid", pid, "started_utc", started.ToString("O"));
+                mayStop = false;
+                var output = worker.Collect(directory, priorJson, processRow);
                 Check(application.GetDocumentCount() == 0, "The scope worker left an open document");
+                mayStop = true;
+                RequestExit(owned, ref application);
+                Check(owned.Exited(60000), "The owned SOLIDWORKS process did not exit");
+                processRow["exited_observed"] = true;
+                return Json.Serialize(output);
             }
-            finally
+            catch (Exception error)
             {
-                if (!process.HasExited && application.GetDocumentCount() == 0) application.ExitApp();
-                Marshal.FinalReleaseComObject(application);
-                GC.Collect();
-                GC.WaitForPendingFinalizers();
-                Check(process.WaitForExit(60000), "The owned SOLIDWORKS process did not exit");
+                var cleanup = Recover(owned, pid, ref application, mayStop);
+                try { Release(ref application); }
+                catch (Exception releaseError) { cleanup["release_error"] = releaseError.Message; }
+                error.GetBaseException().Data["scope_cleanup"] = Json.Serialize(cleanup);
+                throw;
             }
-            processRow["exited_observed"] = true;
-            return Json.Serialize(output);
         }
     }
 

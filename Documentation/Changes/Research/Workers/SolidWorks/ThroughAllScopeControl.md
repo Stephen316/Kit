@@ -12,6 +12,8 @@ powershell.exe -NoProfile -STA -File re/automation/PairedCaptures/ScopeControl/R
 
 The launcher checks its own Git blob, the collector and the specification. It attaches to each directly launched process by PID and observes authoring exit before reopening the exact saved files read-only in a second process. The native archive hashes must agree after rebuild. A failed phase retains its revision, specification digest and native error category in `failure.json`. Keep the report and native archives together in private evidence storage. The discovery witnesses have separate provenance from the frozen P04 captures.
 
+Startup cleanup verifies the original process handle before any forced exit. For a preserved or terminated process, consult the cleanup disposition in the failure record. [Scope collector startup cleanup](ScopeStartupCleanup.md)
+
 ## Observed checkpoint
 
 Build `34.4.1.1011` authored and saved the automatic case in a provisional scratch run at `c996f65f1745aad9aa7a82f89537eeb2f14303ee`. The archive SHA-256 is `82141d768d1190bbc0193c0e30fdc06049a93ffdda88866b514c8d504213adfe`. The read-only replay follows two saved scope-body entries to distinct Boss producers. The initial explicit feature creation refused its input. A subsequent startup produced a SOLIDWORKS crash report before the process became available to COM. The explicit selections, persisted Auto-select and fresh three-case comparison remain unverified. [Archive replay](ProvisionalScopeArchive.md), [native comparison](CutScopeReadback.md)
