@@ -9,7 +9,7 @@ from pathlib import Path
 
 from EventHistory import event_window
 from PilotDependencyTiming import dependency_timing
-from PilotWaitTiming import WaitTiming
+from PilotWaitTiming import CarryInWaitTiming, WaitTiming
 from Records import canonical
 
 ACTIONS = {
@@ -79,14 +79,20 @@ def operating_report(
     time_dependencies=False,
     time_waits=False,
     time_open_waits=False,
+    time_carry_in_waits=False,
 ):
     if not (0 <= start < end <= time.time() and math.isfinite(end)):
         raise ValueError("request an increasing past Unix-time window")
+    if time_carry_in_waits and after != 0:
+        raise ValueError(
+            "carry-in wait timing requires the full event prefix (--after 0)"
+        )
     cursor, scanned, selected = after, 0, 0
     activity = activity_tally()
     identity = hashlib.sha256()
     receipts = {}
     waits = WaitTiming() if time_waits or time_open_waits else None
+    carry_in = CarryInWaitTiming(start, end) if time_carry_in_waits else None
     while True:
         page = event_window(store, None, cursor, through)
         through = page["through"]
@@ -95,6 +101,8 @@ def operating_report(
             if not math.isfinite(instant):
                 raise ValueError("a controller event has an invalid timestamp")
             scanned += 1
+            if carry_in is not None:
+                carry_in.observe(event)
             if start <= instant < end:
                 identity.update(canonical(event).encode("utf-8") + b"\n")
                 tally_event(activity, event)
@@ -134,6 +142,8 @@ def operating_report(
             report["settlement_to_next_claim"] = waits.summary()
         if time_open_waits:
             report["open_wait_to_last_event"] = waits.open_summary(end)
+    if carry_in is not None:
+        report["carry_in_wait_timing"] = carry_in.summary()
     return report
 
 
@@ -149,6 +159,7 @@ def main():
     parser.add_argument("--dependency-timing", action="store_true")
     parser.add_argument("--wait-timing", action="store_true")
     parser.add_argument("--open-wait-timing", action="store_true")
+    parser.add_argument("--carry-in-wait-timing", action="store_true")
     args = parser.parse_args()
     try:
         output = operating_report(
@@ -160,6 +171,7 @@ def main():
             time_dependencies=args.dependency_timing,
             time_waits=args.wait_timing,
             time_open_waits=args.open_wait_timing,
+            time_carry_in_waits=args.carry_in_wait_timing,
         )
         print(canonical(output))
         return 0

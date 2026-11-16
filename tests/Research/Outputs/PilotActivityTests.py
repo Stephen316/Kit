@@ -173,3 +173,144 @@ def VerifyPilot(RootPath: FilePath, Client: JobClient, Through: int) -> None:
     assert (
         Observed["claims"] == Observed["settled_outcomes"]["waiting_application"] == 1
     )
+
+
+# carry in observations distinguish rearmed replaced and still parked prior jobs
+def CheckCarryIn(TmpPath: FilePath) -> None:
+    Client = JobClient(TmpPath)
+    _ = Client.RunCli("resource", "operator:install", "--available")
+    ParkCarry(Client, TmpPath, "carry:precleared", "waiting_evidence")
+    ReplaceCarry(Client, TmpPath, "carry:precleared")
+    ParkCarry(
+        Client, TmpPath, "carry:claim", "waiting_application", ("operator:install",)
+    )
+    ParkCarry(Client, TmpPath, "carry:open", "waiting_evidence")
+    ParkCarry(Client, TmpPath, "carry:replaced", "waiting_ci")
+    Prefix = JsonCodec.loads(Client.RunCli("events", "--after", "0"))
+    Begin = TimeClock.time()
+    _ = Client.RunCli("resource", "operator:install", "--available")
+    LeasePath = TmpPath / "RearmedLease.json"
+    _ = Client.RunCli(
+        "claim", "--worker", "worker:carry", "--claim-file", str(LeasePath)
+    )
+    ResultPath = TmpPath / "CarryResult.json"
+    _ = Client.RunCli(
+        "finish",
+        "--lease",
+        str(LeasePath),
+        "--result",
+        str(ResultPath),
+        "--outcome",
+        "completed",
+        "--reason",
+        "fixture rearmed",
+    )
+    ReplaceCarry(Client, TmpPath, "carry:replaced")
+    ParkCarry(Client, TmpPath, "carry:new", "waiting_ci")
+    Window = ["--from-unix", str(Begin), "--until-unix", str(TimeClock.time())]
+    VerifyCarry(TmpPath, Client, Window, Prefix)
+
+
+# a real parked controller attempt supplies each carry in fixture witness
+def ParkCarry(
+    Client: JobClient,
+    RootPath: FilePath,
+    JobName: str,
+    Outcome: str,
+    Resources: tuple[str, ...] = (),
+) -> None:
+    SubmitPath = RootPath / "CarrySubmit.json"
+    LeasePath = RootPath / f"{JobName.replace(':', '-')}.json"
+    ResultPath = RootPath / "CarryResult.json"
+    JobInfo = FixtureJob(
+        JobName, "fixture.inspect", resources=list(Resources), lease_seconds=30
+    )
+    _ = SubmitPath.write_text(JsonCodec.dumps(JobInfo), encoding="utf-8")
+    _ = ResultPath.write_text('{"fixture":true}', encoding="utf-8")
+    _ = Client.RunCli("submit", str(SubmitPath))
+    _ = Client.RunCli(
+        "claim", "--worker", "worker:carry", "--claim-file", str(LeasePath)
+    )
+    _ = Client.RunCli(
+        "finish",
+        "--lease",
+        str(LeasePath),
+        "--result",
+        str(ResultPath),
+        "--outcome",
+        Outcome,
+        "--reason",
+        "fixture park",
+    )
+
+
+# changing a definition ends the old settlement without issuing a new claim
+def ReplaceCarry(Client: JobClient, RootPath: FilePath, JobName: str) -> None:
+    SubmitPath = RootPath / "CarrySubmit.json"
+    Changed = FixtureJob(JobName, "fixture.inspect", inputs={"source": "carry:missing"})
+    _ = SubmitPath.write_text(JsonCodec.dumps(Changed), encoding="utf-8")
+    _ = Client.RunCli("submit", str(SubmitPath))
+
+
+# the carry in section has its own evidence prefix and preserves the ordinary report
+def VerifyCarry(
+    RootPath: FilePath, Client: JobClient, Window: list[str], Prefix: dict[str, object]
+) -> None:
+    Plain = ReadActivity(RootPath, Window + ["--wait-timing"])
+    Options = Window + ["--wait-timing", "--carry-in-wait-timing"]
+    Pinned = ReadActivity(RootPath, Options)
+    Carry = JsonCodec.loads(JsonCodec.dumps(Pinned["carry_in_wait_timing"]))
+    assert {
+        KeyName: Value
+        for KeyName, Value in Pinned.items()
+        if KeyName != "carry_in_wait_timing"
+    } == Plain
+    History = ReadActivity(
+        RootPath,
+        [
+            "--from-unix",
+            "0",
+            "--until-unix",
+            Window[1],
+            "--through",
+            str(Prefix["through"]),
+        ],
+    )
+    assert Carry["prefix"] == {
+        "event_count": History["selected_event_count"],
+        "last_event_id": Prefix["through"],
+        "events_sha256": History["selected_events_sha256"],
+    }
+    VerifyRows(Carry, Plain, float(Window[1]), float(Window[3]))
+    Empty = ReadActivity(RootPath, Options + ["--through", str(Prefix["through"])])
+    EmptyCarry = JsonCodec.loads(JsonCodec.dumps(Empty["carry_in_wait_timing"]))
+    assert EmptyCarry["last_selected_event"] is None
+    assert EmptyCarry["settlements"]["waiting_evidence"]["open_age_seconds"] is None
+    ReplaceCarry(Client, RootPath, "carry:open")
+    assert (
+        ReadActivity(RootPath, Options + ["--through", str(Pinned["through_event_id"])])
+        == Pinned
+    )
+
+
+# ages are clipped to selected clock evidence and later settlements stay in ordinary metrics
+def VerifyRows(
+    Carry: dict[str, object], Plain: dict[str, object], Begin: float, EndTime: float
+) -> None:
+    WaitRows = JsonCodec.loads(JsonCodec.dumps(Carry["settlements"]))
+    LastEvent = JsonCodec.loads(JsonCodec.dumps(Carry["last_selected_event"]))
+    assert (
+        Carry["window_seconds_after_last_selected_event"] == EndTime - LastEvent["at"]
+    )
+    AppRow = WaitRows["waiting_application"]
+    assert AppRow["carried_in"] == AppRow["next_claim_observed"] == 1
+    assert 0 < AppRow["next_claim_total_seconds"] <= LastEvent["at"] - Begin
+    Evidence = WaitRows["waiting_evidence"]
+    assert Evidence["carried_in"] == Evidence["no_transition_observed"] == 1
+    assert Evidence["open_age_seconds"] == LastEvent["at"] - Begin
+    CiRow = WaitRows["waiting_ci"]
+    assert CiRow["carried_in"] == CiRow["superseded_before_claim"] == 1
+    assert CiRow["next_claim_total_seconds"] is None
+    Waits = JsonCodec.loads(JsonCodec.dumps(Plain["settlement_to_next_claim"]))
+    assert Waits["waiting_ci"]["started"] == 1
+    assert Waits["waiting_evidence"]["started"] == 0
