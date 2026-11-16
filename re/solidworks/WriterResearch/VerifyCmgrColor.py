@@ -110,6 +110,7 @@ def verify_color():
     boss_masses = {}
     base_headers = {}
     collection_fronts = {}
+    collection_tails = {}
     part_reports = {
         "linked_atom_records": {},
         "base_return_records": {},
@@ -137,11 +138,12 @@ def verify_color():
         )
         captures[item["sha256"]] = sha256(saved).hexdigest()
         if recipe in ("P01", "P03"):
-            header, front = verify_base_state(
-                cursor, generation, measurement["body_count"]
+            header, front, trailing = verify_base_state(
+                cursor, generation, measurement["body_count"], TREE_IDS[recipe]
             )
             base_headers[item["sha256"]] = header
             collection_fronts[item["sha256"]] = front
+            collection_tails[item["sha256"]] = trailing
         part_evidence = verify_part_end(cursor, recipe, TREE_IDS[recipe], item["path"])
         for record, digest in part_evidence.items():
             part_reports[record][item["sha256"]] = digest
@@ -169,6 +171,7 @@ def verify_color():
         "boss_mass_wrappers": boss_masses,
         "base_header_records": base_headers,
         "collection_front_records": collection_fronts,
+        "collection_tail_records": collection_tails,
         **part_reports,
     }
 

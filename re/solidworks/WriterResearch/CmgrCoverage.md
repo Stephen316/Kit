@@ -11,7 +11,7 @@ This census covers the six P01 sketch-only saves and eight P03 single-boss saves
 | [Base header](CmgrMiddle.md#base-header) | 1206–1234 | 1206–1234 | Constructed for the default standalone profile with three explicit model bookkeeping words. |
 | [Mass record](CmgrMiddle.md#mass-property-record) | 1234–1488 | 1234–1488 | Constructed. P01 uses native empty defaults. P03 uses certified cuboid bounds and density, with numeric agreement for geometry and retained native residuals. |
 | [Collection opening](CmgrMiddle.md#base-configuration-collections) | 1488–1514 | 1488–1514 | Constructed with the model solid count, generation and standalone save mode. |
-| [Remaining base configuration collections](CmgrMiddle.md#base-configuration-collections) | 1514–1654 | 1514–1662 | Read-only. The trailing model state and body pair population need construction. |
+| [Remaining base configuration collections](CmgrMiddle.md#base-configuration-collections) | 1514–1654 | 1514–1662 | Constructed from standalone defaults and the owned atom IDs used by the following linked map. |
 | [Linked atom map](CmgrAtoms.md#linked-atom-map) | 1654–1658 | 1662–1724 | Constructed. The empty map preserves next index 9. One P03 link advances from 9 to 11. |
 | [Base return](CmgrAtoms.md#base-return) | 1658–1692 | 1724–1758 | Constructed for default standalone configuration state with initialized modern thread references and empty collections. |
 | [Inline part and part return](CmgrAtoms.md#inline-part-configuration-object) | 1692–1804 | 1758–1878 | Constructed for the empty optional members and ordered zero-valued atom map. |

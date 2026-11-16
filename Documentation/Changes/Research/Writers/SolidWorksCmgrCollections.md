@@ -1,0 +1,7 @@
+# SOLIDWORKS CMgr standalone collections
+
+The [collection codec](../../../../re/solidworks/WriterResearch/CmgrCollections.py) continues from the [configuration collection opening](SolidWorksCmgrBaseState.md) to the linked-atom map. It constructs initialized standalone lists and maps, the inline empty custom-property list and the null abbreviation manager pointer. The caller supplies the generation and the zero or one owned atom IDs that will also enter the following linked map. Each owned atom starts with native material state zero. [Field owners and branches](../../../../re/solidworks/WriterResearch/CmgrMiddle.md#base-configuration-collections)
+
+Read-only replay checked all six P01 and eight P03 pinned saves. P01 preserves the empty atom map and reaches byte 1654. Each P03 map binds its default material entry to the single atom in the typed link record and reaches byte 1662. Both preserve the inherited archive map at next index 9. The collection slice SHA-256 is `131d69a783db2ff24e0472f8fc1f50693dd8a70964923e677d2c23c71360ba70` in P01 and `9c1a8d14af8536db4e4c6dff00cdbc65aae27783666bea612fef32b3432d2aee` in P03. [Coverage](../../../../re/solidworks/WriterResearch/CmgrCoverage.md)
+
+Hosted `CheckCmgr` compares the reconstructed ranges, archive maps and typed owner identities for the same captures. This check awaits execution. Alternate material states and populated optional collections require their own evidence. Full native acceptance still requires the licensed open, rebuild, edit and save checks.

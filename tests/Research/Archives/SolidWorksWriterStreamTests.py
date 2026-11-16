@@ -70,14 +70,21 @@ def AssertMgrHdr(Report: dict[str, object]) -> None:
     Links = Report["linked_atom_records"]
     Headers = Report["base_header_records"]
     Fronts = Report["collection_front_records"]
+    Tails = Report["collection_tail_records"]
     assert isinstance(Links, dict)
     assert isinstance(Headers, dict)
     assert isinstance(Fronts, dict)
-    assert Links.keys() == Headers.keys() == Fronts.keys()
+    assert isinstance(Tails, dict)
+    assert Links.keys() == Headers.keys() == Fronts.keys() == Tails.keys()
     FrontDigests = CastValue(dict[str, str], Fronts)
     assert dict(CountItems(FrontDigests.values())) == {
         "ae538a3e846dc88c0dbc655355665826638036d85c799e299f2dd1e2a50c25e7": 6,
         "c78f21f350ce049a9a155ece4aff10eff8bf65561bb0579d6d8a88a1962811cc": 8,
+    }
+    TailDigests = CastValue(dict[str, str], Tails)
+    assert dict(CountItems(TailDigests.values())) == {
+        "131d69a783db2ff24e0472f8fc1f50693dd8a70964923e677d2c23c71360ba70": 6,
+        "9c1a8d14af8536db4e4c6dff00cdbc65aae27783666bea612fef32b3432d2aee": 8,
     }
     Encoded = JsonCodec.dumps(Headers, sort_keys=True, separators=(",", ":"))
     assert (
