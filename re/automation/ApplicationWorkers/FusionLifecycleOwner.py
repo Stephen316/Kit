@@ -417,7 +417,15 @@ def main():
     parser.add_argument("--once", action="store_true")
     parser.add_argument("--reset-evidence-pid", type=int)
     parser.add_argument("--reset-evidence-limit", type=int, default=50)
+    parser.add_argument("--reset-assessment", action="store_true")
+    parser.add_argument("--reset-memory-limit-mib", type=int)
     args = parser.parse_args()
+    if args.reset_assessment and args.reset_evidence_pid is None:
+        parser.error("reset assessment requires an exact reset evidence process")
+    if args.reset_memory_limit_mib is not None and (
+        not args.reset_assessment or args.reset_memory_limit_mib < 1
+    ):
+        parser.error("a positive reset memory limit requires reset assessment")
     if args.reset_evidence_pid is None and args.queue_directory is None:
         parser.error("--queue-directory is required for the Fusion lifecycle loop")
     if args.reset_evidence_pid is not None and (

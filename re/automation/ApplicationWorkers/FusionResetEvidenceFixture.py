@@ -30,6 +30,7 @@ def setup(root, bundle):
     installation = root / "Installation.json"
     endpoint = root / "endpoint"
     endpoint.mkdir(mode=0o700)
+    (endpoint / "jobs").mkdir(mode=0o700)
     install = encoded(
         {
             "version": 1,
@@ -219,6 +220,55 @@ def run_report(installation, lifecycle, config, pid, *args, refused=False):
     return json.loads(completed.stdout)
 
 
+# operating guidance must distinguish due work from readiness and live custody
+def check_assessment(installation, lifecycle, config, store, pid):
+    inputs = (installation, lifecycle, config, pid, "--reset-assessment")
+    database = store / "ledger.sqlite3"
+    before = database.read_bytes()
+    unknown = run_report(*inputs)["reset_assessment"]
+    assert unknown["status"] == "threshold_unestablished"
+    due = run_report(*inputs, "--reset-evidence-limit", "2")["reset_assessment"]
+    assert due["status"] == "due_readiness_unverified"
+    assert due["thresholds_met"] == ["verified_job_limit"]
+    assert due["resident_memory"] == {"status": "unconfigured"}
+    pressure = run_report(*inputs, "--reset-memory-limit-mib", "1")
+    assert pressure["native_resident_bytes"] > 1024 * 1024
+    assert pressure["reset_assessment"]["thresholds_met"] == ["resident_memory_limit"]
+    assert pressure["reset_assessment"]["resident_memory"] == {
+        "status": "over_limit",
+        "limit_mib": 1,
+    }
+    assert database.read_bytes() == before
+    check_custody(inputs, installation, store)
+
+
+# a real resource claim and retained spool must prevent an idle interpretation
+def check_custody(inputs, installation, store):
+    root = Path(json.loads(installation.read_bytes())["endpoint"])
+    spool = root / "jobs" / ("f" * 32)
+    spool.mkdir(mode=0o700)
+    with Ledger(store) as ledger:
+        ledger.submit(
+            {
+                "id": "fixture:active",
+                "kind": "fixture.control",
+                "resources": [RESOURCE],
+                "inputs": {},
+                "rule_version": "fixture@1",
+                "tool_version": "fixture@1",
+            }
+        )
+        assert ledger.claim("fixture:reset")["job"]["id"] == "fixture:active"
+    database = store / "ledger.sqlite3"
+    before = database.read_bytes()
+    blocked = run_report(*inputs, "--reset-evidence-limit", "2")["reset_assessment"]
+    assert blocked["status"] == "due_with_pending_custody"
+    assert blocked["controller_observation"]["running_claim_recorded"] is True
+    assert blocked["endpoint_observation"]["spool_retained"] is True
+    assert blocked["physical_readiness"] == "unverified"
+    assert database.read_bytes() == before and spool.is_dir()
+
+
 def exercise(root):
     bundle = fixture_bundle(root)
     revision, installation, lifecycle, config, store = setup(root, bundle)
@@ -267,6 +317,8 @@ def exercise(root):
             selected["comparison_limit"] == 2
             and selected["verified_count_reaches_limit"] is True
         )
+        assert "reset_assessment" not in default and "reset_assessment" not in selected
+        check_assessment(installation, lifecycle, config, store, child.pid)
         print(json.dumps(selected))
     finally:
         (root / "NaturalExit").touch()

@@ -10,6 +10,7 @@ import json
 import math
 from pathlib import Path
 
+from FusionCircularLoopEvidence import saved_circle_loop
 from PairedCaptureIntake import GitSnapshot, require, sha256
 from convert.Formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
 from convert.Formats.Fusion.DocumentCodec.Records.NativeAuxiliary import (
@@ -94,7 +95,7 @@ def unsupported_primary(model):
                 yield identity, record.ObjectId, guid
 
 
-def strict_observation(reader, payload, kind):
+def strict_observation(reader, payload, model, kind):
     name, expected, _ = DIMENSIONS[kind]
     try:
         reader.Read(payload, ReadOptions(strict=True))
@@ -106,7 +107,7 @@ def strict_observation(reader, payload, kind):
         raise ValueError(
             "Strict reader accepted a previously unrecognized circular dimension"
         )
-    unknown = tuple(unsupported_primary(ReadDocument(payload)))
+    unknown = tuple(unsupported_primary(model))
     require(
         len(unknown) == 1 and unknown[0][0] == 0 and unknown[0][2] == expected,
         "Strict graph does not isolate the expected circular dimension class",
@@ -212,7 +213,7 @@ def compared_binding(
     }
 
 
-def partial_observation(reader, payload, sample, kind, driving, native_record):
+def partial_observation(reader, payload, model, sample, kind, driving, native_record):
     document = reader.Read(payload, ReadOptions(strict=False))
     require(
         len(document.sketches)
@@ -246,6 +247,9 @@ def partial_observation(reader, payload, sample, kind, driving, native_record):
             sample["dimension"],
             kind,
             driving,
+        ),
+        "saved_sheet_loop": saved_circle_loop(
+            payload, model, sketch, feature, circles[0], native_record
         ),
         "closed_profile_entity_ids": sketch.closed_profile_entity_ids,
         "support_plane_id": sketch.support_plane_id,
@@ -283,7 +287,8 @@ def report():
             and sample["kind"] == kind,
             f"Historical circle control differs: {filename}",
         )
-        strict = strict_observation(reader, payload, kind)
+        model = ReadDocument(payload)
+        strict = strict_observation(reader, payload, model, kind)
         cases[filename] = {
             "archive_sha256": digest,
             "archive_bytes": size,
@@ -291,6 +296,7 @@ def report():
             "partial": partial_observation(
                 reader,
                 payload,
+                model,
                 sample,
                 kind,
                 driving,

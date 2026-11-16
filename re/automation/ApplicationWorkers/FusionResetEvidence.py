@@ -13,6 +13,7 @@ from ApplicationProtocol import (
 )
 from Artifacts import Artifacts
 from FusionOwnerRestart import start_seconds
+from FusionResetAssessment import controller_activity, reset_assessment
 from FusionStartupProvision import owner_inputs
 from HostResources import command_output
 from MacApplicationBundle import pinned_bundle
@@ -51,7 +52,9 @@ def observe(args):
     birth = exact["started_unix_microseconds"] / 1_000_000
     if not math.isfinite(birth) or not 0 < birth < time.time():
         raise ValueError("invalid Fusion process birth time")
-    cutoff, evidence = count_completed(store, resource, config, host, birth)
+    cutoff, evidence, activity = count_completed(
+        store, resource, config, host, birth, include_activity=args.reset_assessment
+    )
     peer = {key: value for key, value in exact.items() if key != "executable"}
     lifecycle_bytes = file_bytes(args.lifecycle)
     require(
@@ -64,7 +67,7 @@ def observe(args):
         "Fusion reset observation lost its exact process or owner inputs",
     )
     resident_bytes = native_resident_bytes(peer, executable)
-    return {
+    report = {
         "version": 1,
         "scope": "fusion_corroborated_completed_native_requests",
         "installation": config["installation"],
@@ -77,6 +80,12 @@ def observe(args):
         >= args.reset_evidence_limit,
         **evidence,
     }
+    if args.reset_assessment:
+        report["reset_assessment"] = reset_assessment(
+            report, activity, config, args.reset_memory_limit_mib
+        )
+        verify_peer(peer, executable)
+    return report
 
 
 # the reset report needs resident memory from the pinned application itself
@@ -105,7 +114,7 @@ def native_resident_bytes(peer, executable):
     return int(fields[2]) * 1024
 
 
-def count_completed(store, resource, config, host, birth):
+def count_completed(store, resource, config, host, birth, *, include_activity=False):
     database = store / "ledger.sqlite3"
     require(
         database.is_file() and not database.is_symlink(),
@@ -114,7 +123,7 @@ def count_completed(store, resource, config, host, birth):
     objects = Artifacts(store, create=False)
     with read_store(database, None, (4,)) as connection:
         matched = connection.execute(
-            "SELECT 1 FROM resources WHERE name=? AND capacity=1", (resource,)
+            "SELECT available FROM resources WHERE name=? AND capacity=1", (resource,)
         ).fetchone()
         require(
             matched is not None,
@@ -126,7 +135,16 @@ def count_completed(store, resource, config, host, birth):
             "WHERE outcome='completed' AND ended>=? AND ended<=? ORDER BY id",
             (birth, cutoff),
         ).fetchall()
-    return cutoff, match_attempts(objects, rows, resource, config, host, birth)
+        activity = None
+        if include_activity:
+            activity = controller_activity(
+                connection, resource, bool(matched["available"])
+            )
+    return (
+        cutoff,
+        match_attempts(objects, rows, resource, config, host, birth),
+        activity,
+    )
 
 
 def match_attempts(objects, rows, resource, config, host, birth):
