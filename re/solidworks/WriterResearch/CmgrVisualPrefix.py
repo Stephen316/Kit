@@ -5,7 +5,6 @@ from struct import pack as PackFields, unpack as UnpackFields
 from convert.adapters.solidworks.Container.ArchiveCheck import RequireArch
 from convert.adapters.solidworks.Container.Definition import ArchiveWriter
 
-
 KDefaultMaterialAsset = ("data", "graphics", "materials", "color.p2m")
 KDefaultShader = "defaultplastic"
 KRecordedBump = UnpackFields("<f", PackFields("<f", 0.001))[0]

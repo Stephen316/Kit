@@ -29,19 +29,23 @@ def verify_base_state(
     start = cursor.Offset
     fields = ReadCmgrHeader(cursor, generation)
     RequireArch((start, cursor.Offset), (1206, 1234), "CMgr base header span")
-    header = cursor.BlobValue[start:cursor.Offset]
+    header = cursor.BlobValue[start : cursor.Offset]
     WriteCmgrHeader(writer, generation, fields)
     RequireArch(writer.build(), header, "CMgr base header state reconstruction")
     if body_count == 0:
-        cursor.Offset = ReadEmptyMass(cursor.BlobValue, cursor.Offset, generation, body_count)
+        cursor.Offset = ReadEmptyMass(
+            cursor.BlobValue, cursor.Offset, generation, body_count
+        )
     else:
         ReadBossMass(cursor, generation, body_count)
     start = cursor.Offset
     ReadCmgrFront(cursor, generation, BodyCount=body_count, SaveMode=1)
     RequireArch((start, cursor.Offset), (1488, 1514), "CMgr default collection span")
     WriteCmgrFront(writer, generation, BodyCount=body_count, SaveMode=1)
-    saved = cursor.BlobValue[start:cursor.Offset]
-    RequireArch(writer.build(), header + saved, "CMgr default collection reconstruction")
+    saved = cursor.BlobValue[start : cursor.Offset]
+    RequireArch(
+        writer.build(), header + saved, "CMgr default collection reconstruction"
+    )
     RequireArch(
         (writer.next_index, writer.classes),
         (cursor.NextIndex, {name: index for index, name in cursor.Classes.items()}),
