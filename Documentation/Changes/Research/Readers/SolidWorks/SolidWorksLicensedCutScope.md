@@ -20,4 +20,4 @@ Run from the repository root with the retained report and parts in the same dire
 python re/automation/SolidWorksScopeArchive.py /path/to/report.json --licensed-report-sha256 <report-sha256>
 ```
 
-The public adapter recognizes the two-body configuration and emits `sldprt.native_record_unresolved` when the neutral projection lacks body history and scope. The typed archive replay establishes the saved fields on the three controls. Editable neutral projection and paired conversion acceptance remain open.
+The [public adapter](SolidWorksScopedNeutral.md) uses the typed scope and independent body bindings to project both bodies and their saved history. It emits `sldprt.native_record_unresolved` for a recognized configuration when the required source joins fail. Paired conversion acceptance remains open.

@@ -6,7 +6,7 @@ The native shell and region records must refer to each other and to the same bod
 
 The scope is two linear, planar solid regions under partition schema `SCH_3701250_37102_13006`. Body labels, region order, and geometry play no part in the identity join.
 
-The [projection helper](../../../../../src/convert/adapters/solidworks/Core/Partition/ScopePartProjection.py) finds the unique Parasolid payload in the selected configuration's active partition and checks its SHA-256. It supplies stable design IDs from the original Boss body IDs. The primary explicit list or the later all-bodies list binds each affected body to its recent atom and the Cut as its final feature. An excluded body keeps its Boss atom and final feature. The projection retains the partition wrapper and each affected body's resolved record as separate provenance spans. It returns both design bodies and their linked B-rep together. Public adapter integration remains open.
+The [projection helper](../../../../../src/convert/adapters/solidworks/Core/Partition/ScopePartProjection.py) finds the unique Parasolid payload in the selected configuration's active partition and checks its SHA-256. It supplies stable design IDs from the original Boss body IDs. The primary explicit list or the later all-bodies list binds each affected body to its recent atom and the Cut as its final feature. An excluded body keeps its Boss atom and final feature. The projection retains the partition wrapper and each affected body's resolved record as separate provenance spans. It returns both design bodies and their linked B-rep together. The [public adapter](SolidWorksScopedNeutral.md) requires this result before publishing scoped history.
 
 ## Verification
 

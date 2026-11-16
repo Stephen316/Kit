@@ -178,6 +178,10 @@ from convert.adapters.solidworks.Core.OrdinaryRead import (
     ReadRectSupport,
 )
 from convert.adapters.solidworks.Core.RectProjection import ProjectRect
+from convert.adapters.solidworks.Core.Scope.ScopeDocument import (
+    KScopeUnresolved,
+    ReadScopeDoc,
+)
 from convert.adapters.solidworks.Resolved.ResolvedHead import OpenResolved
 from convert.adapters.solidworks.Resolved.SystemPrefix import ReadSysPrefix
 from interchange.geometry.Models.GeometryTypes import KGeometryTypes
@@ -451,6 +455,37 @@ def ReadNativePart(
         units=UnitSystem.MILLIMETER,
     )
     DocValue = ProjectCutDoc(DocValue, Model.cut_source)
+    ConfigIdValue = Model.active_configuration_id
+    if ConfigIdValue is not None and KScopeUnresolved in Model.diagnostics:
+        try:
+            ScopedPayloads = Payloads
+            if not Settings.include_brep:
+                PartitionName = f"Contents/Config-{ConfigIdValue}-Partition"
+                ScopedPayloads = tuple(
+                    BrepPayloadA(Index, Value)
+                    for Index, Value in enumerate(
+                        DecodePartitionStream(Archive.require(PartitionName), PartitionName)
+                    )
+                )
+            DocValue = ReadScopeDoc(
+                DocValue,
+                Archive,
+                ConfigIdValue,
+                ScopedPayloads,
+                RetainBrep=Settings.include_brep,
+            )
+        except (KeyError, ValueError, Struct.error) as ErrorInfo:
+            DocValue = Replace(
+                DocValue,
+                diagnostics=(
+                    *DocValue.diagnostics,
+                    DiagValue(
+                        code="sldprt.scope_projection_unresolved",
+                        message=str(ErrorInfo),
+                        severity=Severity.INFO,
+                    ),
+                ),
+            )
     DocValue.assert_valid()
     ValidateSource(Label, False)
     return RetainSource(DocValue, DataValue)
@@ -2116,7 +2151,7 @@ def NativePartModel(Archive: SldprtArchive, Requested: str | None) -> NativeMode
         Decoded,
         diagnostics=(
             *Decoded.diagnostics,
-            "Recognized two-body scope records. Neutral body history and feature scope remain unresolved.",
+            KScopeUnresolved,
         ),
     )
 
