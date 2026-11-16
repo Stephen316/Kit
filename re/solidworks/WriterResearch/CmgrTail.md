@@ -1,0 +1,45 @@
+<!--
+SPDX-License-Identifier: LicenseRef-PolyForm-Strict-1.0.0
+SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin
+
+This SPDX license identifier and copyright notice must not be
+removed, altered, or obscured. Doing so is a material breach of
+the PolyForm Strict License 1.0.0 and voids all licenses granted
+to you under it immediately and permanently.
+-->
+
+# Configuration manager terminal records
+
+The two terminal `suObList` records in the 25 generation-19000 discovery saves are empty. The feature stamps and remaining fields belong to the enclosing configuration manager. Typed archive reads account for every byte from the first list definition to EOF. [Visual record and corpus provenance](CmgrVisual.md)
+
+## Root and feature stamps
+
+The exact installed SOLIDWORKS 2026 build is `34.4.1.1011`. In `sldmodu.dll` SHA-256 `2201734ebe0106efde5a93e306067b4b5e2fdb0ba70bf38ce9a59242b283cb99`, `moExtObjHelper_c::loadConfigurationMgrFromFile` opens `CMgr` and reads a single manager at `0x4be9139c), then closes the archive. The manager's primary archive slot is `0x4c21c740`. Its calls at `0x4c21cbfa` and `0x4c21cf5b` write the two `suObList` pointers. The class's serializer at `0x3c8dd4d0` in [`sldmfcu.dll`](CmgrVisual.md#version-and-ownership) delegates to `su_CObList::Serialize` at `0x31a56530` in `swccu.dll` SHA-256 `7254b30f4eb77fd5b49fdbb0a7ab499ba3bf1d39a3f8f18d72090c2568967b49`. The `WriteCount` call at `0x31a56662` encodes the empty list in one 16-bit word.
+
+After the first empty list, `0x4c21cd25` writes the signed manager-map count. For each entry `0x4c21cd45` writes the signed feature tree ID, and `0x4c21cd8d` and `0x4c21cd98` write the high and low unsigned stamp words. The three families carry respectively zero entries, one entry with tree ID 34, and two entries with tree IDs 34 and 46. The counts corroborate the [separately resolved atom ownership](ConfigAtoms.md). The following calls store five separate values before the second list tag. `0x4c21cdba` calls the manager's empty keyed-map serializer and `0x4c21cddd`, `0x4c21cee9`, `0x4c21cef8` and `0x4c20ea7b` supply the other fields. In all controls these values are `(0, 0, 1, 0, 0)`, with archive layout `<3iIi`.
+
+The first list uses a schema-1 definition. The second defines another object through the same class. Its compact class word is `0x800e`, `0x8010` or `0x8011` in P01, P03 and P04 respectively. An independent writer needs the allocated class index from the enclosing archive. The observed token values identify the saved occurrences.
+
+## Fields after the second list
+
+| Native store owner or call site | Observed values and width |
+| --- | --- |
+| Second `su_CObList` count | Empty `u16` |
+| `0x4ba11583`, `0x4ba1160b`, `0x4c6e31f6`, `0x4c6e328b` | Four empty `long` map counts |
+| `0x4c21cfa4` | Empty signed vector count |
+| `0x4c21d00d`, `0x4c21d058` | Empty `su_CStringArray` count (`u16`), then signed zero |
+| `0x4c21d092`, `0x4c21d0a1` | Unsigned value 2 and empty plane map count |
+| `0x4c23a99b..0x4c23aaaa` | Empty wide CString, three zero `long` members and a four-byte `su_CTime` sentinel `0xffffffff` |
+| `0x4c21d1c9`, `0x4c21d43a` | Empty signed map count and signed zero |
+| `0x4c21d47f` | Unsigned zero presence field before EOF, for generation 18114 or later |
+
+The last version check is `0x46c2` at `0x4c21d464`. The presence predicate at `0x4b896b60` compares the two map sizes at manager members `+0x8a8` and `+0x8b8` with zero. Every measured modern save takes the empty branch, reaching EOF 68 bytes after the second list's class tag. The historical donor without this field reaches EOF 64 bytes after that tag. Populated data behind the selector needs independent evidence.
+
+The proof checked the same 25 [receipt-pinned saves](CmgrVisual.md#inputs-and-reproduction) and the generation-18000 comparison. Its terminal offsets are reproduced by applying the typed widths from the stream end, checking the exact class definition and class reference, reading the counted entries and reaching EOF again in the forward direction. Offsets below record the observed positions. P01 contains no linked-atom class. The earlier middle and archive map handoff remain separate work.
+
+| Controls | First list definition offsets | Second list class-reference offsets |
+| --- | --- | --- |
+| P01 | 1963, 2193 | 2003, 2233 |
+| P03 | 2037, 2039, 2267 | 2089, 2091, 2319 |
+| P04 | 2127, 2129, 2357 | 2191, 2193, 2421 |
+| Generation-18000 comparison | 1839 | 1891 |
