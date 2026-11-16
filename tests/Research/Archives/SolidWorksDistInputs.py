@@ -70,6 +70,11 @@ def ReadDistInputs(Measurements: bytes, Variant: str) -> DistInputs:
     Reopened = Captures["observations"]["reopened_files"][
         f"P03-solidworks-{Variant}.SLDPRT"
     ]
+    return ReadReopened(Reopened, Variant == "plane-yz")
+
+
+# both hosted composition paths use the independently measured profile and depth owner
+def ReadReopened(Reopened: ReopenedPart, IsRight: bool) -> DistInputs:
     (SketchValue,) = (
         Sketch for Sketch in Reopened["sketches"] if Sketch["name"] == "RectangleSketch"
     )
@@ -83,16 +88,13 @@ def ReadDistInputs(Measurements: bytes, Variant: str) -> DistInputs:
     )
     Operation = BossValue["operation"]
     assert Parameter["system_value"] == Operation["depth_m"] > 0
-    assert SketchValue["support_name"] == (
-        "Right Plane" if Variant == "plane-yz" else "Front Plane"
-    )
+    assert SketchValue["support_name"] == ("Right Plane" if IsRight else "Front Plane")
     Vertices = {
         tuple(Point)
         for EdgeValue in SketchValue["entities"]
         for Point in (EdgeValue["start_world_mm"], EdgeValue["end_world_mm"])
     }
     assert len(SketchValue["entities"]) == len(Vertices) == 4
-    IsRight = SketchValue["support_name"] == "Right Plane"
     AnchorX, AnchorY, AnchorZ = min(Vertices) if IsRight else max(Vertices)
     Anchor = SpaceVector(AnchorX, AnchorY, AnchorZ)
     FirstEdge = SketchValue["entities"][0]

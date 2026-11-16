@@ -129,6 +129,17 @@ def CheckBossEnd() -> None:
     )
 
 
+# composition must reach exact eof with one named driving depth and archive map
+def CheckBossWhole() -> None:
+    Report = LoadReport("VerifyBossResolve.py", 8)
+    assert Report["constructed"] is True
+    assert Report["saved_property_forms"] == 3
+    assert (
+        Report["boss_replay_sha256"]
+        == "b90d5aa693f33eed082fc9250cf78bb79f54a545a22859f67ce714041eb74eab"
+    )
+
+
 # the research writer and reader must agree on the full stream in real native files
 def CheckDefinition() -> None:
     Report = LoadReport("VerifyDefinition.py")
