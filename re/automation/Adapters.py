@@ -63,7 +63,7 @@ class A03Adapter:
 
     def Invoke(self, *items, stale=False):
         ownership = ["--owner", self.owner] if self.owner is not None else []
-        result = subprocess.run(self.command + ownership + [str(item) for item in items], capture_output=True, text=True, timeout=CONTROLLER_TIMEOUT, check=False)
+        result = subprocess.run(self.command + ownership + [str(item) for item in items], capture_output=True, text=True, encoding="utf-8", timeout=CONTROLLER_TIMEOUT, check=False)
         if result.returncode == 5:
             raise StaleOwner("a03 rejected the replaced supervisor owner")
         if stale and result.returncode == 3:

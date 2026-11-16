@@ -16,6 +16,7 @@ from SingleClaim import claim_to_file
 
 
 def main():
+    sys.stderr.reconfigure(encoding="utf-8", newline="\n")
     parser = argparse.ArgumentParser(description="Local deterministic research job and evidence controller")
     parser.add_argument("--store", type=Path, required=True)
     parser.add_argument("--owner")
@@ -75,7 +76,7 @@ def main():
     args = parser.parse_args()
     try:
         if args.command == "events" and (args.after is not None or args.through is not None):
-            print(canonical(event_window(args.store, args.owner, args.after, args.through)))
+            sys.stdout.buffer.write((canonical(event_window(args.store, args.owner, args.after, args.through)) + "\n").encode("utf-8"))
             return 0
         with Ledger(args.store, args.command == "init", getattr(args, "max_running", 4)) as ledger:
             if args.command != "rotate-owner":
@@ -133,22 +134,22 @@ def main():
                 response = ledger.events()
             else:
                 response = {"sha256": args.sha256, "size_bytes": ledger.objects.verify(args.sha256), "path": str(ledger.objects.path(args.sha256))}
-        print(canonical(response))
+        sys.stdout.buffer.write((canonical(response) + "\n").encode("utf-8"))
         return 0
     except StaleLease as error:
-        print(f"controller stale lease: {error}", file=sys.stderr)
+        sys.stderr.buffer.write((f"controller stale lease: {error}\n").encode("utf-8"))
         return 3
     except StaleOwner as error:
-        print(f"controller stale supervisor owner: {error}", file=sys.stderr)
+        sys.stderr.buffer.write((f"controller stale supervisor owner: {error}\n").encode("utf-8"))
         return 5
     except InvalidOutput as error:
-        print(f"controller invalid output: {error}"[:4096], file=sys.stderr)
+        sys.stderr.buffer.write((f"controller invalid output: {error}"[:4096] + "\n").encode("utf-8"))
         return 4
     except ValueError as error:
-        print(f"controller error: {error}", file=sys.stderr)
+        sys.stderr.buffer.write((f"controller error: {error}\n").encode("utf-8"))
         return 1
     except (OSError, TypeError, KeyError, RecursionError, sqlite3.Error) as error:
-        print(f"controller error: {type(error).__name__}; request not committed", file=sys.stderr)
+        sys.stderr.buffer.write((f"controller error: {type(error).__name__}; request not committed\n").encode("utf-8"))
         return 1
 
 
