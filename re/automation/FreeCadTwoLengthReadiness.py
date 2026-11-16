@@ -291,7 +291,7 @@ def ObserveCase(Case: ReadinessCase) -> dict[str, object]:
     Output = BytesIO()
     try:
         Result = WriteDocument(
-            Input, Output, DestFormat="freecad.fcstd", AllowCarrier=False
+            Input, Output, DestFormat="freecad.fcstd", AllowCarrier=True
         )
     except ValueError as Error:
         Require(not Output.getvalue(), "public SDK published bytes despite refusal")
@@ -300,6 +300,13 @@ def ObserveCase(Case: ReadinessCase) -> dict[str, object]:
     Require(
         Result.bytes_written == len(Data) and not Result.carrier_capabilities,
         "public no-carrier output accounting",
+    )
+    Require(
+        not Result.application_usable
+        and not Result.vendor_loadable
+        and Result.metadata["application_usable"] is False
+        and Result.metadata["vendor_loadable"] is False,
+        "fresh history output retains unqualified initial geometry attestation",
     )
     return {
         **Observation,

@@ -2540,6 +2540,7 @@ def RebuildMeta(
     NativeOuters: Sequence[tuple[str, CadDoc]],
     CarrierOnly: bool,
     AppUsable: bool,
+    VendorLoadable: bool,
 ) -> dict[str, object]:
     AsmValue = DocValue.assembly
     return {
@@ -2561,7 +2562,7 @@ def RebuildMeta(
         "carrier_embedded_reference_count": len(NativeOuters)
         + (len(AsmValue.documents) if AsmValue is not None else 0),
         "application_usable": AppUsable,
-        "vendor_loadable": True,
+        "vendor_loadable": VendorLoadable,
     }
 
 
@@ -2576,6 +2577,24 @@ def RebuildDiags(DocValue: CadDocument, CarrierOnly: bool) -> tuple[DiagValue, .
             "Referenced documents are retained in the Kit carrier but cannot be exposed as native relative files from a stream destination",
             Severity.WARNING,
         ),
+    )
+
+
+# fresh history caches cannot establish independent initial application acceptance
+def HasFreshExtrude(DocValue: CadDocument) -> bool:
+    return (
+        DocValue.assembly is None
+        and DocValue.brep is None
+        and not DocValue.brep_payloads
+        and not DocValue.meshes
+        and any(
+            not Feature.suppressed
+            and EnumText(Feature.kind) == "extrusion"
+            and EnumText(Feature.operation) == "create"
+            and not Feature.input_feature_ids
+            and isinstance(Feature.definition, ExtrusionFeature)
+            for Feature in DocValue.feature_timeline
+        )
     )
 
 
@@ -2623,7 +2642,10 @@ def RebuildResult(
     Transfers = CapabilityA(
         DocValue, TargetPath, Portable, False, TrustedBreps, EditableFeatures
     )
-    AppUsable = not CarrierOnly and IsNativeGeom(DocValue, TrustedBreps)
+    VendorLoadable = not HasFreshExtrude(DocValue)
+    AppUsable = (
+        VendorLoadable and not CarrierOnly and IsNativeGeom(DocValue, TrustedBreps)
+    )
     MetaValue = RebuildMeta(
         DocValue,
         OuterLinks,
@@ -2633,6 +2655,7 @@ def RebuildResult(
         NativeOuters,
         CarrierOnly,
         AppUsable,
+        VendorLoadable,
     )
     return WriteResult(
         path=PathValue,
@@ -2642,7 +2665,7 @@ def RebuildResult(
         metadata=MetaValue,
         transfers=Transfers,
         application_usable=AppUsable,
-        vendor_loadable=True,
+        vendor_loadable=VendorLoadable,
     )
 
 

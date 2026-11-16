@@ -115,7 +115,7 @@ def ObserveModified(ModeName: str) -> dict[str, object]:
     Output = ByteStream()
     try:
         Result = WriteDocument(
-            Document, Output, DestFormat="freecad.fcstd", AllowCarrier=False
+            Document, Output, DestFormat="freecad.fcstd", AllowCarrier=True
         )
     except ValueError as Problem:
         assert not Output.getvalue()
@@ -124,6 +124,9 @@ def ObserveModified(ModeName: str) -> dict[str, object]:
         Result.bytes_written == len(Output.getvalue())
         and not Result.carrier_capabilities
     )
+    assert not Result.application_usable and not Result.vendor_loadable
+    assert Result.metadata["application_usable"] is False
+    assert Result.metadata["vendor_loadable"] is False
     return {
         "status": "emitted",
         "native": KObserveNative(

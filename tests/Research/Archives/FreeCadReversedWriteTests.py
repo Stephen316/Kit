@@ -132,10 +132,13 @@ def ObserveWrite(CaseName: str) -> dict[str, object]:
     Original = Document.to_json(indent=None)
     Output = ByteStream()
     Result = WriteDocument(
-        Document, Output, DestFormat="freecad.fcstd", AllowCarrier=False
+        Document, Output, DestFormat="freecad.fcstd", AllowCarrier=True
     )
     Payload = Output.getvalue()
     assert Result.bytes_written == len(Payload) and not Result.carrier_capabilities
+    assert not Result.application_usable and not Result.vendor_loadable
+    assert Result.metadata["application_usable"] is False
+    assert Result.metadata["vendor_loadable"] is False
     assert Document.to_json(indent=None) == Original
     NativeOnly = StripManifest(Payload)
     Readback = OpenDocument(NativeOnly, SourceFormat="freecad.fcstd", StrictMode=True)
