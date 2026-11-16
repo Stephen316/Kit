@@ -10,6 +10,7 @@ Use the [step register](AutomationSteps.md) for current status.
 The UI steps below specify the authoring operations for the harnesses and workers. Use the [SOLIDWORKS COM harness](SolidWorksCaptureAuthoring.md) or [Fusion capture queue](#fusion-captures) for scripted runs. Use the [Fusion fresh-process procedure](../../Changes/Research/FusionReadback/FusionFreshProcessEvidence.md) for separate restart evidence.
 The A08c workers own dispatch and native application recovery. A08e supplies the Windows supervisor support needed to run both applications on one host.
 The supplemental SOLIDWORKS through-all control uses a standalone collector on an isolated licensed Windows host. Its failure receipt records cleanup of the exact launched process. [Scope collector startup cleanup](../../Changes/Research/Workers/SolidWorks/ScopeStartupCleanup.md)
+For a hard cutoff across synchronous COM calls, run the standalone collector in its dedicated Windows Job Object. [Scope campaign watchdog](../../Changes/Research/Workers/SolidWorks/ScopeWatchdog.md)
 
 A capture is research evidence only.
 It does not qualify a reader, a writer or a conversion by itself.
