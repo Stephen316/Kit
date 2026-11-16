@@ -83,7 +83,7 @@ def LoadCandidate(Destination: FilePath) -> dict[str, object]:
     Report: dict[str, object] = ParseJson(Result.stdout)
     assert DigestBytes(Destination.read_bytes()).hexdigest() == Report["archive_sha256"]
     Existing = b"independent existing candidate"
-    Destination.write_bytes(Existing)
+    assert Destination.write_bytes(Existing) == len(Existing)
     Retry = RunFreshBoss(Destination)
     assert Retry.returncode != 0, Retry.stdout
     assert "already exists" in Retry.stderr
