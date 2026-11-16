@@ -95,6 +95,8 @@ A02 evidence does not establish completion of later steps.
 The A02 owner [reserved the supplemental baseline](../../Changes/Research/Controller/SupplementalEvidenceBaseline.md) at `f8a4dc7686dece8d44719b12721105a63864a365` on 2026-11-16.
 This new reservation follows existing discovery observations and does not assert an earlier freeze.
 Private verifier admission, the complete qualification protocol and P05 holdout evaluation remain separate.
+The [sealed public-chain preflight](../../Changes/Research/Controller/PairedEvidenceManifest.md#verification-evidence) was subsequently reported at that exact reserved checkout: all three SOLIDWORKS lanes replayed their raw originals, while Fusion source handoff remained unavailable.
+It exited `2`, retained `qualification: not_evaluated` and admitted zero pairs.
 The [remote workflow-quality job](https://github.com/TryUniCAD/Kit/actions/runs/43419522392/job/131865721189) passed pinned-object verification and all three process cases at `0dd47cdab9d51d24b87acae61ffb1f174ba44d81`.
 That observation completes the A02a–A02b artifact criteria. The A02d audit verified the committed capture bytes and found no exact-byte aliases in the audited tree or the pinned historical corpus.
 
