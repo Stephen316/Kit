@@ -143,6 +143,31 @@ def VerifyPilot(RootPath: FilePath, Client: JobClient, Through: int) -> None:
             str(Through),
         ],
     )
+    WaitReport = ReadActivity(
+        RootPath,
+        [
+            "--from-unix",
+            str(TailReport["from_unix_seconds"]),
+            "--until-unix",
+            str(TailReport["until_unix_seconds"]),
+            "--after",
+            str(Through),
+            "--through",
+            str(TailReport["through_event_id"]),
+            "--wait-timing",
+        ],
+    )
+    Waits = JsonCodec.loads(JsonCodec.dumps(WaitReport.pop("settlement_to_next_claim")))
+    assert WaitReport == TailReport
+    assert Waits["waiting_application"] == {
+        "started": 1,
+        "next_claim_observed": 0,
+        "superseded_before_claim": 0,
+        "no_next_claim_observed": 1,
+        "min_seconds": None,
+        "max_seconds": None,
+        "total_seconds": None,
+    }
     Observed = JsonCodec.loads(JsonCodec.dumps(TailReport["activity"]))
     assert Observed["resource_transitions"] == {"available": 1, "unavailable": 0}
     assert (
