@@ -15,6 +15,29 @@ KFileSession = 370108
 KNodeOpeningBits = 0x4000000000000000
 
 
+# both the manager and the part inherit the same fields after their visual pointer
+def ReadCmgrFeature(Cursor: ArchiveCursor, Generation: int) -> None:
+    RequireArch(
+        Cursor.ReadInts("<iiIBiiiiQi"),
+        (0, 0, 101, 0, 0, 0, 0, Generation, 0, KBuildVersion),
+        "CMgr inherited feature opening",
+    )
+    Cursor.ReadNull()
+    RequireArch(
+        (Cursor.ReadText(), Cursor.ReadValue("<BHHBIHhf")),
+        ("", (0, 65535, 0, 3, 0xFFFFFFFF, 65535, -1, -1.0)),
+        "CMgr inherited feature display style",
+    )
+    RequireArch(Cursor.ReadInts("<2i"), (0, 0), "CMgr inherited feature members")
+    Cursor.ReadNull()
+    Fields = Cursor.ReadInts("<IBBiiiIIHii")
+    RequireArch(
+        (Fields[:6], Fields[8:]),
+        ((0, 4, 0, 0, 0, -1), (2, KFileSession, 1)),
+        "CMgr inherited feature return",
+    )
+
+
 # the typed pointer walk supplies the visual body and its inherited allocation map
 def ReadCmgrOpening(BlobValue: bytes, Generation: int) -> ArchiveCursor:
     RequireArch(Generation, 19000, "CMgr opening generation")
@@ -27,24 +50,7 @@ def ReadCmgrOpening(BlobValue: bytes, Generation: int) -> ArchiveCursor:
         "CMgr root opening",
     )
     Cursor.ReadNull()
-    RequireArch(
-        Cursor.ReadInts("<6IB4I"),
-        (0, 0, 101, 0, 0, 0, 0, Generation, 0, 0, KBuildVersion),
-        "CMgr opening identity",
-    )
-    Cursor.ReadNull()
-    RequireArch(
-        (Cursor.ReadText(), Cursor.ReadValue("<BHHB2Ifd")),
-        ("", (0, 0xFFFF, 0, 3, 0xFFFFFFFF, 0xFFFFFFFF, -1.0, 0.0)),
-        "CMgr opening display settings",
-    )
-    Cursor.ReadNull()
-    Display = Cursor.ReadInts("<3IHI2IH2I")
-    RequireArch(
-        (Display[:5], Display[7:]),
-        ((0, 4, 0, 0, 0xFFFFFFFF), (2, KFileSession, 1)),
-        "CMgr opening display state",
-    )
+    ReadCmgrFeature(Cursor, Generation)
     _ = Cursor.TakePointer((KConfigClass,), KDefinitionKind, CompactOnly=True)
     _ = Cursor.TakePointer((KNodeNameClass,), KDefinitionKind, CompactOnly=True)
     RequireArch(

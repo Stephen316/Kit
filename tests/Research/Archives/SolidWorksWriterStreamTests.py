@@ -32,17 +32,27 @@ def CheckDefinition() -> None:
     assert Report["preamble_view_forms"] == Report["line_font_orders"] == 2
 
 
-# the default color body and feature-stamped terminal records use separate field owners
+# each configuration manager record needs separate pinned evidence from the subprocess
 def CheckCmgr() -> None:
     Report = LoadReport("VerifyCmgrColor.py")
     Captures = Report["captures"]
     assert isinstance(Captures, dict)
-    assert set(CastValue(dict[str, str], Captures).values()) == {
+    Digests = CastValue(dict[str, str], Captures)
+    assert set(Digests.values()) == {
         "3b77a4c24f8a5953b871c3b9fa7b0df54008ddf61bacb11baffc7c78fba937a9"
     }
     Terminals = Report["terminal_records"]
     assert isinstance(Terminals, dict)
-    assert (
-        CastValue(dict[str, str], Terminals).keys()
-        == CastValue(dict[str, str], Captures).keys()
-    )
+    assert CastValue(dict[str, str], Terminals).keys() == Digests.keys()
+    AssertEmptyMass(Report, Digests)
+
+
+# the empty cache must cover the complete sketch only discovery lane
+def AssertEmptyMass(Report: dict[str, object], Captures: dict[str, str]) -> None:
+    Masses = Report["empty_mass_records"]
+    assert isinstance(Masses, dict)
+    Digests = CastValue(dict[str, str], Masses)
+    assert len(Digests) == 6 and Digests.keys() <= Captures.keys()
+    assert set(Digests.values()) == {
+        "dd69d4585ca970361fa398485ea5f2e828b0f76ebcc6b9a3ebe4287cc5cd9f31"
+    }
