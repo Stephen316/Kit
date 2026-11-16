@@ -42,15 +42,21 @@ def ValidatePrecision(Value: DetailPrecision) -> None:
         "three saved entries per detail precision group",
     )
     RequireArch(
-        all(type(Digits) is int and 0 <= Digits <= 0xFFFFFFFF for Digits in Value.Digits)
-        and all(IsFinite(Tolerance) and Tolerance >= 0 for Tolerance in Value.Tolerances),
+        all(
+            type(Digits) is int and 0 <= Digits <= 0xFFFFFFFF for Digits in Value.Digits
+        )
+        and all(
+            IsFinite(Tolerance) and Tolerance >= 0 for Tolerance in Value.Tolerances
+        ),
         True,
         "three detail precisions and their nonnegative tolerances",
     )
 
 
 # The inline model array is empty and the saved base standard has no custom name.
-def WriteDetailOpening(Writer: ArchiveWriter, Generation: int, State: DetailOpening) -> None:
+def WriteDetailOpening(
+    Writer: ArchiveWriter, Generation: int, State: DetailOpening
+) -> None:
     RequireArch(Generation, 19000, "generation 19000 detail opening")
     RequireArch(
         IsFinite(State.CenterMarkSize)
@@ -116,7 +122,9 @@ class PlainCharFormat:
 
 
 # Document preferences provide the face, system-unit height and line spacing.
-def WritePlainCharFormat(Writer: ArchiveWriter, Generation: int, State: PlainCharFormat) -> None:
+def WritePlainCharFormat(
+    Writer: ArchiveWriter, Generation: int, State: PlainCharFormat
+) -> None:
     RequireArch(Generation, 19000, "generation 19000 inline character format")
     RequireArch(
         bool(State.Face)
@@ -136,17 +144,22 @@ class UnsetCharFormat:
     Face: str
 
 
-def WriteUnsetCharFormat(Writer: ArchiveWriter, Generation: int, State: UnsetCharFormat) -> None:
+def WriteUnsetCharFormat(
+    Writer: ArchiveWriter, Generation: int, State: UnsetCharFormat
+) -> None:
     RequireArch(Generation, 19000, "generation 19000 inline character format")
+    RequireArch(isinstance(State.Face, str), True, "default annotation face type")
     RequireArch(
-        isinstance(State.Face, str) and bool(State.Face) and "\x00" not in State.Face,
+        bool(State.Face) and "\x00" not in State.Face,
         True,
         "nonempty default annotation face",
     )
     WriteCharFields(Writer, State.Face, -1.0, 0.001)
 
 
-def WriteCharFields(Writer: ArchiveWriter, Face: str, Height: float, LineSpacing: float) -> None:
+def WriteCharFields(
+    Writer: ArchiveWriter, Face: str, Height: float, LineSpacing: float
+) -> None:
     Writer.string(Face)
     Writer.f64(Height)
     Writer.i32(0)
