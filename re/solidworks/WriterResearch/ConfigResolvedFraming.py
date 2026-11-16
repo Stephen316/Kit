@@ -1,6 +1,7 @@
 from collections.abc import Callable, Sequence
 from dataclasses import dataclass
 from struct import pack
+from typing import TypeVar
 
 from ConfigRoot import ConfigRootState, WriteConfigRoot
 from PartArchive import PartArchiveState, PartArchiveWriter
@@ -20,6 +21,7 @@ from convert.adapters.solidworks.Container.ArchiveTags import (
 from convert.adapters.solidworks.Container.Cmgr import KExtObjectClass
 
 PartArchiveAction = Callable[[PartArchiveWriter], None]
+SplitResult = TypeVar("SplitResult")
 
 
 @dataclass(frozen=True, slots=True)
@@ -45,12 +47,15 @@ def EncodeSplitLength(Length: int) -> bytes:
 
 
 # Each split length excludes its own dword and counts only its generated body.
-def WriteConfigSplit(Writer: PartArchiveWriter, WriteBody: PartArchiveAction) -> None:
+def WriteConfigSplit(
+    Writer: PartArchiveWriter, WriteBody: Callable[[PartArchiveWriter], SplitResult]
+) -> SplitResult:
     Position = len(Writer.chunks)
     Writer.i32(0)
-    WriteBody(Writer)
+    Result = WriteBody(Writer)
     Length = sum(len(Chunk) for Chunk in Writer.chunks[Position + 1 :])
     Writer.chunks[Position] = EncodeSplitLength(Length)
+    return Result
 
 
 def BuildConfigArchive(

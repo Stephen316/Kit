@@ -117,6 +117,18 @@ def CheckBossChoice() -> None:
     )
 
 
+# the signed end enters the existing distance display after the native partition marker
+def CheckBossEnd() -> None:
+    Report = LoadReport("VerifyBossEndOpen.py", 8)
+    assert Report["constructed"] is True
+    assert Report["mark_ids"] == [7, 9, 11, 15, 19, 23]
+    assert Report["reverse_directions"] == 1
+    assert (
+        Report["end_open_replay_sha256"]
+        == "209520b1305788589d2d235f784f66d8ff8642b327d027ef43df22b9964a3343"
+    )
+
+
 # the research writer and reader must agree on the full stream in real native files
 def CheckDefinition() -> None:
     Report = LoadReport("VerifyDefinition.py")
@@ -280,6 +292,16 @@ def CheckCfgHistory() -> None:
     )
 
 
+# the generated part configuration must reach the exact end and resolve aliases
+def CheckCfgArchive() -> None:
+    Report = LoadReport("VerifyOrdinaryConfig.py", 14)
+    assert Report["constructed"] is True
+    assert (
+        Report["replay_sha256"]
+        == "7f6ab4f42ab1d06ced9d90a23683eb092f34ad1856ea48f4b4a2100d50f7c812"
+    )
+
+
 # authored log order and shared archive allocation must survive repeated edits
 def CheckModelHdr() -> None:
     Report = LoadReport("VerifyModelHeader.py")
@@ -380,6 +402,19 @@ def CheckDetailMap() -> None:
     assert (
         Report["replay_sha256"]
         == "11a50a77b4c25deb5cfad5cc88fb3e0efe637d1d284d3550ebd36de06c721310"
+    )
+
+
+# exact sidecar bytes and retained member names should agree across the eight licensed saves
+def CheckSidecars() -> None:
+    Report = LoadReport("VerifyPartSidecars.py", 8)
+    assert (
+        Report["replay_sha256"]
+        == "a0361c2da1f1182d8976fbabe0d77eaa9579dccfa6655554b622c2485ac36cd9"
+    )
+    assert (
+        Report["retained_sha256"]
+        == "f9e2742038653d48e89f4eef3bfd6f8c17846d4a3b4d8b8dd84fb78c9b0dcfb5"
     )
 
 
@@ -545,4 +580,13 @@ def CheckCfgLists() -> None:
     assert (
         Report["replay_sha256"]
         == "6c8aa5c122c06bb984a2bd519c74a5c0d2d165f34586c7c07ace6dee98154da0"
+    )
+
+
+# the generated cache brackets and manager must leave the exact resolved archive map
+def CheckCfgEnd() -> None:
+    Report = LoadReport("VerifyCfgPartEnd.py", 14)
+    assert (
+        Report["replay_sha256"]
+        == "cd16fa11ca352bbc39545ff7c5d8c3afd78f4bdc61ef611cc1f92150c39c8e34"
     )

@@ -1,0 +1,3 @@
+# Compose the complete ordinary SOLIDWORKS configuration
+
+One archive writer now carries Config-0 from the part root through saved detail, presentation, mass properties and the part return. It calculates both split lengths and returns the environment and optional Boss atom for the resolved feature stream. The production reader reached exact EOF in all 14 pinned saves with next allocation 106 for P01 or 111 for P03. The hosted comparison applies the existing model-bound, camera-matrix and mass-property tolerances, then checks all other bytes and the full allocation map. [Composition verifier](../../../../../../re/solidworks/WriterResearch/VerifyOrdinaryConfig.py), [native scene source](../../../../../../re/solidworks/WriterResearch/ConfigEnvironment.md)
