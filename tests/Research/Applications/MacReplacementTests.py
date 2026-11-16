@@ -28,3 +28,4 @@ def CheckMacLaunch(TmpPath: FilePath) -> None:
     assert Evidence["symlink_refused"] is True
     assert Evidence["fence_change_refused"] is True
     assert Evidence["duplicate_refused"] is True
+    assert Evidence["expired_dispatch_refused"] is True

@@ -70,9 +70,17 @@ def bundle_pins(bundle):
     return {key: value for key, value in bundle.items() if key != "executable"}
 
 
-def request_launch(args, root, config, install_bytes):
-    available()
+def replacement_source(config, *, require_admission=False):
     source = committed_bytes(config, MAC_REPLACEMENT_LAUNCH)
+    if require_admission:
+        checked_source = file_bytes(Path(__file__).with_name("MacReplacementLaunch.swift"))
+        require(source == checked_source, "automatic Fusion launch requires the reviewed deadline-aware provider")
+    return source
+
+
+def request_launch(args, root, config, install_bytes, *, admit=None):
+    available()
+    source = replacement_source(config, require_admission=admit is not None)
     request_path, receipt_path = replacement_paths(root, args.quit_intent_sha256)
     with owner_lock(root / "replacement-launch.lock"):
         with owner_lock(root / "dispatch.lock"):
@@ -103,6 +111,15 @@ def request_launch(args, root, config, install_bytes):
                     "bundle": bundle_pins(bundle),
                     "requested_at": time.time(),
                 }
+                seconds = args.wait_seconds
+                if admit is not None:
+                    started = time.time()
+                    seconds = min(seconds, admit())
+                    request["dispatch_before"] = started + seconds
+                    require(
+                        time.time() < request["dispatch_before"],
+                        "Fusion launch admission elapsed before sealing",
+                    )
                 request_bytes = encoded(request)
                 write_new(request_path, request_bytes)
                 bind_replacement(
@@ -117,9 +134,10 @@ def request_launch(args, root, config, install_bytes):
             bundle,
             request["requested_at"],
             old,
-            args.wait_seconds,
+            seconds,
             request_path,
             sha256(request_bytes),
+            **({"dispatch_before": request["dispatch_before"]} if admit is not None else {}),
         )
         custody.verify(retained=False)
         require(
@@ -176,6 +194,10 @@ def read_launch(args, root, config, install_bytes):
         <= launch["dispatched_at"]
         <= launch["peer"]["started_unix_microseconds"] / 1_000_000,
         "Fusion launch peer or source pins differ from the reviewed request",
+    )
+    require(
+        "dispatch_before" not in request or launch["dispatched_at"] < request["dispatch_before"],
+        "Fusion replacement dispatch exceeded its immutable admission",
     )
     return observe_phase_b(custody, config, bundle, launch)
 

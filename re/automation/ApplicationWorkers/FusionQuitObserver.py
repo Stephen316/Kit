@@ -4,6 +4,7 @@ import json
 import sqlite3
 import subprocess
 import sys
+import time
 from pathlib import Path
 
 import ApplicationProtocol as protocol
@@ -42,7 +43,9 @@ def armed(intent_sha256, *, automatic=False):
     )
 
 
-def watch(installation, store, queue, lifecycle, seconds, *, request_quit=False):
+def watch(
+    installation, store, queue, lifecycle, seconds, *, request_quit=False, admit=None
+):
     require(
         sys.platform == "darwin" and 1 <= seconds <= 300,
         "Fusion exit observation requires macOS and a 1 to 300 second wait",
@@ -84,6 +87,8 @@ def watch(installation, store, queue, lifecycle, seconds, *, request_quit=False)
         )
 
         def publish(identifier, deadline_ns):
+            if admit is not None:
+                deadline_ns = min(deadline_ns, time.monotonic_ns() + admit() * 1_000_000_000)
             return authorize(
                 vars(protocol),
                 config,
