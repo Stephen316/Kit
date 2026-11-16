@@ -14,6 +14,8 @@ The research probe derives the P03 baseline and three independent edit variants 
 
 The probe reuses the distinct Origin coincidence and emits a one-sided positive blind cuboid. It allocates `width_mm` and `height_mm` to the sketch in slots 1 and 2. The Boss owns the literal `depth_mm` in slot 3 and zero taper `d4` in slot 4. The parameter table and its name index contain those four entries. The annotation cache stores literal text, values and ordered endpoints derived from the same direct dimensions. The public authoring contracts and the P01 witnesses retain their existing paths.
 
+The [explicit direct-dimension composition](../../../Fusion/Authoring/FusionDirectDimensionAuthoring.md) replaces the Boss probe's shared-function patches with the existing real author, geometry, material and pack stages. Its optional direct-owned collection omits duplicate global length parameters. Axis constraints precede the extracted Origin helper, annotated dimensions and their links. The default public authoring path and native-semantic admission guards keep their existing behavior. The separately reported 37 × 21 × 11 mm feasibility case and four measured controls are source-handoff evidence; hosted verification and licensed acceptance of this change remain required.
+
 Readback verifies that the Boss profile proxy and region select the four matched lines on the anchored XY sketch. It checks the complete compute order and reciprocal dependency edges, the saved Boss operation and history, the prism's six faces, twelve edges and eight vertices, and geometry consistency of the volume, centroid and inertial cache. The centroid and volume agree with the independent SOLIDWORKS observations.
 
 | Source variant | Dimensions, mm | Volume, mm³ | Centroid, mm  |

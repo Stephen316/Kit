@@ -3,7 +3,9 @@ from convert.Formats.Fusion.DocumentCodec.Defaults.MakeNumeric import MakeNumeri
 
 
 # the collect operation needs a consistent construction rule so model state retains its native feature and ownership relationships
-def AddCollectMut(Author: AuthorState) -> None:
+def AddCollectMut(Author: AuthorState, *, DirectOwned: bool = False) -> None:
+    if type(DirectOwned) is not bool:
+        raise ValueError("Direct collection ownership requires a boolean option")
     Names = {
         "overrides": "Overrides",
         "component_instances": "ComponentInstances",
@@ -41,7 +43,7 @@ def AddCollectMut(Author: AuthorState) -> None:
     Author.Allocate("brep_history", "BRepHistorySerializer")
     Author.Allocate("cache_serializer", "BRepSerializer")
     Author.Allocate("passive_ids", "PassiveIdGenerator")
-    HasLength = Author.SpecValue.ProfileKind != "form"
+    HasLength = Author.SpecValue.ProfileKind != "form" and not DirectOwned
     Author.Allocate(
         "parameter_names",
         "ParameterSearchByNameHelper",
