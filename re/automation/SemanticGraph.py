@@ -257,6 +257,10 @@ def build_graph(document, geometry_unit, *, max_nodes=4096, max_fields=100000):
                     {"path": node["path"] + path, "original_unit": unit}
                 )
                 return
+            if category == "number" and not unit and type(value.value) in (int, float):
+                atom(node, path + "/kind", category)
+                atom(node, path + "/value", value.value, "dimensionless")
+                return
             if category in {"length", "angle", "quantity"} or unit:
                 issue(node["path"] + path, "unsupported_parameter_quantity", value)
         for field in fields(value):
@@ -274,6 +278,19 @@ def build_graph(document, geometry_unit, *, max_nodes=4096, max_fields=100000):
                         "evidence_sha256": evidence_digest(child),
                     }
                 )
+                if name == "provenance" and child is not None:
+                    if child.attributes:
+                        issue(
+                            node["path"] + location + "/attributes",
+                            "unclassified_native_or_extension_fields",
+                            child.attributes,
+                        )
+                    if child.confidence != 1.0:
+                        issue(
+                            node["path"] + location + "/confidence",
+                            "unverified_source_confidence",
+                            child.confidence,
+                        )
                 continue
             if name in {"attributes", "metadata"}:
                 if child:
@@ -344,6 +361,12 @@ def build_graph(document, geometry_unit, *, max_nodes=4096, max_fields=100000):
 
     root = {"kind": "CadDocument", "fields": {}, "links": [], "path": ""}
     graph["nodes"]["@document"] = root
+    if document.source.attributes:
+        issue(
+            "/source/attributes",
+            "unclassified_native_or_extension_fields",
+            document.source.attributes,
+        )
     atom(root, "/schema_version", document.schema_version)
     walk(root, document.capabilities, "/capabilities")
     graph["observations"].append(
