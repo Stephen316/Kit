@@ -16,3 +16,5 @@ Each folder has the [shared named node](ResolvedFolders.md), an empty node list 
 The five definitions and their name objects consume 15 new slots. The intervening `moEnvFolder_c` object aliases slot 67 in P01 and slot 71 in P03. The writer uses the configuration's object map to resolve the caller's reference. The archive advances from byte 1873 to the principal plane definition at byte 2944. Its next slot moves from 132 to 147 in P01 and from 137 to 152 in P03.
 
 Read-only replay across the 14 pinned saves established the range and inherited allocation. The compact JSON map of source-file digest to saved range digest hashes to `d7cd9e7f9f20eb1a8eafbf46e7ccfc4a0dabb51dfc60c6b399e19a6264c8d61f`. The hosted verifier compares the generated prefix through the Material folder with the saved bytes and the complete class and object maps. [Hosted verification entry](VerifyResolvedFolders.py)
+
+The [principal planes](ResolvedPrincipal.md) continue from this map and finish before the Origin feature.

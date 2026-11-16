@@ -58,6 +58,16 @@ def CheckResFolder() -> None:
     )
 
 
+# each default plane must preserve its class allocation and measured presentation
+def CheckResPlanes() -> None:
+    Report = LoadReport("VerifyResolvedPlanes.py", 14)
+    assert Report["constructed"] is True
+    assert (
+        Report["replay_sha256"]
+        == "58ea10925023d080a670a3e10884043677ad584cca704864f52a47860bea86c2"
+    )
+
+
 # the configured model title must keep real allocation order in the standalone archive
 def CheckConfigRoot() -> None:
     Report = LoadReport("VerifyConfigRoot.py", 14)
