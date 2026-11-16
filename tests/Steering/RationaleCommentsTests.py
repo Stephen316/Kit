@@ -9,6 +9,7 @@ from pathlib import Path as FilePath
 from pytest import mark as TestMarks
 
 from tests.Policy.RepoFixture import RepoFixture
+from tools.Steering.SteeringCompliance import CheckSource, KLicenseLines
 
 # fixture sources must carry one compliant rationale so clean cases prove real coverage
 KCleanSource = """\
@@ -165,6 +166,37 @@ def CheckNewReason() -> None:
     assert PassedInfo.returncode == 0, PassedInfo.stdout
     assert FailedInfo.returncode == 1, FailedInfo.stderr
     assert "Bravo.py:6:1: CMT002" in FailedInfo.stdout
+
+
+# the same exact header exception must apply to whole source and changed comment checks
+@TestMarks.parametrize("PrefixText", ("", "#!/usr/bin/env python\n"))
+def CheckLicense(TmpPath: FilePath, PrefixText: str) -> None:
+    FixtureInfo = RepoFixture(TmpPath)
+    SourcePath = FilePath("Alpha.py")
+    Notice = "\n".join(KLicenseLines) + "\n"
+    SourceText = PrefixText + Notice + KCleanSource
+    FixtureInfo.WriteFile("Bravo.py", KCleanSource)
+    BaseRef = FixtureInfo.CommitAll("base")
+    FixtureInfo.WriteFile(SourcePath.as_posix(), SourceText)
+    HeadRef = FixtureInfo.CommitAll("add exact leading notice")
+    PassedInfo = RunModule(TmpPath, BaseRef, HeadRef)
+    assert PassedInfo.returncode == 0, PassedInfo.stdout + PassedInfo.stderr
+    assert not CheckSource(SourcePath, SourceText)
+
+    Incorrect = SourceText.replace("Copyright (c) 2026", "Copyright (c) 2025")
+    FixtureInfo.WriteFile(SourcePath.as_posix(), Incorrect)
+    HeadRef = FixtureInfo.CommitAll("add altered notice")
+    FailedInfo = RunModule(TmpPath, BaseRef, HeadRef)
+    assert FailedInfo.returncode == 1, FailedInfo.stdout + FailedInfo.stderr
+    assert "CMT002" in FailedInfo.stdout
+    assert any(
+        FindingValue.RuleCode == "CMT001"
+        for FindingValue in CheckSource(SourcePath, Incorrect)
+    )
+    assert any(
+        FindingValue.RuleCode == "CMT001"
+        for FindingValue in CheckSource(SourcePath, KCleanSource + "\n" + Notice)
+    )
 
 
 # every declaration form must fail through the command boundary when its required reason disappears

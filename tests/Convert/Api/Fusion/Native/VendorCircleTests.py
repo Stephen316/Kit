@@ -33,7 +33,7 @@ KCircleCases = (
 
 
 # verify the source identity before attributing the recorded native measurements
-def ReadCircleSource(CaseValue: tuple[str, str]) -> bytes:
+def ReadCircle(CaseValue: tuple[str, str]) -> bytes:
     FileName, ExpectedDigest = CaseValue
     SourcePath = (
         FilePath(__file__).resolve().parents[5]
@@ -45,10 +45,10 @@ def ReadCircleSource(CaseValue: tuple[str, str]) -> bytes:
     return Payload
 
 
-# strict projection must preserve the native sketch's single reopened 16 mm circle
+# strict projection must preserve the single native circle recovered after reopening
 @MarkTests.parametrize("CaseValue", KCircleCases)
 def TestSavedCircle(CaseValue: tuple[str, str]) -> None:
-    Document = OpenDocument(ReadCircleSource(CaseValue), SourceFormat="fusion.f3d")
+    Document = OpenDocument(ReadCircle(CaseValue), SourceFormat="fusion.f3d")
     assert len(Document.sketches) == len(Document.feature_timeline) == 1
     assert not Document.bodies and not Document.diagnostics
     SketchValue = Document.sketches[0]
@@ -64,8 +64,8 @@ def TestSavedCircle(CaseValue: tuple[str, str]) -> None:
 
 
 # a nondefault mesh container cannot qualify through the empty scaffold route
-def TestMeshScaffold() -> None:
-    Model = ReadDocument(ReadCircleSource(KCircleCases[0]))
+def TestEmptyMesh() -> None:
+    Model = ReadDocument(ReadCircle(KCircleCases[0]))
     Scaffold = BuildGraph(Model).OneClass("ParaMeshBodies")
     Changed = ChangeField(Model, Scaffold.ObjectId, "isVisible", False)
     with RaisesError(
