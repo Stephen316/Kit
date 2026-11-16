@@ -73,10 +73,13 @@ be needed to omit another member. [Licensed omission measurements](../SolidWorks
 | Open | `Contents/eModelLic` | Scoped native save-context semantics and a justified caller input |
 | Open | `Preview`, `PreviewPNG` | Native preview encoding from generated content or licensed omission evidence |
 | Open | `SwDocContentMgr/SwDocContentMgrInfo`, `ThirdPtyStore/VisualStates` | Content manager and visualization state constructors or licensed omission evidence |
-| Open | `[Content_Types].xml`, `_rels/.rels` | Content type and relationship manifests derived from the emitted metadata members |
-| Open | `docProps/Config-0-Properties.xml`, `docProps/ISolidWorksInformation.xml`, `docProps/OpenTime.xml`, `docProps/app.xml`, `docProps/core.xml`, `docProps/custom.xml` | Typed document, configuration and application metadata owners and serialization |
+| Typed payload with prerequisites | `[Content_Types].xml`, `_rels/.rels` | `PartOpc.EncodePartOpc` requires actual emitted extended, core and custom property streams |
+| Full typed payload | `docProps/OpenTime.xml` | `PartOpenTime.EncodePartOpenTime` for the measured fresh and once-open histories |
+| Open | `docProps/Config-0-Properties.xml`, `docProps/ISolidWorksInformation.xml`, `docProps/app.xml`, `docProps/core.xml`, `docProps/custom.xml` | Typed document, configuration and application metadata owners and serialization |
 | Open | `swXmlContents/Features`, `swXmlContents/KeyWords` | XML derived from authored feature and document metadata or licensed omission evidence |
 
-There are 13 retained members with standalone constructors, including two
-fresh-document payloads. Two are partially composed and 18 lack a
-constructive owner. Native acceptance of a fully generated archive is pending.
+There are 16 retained members with typed constructors, including two
+fresh-document payloads and two manifests with property stream prerequisites.
+Two members are partially composed and 15 lack a constructive owner. Native
+acceptance of a fully generated archive is pending.
+[Package manifests and open timing](SolidWorksPackageMetadata.md)

@@ -5,9 +5,15 @@ from VerifyConfigRoot import CAPTURE_REVISION, principal_captures, require
 
 from PartFraming import KPartGeneration
 from PartOle import EncodePartOle, ReadPartOle
+from PartOpc import EncodePartOpc
+from PartOpenTime import OPEN_TIME_STREAM, EncodePartOpenTime, ReadPartOpenTime
 from PartProperties import CUSTOM_PROPERTIES, EncodePartProperties, ReadPartProperties
 from convert.adapters.solidworks.Container.Archive import ContainerMo
 from convert.adapters.solidworks.Container.Container import SldprtArchive
+from convert.adapters.solidworks.Container.Format import (
+    KContentTypesStream,
+    KRelationshipsStream,
+)
 
 
 LICENSED_OMISSIONS = {
@@ -21,6 +27,7 @@ LICENSED_OMISSIONS = {
 # compare each generated stream with its full extent and retain the native roster
 def report():
     captures = {}
+    package_captures = {}
     rosters = set()
     for recipe, asset, data, _, _ in principal_captures():
         if recipe != "P03":
@@ -40,6 +47,23 @@ def report():
             "complete typed OLE and custom property sidecars",
         )
         captures[asset["sha256"]] = [(name, sha256(payload).hexdigest()) for name, payload in sorted(encoded.items())]
+        package = EncodePartOpc(
+            generation,
+            {
+                name: payload
+                for name, payload in streams.items()
+                if name not in (KContentTypesStream, KRelationshipsStream)
+            },
+        )
+        timing = ReadPartOpenTime(generation, archive.require(OPEN_TIME_STREAM))
+        package[OPEN_TIME_STREAM] = EncodePartOpenTime(generation, timing)
+        require(
+            all(archive.require(name) == payload for name, payload in package.items()),
+            "complete typed package manifests and timing metadata",
+        )
+        package_captures[asset["sha256"]] = [
+            (name, sha256(payload).hexdigest()) for name, payload in sorted(package.items())
+        ]
     require(len(rosters) == 1, "consistent retained P03 members")
     (roster,) = rosters
     require(len(roster) == 33, "licensed P03 retained member count")
@@ -47,6 +71,7 @@ def report():
         "capture_revision": CAPTURE_REVISION,
         "captures": captures,
         "replay_sha256": json_digest(captures),
+        "package_sha256": json_digest(package_captures),
         "retained_sha256": json_digest(roster),
     }
 
