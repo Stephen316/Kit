@@ -21,6 +21,7 @@ from PartDocProperties import (
 )
 from PartEModelLicense import EncodeEModelLicense, KEModelLicense
 from PartFraming import BuildVersionedArchive
+from PartObjectExchange import EncodeObjectExchangeDb, KObjectDb, ObjectExchange
 from PartOle import EncodePartOle, OleInventory
 from PartOpc import EncodePartOpc
 from PartOpenTime import OPEN_TIME_STREAM, EncodePartOpenTime, PartOpenTime
@@ -74,6 +75,7 @@ class PackageState:
     OpenTime: PartOpenTime
     Indices: PackageXmlState
     Exchange: ConfigExchange
+    Objects: ObjectExchange
 
 
 # CMgr reuses the same atom, file identity, and bounds carried by the generated part.
@@ -175,6 +177,9 @@ def BuildOrdinaryPackage(
     )
     Streams.update(
         EncodePackageIndices(Generation, Identity, State.Indices, Profile, Boss)
+    )
+    Streams[KObjectDb] = EncodeObjectExchangeDb(
+        Generation, State.Objects, Resolved.System
     )
     Streams.update(
         {

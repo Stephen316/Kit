@@ -13,6 +13,7 @@ class OrdinaryResolvedArchive:
     Framed: FramedArchive
     Profile: OrdinaryProfileSlots
     Boss: ResolvedBossSlots | None
+    System: ResolvedSystem
 
 
 # A single allocation map serves the system features, profile and optional boss.
@@ -44,5 +45,8 @@ def BuildOrdinaryResolved(
             EntryCount=19,
         )
     return OrdinaryResolvedArchive(
-        FramedArchive(Writer.build(), Writer.Snapshot()), ProfileSlots, BossSlots
+        FramedArchive(Writer.build(), Writer.Snapshot()),
+        ProfileSlots,
+        BossSlots,
+        System,
     )

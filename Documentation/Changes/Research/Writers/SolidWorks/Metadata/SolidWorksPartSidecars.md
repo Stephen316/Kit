@@ -82,9 +82,11 @@ The six P01 and eight P03 captures matched all 28 generated members byte-for-byt
 
 ## Retained P03 members
 
-The licensed omission run kept 33 of the original 37 physical members
-while opening, rebuilding, editing, saving and reopening the part. Its
-four omissions were the physical partition, lightweight graphics,
+The licensed omission run kept 33 of the original 37 physical members.
+A fresh owned application opened the candidate read-only, rebuilt it and
+measured the depth edit and restoration. An edited-output save and fresh
+reopen still require a separate witness. The four omissions were the physical
+partition, lightweight graphics,
 display lists and ghost partition. The same 33 names are present in all
 eight P03 captures when those four are excluded. The table records
 constructive coverage of that retained roster. Separate evidence would
@@ -100,7 +102,8 @@ be needed to omit another member. [Licensed omission measurements](../SolidWorks
 | Fresh-document payload | `_MO_VERSION_19000/History`, `_MO_VERSION_19000/Biography` | `PartFraming.EncodeVersionStreams`, which creates fresh state from absence of prior saved history |
 | Full typed payload | `Contents/Config-0`, `Contents/Config-0-ResolvedFeatures` | `OrdinaryConfig.BuildOrdinaryConfig` and `ResolvedPart.BuildOrdinaryResolved` share the generated configuration map. |
 | Full typed payload | `Contents/3DExperienceExchange_ConfigHeader` | [Configuration exchange writer](SolidWorksConfigurationExchange.md) emits the sole ordinary configuration record |
-| Open | `Contents/3DExperienceExchange2`, `Contents/PMISemanticDataDB` | Exchange-object and PMI record constructors or licensed omission evidence |
+| Fresh-document payload | `Contents/3DExperienceExchange2` | [Object exchange writer](SolidWorksObjectExchange.md) emits the live document, folder, three datums and table of contents |
+| Open | `Contents/PMISemanticDataDB` | Typed PMI annotation records or licensed omission evidence |
 | Typed payload with prerequisites | `Contents/eModelLic` | [The licensed package field](SolidWorksEModelLicense.md) uses the same caller-supplied package code as the document header |
 | Open | `Preview`, `PreviewPNG` | Native preview encoding from generated content or licensed omission evidence |
 | Open | `SwDocContentMgr/SwDocContentMgrInfo`, `ThirdPtyStore/VisualStates` | Content manager and visualization state constructors or licensed omission evidence |
@@ -111,9 +114,9 @@ be needed to omit another member. [Licensed omission measurements](../SolidWorks
 | Typed payload with prerequisites | `docProps/ISolidWorksInformation.xml` | `PartInformation.EncodeInformation` emits the ordinary information table from caller-owned document and unit values |
 | Typed payload with prerequisites | `swXmlContents/Features`, `swXmlContents/KeyWords` | `PartFeatureIndex.EncodeFeatures` and `PartKeywords.EncodeKeywords` use the same document identity plus caller-owned sketch and optional Boss display state |
 
-There are 27 retained members with typed constructors, including two
+There are 28 retained members with typed constructors, including three
 fresh-document payloads and two manifests with property stream prerequisites.
-Six remain open. Native acceptance of a fully generated archive is pending.
+Five remain open. Native acceptance of a fully generated archive is pending.
 [Package manifests and open timing](SolidWorksPackageMetadata.md)
 [Document property writers](SolidWorksDocumentProperties.md)
 [Configuration property writer](SolidWorksConfigurationProperties.md)

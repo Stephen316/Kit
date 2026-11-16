@@ -714,3 +714,15 @@ def CheckExchange() -> None:
         Report["replay_sha256"]
         == "d44dc07de9695a9f92a33a1c6cccedce9b80e96016c2df568dd43d310a90452a"
     )
+
+
+# the fresh exchange keeps every live object and reference from the modeled graph
+def CheckObjectDb() -> None:
+    Report = LoadReport("VerifyObjectExchangeDb.py", 14)
+    assert Report["counts"] == {"P01": 6, "P03": 8}
+    assert Report["live_records"] == 84
+    assert Report["index_orders"] == 2
+    assert (
+        Report["replay_sha256"]
+        == "2a3a7e30bc31defa0f341ac9256856b17c1095baab7a3c0ad97cf5520b793799"
+    )

@@ -26,6 +26,7 @@ from PartFeatureIndex import KFeaturesXml
 from PartInformation import KInfoXml
 from PartKeywords import KKeywordsXml, KKeywordPrefix, KWidth
 from PartFraming import CheckVersionStreams, VersionStorage
+from PartObjectExchange import KObjectDb
 from PartOle import ReadPartOle
 from PartOpc import CORE_PROPERTIES
 from PartOpenTime import OPEN_TIME_STREAM, ReadPartOpenTime
@@ -35,6 +36,7 @@ from VerifyCmgrComposition import compare_cmgr_bytes, read_cmgr_document
 from VerifyConfigHeaderDb import ReadHeaderIdentity
 from VerifyConfigRoot import CAPTURE_REVISION, principal_captures, require
 from VerifyModelHeader import FRAME_OFFSET, FRAME_WIDTH, measured_bounds
+from VerifyObjectExchangeDb import LiveRecords, ReadExchangeKeys
 from VerifyPartFeatureIndex import ReadDrivers, ReadIdentity
 from VerifyPartInformation import TypedMetadata
 from convert.adapters.solidworks.Container.Archive import ContainerMo
@@ -89,6 +91,7 @@ def read_package(archive, generation, measurement):
         "feature index shares the file and model header identity",
     )
     _, drivers, _ = ReadDrivers(keywords, "P03" if measurement["body_count"] else "P01")
+    object_db = archive.require(KObjectDb)
     state = PackageState(
         PackageHeader(
             logs, self_reference, replace(tail, Bounds=measured_bounds(measurement))
@@ -108,6 +111,7 @@ def read_package(archive, generation, measurement):
             TypedMetadata(archive.require(KInfoXml)),
         ),
         ConfigExchange(*ReadHeaderIdentity(archive.require(KConfigDb))),
+        ReadExchangeKeys(object_db, LiveRecords(object_db)),
     )
     return state, frame, mass_at, mass
 
@@ -162,7 +166,7 @@ def verify_generated_package(
     streams = candidate.streams
     require(
         (candidate.format_version, ContainerMo(streams), len(streams))
-        == (4, generation, 27),
+        == (4, generation, 28),
         "ordinary generated package roster and version",
     )
     CheckVersionStreams(generation, streams)
@@ -177,7 +181,12 @@ def verify_generated_package(
         mass,
         generation,
     )
+    require(
+        LiveRecords(streams[KObjectDb]) == LiveRecords(archive.require(KObjectDb)),
+        "fresh object exchange preserves all live records",
+    )
     owned = {
+        KObjectDb,
         KConfigStream,
         KResolvedFeaturesStream,
         KModelHeader,
