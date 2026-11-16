@@ -61,6 +61,7 @@ It verifies each observed increase against the real load, memory, and applicable
 Its printed evidence explicitly states whether an upward branch was observed.
 Two real deadline failures verify the backoff pair and its ten-minute window.
 Additional cases verify measured memory-limit backoff, below-reserve admission, and strict boolean configuration.
+The hosted Linux reserve-crossing case separately checks a running pool as real available memory moves below and then above its configured reserve. [Ambient memory reserve witness](AmbientMemoryReserve.md)
 The legacy exact-pool fixtures explicitly disable adaptation while retaining measured admission checks.
 
 Local work used source inspection, formatting, static types, syntax, and repository policy checks only.

@@ -219,6 +219,8 @@ jobs:
           python -m pytest tests/Research/Controller*Tests.py -q
 
       - name: Verify research session supervisor through process boundaries
+        env:
+          KIT_RESERVE_WITNESS: "1"
         run: >-
           uv run --frozen --no-default-groups --extra dev --python 3.14
           python -m pytest tests/Research/Supervisor*Tests.py tests/Research/Supervisor/Supervisor*Tests.py tests/Research/Supervisor/Grouping tests/Research/Supervisor/Launch tests/Research/Owners tests/Research/Calibration -q -s
