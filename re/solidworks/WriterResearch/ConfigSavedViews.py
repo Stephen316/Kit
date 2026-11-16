@@ -56,13 +56,21 @@ def CameraBasis(Yaw: float, Pitch: float) -> tuple[float, ...]:
 
 
 # A view inherits identity translation and keeps the second transform neutral.
-def WriteCameraPose(
-    Writer: PartArchiveWriter, Angles: tuple[float, float] | None
-) -> None:
-    Writer.u8(int(Angles is not None))
-    if Angles is not None:
-        Writer.raw(PackFields("<9d", *CameraBasis(*Angles)))
+def WriteViewPose(Writer: PartArchiveWriter, Basis: tuple[float, ...] | None) -> None:
+    Writer.u8(int(Basis is not None))
+    if Basis is not None:
+        Writer.raw(PackFields("<9d", *Basis))
     Writer.raw(PackFields("<4dB", *KUnitPose, 0))
+
+
+# standard views and annotation views share the same inherited archive fields
+def WriteViewBase(
+    Writer: PartArchiveWriter, Name: str, Basis: tuple[float, ...] | None, ViewId: int
+) -> None:
+    Writer.string(Name)
+    WriteViewPose(Writer, Basis)
+    WriteViewPose(Writer, None)
+    Writer.raw(PackFields(KViewReturn, 0, -1, -1.0, 0, ViewId, 0, 0, 0, 0.0, 0, 0, 0))
 
 
 # The local default table keeps each view occurrence and its actual archive schema.
@@ -81,12 +89,8 @@ def WriteSavedViews(Writer: PartArchiveWriter, Generation: int) -> None:
     Writer.u16(0)
     for Index, (Name, Angles) in enumerate(zip(KNames, KCameraAngles, strict=True)):
         Writer.begin_object(KViewClass, 1)
-        Writer.string(Name)
-        WriteCameraPose(Writer, Angles)
-        WriteCameraPose(Writer, None)
-        Writer.raw(
-            PackFields(KViewReturn, 0, -1, -1.0, 0, Index, 0, 0, 0, 0.0, 0, 0, 0)
-        )
+        Basis = None if Angles is None else CameraBasis(*Angles)
+        WriteViewBase(Writer, Name, Basis, Index)
     Writer.raw(PackFields("<B2i", *KModelViewState))
     Writer.begin_object(KColorTable, 0)
     Writer.i32(0)

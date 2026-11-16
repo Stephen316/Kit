@@ -445,3 +445,13 @@ def AssertCmgrEnds(Report: dict[str, object]) -> None:
 def CheckSkBlock() -> None:
     Report = LoadReport("VerifySketchBlock.py", 14)
     assert Report["map_counts"] == {"94:96:99": 6, "98:100:104": 8}
+
+
+# annotated cardinal views must retain exact basis bits and the following archive map
+def CheckCfgAnnots() -> None:
+    Report = LoadReport("VerifyConfigAnnotViews.py", 14)
+    assert Report["span_counts"] == {"214": 5, "286": 1, "470": 7, "542": 1}
+    assert (
+        Report["replay_sha256"]
+        == "8a2cec83cdf5292b293cab777f8c11290a5b477c9bfb7a090158e51a2fabfc9d"
+    )
