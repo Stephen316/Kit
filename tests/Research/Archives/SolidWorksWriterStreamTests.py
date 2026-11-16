@@ -44,6 +44,16 @@ def CheckConfigRoot() -> None:
     )
 
 
+# each configuration visual owner must agree with the separately saved material body
+def CheckConfigVis() -> None:
+    Report = LoadReport("VerifyConfigVisual.py", 14)
+    assert Report["constructed"] is True
+    assert (
+        Report["replay_sha256"]
+        == "4fa9ad81435c8a0231ce0f280e62b29648dffa409d9be17e621bc73584aec82b"
+    )
+
+
 # authored log order and shared archive allocation must survive repeated edits
 def CheckModelHdr() -> None:
     Report = LoadReport("VerifyModelHeader.py")

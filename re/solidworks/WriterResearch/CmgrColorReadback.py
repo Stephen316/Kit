@@ -32,9 +32,8 @@ def ReadRealView(Cursor: FieldCursor) -> None:
     _ = Cursor.ReadValue("<f")
 
 
-# the stored colors belong to the enclosing visual object and the body has its own end
-def ReadColorSpan(BlobValue: bytes, Generation: int) -> tuple[int, int, ArchiveCursor]:
-    Cursor = ReadCmgrOpening(BlobValue, Generation)
+# the same typed archive object can carry the inline visual body in either stream
+def ReadVisualSpan(Cursor: ArchiveCursor) -> tuple[int, int, ArchiveCursor]:
     ColorValue, _, _ = Cursor.ReadInts("<3I")
     ReadRealView(Cursor)
     RequireArch(
@@ -68,3 +67,7 @@ def ReadColorSpan(BlobValue: bytes, Generation: int) -> tuple[int, int, ArchiveC
     Paths += tuple(Cursor.ReadText() for _ in range(3))
     RequireArch(Paths, ("",) * 5, "CMgr DSPBR texture paths")
     return ColorValue, Start, Cursor
+
+
+def ReadColorSpan(BlobValue: bytes, Generation: int) -> tuple[int, int, ArchiveCursor]:
+    return ReadVisualSpan(ReadCmgrOpening(BlobValue, Generation))
