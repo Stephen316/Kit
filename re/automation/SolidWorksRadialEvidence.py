@@ -202,7 +202,8 @@ def check_native(parsed, observation, expected_depth):
     )
 
 
-def report(directory, expected):
+# Join all parsed boundaries to the sealed cohort and licensed measurements.
+def report(directory, expected, profile_return=False):
     plan, phases, roster, author, reopened = read_capture(
         directory.absolute(), expected
     )
@@ -215,13 +216,23 @@ def report(directory, expected):
         data = read_bytes(
             directory / asset["name"], asset["sha256"], asset["size_bytes"]
         )
-        parsed = inspect_archive(data)
+        parsed = inspect_archive(data, profile_return)
         for moment in ("before_rebuild", "after_rebuild"):
             check_native(parsed, source[moment], plan["recipe"]["depth_mm"])
+            if profile_return:
+                require(
+                    parsed["profile_return"]["support"]["feature"]
+                    == source[moment]["support"]["id"],
+                    "saved circular profile datum differs from the licensed support",
+                )
         observations.append({"archive": asset, **parsed})
     return {
         "schema": 1,
-        "scope": "licensed_discovery_circular_sketch_prefix",
+        "scope": (
+            "licensed_discovery_circular_profile_return"
+            if profile_return
+            else "licensed_discovery_circular_sketch_prefix"
+        ),
         "intake_sha256": expected,
         "capture_revision": plan["source_revision"],
         "reader_revision": git(ROOT, "rev-parse", "HEAD").decode("ascii").strip(),
@@ -231,13 +242,17 @@ def report(directory, expected):
     }
 
 
+# Select the historical prefix checkpoint or the independently verified continuation.
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("directory", type=Path)
     parser.add_argument("--receipt-sha256", required=True)
+    parser.add_argument("--profile-return", action="store_true")
     options = parser.parse_args()
     try:
-        value = report(options.directory, options.receipt_sha256)
+        value = report(
+            options.directory, options.receipt_sha256, options.profile_return
+        )
         print(
             json.dumps(
                 value, ensure_ascii=True, allow_nan=False, indent=2, sort_keys=True
