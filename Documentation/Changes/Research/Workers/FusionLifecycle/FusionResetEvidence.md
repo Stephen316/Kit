@@ -13,7 +13,8 @@ python3 re/automation/ApplicationWorkers/FusionLifecycleOwner.py \
 
 The command verifies the live exact Darwin peer and physical bundle. It reads
 historical A03 completions for the counted installation from one controller
-snapshot. A completion counts when the historical job definition and receipt,
+snapshot and samples the application's current resident bytes. A completion
+counts when the historical job definition and receipt,
 accepted result, exact dispatch bytes, phase and plan agree. Its dispatch
 must name this installation and process and finish within that process
 lifetime. It deduplicates the native request digest. If the same A03 job runs
@@ -36,3 +37,5 @@ A03 attempts. It checks a replaced job generation, duplicated request
 identity, another process lifetime, an unattributed completion, and both
 comparison limits. The controller database bytes must remain unchanged.
 Hosted execution is pending.
+
+[Current native resident memory evidence](FusionNativeResidentMemory.md)

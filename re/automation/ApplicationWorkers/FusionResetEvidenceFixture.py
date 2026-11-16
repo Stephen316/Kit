@@ -1,4 +1,5 @@
 import json
+import os
 import subprocess
 import sys
 import time
@@ -189,7 +190,7 @@ def populate(root, store, host, revision):
         )
 
 
-def run_report(installation, lifecycle, config, pid, *args):
+def run_report(installation, lifecycle, config, pid, *args, refused=False):
     command = Path(__file__).with_name("FusionLifecycleOwner.py")
     completed = subprocess.run(
         [
@@ -211,6 +212,9 @@ def run_report(installation, lifecycle, config, pid, *args):
         text=True,
         timeout=25,
     )
+    if refused:
+        assert completed.returncode == 1 and completed.stdout == "", completed
+        return None
     assert completed.returncode == 0, completed.stderr
     return json.loads(completed.stdout)
 
@@ -230,10 +234,28 @@ def exercise(root):
         populate(root, store, host, revision)
         before = (store / "ledger.sqlite3").read_bytes()
         default = run_report(installation, lifecycle, config, child.pid)
+        independent_rss = (
+            int(
+                subprocess.check_output(
+                    ["/bin/ps", "-p", str(child.pid), "-o", "rss="],
+                    text=True,
+                    timeout=5,
+                )
+            )
+            * 1024
+        )
         selected = run_report(
             installation, lifecycle, config, child.pid, "--reset-evidence-limit", "2"
         )
+        run_report(installation, lifecycle, config, os.getpid(), refused=True)
         assert (store / "ledger.sqlite3").read_bytes() == before
+        for result in (default, selected):
+            assert result["peer"]["pid"] == child.pid
+            assert (
+                independent_rss // 2
+                <= result["native_resident_bytes"]
+                <= independent_rss * 2
+            )
         assert default["corroborated"] == selected["corroborated"] == 2
         assert selected["duplicate_dispatches"] == 1 and selected["other_peers"] == 1
         assert selected["unattributed_completions"] == 1

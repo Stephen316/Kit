@@ -26,6 +26,9 @@ def CheckResetProof(TmpPath: FilePath) -> None:
     assert Process.returncode == 0, Process.stdout + Process.stderr
     Outcome = JsonCodec.loads(Process.stdout)
     assert Outcome["scope"] == "fusion_corroborated_completed_native_requests"
+    assert type(Outcome["native_resident_bytes"]) is int
+    assert Outcome["native_resident_bytes"] > 0
+    assert Outcome["native_resident_bytes"] % 1024 == 0
     assert Outcome["corroborated"] == 2
     assert Outcome["duplicate_dispatches"] == 1
     assert Outcome["other_peers"] == 1

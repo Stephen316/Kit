@@ -14,9 +14,10 @@ from ApplicationProtocol import (
 from Artifacts import Artifacts
 from FusionOwnerRestart import start_seconds
 from FusionStartupProvision import owner_inputs
+from HostResources import command_output
 from MacApplicationBundle import pinned_bundle
 from MacApplicationPeer import process_peer
-from MacProcessExit import verify_peer
+from MacProcessExit import observe_exit, verify_peer, watch_peer
 from Records import specification
 from ResourceOccupancy import closed_attempt_receipt, stored_record
 from StoreRead import read_store
@@ -62,19 +63,46 @@ def observe(args):
         == executable,
         "Fusion reset observation lost its exact process or owner inputs",
     )
-    verify_peer(peer, executable)
+    resident_bytes = native_resident_bytes(peer, executable)
     return {
         "version": 1,
         "scope": "fusion_corroborated_completed_native_requests",
         "installation": config["installation"],
         "source_revision": config["source_revision"],
         "peer": peer,
+        "native_resident_bytes": resident_bytes,
         "as_of_unix_seconds": cutoff,
         "comparison_limit": args.reset_evidence_limit,
         "verified_count_reaches_limit": evidence["corroborated"]
         >= args.reset_evidence_limit,
         **evidence,
     }
+
+
+# the reset report needs resident memory from the pinned application itself
+def native_resident_bytes(peer, executable):
+    with watch_peer(peer, executable) as monitor:
+        try:
+            rows = command_output(
+                ["/bin/ps", "-p", str(peer["pid"]), "-o", "pid=,uid=,rss="]
+            ).splitlines()
+        except OSError:
+            rows = []
+        verify_peer(peer, executable)
+        require(
+            observe_exit(monitor, peer, 0) is None,
+            "macOS application changed while sampling resident memory",
+        )
+    if len(rows) != 1:
+        return None
+    fields = rows[0].split()
+    if (
+        len(fields) != 3
+        or fields[:2] != [str(peer["pid"]), str(peer["uid"])]
+        or re.fullmatch(r"[1-9][0-9]*", fields[2]) is None
+    ):
+        return None
+    return int(fields[2]) * 1024
 
 
 def count_completed(store, resource, config, host, birth):
