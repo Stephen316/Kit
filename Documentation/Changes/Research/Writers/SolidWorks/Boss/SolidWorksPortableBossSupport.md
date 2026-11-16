@@ -1,0 +1,5 @@
+# SOLIDWORKS portable boss support qualification
+
+The ordinary P03 research projector now applies the same sketch-support check as public export before it chooses a target datum. A retained stream-order fallback or unresolved support cannot qualify as an editable attachment even when the fallback plane has the expected Front or Right frame. The check follows the sketch's support attributes through a neutral source relabel. [Portable boss projection](../../../../../../re/solidworks/WriterResearch/BossInput.py) [Shared support guard](../../../../../../src/convert/adapters/registry/SupportWrite.py)
+
+The hosted boss-input replay retains the independent neutral Front and Right cases. It checks that a qualified `plane-reference` produces the same projected Front geometry as the neutral case. It also refuses `stream-order`, `unresolved` and a nominal `plane-reference` with an unframed native ID, with each case exercised under SOLIDWORKS and neutral source labels. [Hosted projection controls](../../../../../../re/solidworks/WriterResearch/BossGraphCases.py) [Replay entry](../../../../../../re/solidworks/WriterResearch/VerifyBossInput.py)
