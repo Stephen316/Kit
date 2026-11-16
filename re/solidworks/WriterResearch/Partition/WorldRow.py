@@ -27,7 +27,7 @@ def WorldField(Record: str, Name: str) -> bytes:
 
 
 # reference descriptors name their kernel class and have one value
-def WorldRefMut(Result: bytearray, Record: str, Name: str, Kind: int) -> None:
+def WriteRefField(Result: bytearray, Record: str, Name: str, Kind: int) -> None:
     Result.extend(WorldField(Record, Name))
     WriteShortMut(Result, Kind)
     WriteShortMut(Result, 1)
@@ -39,18 +39,18 @@ def GhostWorldSchema() -> bytearray:
     WriteTagMut(Result, 101)
     Result.append(19)
     Result.extend(b"C" * 7)
-    WorldRefMut(Result, "I", "mesh", 1006)
-    WorldRefMut(Result, "I", "polyline", 1008)
-    WorldRefMut(Result, "I", "lattice", 222)
+    WriteRefField(Result, "I", "mesh", 1006)
+    WriteRefField(Result, "I", "polyline", 1008)
+    WriteRefField(Result, "I", "lattice", 222)
     Result.extend(b"CC")
-    WorldRefMut(Result, "I", "attdef_list", 74)
+    WriteRefField(Result, "I", "attdef_list", 74)
     Result.extend(b"CC")
     Result.extend(WorldField("A", "index_map_offset"))
     WriteSignedMut(Result, 1)
     Result.extend((1, ord("d")))
-    WorldRefMut(Result, "A", "index_map", 82)
-    WorldRefMut(Result, "A", "schema_embedding_map", 82)
-    WorldRefMut(Result, "A", "mesh_offset_data", 206)
+    WriteRefField(Result, "A", "index_map", 82)
+    WriteRefField(Result, "A", "schema_embedding_map", 82)
+    WriteRefField(Result, "A", "mesh_offset_data", 206)
     Result.append(ord("Z"))
     return Result
 

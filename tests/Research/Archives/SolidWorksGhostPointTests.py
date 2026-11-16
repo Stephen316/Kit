@@ -68,6 +68,30 @@ class GhostWorldCodec(Protocol):
     def EncodeGhostWorld(self, State: object, *, Schema: str) -> bytes: ...
 
 
+# the body shell and region are independently allocated native nodes
+class GhostTopoCodec(Protocol):
+
+    # shell and region identifiers are supplied through their typed allocation
+    def GhostTopology(self, *Values: int) -> object: ...
+
+    # the class declaration belongs only to the region row in this save
+    def EncodeGhostTopo(self, Slots: object, *, Schema: str) -> tuple[bytes, bytes]: ...
+
+
+# the shell and region must keep their reciprocal links after construction
+def MatchGhostTopo(PatchValue: Pytest.MonkeyPatch, Payload: bytes, Schema: str) -> None:
+    assert UnpackFrom(">Hi8H", Payload, 0x39F) == (7, 3, 1, 3, 1, 1, 1, 10, 9, 1)
+    assert UnpackFrom(">Hi6HcH", Payload, 0x3FF) == (9, 1, 1, 3, 1, 1, 7, 1, b"V", 1)
+    Codec = CastValue(
+        GhostTopoCodec, LoadResearchMut(PatchValue, "Partition.TopologyRows")
+    )
+    Slots = Codec.GhostTopology(2, 6, 8, 9, 3, 1)
+    assert Codec.EncodeGhostTopo(Slots, Schema=Schema) == (
+        Payload[0x39C:0x3B5],
+        Payload[0x3DE:0x414],
+    )
+
+
 # the hosted comparison supplies the exact world counters through the named input
 def MatchGhostWorld(
     PatchValue: Pytest.MonkeyPatch, Payload: bytes, Schema: str
@@ -149,6 +173,7 @@ def CheckGhostPoint(Variant: str) -> None:
         )
         MatchGhostBind(PatchValue, Payload, Header.schema)
         MatchGhostWorld(PatchValue, Payload, Header.schema)
+        MatchGhostTopo(PatchValue, Payload, Header.schema)
     assert Encoded == (
         Payload[0x3B5:0x3DE],
         Payload[0x414:0x431],
