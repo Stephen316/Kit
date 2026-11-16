@@ -28,8 +28,9 @@ def ContourPairs(
     RequireArch(len(Corners), 4, "ordinary rectangle corner count")
     RequireArch(set(Lines), set(range(1, 5)), "ordinary short perimeter identities")
     Coords = tuple(Corner.Position for Corner in Corners)
+    RequireArch(tuple(map(len, Coords)), (2, 2, 2, 2), "local corner coordinate pairs")
     RequireArch(
-        all(len(Point) == 2 and all(map(IsFinite, Point)) for Point in Coords)
+        all(all(map(IsFinite, Point)) for Point in Coords)
         and len(set(Coords)) == 4
         and all(len({Point[Axis] for Point in Coords}) == 2 for Axis in (0, 1)),
         True,
