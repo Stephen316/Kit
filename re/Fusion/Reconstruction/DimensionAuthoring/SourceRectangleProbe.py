@@ -12,11 +12,22 @@ import argparse
 from collections import Counter
 import json
 import math
+import re
 from pathlib import Path
 from subprocess import check_output
+from tempfile import TemporaryDirectory
 
 import ProbeOrigin
 import ProbeOwnedDims
+from VerifyWitness import unique_object
+from ProbeAcceptance import (
+    AUTHORING,
+    MAX_ARCHIVE_BYTES,
+    REPO,
+    committed_pin,
+    prepare,
+    read_file,
+)
 
 from FusionNeutralRectanglePlan import report as source_report
 from PairedCaptureIntake import GitSnapshot, require, sha256
@@ -188,12 +199,11 @@ def verify_axes(content, case, match, sketch):
     return observed
 
 
-# each candidate is independently reconstructed from source lengths and then read back
-def build_candidate(case):
+# candidate verification independently reads the generated target and checks each source binding
+def inspect_candidate(case, content):
     sizes = tuple(
         case["dimensions"][name]["source"]["value_mm"] for name in ProbeOwnedDims.NAMES
     )
-    content = ProbeOwnedDims.generate(sizes=sizes)
     proof = ProbeOwnedDims.inspect_generated(content)
     target, points, frame, incidence = candidate_edges(
         content, proof["anchor_evidence"]
@@ -205,7 +215,7 @@ def build_candidate(case):
     )
     verify_drivers(case, sizes, proof, points)
     axes = verify_axes(content, case, matched, frame["sketch"])
-    return content, {
+    return {
         "variant": case["variant"],
         "source": case["source"],
         "source_drivers": {
@@ -220,6 +230,15 @@ def build_candidate(case):
         "archive_bytes": len(content),
         "offline_target": proof,
     }
+
+
+# source-derived generation depends on the lengths recovered from the two owned inputs
+def build_candidate(case):
+    sizes = tuple(
+        case["dimensions"][name]["source"]["value_mm"] for name in ProbeOwnedDims.NAMES
+    )
+    content = ProbeOwnedDims.generate(sizes=sizes)
+    return content, inspect_candidate(case, content)
 
 
 # prepare all results before creating a caller-owned output directory
@@ -257,7 +276,91 @@ def generate_report(output):
     return sha256(encoded)
 
 
+# the existing native acceptance harness can witness the independently bound P01 baseline
+def prepare_baseline(directory, output):
+    output = output.resolve()
+    require(
+        not output.is_relative_to(REPO) and not output.exists(),
+        "Use a new licensed witness directory outside the repository",
+    )
+    require(
+        directory.is_dir() and not directory.is_symlink(),
+        "Expected a direct candidate directory",
+    )
+    raw = read_file(directory / "P01CandidateEvidence.json")
+    evidence = json.loads(raw, object_pairs_hook=unique_object)
+    revision = evidence["codec_revision"]
+    require(
+        type(evidence["schema"]) is int
+        and evidence["schema"] == 1
+        and isinstance(revision, str)
+        and re.fullmatch(r"[0-9a-f]{40}", revision)
+        and evidence["qualification"] == "candidate_requires_licensed_target_acceptance"
+        and committed_pin(revision, AUTHORING / Path(__file__).name)["sha256"]
+        == evidence["source_probe_sha256"]
+        and committed_pin(revision, AUTHORING / Path(ProbeOwnedDims.__file__).name)[
+            "sha256"
+        ]
+        == evidence["generator_sha256"],
+        "Candidate generation proof does not bind the committed research programs",
+    )
+    checked = source_report()
+    (case,) = [
+        row
+        for row in checked["cases"]
+        if row["recipe"] == "P01" and row["variant"] == "baseline-a"
+    ]
+    (selected,) = [
+        row for row in evidence["candidates"] if row["variant"] == "baseline-a"
+    ]
+    require(
+        selected["file"] == "P01-Candidate-1.f3d"
+        and evidence["source_capture_revision"] == checked["source_capture_revision"]
+        and evidence["source_receipt"] == checked["receipts"]["P01"],
+        "Candidate proof does not join the original P01 baseline receipt",
+    )
+    content = read_file(directory / selected["file"], MAX_ARCHIVE_BYTES)
+    replay = inspect_candidate(case, content)
+    expected = json.loads(
+        json.dumps({**replay, "file": selected["file"]}, allow_nan=False)
+    )
+    require(selected == expected, "Candidate readback differs from its source proof")
+    proof = {
+        "claim": "generated_archive_record_evidence",
+        "native_application_acceptance": False,
+        "codec_revision": revision,
+        "probe_sha256": evidence["generator_sha256"],
+        "origin_probe_sha256": committed_pin(
+            revision, AUTHORING / Path(ProbeOrigin.__file__).name
+        )["sha256"],
+        "generated": replay["offline_target"],
+        "source_lineage": {
+            "capture_revision": evidence["source_capture_revision"],
+            "candidate_report_sha256": sha256(raw),
+            **{key: value for key, value in replay.items() if key != "offline_target"},
+        },
+    }
+    with TemporaryDirectory(prefix="KitSourceRectangle-", dir=output.parent) as scratch:
+        inputs = Path(scratch)
+        (inputs / "OwnedRectangle.f3d").write_bytes(content)
+        (inputs / "OwnedRectangleEvidence.json").write_text(
+            json.dumps(proof, sort_keys=True, allow_nan=False) + "\n", encoding="utf-8"
+        )
+        return prepare(output, inputs, "owned")
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path, required=True)
-    print(generate_report(parser.parse_args().output))
+    parser.add_argument(
+        "--prepare-baseline",
+        type=Path,
+        help="candidate directory to seal for the existing licensed baseline witness",
+    )
+    args = parser.parse_args()
+    if args.prepare_baseline is None:
+        print(generate_report(args.output))
+    else:
+        print(
+            json.dumps(prepare_baseline(args.prepare_baseline, args.output), indent=2)
+        )
