@@ -8,7 +8,7 @@ from typing import cast as CastValue
 
 
 # each research record verifier runs with its own pinned archive evidence
-def LoadReport(ProgramName: str) -> dict[str, object]:
+def LoadReport(ProgramName: str, CaptureCount: int = 25) -> dict[str, object]:
     RootPath = FilePath(__file__).resolve().parents[3]
     Program = RootPath / "re/solidworks/WriterResearch" / ProgramName
     Process = Subprocess.run(
@@ -24,7 +24,7 @@ def LoadReport(ProgramName: str) -> dict[str, object]:
     assert Report["capture_revision"] == "466dcb172dfa3803463e07ccde963ba01671d200"
     Captures = Report["captures"]
     assert isinstance(Captures, dict)
-    assert len(CastValue(dict[str, str], Captures)) == 25
+    assert len(CastValue(dict[str, str], Captures)) == CaptureCount
     return Report
 
 
@@ -32,6 +32,16 @@ def LoadReport(ProgramName: str) -> dict[str, object]:
 def CheckDefinition() -> None:
     Report = LoadReport("VerifyDefinition.py")
     assert Report["preamble_view_forms"] == Report["line_font_orders"] == 2
+
+
+# the configured model title must keep real allocation order in the standalone archive
+def CheckConfigRoot() -> None:
+    Report = LoadReport("VerifyConfigRoot.py", 14)
+    assert Report["constructed"] is True
+    assert (
+        Report["replay_sha256"]
+        == "b73087297e042f37f9bb4d9b87f54ae02aedd9407da1002cb31229a56de5f933"
+    )
 
 
 # authored log order and shared archive allocation must survive repeated edits
