@@ -117,6 +117,21 @@ Both public verifier entry points must refuse a normalized JSON object presented
 No local tests, collection, decoder experiments or native application runs were executed.
 Positive replay of the private licensed reports and exact-head hosted results remain separate evidence requirements.
 
+The [owning operator subsequently reported a sealed public-chain replay](https://github.com/TryUniCAD/Kit/pull/94#issuecomment-6926463528) from a clean detached checkout at reserved revision `f8a4dc7686dece8d44719b12721105a63864a365`.
+The original capture revision was `89c25945f5833ad9c3a1c6c683df510b5702dd54`.
+The manifest SHA-256 was `58272fcf58297f1ffcb2d84d04f3a3dbb3bc9a86d34322c89fa61ec6c8393457`.
+The 2,908-byte report SHA-256 was `294a4b5cec7dc92aefa258e67e9d9321defe56ee2145793f9af87f5d1362ee08`.
+
+P01 and P03 SOLIDWORKS reported `verified_same_format_observations` for six and eight original saves through collector `0d527bb9ec59f7728545cd6aacfa98eb5951549b`.
+Their principal report SHA-256 was `49f1ce0ed13f2c0092d37bff80125ee0dc5072ffff630750648a8fda792980bf`.
+P02 reported the same outcome for five original saves through collector `76f2b6195d51fda108f0767807b1390fd89d99d1`, with report SHA-256 `51cc9f750cd870bd83c20d68b7894195ff9da3c00b508c9c2950b3b8e6f2df07`.
+
+The command exited `2` with blocked readiness.
+All three Fusion lanes retained `waiting_source_handoff` and unavailable source commits.
+Qualification remained `not_evaluated`, with zero qualified pairs.
+Original P04 admission remained separate, and P05 was untouched.
+The original artifacts and sealed reports remain in their private custody; this records the operator's published observation rather than a local rerun or native-conversion acceptance.
+
 ## Related information
 
 - [Paired capture intake](../PairedCaptureIntake.md)

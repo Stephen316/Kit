@@ -1,6 +1,7 @@
 import json
 import math
 from collections import Counter, defaultdict
+from fractions import Fraction
 
 QUANTITIES = frozenset(
     {"length_mm", "angle_rad", "dimensionless", "area_mm2", "volume_mm3", "exact"}
@@ -74,6 +75,34 @@ def _profile(tolerances):
     return values
 
 
+def _ratio(atom):
+    if "exact_ratio" not in atom:
+        return Fraction(str(atom["value"]))
+    encoded = atom["exact_ratio"]
+    if (
+        not isinstance(encoded, list)
+        or len(encoded) != 2
+        or any(
+            not isinstance(item, str) or not 1 <= len(item) <= 8192 for item in encoded
+        )
+    ):
+        raise ValueError("normalized quantities require a bounded exact ratio")
+    try:
+        numerator, denominator = (int(item) for item in encoded)
+    except ValueError as error:
+        raise ValueError(
+            "normalized quantity ratio must contain decimal integers"
+        ) from error
+    if denominator <= 0 or encoded != [str(numerator), str(denominator)]:
+        raise ValueError(
+            "normalized quantity ratio must use canonical decimal integers"
+        )
+    ratio = Fraction(numerator, denominator)
+    if [str(ratio.numerator), str(ratio.denominator)] != encoded:
+        raise ValueError("normalized quantity ratio must be reduced")
+    return ratio
+
+
 def _graph(graph, side):
     if not isinstance(graph, dict) or not isinstance(graph.get("nodes"), dict):
         raise ValueError(f"{side} graph must have an identity keyed node mapping")
@@ -100,7 +129,10 @@ def _graph(graph, side):
                 or "~" in pointer.replace("~0", "").replace("~1", "")
             ):
                 raise ValueError("semantic field paths must be JSON pointers")
-            if not isinstance(atom, dict) or set(atom) != {"quantity", "value"}:
+            if not isinstance(atom, dict) or set(atom) not in (
+                {"quantity", "value"},
+                {"quantity", "value", "exact_ratio"},
+            ):
                 raise ValueError("semantic fields require a value and quantity")
             if (
                 not isinstance(atom["quantity"], str)
@@ -121,6 +153,16 @@ def _graph(graph, side):
                     finite = False
                 if not finite:
                     raise ValueError("numeric semantic quantities must be finite")
+            if "exact_ratio" in atom:
+                if atom["quantity"] == "exact" or type(value) not in (int, float):
+                    raise ValueError(
+                        "exact ratios require a numeric normalized quantity"
+                    )
+                ratio = _ratio(atom)
+                if (type(value) is int and ratio != value) or (
+                    type(value) is float and float(ratio) != value
+                ):
+                    raise ValueError("normalized value differs from its exact ratio")
         for link in links:
             if not isinstance(link, dict) or set(link) != {"role", "target"}:
                 raise ValueError("semantic references require role and target")
@@ -144,7 +186,9 @@ def _equal(left, right, tolerances):
         quantity == "dimensionless" and type(first) is type(second) is float
     )
     if numeric and tolerant:
-        return abs(first - second) <= tolerances.get(quantity, 0)
+        return abs(_ratio(left) - _ratio(right)) <= Fraction(
+            str(tolerances.get(quantity, 0))
+        )
     return type(first) is type(second) and first == second
 
 

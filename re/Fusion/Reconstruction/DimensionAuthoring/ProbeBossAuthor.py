@@ -7,14 +7,44 @@
 # to you under it immediately and permanently.
 
 from dataclasses import replace
-from importlib import import_module
 from math import isfinite
-from unittest.mock import patch
+from uuid import uuid4
 
 import ProbeOrigin
 from PairedCaptureIntake import require
+from convert.Formats.Fusion.DocumentCodec.BuildBodyPart import BuildBodyPart
+from convert.Formats.Fusion.DocumentCodec.CheckDocSpec import CheckDocSpec
+from convert.Formats.Fusion.DocumentCodec.Defaults.BaseDefaults import BaseDefaults
+from convert.Formats.Fusion.DocumentCodec.Defaults.ExtrudeDefaults import (
+    ExtrudeDefaults,
+)
 from convert.Formats.Fusion.DocumentCodec.Defaults.MakeNumeric import MakeNumeric
+from convert.Formats.Fusion.DocumentCodec.Defaults.SketchDefaults import SketchDefaults
+from convert.Formats.Fusion.DocumentCodec.Extrusion.AddExtrudeMut import AddExtrudeMut
+from convert.Formats.Fusion.DocumentCodec.Extrusion.LinkBodyMut import LinkBodyMut
+from convert.Formats.Fusion.DocumentCodec.Extrusion.LinkExtrudeMut import LinkExtrudeMut
+from convert.Formats.Fusion.DocumentCodec.Extrusion.LinkProfileMut import LinkProfileMut
 from convert.Formats.Fusion.DocumentCodec.Foundation.AddCollectMut import AddCollectMut
+from convert.Formats.Fusion.DocumentCodec.Foundation.AddComputeMut import AddComputeMut
+from convert.Formats.Fusion.DocumentCodec.Foundation.AddGeometryMut import (
+    AddGeometryMut,
+)
+from convert.Formats.Fusion.DocumentCodec.Foundation.AddRootsMut import AddRootsMut
+from convert.Formats.Fusion.DocumentCodec.Foundation.AddUnitsMut import AddUnitsMut
+from convert.Formats.Fusion.DocumentCodec.Foundation.LinkCompMut import LinkCompMut
+from convert.Formats.Fusion.DocumentCodec.Foundation.LinkRootsMut import LinkRootsMut
+from convert.Formats.Fusion.DocumentCodec.Materials.BuildMatPart import BuildMatPart
+from convert.Formats.Fusion.DocumentCodec.Materials.LinkMaterialMut import (
+    LinkMaterialMut,
+)
+from convert.Formats.Fusion.DocumentCodec.Model.CreateAuthor import CreateAuthor
+from convert.Formats.Fusion.DocumentCodec.Model.DocumentSpec import DocumentSpec
+from convert.Formats.Fusion.DocumentCodec.PackDocument import PackDocument
+from convert.Formats.Fusion.DocumentCodec.Rectangle.AddRectangle import AddRectangle
+from convert.Formats.Fusion.DocumentCodec.Rectangle.LinkRectangle import LinkRectangle
+from convert.Formats.Fusion.DocumentCodec.Rectangle.Dimensions.AddConstrMut import (
+    AddConstrMut,
+)
 from convert.Formats.Fusion.DocumentCodec.Rectangle.Dimensions.AddDimMut import (
     AddDimMut,
 )
@@ -27,6 +57,7 @@ from convert.Formats.Fusion.DocumentCodec.Rectangle.Dimensions.LinkDimGraphMut i
 from convert.Formats.Fusion.DocumentCodec.Rectangle.Dimensions.MakeDimAxes import (
     MakeDimAxes,
 )
+from convert.Formats.Fusion.DocumentCodec.Records.EmitDesign import EmitDesign
 from convert.Formats.Fusion.DocumentCodec.Sketch.SketchRole import SketchRole
 from convert.Formats.Fusion.DocumentCodec.Tapered.TaperParameter import TaperParameter
 from convert.Formats.Fusion.DocumentCodec.Values.ReadObjects import ReadSeries
@@ -39,16 +70,6 @@ PARAMETER_ROLES = ("width_model", "depth_model", "along_parameter", "taper_param
 
 # The paired positive baseline records place their size annotations 8 mm outside the perimeter.
 SIZE_OFFSETS = ((0.0, -0.8, 0.0), (-0.8, 0.0, 0.0))
-
-
-# Collection setup can omit the length parameter while preserving normal cuboid allocation.
-def collect_owned(author):
-    from_spec = author.SpecValue
-    author.SpecValue = replace(from_spec, ProfileKind="form")
-    try:
-        AddCollectMut(author)
-    finally:
-        author.SpecValue = from_spec
 
 
 # The explicit blind distance and zero taper belong to the same extrusion feature.
@@ -88,10 +109,6 @@ def bind_boss_parameters(author):
 
 # Build the same corner coincidence as P01 and a complete four-parameter table.
 def add_owned_sketch(author):
-    seams = import_module(
-        "convert.Formats.Fusion.DocumentCodec.Rectangle.Dimensions.ConstrainMut"
-    )
-    seams.AddConstrMut(author)
     bindings, dimensions = [], []
     ref = author.Reference
     axes = zip(MakeDimAxes(author.SpecValue), SIZE_OFFSETS, strict=True)
@@ -141,41 +158,57 @@ def set_literal_annotation(author, role, expression):
     info.update(prefix="", text=expression)
 
 
-# Reuse the origin witness seam and the existing cuboid region and BRep emitters.
+# Explicit composition preserves the witnessed ownership order without replacing shared build functions.
+def build_owned_design(spec):
+    CheckDocSpec(spec)
+    author = CreateAuthor(spec, str(uuid4()))
+    author.Defaults.update(BaseDefaults())
+    AddRootsMut(author)
+    AddCollectMut(author, DirectOwned=True)
+    for builder in (
+        AddComputeMut,
+        AddGeometryMut,
+        AddUnitsMut,
+        LinkCompMut,
+        LinkRootsMut,
+    ):
+        builder(author)
+    author.Defaults.update(SketchDefaults())
+    AddRectangle(author)
+    LinkRectangle(author)
+    author.Defaults.update(ExtrudeDefaults())
+    AddExtrudeMut(author)
+    bind_boss_parameters(author)
+    for builder in (LinkProfileMut, LinkExtrudeMut, LinkBodyMut, LinkMaterialMut):
+        builder(author)
+    AddConstrMut(author)
+    ProbeOrigin.add_origin_coincidence(author)
+    add_owned_sketch(author)
+    return EmitDesign(author)
+
+
+# The existing geometry material and container emitters consume the directly owned design unchanged.
 def generate_boss(variant, sizes, body_name):
     require(
         len(sizes) == 3 and all(isfinite(value) and value > 0 for value in sizes),
         "Expected positive XY width, height and blind depth",
     )
     width, height, depth = sizes
-    build = import_module("convert.Formats.Fusion.DocumentCodec.BuildDesign")
-    emitter = ProbeOrigin.EmitDocument
-
-    def emit_cuboid(spec):
-        return emitter(
-            replace(
-                spec,
-                Title=f"P03 {variant} source-derived Boss",
-                ParamName=DRIVERS[2],
-                LengthMm=depth,
-                ProfileKind="cuboid",
-                SketchName="RectangleSketch",
-                ExtrusionName="BlindBoss",
-                BodyName=body_name,
-                WidthMm=width,
-                DepthMm=height,
-                WidthParamName=DRIVERS[0],
-                DepthParamName=DRIVERS[1],
-            )
-        )
-
-    with (
-        patch.multiple(
-            build,
-            AddCollectMut=collect_owned,
-            BindParamsMut=bind_boss_parameters,
-            ConstrainMut=add_owned_sketch,
-        ),
-        patch.object(ProbeOrigin, "EmitDocument", emit_cuboid),
-    ):
-        return ProbeOrigin.emit_rectangle()
+    spec = DocumentSpec(
+        Title=f"P03 {variant} source-derived Boss",
+        ParamName=DRIVERS[2],
+        LengthMm=depth,
+        ProfileKind="cuboid",
+        SketchName="RectangleSketch",
+        ExtrusionName="BlindBoss",
+        BodyName=body_name,
+        WidthMm=width,
+        DepthMm=height,
+        ConstrainRectangle=True,
+        WidthParamName=DRIVERS[0],
+        DepthParamName=DRIVERS[1],
+    )
+    design = build_owned_design(spec)
+    return PackDocument(
+        design, spec.Title, BuildBodyPart(spec, design) + BuildMatPart(design)
+    )

@@ -25,7 +25,10 @@ from convert.Formats.Fusion.DocumentCodec.Values.MakeAttributes import MakeAttri
 from convert.Formats.Fusion.MetaCursor import MetaCursor
 from convert.Formats.Fusion.Sketches.Dimensional.DimRecord import ReadDimRecord
 from convert.Formats.Fusion.Sketches.Dimensional.DimSpec import KLinearDimension
-from convert.Formats.Fusion.Sketches.Geometric.GeomRuleRecord import KGeomRuleGuid, ReadGeomRule
+from convert.Formats.Fusion.Sketches.Geometric.GeomRuleRecord import (
+    KGeomRuleGuid,
+    ReadGeomRule,
+)
 from convert.Formats.Fusion.Sketches.RulePrefix import ReadRulePrefix
 
 CAPTURES = {
@@ -44,31 +47,37 @@ ORIGIN_FLAGS = (0, 0, 0, 1, 1, 1, 0, 0)
 DIMENSION_CODES = {0x400000, 0x800000}
 
 
+def add_origin_coincidence(author):
+    sketch = SketchRole(author)
+    roles = ("sketch_origin", "corner_a")
+    ref = author.Reference
+    name = "rectangle_origin_coincidence"
+    author.Change("corner_a", isFixed=False)
+    author.Allocate(
+        name,
+        "SketchGeomConstraint",
+        Subjects=list(roles),
+        NamedPairs=MakeAttributes(EntityGenesis=author.Policy.SketchGeneration),
+        Fields={
+            "ParentNode": ref(sketch),
+            "constraintType": 1,
+            "geometries": [ref(role) for role in roles[::-1]],
+            "isVisible": False,
+        },
+    )
+    rules = author.FindEntity(sketch).FieldValues["constraints"]
+    author.Change(sketch, constraints=[*rules, ref(name)])
+
+
 def emit_rectangle():
-    seam = import_module("convert.Formats.Fusion.DocumentCodec.Rectangle.Dimensions.ConstrainMut")
+    seam = import_module(
+        "convert.Formats.Fusion.DocumentCodec.Rectangle.Dimensions.ConstrainMut"
+    )
     fixed_rectangle = seam.AddConstrMut
 
     def allocate_coincidence(author):
         fixed_rectangle(author)
-        sketch = SketchRole(author)
-        roles = ("sketch_origin", "corner_a")
-        ref = author.Reference
-        name = "rectangle_origin_coincidence"
-        author.Change("corner_a", isFixed=False)
-        author.Allocate(
-            name,
-            "SketchGeomConstraint",
-            Subjects=list(roles),
-            NamedPairs=MakeAttributes(EntityGenesis=author.Policy.SketchGeneration),
-            Fields={
-                "ParentNode": ref(sketch),
-                "constraintType": 1,
-                "geometries": [ref(role) for role in roles[::-1]],
-                "isVisible": False,
-            },
-        )
-        rules = author.FindEntity(sketch).FieldValues["constraints"]
-        author.Change(sketch, constraints=[*rules, ref(name)])
+        add_origin_coincidence(author)
 
     seam.AddConstrMut = allocate_coincidence
     try:
@@ -93,7 +102,9 @@ def emit_rectangle():
 def point_row(raw, record):
     props, base = attributes(raw, 2)
     require(
-        record.class_guid == POINT_CLASS and len(raw) - base == 99 and props["EntityGenesis"] == 2,
+        record.class_guid == POINT_CLASS
+        and len(raw) - base == 99
+        and props["EntityGenesis"] == 2,
         "origin relation must use typed sketch points",
     )
     return {
@@ -109,7 +120,10 @@ def native_records(content):
     bulk = streams["BulkStream.dat"]
     records, _ = design_records(bulk, streams["MetaStream.dat"])
     primary = {row.object_id: row for row in records if row.is_primary}
-    require(len(primary) == sum(row.is_primary for row in records), "duplicate native primary ID")
+    require(
+        len(primary) == sum(row.is_primary for row in records),
+        "duplicate native primary ID",
+    )
     bodies = {key: bulk[row.body : row.end] for key, row in primary.items()}
     rules = {
         key: ReadGeomRule(bodies[key])
@@ -163,11 +177,17 @@ def native_records(content):
 def check_ranks(rows, anchor):
     corner = anchor["corner"]["id"]
     origin = anchor["origin"]["id"]
-    require({row["code"] for row in rows} == DIMENSION_CODES, "dimension direction codes differ")
+    require(
+        {row["code"] for row in rows} == DIMENSION_CODES,
+        "dimension direction codes differ",
+    )
     for slot, row in enumerate(rows, start=1):
         deps = row["dependencies"]
         require(
-            len(deps) == 2 and corner in deps and origin not in deps and len(set(deps)) == 2,
+            len(deps) == 2
+            and corner in deps
+            and origin not in deps
+            and len(set(deps)) == 2,
             "dimension must bind the shared corner and a different perimeter point",
         )
         require(
@@ -191,19 +211,24 @@ def inspect_generated(content):
         and sketch == anchor["owner"]
         and len(graph.Names["Line3D"]) == 4
         and len(graph.Names["Point3D"]) == 5
-        and {item.ObjectId for item in graph.Fields[sketch]["constraints"].Items} == rules.keys(),
+        and {item.ObjectId for item in graph.Fields[sketch]["constraints"].Items}
+        == rules.keys(),
         "generated sketch does not own the expected geometry and rules",
     )
     lines = [graph.Fields[key] for key in graph.Names["Line3D"]]
-    endpoints = [row[name].ObjectId for row in lines for name in ("rStartPoint", "rEndPoint")]
+    endpoints = [
+        row[name].ObjectId for row in lines for name in ("rStartPoint", "rEndPoint")
+    ]
     require(
-        endpoints.count(anchor["corner"]["id"]) == 2 and anchor["origin"]["id"] not in endpoints,
+        endpoints.count(anchor["corner"]["id"]) == 2
+        and anchor["origin"]["id"] not in endpoints,
         "only the corner participates in the rectangle perimeter",
     )
 
     def typed_subjects(key):
         return tuple(
-            (item.Target.ObjectId, item.ObserverIndex) for item in typed[key].Frame.Subjects
+            (item.Target.ObjectId, item.ObserverIndex)
+            for item in typed[key].Frame.Subjects
         )
 
     require(
@@ -230,11 +255,16 @@ def inspect_generated(content):
                 "dependencies": deps[1:],
                 "ranks": ranks[1:],
                 "settings_rank": ranks[0],
-                "arguments": tuple(item.ObjectId for item in fields["geometries"].Items),
+                "arguments": tuple(
+                    item.ObjectId for item in fields["geometries"].Items
+                ),
             }
         )
     check_ranks(rows, anchor)
-    require([row["settings_rank"] for row in rows] == [0, 1], "generated settings ranks differ")
+    require(
+        [row["settings_rank"] for row in rows] == [0, 1],
+        "generated settings ranks differ",
+    )
     return {
         "archive_sha256": sha256(content),
         "archive_bytes": len(content),
@@ -252,10 +282,13 @@ def inspect_controls():
     for folder, (count, expected_digest) in CAPTURES.items():
         prefix = f"re/automation/PairedCaptures/{folder}/"
         raw = snapshot.blob(REVISION, prefix + "receipt.json")
-        require(sha256(raw) == expected_digest, "original Fusion capture receipt differs")
+        require(
+            sha256(raw) == expected_digest, "original Fusion capture receipt differs"
+        )
         files = snapshot.parse_document(raw, "capture receipt")["native_files"]
         require(
-            len(files) == len({row["file"] for row in files}) == count, "unexpected control roster"
+            len(files) == len({row["file"] for row in files}) == count,
+            "unexpected control roster",
         )
         cases = []
         for pin in files:
@@ -293,7 +326,10 @@ def inspect_controls():
 def main():
     parser = ArgumentParser(description=__doc__)
     parser.add_argument(
-        "--output", type=Path, required=True, help="new directory for archive and evidence"
+        "--output",
+        type=Path,
+        required=True,
+        help="new directory for archive and evidence",
     )
     output = parser.parse_args().output
     content = emit_rectangle()
@@ -301,14 +337,18 @@ def main():
     report = {
         "claim": "generated_archive_record_evidence",
         "native_application_acceptance": False,
-        "codec_revision": check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip(),
+        "codec_revision": check_output(
+            ["git", "rev-parse", "HEAD"], cwd=ROOT, text=True
+        ).strip(),
         "probe_sha256": sha256(Path(__file__).read_bytes()),
         "generated": generated,
         "controls": inspect_controls(),
     }
     output.mkdir()
     (output / "OriginCoincidentRectangle.f3d").write_bytes(content)
-    encoded = (json.dumps(report, indent=2, sort_keys=True, allow_nan=False) + "\n").encode()
+    encoded = (
+        json.dumps(report, indent=2, sort_keys=True, allow_nan=False) + "\n"
+    ).encode()
     (output / "OriginCoincidenceEvidence.json").write_bytes(encoded)
     print(sha256(encoded))
 

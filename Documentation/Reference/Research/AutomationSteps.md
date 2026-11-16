@@ -48,7 +48,7 @@ If work pauses or changes owner, post a handoff with remaining tasks.
 | A08 | Controlled sample and trace workers                    | A02b, A03                            | jdharcourt | active   | Exact recipes and versioned receipts work with healthy controls; absent workers block only dependent jobs                                                                                                                          |
 | A09 | Scoped field maps and typed codec candidates           | A07                                  | Unassigned | planned  | Solved pad-then-pad family is reproduced without model calls, with independent proof and zero donor blocks                                                                                                                         |
 | A10 | Optional model investigation packets                   | A08a, A07, A09                       | Unassigned | planned  | Models-off operation, fixed two-step escalation, a failure log, repeat-failure start-step routing, validated responses, cost limits and false-proposal rejection verified                                                          |
-| A11 | Portable neutral → Fusion writer                       | A01, A06, A09                        | Unassigned | planned  | Qualified portable graphs generate native files without source replay, proprietary runtime or opaque replacements                                                                                                                  |
+| A11 | Portable neutral → Fusion writer                       | A01, A06, A09                        | jdharcourt | blocked  | Qualified portable graphs generate native files without source replay, proprietary runtime or opaque replacements                                                                                                                  |
 | A12 | Portable neutral → SOLIDWORKS writer                   | A01, A06, A09                        | Codex      | blocked  | Qualified portable graphs generate native files from understood fields and reject unsupported required semantics                                                                                                                   |
 | A13 | Bidirectional native acceptance                        | A04, A05, A08, A11, A12              | Unassigned | planned  | Both routes match body count, volume, center of mass and feature history, preserve all required constraints/dependencies, and pass independent driving-parameter edits, restoration, rebuild and save/reopen with healthy controls |
 | A14 | Independent remote compatibility and regression gates  | A03; A06 for reader and writer gates | jdharcourt | active   | Exact-revision checks reject stale receipts, shared-reader/writer mistakes and unsupported input through real boundaries                                                                                                           |
@@ -95,6 +95,8 @@ A02 evidence does not establish completion of later steps.
 The A02 owner [reserved the supplemental baseline](../../Changes/Research/Controller/SupplementalEvidenceBaseline.md) at `f8a4dc7686dece8d44719b12721105a63864a365` on 2026-11-16.
 This new reservation follows existing discovery observations and does not assert an earlier freeze.
 Private verifier admission, the complete qualification protocol and P05 holdout evaluation remain separate.
+The [sealed public-chain preflight](../../Changes/Research/Controller/PairedEvidenceManifest.md#verification-evidence) was subsequently reported at that exact reserved checkout: all three SOLIDWORKS lanes replayed their raw originals, while Fusion source handoff remained unavailable.
+It exited `2`, retained `qualification: not_evaluated` and admitted zero pairs.
 The [remote workflow-quality job](https://github.com/TryUniCAD/Kit/actions/runs/43419522392/job/131865721189) passed pinned-object verification and all three process cases at `0dd47cdab9d51d24b87acae61ffb1f174ba44d81`.
 That observation completes the A02a–A02b artifact criteria. The A02d audit verified the committed capture bytes and found no exact-byte aliases in the audited tree or the pinned historical corpus.
 
@@ -184,6 +186,18 @@ The [guide](SemanticComparison.md) defines its input seals, bounds and research-
 
 Observed graph equality does not qualify a reader, writer or native conversion.
 A07 acceptance and A09 continue to depend on A06b.
+
+## A11 Fusion writer research
+
+| Child ID | Deliverable                                                                   | Owner      | Status   | Remaining evidence                                                                                                                                                                                                                                |
+| -------- | ----------------------------------------------------------------------------- | ---------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| A11a     | Explicit directly owned dimensions in the scoped positive-XY Boss constructor | jdharcourt | checking | The [real-stage authoring composition](../../Changes/Fusion/Authoring/FusionDirectDimensionAuthoring.md) replaces temporary profile changes and shared-function replacement; hosted Boss and historical Origin process execution remains required |
+| A11b     | Native writing from qualified portable graphs                                 | jdharcourt | blocked  | A06b/A09 evidence, complete required-semantic admission and licensed target acceptance remain required; the public writer guard remains enforced                                                                                                  |
+
+The [source-derived Boss probe](../../Changes/Research/Readers/Comparison/FusionSourceBossProbe.md) retains four measured discovery controls and the exact parameter, geometry, material and archive checks.
+The reported separate 37 × 21 × 11 mm feasibility case supports the composition change, not native application acceptance of this revision.
+The owned licensed witness still needs driving edits, restoration, rebuild, save and fresh-process reopen with healthy controls.
+Neither the scoped constructor nor its observation receipt closes A11 or qualifies a conversion route.
 
 ## A12 SOLIDWORKS writer research
 
