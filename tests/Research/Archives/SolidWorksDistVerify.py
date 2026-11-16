@@ -12,6 +12,7 @@ from convert.adapters.solidworks.Resolved.BossDepth import (
     ReadParDepthMut,
 )
 from tests.Research.Archives.SolidWorksCacheVerify import VerifyCacheSpan
+from tests.Research.Archives.SolidWorksCloseVerify import VerifyBossClose
 from tests.Research.Archives.SolidWorksDistCodecs import LoadPairMut, LoadTailMut
 from tests.Research.Archives.SolidWorksDistInputs import DistInputs, ReadDistInputs
 
@@ -146,7 +147,7 @@ def VerifyDistChild(
     assert OuterDisplay[KWitnessOffset:NextField] != SavedTail[KWitnessOffset:NextField]
     assert OuterDisplay[NextField:] == SavedTail[NextField:]
     ReadGenerated(Depth, HandleBytes, DistanceBytes, OuterDisplay)
-    VerifyCacheSpan(
+    FavoriteStart = VerifyCacheSpan(
         PatchValue,
         Resolved,
         Generation,
@@ -154,4 +155,12 @@ def VerifyDistChild(
         Depth["favorite_object"],
         Inputs["depth_mm"] / 1000,
         Variant not in ("baseline-a", "plane-yz", "direction-negative"),
+    )
+    VerifyBossClose(
+        PatchValue,
+        Resolved,
+        Generation,
+        FavoriteStart,
+        Depth["end"],
+        Depth["favorite_object"],
     )

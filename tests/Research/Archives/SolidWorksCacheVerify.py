@@ -27,7 +27,7 @@ def VerifyCacheSpan(
     Favorite: int,
     DepthMetres: float,
     Loaded: bool,
-) -> None:
+) -> int:
     Codec = LoadCacheMut(PatchValue)
     NativeCursor = ArchiveCursor(
         Resolved, CacheStart, Favorite, {KFavoriteClass: KFavoriteName}, {}
@@ -63,3 +63,4 @@ def VerifyCacheSpan(
         Favorite,
         {},
     )
+    return CacheEnd
