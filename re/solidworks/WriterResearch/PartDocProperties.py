@@ -18,6 +18,7 @@ from PartOpc import (
 
 APP_NS = f"{OFFICE_NS}/extended-properties"
 CUSTOM_NS = f"{OFFICE_NS}/custom-properties"
+CONFIG_PROPERTIES_NS = "http://www.solidworks.com/config-properties"
 VARIANT_NS = f"{OFFICE_NS}/docPropsVTypes"
 CORE_NS = f"{PACKAGE_NS}/metadata/core-properties"
 ELEMENTS_NS = "http://purl.org/dc/elements/1.1/"
@@ -88,20 +89,32 @@ def MakeCoreProperties(State: CoreProperties) -> Element:
     return Root
 
 
-# Each native OLE section owns its codepage and its empty dictionary.
+# The chosen owner determines which properties precede the empty dictionary.
+def AppendOleSection(
+    Root: Element,
+    Identity: tuple[str, str],
+    *,
+    HasCodePage: bool,
+    HasLinkStatus: bool = False,
+) -> None:
+    Name, FormatId = Identity
+    Section = SubElement(Root, "propertySection", xmlns="", name=Name, fmtid=FormatId)
+    if HasCodePage:
+        CodePage = SubElement(Section, "property", name="", pid="1", TypeID="0")
+        SubElement(CodePage, "vt:i2").text = str(UTF8_CODE_PAGE)
+    if HasLinkStatus:
+        Link = SubElement(Section, "property", name="", pid="22", TypeID="0")
+        SubElement(Link, "vt:bool").text = "No"
+    _ = SubElement(Section, "propertyNameDictionaryElement", name="", pid="0")
+
+
 def MakeCustomProperties(State: CustomSummary) -> Element:
     Count = State.AdditionalPropertyCount
     if State.HasHyperlinks is not False or type(Count) is not int or Count != 0:
         raise ValueError("custom properties support the empty unlinked summary")
     Root = Element("Properties", {"xmlns": CUSTOM_NS, "xmlns:vt": VARIANT_NS})
-    for Name, FormatId in (SUMMARY_SECTION, USER_SECTION):
-        Section = SubElement(Root, "propertySection", xmlns="", name=Name, fmtid=FormatId)
-        CodePage = SubElement(Section, "property", name="", pid="1", TypeID="0")
-        SubElement(CodePage, "vt:i2").text = str(UTF8_CODE_PAGE)
-        if Name == SUMMARY_SECTION[0]:
-            Link = SubElement(Section, "property", name="", pid="22", TypeID="0")
-            SubElement(Link, "vt:bool").text = "No"
-        _ = SubElement(Section, "propertyNameDictionaryElement", name="", pid="0")
+    AppendOleSection(Root, SUMMARY_SECTION, HasCodePage=True, HasLinkStatus=True)
+    AppendOleSection(Root, USER_SECTION, HasCodePage=True)
     return Root
 
 
@@ -113,6 +126,26 @@ def EncodeDocumentProperties(Generation: int, Core: CoreProperties, Custom: Cust
         CUSTOM_PROPERTIES_XML: EncodePackageXml(
             MakeCustomProperties(Custom), Standalone=True, ShortEmptyElements=False
         ),
+    }
+
+
+# The configured user section acquires UTF-8 independently of the office section.
+def EncodeConfigurationProperties(Generation: int, StorageIndex: int, AdditionalPropertyCount: int) -> dict[str, bytes]:
+    VersionStorage(Generation)
+    if (
+        type(StorageIndex) is not int
+        or StorageIndex != 0
+        or type(AdditionalPropertyCount) is not int
+        or AdditionalPropertyCount != 0
+    ):
+        raise ValueError("only the first empty configuration property set is supported")
+    Root = Element("ConfigProperties", {"xmlns": CONFIG_PROPERTIES_NS, "xmlns:vt": VARIANT_NS})
+    AppendOleSection(Root, SUMMARY_SECTION, HasCodePage=False)
+    AppendOleSection(Root, USER_SECTION, HasCodePage=True)
+    return {
+        f"docProps/Config-{StorageIndex}-Properties.xml": EncodePackageXml(
+            Root, Standalone=True, ShortEmptyElements=False
+        )
     }
 
 

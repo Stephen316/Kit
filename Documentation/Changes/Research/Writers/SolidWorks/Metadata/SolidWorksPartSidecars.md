@@ -82,11 +82,13 @@ be needed to omit another member. [Licensed omission measurements](../SolidWorks
 | Typed payload with prerequisites | `[Content_Types].xml`, `_rels/.rels` | `PartOpc.EncodePartOpc` requires actual emitted extended, core and custom property streams |
 | Full typed payload | `docProps/OpenTime.xml` | `PartOpenTime.EncodePartOpenTime` for the measured fresh and once-open histories |
 | Full typed payload | `docProps/app.xml`, `docProps/core.xml`, `docProps/custom.xml` | `PartDocProperties.EncodeDocumentProperties` from caller metadata and the native fresh-property defaults |
-| Open | `docProps/Config-0-Properties.xml`, `docProps/ISolidWorksInformation.xml` | Typed configuration and SOLIDWORKS information metadata owners and serialization |
+| Full typed payload | `docProps/Config-0-Properties.xml` | `PartDocProperties.EncodeConfigurationProperties` for the first storage index with empty configured properties |
+| Open | `docProps/ISolidWorksInformation.xml` | Native system metadata, unit settings, and formatted mass from existing authored state |
 | Open | `swXmlContents/Features`, `swXmlContents/KeyWords` | XML derived from authored feature and document metadata or licensed omission evidence |
 
-There are 21 retained members with typed constructors, including two
+There are 22 retained members with typed constructors, including two
 fresh-document payloads and two manifests with property stream prerequisites.
-Twelve remain open. Native acceptance of a fully generated archive is pending.
+Eleven remain open. Native acceptance of a fully generated archive is pending.
 [Package manifests and open timing](SolidWorksPackageMetadata.md)
 [Document property writers](SolidWorksDocumentProperties.md)
+[Configuration property writer](SolidWorksConfigurationProperties.md)

@@ -448,6 +448,10 @@ def CheckSidecars() -> None:
         == "76446501f05f8a0087064f6023170f518ca07dc7e795443c03da32427b03fb7f"
     )
     assert (
+        Report["configuration_sha256"]
+        == "0db4774832006f8df815b5d53dca7932efde02f5f875c50c6352e6fc4b884240"
+    )
+    assert (
         Report["retained_sha256"]
         == "f9e2742038653d48e89f4eef3bfd6f8c17846d4a3b4d8b8dd84fb78c9b0dcfb5"
     )
