@@ -30,7 +30,7 @@ application proof.
 ## Run an assessment
 
 Use Python 3.14 with the locked development dependency group. Register
-`inference.fields` and `inference.rescan` with the supervisor. Use
+`inference.fields`, `inference.paired-gap` and `inference.rescan` with the supervisor. Use
 `re/automation/InferenceRunner.py` followed by the whole-argument `{session}`
 substitution as the runner. Generate its registry schema in the private state
 directory.
@@ -97,9 +97,37 @@ capture leaves automatic and explicit selection compatible with the same
 target. The controller parks this gap until distinguishing evidence arrives
 and retains the two-body grid and affected archives in the receipt.
 
+### Provision the scope on the Fusion host
+
+Use a clean checkout at the same full revision as the Fusion installation and a
+new owner-private A03 store on that host. Point the supervisor configuration at
+this store and register both the inference runner and the
+[supervised Fusion worker](../Workers/FusionPhaseQueue.md) in their own pools.
+Before the Fusion queue is used, provision the scope and run the supervisor to
+get that store's parked receipt.
+
+```shell
+uv run --frozen --group dev --python 3.14 python re/automation/Controller.py \
+  --store /private/ResearchStore init
+uv run --frozen --group dev --python 3.14 python re/automation/InferenceGrid/Provision.py \
+  --store /private/ResearchStore --source-revision FULL_CHECKOUT_SHA
+uv run --frozen --group dev --python 3.14 python re/automation/Supervisor.py \
+  --config /private/Supervisor.json run --idle-seconds 8 --max-seconds 180
+uv run --frozen --group dev --python 3.14 python re/automation/Controller.py \
+  --store /private/ResearchStore status --job ASSESSMENT_JOB_ID
+```
+
+Use the `assessment_job` printed by the provisioner. It pins the original
+discovery report and its two affected P04 archives to the assessment and two
+rescans. The inference worker issues a new `waiting_evidence` receipt in this
+store. Both rescans wait with zero attempts. The provisioner can read back the
+same three jobs on an unchanged retry and refuses a different existing scope
+definition. The Windows replay receipt remains tied to its original store.
+
 Queue the fixed [Fusion two-body scope study](../FusionReadback/FusionScopeControl.md)
-in the same A03 store as the parked assessment. Attach it using the original
-parked assessment receipt and the SHA-256 of the issued queue receipt.
+in this same store. Keep the queue receipt from the host's queue command.
+Attach it using the newly issued parked assessment receipt and the SHA-256 of
+the queue receipt.
 
 ```shell
 uv run --frozen --group dev --python 3.14 python re/automation/InferenceGrid/Resume.py \
@@ -114,6 +142,8 @@ and dispatch pins, healthy controls, linked process identities, and saved
 archives before admitting the Fusion observations. The assessment remains
 parked until independent evidence establishes the saved target-policy meaning.
 The original rescan dependencies and frozen holdout stay in place.
+With the Fusion resource unavailable, Phase A waits for the application and
+Phase B and the assessment wait for evidence.
 
 The hosted integration also exercises a synthetic disjoint-lineage holdout
 and a repeated-lineage refusal. P03 and P04 remain discovery evidence. P05
