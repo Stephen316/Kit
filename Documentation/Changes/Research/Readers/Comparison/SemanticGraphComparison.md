@@ -15,10 +15,10 @@ They are never matched by traversal order.
 Declared geometry units and typed parameter units produce separate normalization paths.
 Lengths, angles, areas, volumes and dimensionless directions use their own caller-supplied absolute tolerances.
 Counts, booleans and exact fields remain exact.
-Reduced exact quantity ratios preserve [integer and normalization precision](../../../../Gotchas/Conversion/SemanticNumericPrecision.md) before numeric tolerances are applied.
+Reduced exact quantity ratios preserve [integer and normalization precision](../../../../Gotchas/Conversion/Comparison/SemanticNumericPrecision.md) before numeric tolerances are applied.
 Decimal literals that the existing codec would round to a different canonical magnitude are refused at the sealed input boundary.
-The same boundary refuses [colliding compatibility aliases](../../../../Gotchas/Conversion/SemanticWireAliasCollisions.md), including migration-generated collisions.
-Projection resolves [canonical model identities and storage slots](../../../../Gotchas/Conversion/CompatibilityModelReflection.md) before applying reference and quantity maps.
+The same boundary refuses [colliding compatibility aliases](../../../../Gotchas/Conversion/Comparison/SemanticWireAliasCollisions.md), including migration-generated collisions.
+Projection resolves [canonical model identities and storage slots](../../../../Gotchas/Conversion/Comparison/CompatibilityModelReflection.md) before applying reference and quantity maps.
 Material fields, suppression, expressions, configuration overrides, feature order and dependency references remain observable.
 
 The report separates observed field differences, ambiguous correspondence and unresolved source domains.

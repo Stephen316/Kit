@@ -22,6 +22,6 @@ Dimensional tolerances compare ratios, and dimensionless integer controls remain
 The sealed JSON boundary also refuses decimal literals that the existing codec would round to a different canonical decimal magnitude, including underflow.
 The shared wire codec remains unchanged.
 
-The [change entry](../../Changes/Research/Readers/Comparison/SemanticGraphComparison.md) links the command and its limits.
+The [change entry](../../../Changes/Research/Readers/Comparison/SemanticGraphComparison.md) links the command and its limits.
 Process coverage includes large adjacent integers, permissive floating tolerances, small physical unit conversions and refused rounded literals.
 Hosted execution remains required.
