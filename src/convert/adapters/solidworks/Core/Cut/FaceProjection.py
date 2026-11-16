@@ -145,7 +145,7 @@ def AttachCutFrame(
     BossStep: FeatureStep,
     PlaneValue: SupportPlane,
     FacePick: Selection,
-    CutId: int,
+    CutId: int | None,
 ) -> CadDocument:
     Bound = Replace(
         SketchValue,
@@ -175,8 +175,12 @@ def AttachCutFrame(
             (
                 Profile
                 if Value is ProfileStep
-                else BindCutAxis(
-                    Value, CutId, SketchValue.id, PlaneValue.transform.z_axis
+                else (
+                    BindCutAxis(
+                        Value, CutId, SketchValue.id, PlaneValue.transform.z_axis
+                    )
+                    if CutId is not None
+                    else Value
                 )
             )
             for Value in Document.feature_timeline

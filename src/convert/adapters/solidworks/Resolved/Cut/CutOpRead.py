@@ -46,19 +46,21 @@ class CutOperation(OpNode):
 
 
 # the through all mode owns a null where the blind mode stores its depth display
-def ReadCutEnd(Cursor: ArchiveCursor) -> CutEnd:
+def ReadCutEnd(Cursor: ArchiveCursor, *, MergeMode: bool = False) -> CutEnd:
     SpecValue = ReadEndHead(Cursor, KClassRefKind)
     Conditions = SpecValue["conditions"]
-    RequireArch(Conditions in ((0, 0), (1, 0)), True, "witnessed cut end conditions")
+    AllowedConditions = ((0, 0),) if MergeMode else ((0, 0), (1, 0))
+    RequireArch(Conditions in AllowedConditions, True, "witnessed cut end conditions")
     Depth: DepthDisplay | None = None
     SelectorOffset = Cursor.Offset
     if Conditions[0] == 0:
-        Depth = ReadBossDepth(Cursor, KClassRefKind)
+        Depth = ReadBossDepth(Cursor, KClassRefKind, AllowCacheRoundoff=MergeMode)
         RequireArch(Depth["dimension"]["metres"] > 0, True, "positive blind cut depth")
     else:
         Cursor.ReadNull()
     Origin = ReadEndTail(Cursor, KClassRefKind, 1)
-    RequireArch(Cursor.ReadValue("<di"), (0, 1), "guarded cut feature return")
+    ReturnFields = (1e-5, 0) if MergeMode else (0, 1)
+    RequireArch(Cursor.ReadValue("<di"), ReturnFields, "guarded cut feature return")
     return {
         **SpecValue,
         "depth_display": Depth,
@@ -97,6 +99,8 @@ def ReadCutOp(
     CutValue: OpNode,
     BossValue: BossHead,
     TransferIds: frozenset[int],
+    *,
+    MergeMode: bool = False,
 ) -> CutOperation:
     Transfer, Parent = ReadCutXfer(Cursor, BossValue, TransferIds)
     Cursor.ReadNull()
@@ -116,7 +120,7 @@ def ReadCutOp(
     ReadAtomMaps(Cursor)
     AtomEnd = Cursor.Offset
     ReadBodyReturn(Cursor)
-    SpecValue = ReadCutEnd(Cursor)
+    SpecValue = ReadCutEnd(Cursor, MergeMode=MergeMode)
     RequireArch(Cursor.ReadInts("<i"), (0,), "resolved list footer")
     RequireArch(Cursor.Offset, len(Cursor.BlobValue), "complete resolved list extent")
     return {
