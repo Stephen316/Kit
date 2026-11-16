@@ -8,6 +8,7 @@ import time
 from pathlib import Path
 
 from ApplicationHolds import invalidate_application_hold, retry_delay, save_application_hold
+from FusionRestartPairs import accepted_hold
 from Artifacts import Artifacts
 from OutputIntake import OutputIntake
 from OutputManifest import InvalidOutput, output_manifest
@@ -522,6 +523,8 @@ class Ledger:
             for resource in spec["resources"]:
                 self.change_resource(resource, False)
                 self.event(None, "resource_recovery_required", {"name": resource})
+        if outcome == "completed":
+            accepted_hold(self, row, spec, result, owner_pin, receipt, result_hash)
         delay = retry_delay(spec, row["attempts"]) if outcome == "retry" else 0
         self.leased(job_id, token, verify_artifacts=False)
         self.db.execute("UPDATE attempts SET ended=?,outcome=?,receipt=? WHERE id=?", (time.time(), outcome, receipt, row["active_attempt"]))

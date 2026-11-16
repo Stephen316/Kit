@@ -24,6 +24,11 @@ recovers a missing receipt from the exact committed submission, and records
 the immutable restart intent. The owner lock covers one continuing driver for
 the endpoint. Restarting the same command resumes the active record.
 
+Add `--owner-lifecycle` to a durable queue submission before either phase is
+claimed to reserve the capacity-one installation across the automatic restart.
+The installation source pin must include the reservation policy.
+[Reservation requirements and recovery](FusionRestartResourceReservation.md)
+
 The driver requires the exact Phase B lease and remaining deadline for a new
 physical request. It rechecks admission while sealing authorization for the
 armed Darwin watcher or the replacement request. The replacement provider

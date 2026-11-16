@@ -27,6 +27,7 @@ from FusionPhasePlan import (
     phase_rule,
     plan_scope,
 )
+from FusionLifecycleRegistration import checked_policy
 from FusionQueueReceipt import (
     exact_jobs,
     matches,
@@ -37,6 +38,7 @@ from FusionQueueReceipt import (
     submission_intent,
     verify_committed,
 )
+from FusionRestartPairs import register_pair
 from Ledger import Ledger
 from Records import canonical, digest, label, specification
 from Runners import Registry
@@ -159,7 +161,7 @@ def prepare_pair(installation, acknowledgement, kind, resource, run, staged, raw
     return receipt, jobs
 
 
-def submit_pair(store, staged, receipt, jobs, *, durable):
+def submit_pair(store, staged, receipt, jobs, *, durable, reservation=None):
     binding, plan_hash = receipt["plan_binding"], receipt["plan_sha256"]
     with Ledger(store) as ledger:
         existing = exact_jobs(ledger.db, jobs) if durable else []
@@ -197,12 +199,21 @@ def submit_pair(store, staged, receipt, jobs, *, durable):
             ledger.verify_object(plan_hash)
         if not durable or not existing:
             ledger.submit_many(jobs)
+        if reservation is not None:
+            register_pair(ledger, receipt, jobs, sha256(receipt_bytes(receipt)), reservation)
 
 
-def queue_phases(config, source_plan, kind, resource, run, *, receipt_path=None):
+def queue_phases(
+    config, source_plan, kind, resource, run, *, receipt_path=None, owner_lifecycle=False
+):
     kind, resource, run = (label(value) for value in (kind, resource, run))
     store, installation, acknowledgement = queue_configuration(config, kind, resource)
     destination = receipt_paths(receipt_path) if receipt_path is not None else None
+    reservation = None
+    if owner_lifecycle:
+        require(destination is not None and acknowledgement,
+                "owner Fusion lifecycle requires a durable supervised queue receipt")
+        reservation = checked_policy(installation, resource)
     raw = file_bytes(source_plan)
     with tempfile.TemporaryDirectory(prefix="kit-fusion-phase-queue-") as temporary:
         staged = Path(temporary) / "plan.json"
@@ -220,10 +231,12 @@ def queue_phases(config, source_plan, kind, resource, run, *, receipt_path=None)
                 matches(pending, intended),
                 "Fusion receipt has no matching submission intent",
             )
+            if reservation is not None:
+                submit_pair(store, staged, receipt, jobs, durable=True, reservation=reservation)
             verify_committed(store, receipt, jobs)
             return receipt
         seal(pending, intended)
-        submit_pair(store, staged, receipt, jobs, durable=True)
+        submit_pair(store, staged, receipt, jobs, durable=True, reservation=reservation)
     verify_committed(store, receipt, jobs)
     seal(target, content)
     return receipt
@@ -273,13 +286,14 @@ def main():
     parser.add_argument("--kind")
     parser.add_argument("--resource")
     parser.add_argument("--run")
+    parser.add_argument("--owner-lifecycle", action="store_true")
     destination = parser.add_mutually_exclusive_group()
     destination.add_argument("--receipt", type=Path)
     destination.add_argument("--recover-receipt", type=Path)
     args = parser.parse_args()
     try:
         if args.recover_receipt is not None:
-            if any(
+            if args.owner_lifecycle or any(
                 value is not None
                 for value in (args.plan, args.kind, args.resource, args.run)
             ):
@@ -297,6 +311,7 @@ def main():
                 args.resource,
                 "fresh" if args.run is None else args.run,
                 receipt_path=args.receipt,
+                owner_lifecycle=args.owner_lifecycle,
             )
     except (
         OSError,

@@ -8,6 +8,8 @@
 
 import time
 
+from FusionRestartPairs import excludes_claim, installed as fusion_reservations
+
 
 # Version checks keep old controller stores on their original claim path.
 def enabled(ledger):
@@ -34,6 +36,10 @@ def runnable_jobs(ledger, pool, *, grouped=False):
             )>=a.capacity)
         )
     """
+    reserved = fusion_reservations(ledger)
+    if reserved:
+        where += f" AND NOT {excludes_claim('j')} "
+    grid_reservation = f" AND NOT {excludes_claim('grid')} " if reserved else ""
     params = {"now": time.time(), "pool": pool, "scope": pool or ""}
     limit = "" if grouped else " LIMIT 1"
     if not enabled(ledger):
@@ -54,7 +60,7 @@ def runnable_jobs(ledger, pool, *, grouped=False):
             AND turn.lane=COALESCE(p.lane,1) AND turn.family=COALESCE(p.family,'')
         """
         + where
-        + """
+        + f"""
         AND (p.installation IS NULL OR EXISTS (
             SELECT 1 FROM resources i WHERE i.name=p.installation AND i.capacity=1
         ))
@@ -64,6 +70,7 @@ def runnable_jobs(ledger, pool, *, grouped=False):
               AND request.definition_hash=grid.definition_hash
               AND grid.state='queued'
               AND grid.next_run<=:now
+              {grid_reservation}
               AND NOT EXISTS (
                   SELECT 1 FROM job_resources required
                   LEFT JOIN resources available ON available.name=required.resource
