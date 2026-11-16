@@ -12,6 +12,7 @@ from HeaderTail import HeaderTail, WriteModelHdr
 from OrdinaryConfig import OrdinaryConfig, OrdinaryConfigArchive
 from OrdinaryProfile import OrdinaryProfile
 from PackageIndices import EncodePackageIndices, MakePartIndex, PackageXmlState
+from PartConfigHeaderDb import ConfigExchange, EncodeConfigHeaderDb, KConfigDb
 from PartDocProperties import (
     CoreProperties,
     CustomSummary,
@@ -71,6 +72,7 @@ class PackageState:
     Ole: OleInventory
     OpenTime: PartOpenTime
     Indices: PackageXmlState
+    Exchange: ConfigExchange
 
 
 # CMgr reuses the same atom, file identity, and bounds carried by the generated part.
@@ -121,6 +123,9 @@ def EncodePackageMetadata(Generation: int, State: PackageState) -> dict[str, byt
     Members = EncodeDocumentProperties(Generation, Summary, State.Summary)
     Members.update(EncodePartOpc(Generation, Members))
     Members.update(EncodeConfigurationProperties(Generation, KFirstConfigurationId, 0))
+    Members[KConfigDb] = EncodeConfigHeaderDb(
+        Generation, State.Exchange.RecordId, State.Exchange.Created
+    )
     Members.update(EncodePartOle(Generation, State.Ole))
     Members[CUSTOM_PROPERTIES] = EncodePartProperties(Generation, State.FileProperties)
     Members[OPEN_TIME_STREAM] = EncodePartOpenTime(Generation, State.OpenTime)

@@ -99,7 +99,8 @@ be needed to omit another member. [Licensed omission measurements](../SolidWorks
 | Full typed payload | `Contents/CusProps`, `Contents/OleItems`, `OleItemInformation/OLE_Item_Data` | `PartProperties.EncodePartProperties`, `PartOle.EncodePartOle` |
 | Fresh-document payload | `_MO_VERSION_19000/History`, `_MO_VERSION_19000/Biography` | `PartFraming.EncodeVersionStreams`, which creates fresh state from absence of prior saved history |
 | Full typed payload | `Contents/Config-0`, `Contents/Config-0-ResolvedFeatures` | `OrdinaryConfig.BuildOrdinaryConfig` and `ResolvedPart.BuildOrdinaryResolved` share the generated configuration map. |
-| Open | `Contents/3DExperienceExchange2`, `Contents/3DExperienceExchange_ConfigHeader`, `Contents/PMISemanticDataDB` | Database stream constructors or licensed omission evidence |
+| Full typed payload | `Contents/3DExperienceExchange_ConfigHeader` | [Configuration exchange writer](SolidWorksConfigurationExchange.md) emits the sole ordinary configuration record |
+| Open | `Contents/3DExperienceExchange2`, `Contents/PMISemanticDataDB` | Exchange-object and PMI record constructors or licensed omission evidence |
 | Open | `Contents/eModelLic` | Scoped native save-context semantics and a justified caller input |
 | Open | `Preview`, `PreviewPNG` | Native preview encoding from generated content or licensed omission evidence |
 | Open | `SwDocContentMgr/SwDocContentMgrInfo`, `ThirdPtyStore/VisualStates` | Content manager and visualization state constructors or licensed omission evidence |
@@ -110,9 +111,9 @@ be needed to omit another member. [Licensed omission measurements](../SolidWorks
 | Typed payload with prerequisites | `docProps/ISolidWorksInformation.xml` | `PartInformation.EncodeInformation` emits the ordinary information table from caller-owned document and unit values |
 | Typed payload with prerequisites | `swXmlContents/Features`, `swXmlContents/KeyWords` | `PartFeatureIndex.EncodeFeatures` and `PartKeywords.EncodeKeywords` use the same document identity plus caller-owned sketch and optional Boss display state |
 
-There are 25 retained members with typed constructors, including two
+There are 26 retained members with typed constructors, including two
 fresh-document payloads and two manifests with property stream prerequisites.
-Eight remain open. Native acceptance of a fully generated archive is pending.
+Seven remain open. Native acceptance of a fully generated archive is pending.
 [Package manifests and open timing](SolidWorksPackageMetadata.md)
 [Document property writers](SolidWorksDocumentProperties.md)
 [Configuration property writer](SolidWorksConfigurationProperties.md)

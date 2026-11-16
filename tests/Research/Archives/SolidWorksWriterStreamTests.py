@@ -703,3 +703,14 @@ def CheckFeatureIndex() -> None:
         Report["replay_sha256"]
         == "c60b495c59431b3b047a000390be782032f44d6b8a5260f58f9de11c2b9f4a49"
     )
+
+
+# the configuration exchange must fill its complete native database from typed fields
+def CheckConfigExchange() -> None:
+    Report = LoadReport("VerifyConfigHeaderDb.py", 14)
+    assert Report["counts"] == {"P01": 6, "P03": 8}
+    assert Report["refusals"] == 2
+    assert (
+        Report["replay_sha256"]
+        == "d44dc07de9695a9f92a33a1c6cccedce9b80e96016c2df568dd43d310a90452a"
+    )

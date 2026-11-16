@@ -20,6 +20,7 @@ from OrdinaryPackage import (
     PackageState,
 )
 from PackageIndices import MakePartIndex, PackageXmlState
+from PartConfigHeaderDb import ConfigExchange, KConfigDb
 from PartDocProperties import CustomSummary, ReadCoreProperties
 from PartFeatureIndex import KFeaturesXml
 from PartInformation import KInfoXml
@@ -31,6 +32,7 @@ from PartOpenTime import OPEN_TIME_STREAM, ReadPartOpenTime
 from PartProperties import CUSTOM_PROPERTIES, ReadPartProperties
 from VerifyBossOpen import verify_measured
 from VerifyCmgrComposition import compare_cmgr_bytes, read_cmgr_document
+from VerifyConfigHeaderDb import ReadHeaderIdentity
 from VerifyConfigRoot import CAPTURE_REVISION, principal_captures, require
 from VerifyModelHeader import FRAME_OFFSET, FRAME_WIDTH, measured_bounds
 from VerifyPartFeatureIndex import ReadDrivers, ReadIdentity
@@ -105,6 +107,7 @@ def read_package(archive, generation, measurement):
             drivers[0][0] == KWidth,
             TypedMetadata(archive.require(KInfoXml)),
         ),
+        ConfigExchange(*ReadHeaderIdentity(archive.require(KConfigDb))),
     )
     return state, frame, mass_at, mass
 
@@ -159,7 +162,7 @@ def verify_generated_package(
     streams = candidate.streams
     require(
         (candidate.format_version, ContainerMo(streams), len(streams))
-        == (4, generation, 25),
+        == (4, generation, 26),
         "ordinary generated package roster and version",
     )
     CheckVersionStreams(generation, streams)
