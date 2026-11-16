@@ -37,7 +37,7 @@ Check the native file size and SHA-256 against the [P01 receipt](../../automatio
 | P04                               |                     11 |                          81 in 11 of 11 |                        199 | `5` in 3, `6` in 8           |
 | Generation-18000 `EncodeStream()` |                      — |                                      81 |                        195 | `6`                          |
 
-All 25 controls contain `Design Journal.doc`, time word `0`, and state word `0`. The first tag and string consume 57 bytes, then the two archive words consume eight. The measured notebook body after the attachment is `<HiHiHH` with values `(0, 1, 0, 1, 0, 0)`. Reading the [native tail](#part-definition-tail) leaves the same length of earlier remainder as the generation-18000 emitter. The aligned remainder differs at most at offset `+13` after the notebook. That byte varies across independent baseline saves and requires separate attribution.
+All 25 controls contain `Design Journal.doc`, time word `0`, and state word `0`. The first tag and string consume 57 bytes, then the two archive words consume eight. The measured notebook body after the attachment is `<HiHiHH` with values `(0, 1, 0, 1, 0, 0)`. Reading the [native tail](#part-definition-tail) leaves the same length of earlier remainder as the generation-18000 emitter. The aligned remainder differs at most at offset `+13` after the notebook. That byte is the low byte of the [saved appearance ID counter](#appearance-id-counter).
 
 Two independently supplied attachment values produced notebook spans of 85 and 45 bytes. The inputs were `("A12 independent text", 173, 4)` and `("", -1, 0)`. Their SHA-256 digests were `4661da3e43074e7858a922151c86c40882bbfa60225ae090e1c0342dbaeb2628` and `718eec38fa3be7fbba7e173b26fb3fbce4e65e38a7f28299354af67bd2e6460d`. Both decoded to the supplied values and consumed the complete fragment. This measures the subrecord codec. Native field semantics and application acceptance remain unmeasured for the constructed values.
 
@@ -47,10 +47,30 @@ The pinned 2026 `slduiu.dll` above contains a wide `Definition` stream name at `
 
 The same build's `sldmodu.dll` (SHA-256 `2201734ebe0106efde5a93e306067b4b5e2fdb0ba70bf38ce9a59242b283cb99`) also uses a narrow `Definition` key at `0x4d257ad8`. That key is passed through `su_DBKey`; the object written with it uses the exported `moSketchBlockDef_c` runtime class at `0x4db02630`. This is a separate sketch-block serializer.
 
+## Appearance ID counter
+
+The `uiModelDoc_c` constructor calls the notebook constructor at `0x49758a91`, stores the result in `this+0xfd8` at `0x49758a9b`, and the notebook constructor installs the `uoNotebookMgr_c` vtable `0x4a806ee8`. The document store and load paths call slot 5 of that same member at `0x49710995` and `0x49712532`. After the notebook returns, the store path writes these fields before calling `PWMaterialManager_c::save` at `0x49710ae3`.
+
+| Offset from notebook end | Saved field | Store call |
+| --- | --- | --- |
+| +0 | Windows signed `long` from document member `+0x1000` | `0x497109a1` |
+| +4 | Byte from environment Boolean key `0x7a` | `0x497109ca` |
+| +5 | Byte from document member `+0x1014` | `0x497109da` |
+| +6 | Empty string array count | `0x49710a77` |
+| +8 | Empty word array count | `0x49710a84` |
+| +10 | Unsigned short from document member `+0x7b8` | `0x49710ab8` |
+| +12 | Byte indicating the presence of the material manager at document member `+0x1110` | `0x49710ace` |
+
+Both empty arrays use two-byte counts. The word array in `swccu.dll` calls `su_CArchive::WriteCount` at `0x31a4e50f`. The binary string array route at `0x31a476f0` forwards through MFC ordinal 12836. In installed `mfc140u.dll` version `14.51.36247.0` (SHA-256 `fc5848eb58982e193cdfe73f1f26cd04fce4e196f717f42b89ae27315cd52f6f`), that routine calls the count writer at `0x1801d5502`. Counts below `0xffff` consume a two-byte word.
+
+The material manager's binary `su_CObject::Serialize` base call consumes no bytes. Its store calls at `0x4c204871` and `0x4c20487d` emit Windows signed `long` words from manager members `+0x08` and `+0x0c`. The load calls at `0x4c202070` and `0x4c20207d` restore them to the same offsets. Those words hold the low and high halves of the 64-bit value that the exported `PWMaterialManager_c::getNewApperanceID` at `0x4c1fd340` returns and increments. The manager constructor initializes that 64-bit value to 1 at `0x4c1eee0e`.
+
+All 25 receipt-matching generation-19000 files at `466dcb172dfa3803463e07ccde963ba01671d200` agree with the little-endian field sequence `<iBB3HBiiH>` from the `ReadNotebook` return. The values were `(0, 0, 1, 0, 0, 0, 1, low, 0, 0)`, with the final zero the empty material-object list count. Only the low word at `+13` varies. In these saves it has the distribution in the table above. The constructor establishes the fresh counter state. Each completed save retains the counter after its own appearance allocations.
+
 ## Part Definition tail
 
 In installed build `34.4.1.1011`, `sldprtu.dll` (SHA-256 `cb1e260f8411a39dc44f4d8a6255ea585c7a5e60b223d0e69d3f51a258ee96de`) has the primary `uiPartDoc_c` RTTI locator at `0x334e5cd8` and vtable at `0x334af0f0`. Slot 513 selects `0x333bb1b0`. The override calls the imported `uiModelDoc_c::Serialize` at `0x333bb1c8`. On the store branch it then writes `this+0x1688` with the archive double operator at `0x333bb31d` and returns. The part load branch reads the double at `0x333bb2f5` on the supported modern path.
 
 The base serializer's last store operation starts at the version check `0x49710dfb`. For archive versions at least `0x46c2` (18114), `0x49710e17` writes a Windows signed `long` count derived from the difference between the vector end and begin pointers, divided by eight. The base load path checks the same version at `0x49713720` and reads the count with the signed `long` operator at `0x4971373a`. Nonempty vectors visit the archive object write and read calls at `0x4943d3ce` and `0x4943d38b`. Their shared class helper at `0x4943d440` returns the `uiVariabilityTableViewData_c` runtime class descriptor at `0x4aefd010` with schema `0x80000001`. The model document constructor initializes the vector's begin, end and capacity pointers at offsets `0x11a0`, `0x11a8` and `0x11b0` to zero at `0x4975834f`–`0x4975835d`.
 
-The 6 P01, 8 P03 and 11 P04 receipt-pinned files at `466dcb172dfa3803463e07ccde963ba01671d200` each read as little-endian `<id>` at the final twelve bytes of `Contents/Definition`. Each stores the count `0` at notebook end `+187` and the part double `1000.0` immediately after it. This accounts for the four extra bytes relative to the generation-18000 emitter. The preceding outer Definition fields, nonempty variability entries, and native acceptance of generated generation-19000 Definitions remain outside this evidence.
+The 6 P01, 8 P03 and 11 P04 receipt-pinned files at `466dcb172dfa3803463e07ccde963ba01671d200` each read as little-endian `<id>` at the final twelve bytes of `Contents/Definition`. Each stores the count `0` at notebook end `+187` and the part double `1000.0` immediately after it. This accounts for the four extra bytes relative to the generation-18000 emitter. Other outer Definition fields, nonempty variability entries, and native acceptance of generated generation-19000 Definitions remain outside this evidence.
