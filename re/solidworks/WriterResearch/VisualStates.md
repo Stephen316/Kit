@@ -28,6 +28,6 @@ The edited width and height captures advance the sketch's modification times whi
 
 ## Remaining decision
 
-The follow-up owner trace establishes the first representation ID, its configuration relationship, the visual appearance allocator, and the component and attribute references. Construction still needs the original appearance-allocation sequence and attribution of the unit-component payloads, state flags and footer. The existing CMgr visual constructor accounts for the shared 300-byte DSPBR body. [Visual-state owners](VisualStateOwners.md)
+The follow-up traces establish the first representation ID, configuration relationship, visual appearance allocator, component payloads, attribute references and terminal counts. Construction still needs the original appearance-allocation sequence and attribution of the representation scalars and state flags. The existing CMgr visual constructor accounts for the shared 300-byte DSPBR body. [Visual-state owners](VisualStateOwners.md) [Component records and terminal counts](VisualStateWire.md)
 
 A generation-19000 omission campaign can establish whether the ordinary display state regenerates after open, rebuild, driving-dimension edit, save and fresh reopen. Older generation-18000 evidence covered a narrower visual-state omission. The current P03 omission run retained this member. [Earlier omission](../archive/Multistream.md#4-which-streams-are-load-critical) [Current licensed campaign](../../../Documentation/Changes/Research/Writers/SolidWorks/SolidWorksArchiveOmissions.md)
