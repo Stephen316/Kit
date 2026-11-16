@@ -12,6 +12,24 @@ to you under it immediately and permanently.
 
 The two terminal `suObList` records in the 25 generation-19000 discovery saves are empty. The feature stamps and remaining fields belong to the enclosing configuration manager. Typed archive reads account for every byte from the first list definition to EOF. [Visual record and corpus provenance](CmgrVisual.md)
 
+## External file and referenced configuration
+
+The same terminal walk extends backward to the manager's `moExtObject_c` pointer at `0x4c21cb40`. In installed `sldarchiveu.dll` SHA-256 `fce17ce9f2b79e188ee0c20ca51cd36cd246d92bf2d35c2010a03f4bb5c304c6`, the object's archive slot `0x31a0d8e0` serializes a shared file inline via the call at `0x31a0d95c`. The `moSharedFileDef_c` serializer at `0x31a0e940` writes two `moCStringHandle_c` pointers at `0x31a0ea3f` and `0x31a0ea4d`. The string handle stores exactly one CString at `0x3c7d799f` in `sldmfcu.dll`. The first handle defines the class and carries the path. The second reuses the class to allocate a distinct object for the title.
+
+All eight small modern saves have empty paths and generated part titles. The other 17 carry the previous baseline-A file's leaf name and matching title. Their paths use 194 archive bytes instead of four, and their titles use 54 bytes instead of 14 or 16. The 230-byte difference between matching size strata within a family comes from those two strings. No capture pathname is needed to construct the empty-path form.
+
+The following fields finish the external object and resume the manager. All rows use the observed modern form. The zero tail values and string widths also agree with the historical control.
+
+| Owner | Fields and measured values after both handles |
+| --- | --- |
+| Shared file | Four calls at `0x31a0ea5a`, `0x31a0ea67`, `0x31a0eafb` and `0x31a0eb3b` start the suffix with unsigned short `2`, byte zero, a four-byte `su_CTime`, and three successive empty CStrings (ending at `0x31a0ebbb`). `0x31a0ebf3` writes a final zero byte. |
+| External object | `0x31a0d9cd` writes the flags byte, observed as 0 with an empty path and 8 with a prior path. `0x31a0da2a` writes a zero `su_CTime`. Calls at `0x31a0dae5`, `0x31a0daf1` and `0x31a0db30` write three zero longs. |
+| Referenced configuration | The call at `0x31a0db40` enters the inline reference whose archive slot is `0x31a181b0`. It stores the wide CString `Default` and signed zero index. |
+| External object return | `0x31a0db7d`, `0x31a0dc44` and `0x31a0dc7b` write zero long, zero `su_CTime` and zero long. |
+| Manager before first list | `0x4c21cb58`, `0x4c21cb68` and `0x4c21cb78` write signed zero, an empty wide CString and a signed zero map count. |
+
+Starting after the title, the external object returns 71 bytes later and the first `suObList` begins 12 bytes after that. This walk reaches the already checked first list in all 25 discovery saves and the historical comparison. Configuration-manager data prior to the external object still needs typed attribution.
+
 ## Root and feature stamps
 
 The exact installed SOLIDWORKS 2026 build is `34.4.1.1011`. In `sldmodu.dll` SHA-256 `2201734ebe0106efde5a93e306067b4b5e2fdb0ba70bf38ce9a59242b283cb99`, `moExtObjHelper_c::loadConfigurationMgrFromFile` opens `CMgr`, reads a single manager at `0x4be9139c` and closes the archive. The manager's primary archive slot is `0x4c21c740`. Its calls at `0x4c21cbfa` and `0x4c21cf5b` write the two `suObList` pointers. The class's serializer at `0x3c8dd4d0` in [`sldmfcu.dll`](CmgrVisual.md#version-and-ownership) delegates to `su_CObList::Serialize` at `0x31a56530` in `swccu.dll` SHA-256 `7254b30f4eb77fd5b49fdbb0a7ab499ba3bf1d39a3f8f18d72090c2568967b49`. The `WriteCount` call at `0x31a56662` encodes the empty list in one 16-bit word.
