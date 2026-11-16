@@ -20,6 +20,7 @@ from VerifyRectCorners import verify_corners
 from VerifyRectDims import verify_dims
 from VerifyRectDisplay import verify_display_list
 from VerifyRectLines import verify_lines
+from VerifyRectRegion import verify_region
 from convert.adapters.solidworks.Config.OrdinaryMap import ReadOrdinaryMap
 from convert.adapters.solidworks.Container.Archive import ContainerMo
 from convert.adapters.solidworks.Container.Container import SldprtArchive
@@ -150,6 +151,16 @@ def inspect_open(archive, measurement, construct):
         generation,
         PartArchiveWriter(map_state(cursor)) if construct else None,
     )
+    region_proof = verify_region(
+        cursor,
+        snapshot,
+        profile,
+        endpoints,
+        corners,
+        measurement,
+        generation,
+        PartArchiveWriter(map_state(cursor)) if construct else None,
+    )
     return (
         opening,
         corner_proof,
@@ -159,6 +170,7 @@ def inspect_open(archive, measurement, construct):
         axis_proof,
         anchor_proof,
         display_proof,
+        region_proof,
     )
 
 
@@ -172,10 +184,11 @@ def report(construct):
     axis_rows = []
     anchor_rows = []
     display_rows = []
+    region_rows = []
     for _, asset, data, _, measurement in principal_captures():
         archive = SldprtArchive.from_bytes(data, asset["path"])
-        opening, corners, proxy, lines, dims, axes, anchor, displays = inspect_open(
-            archive, measurement, construct
+        opening, corners, proxy, lines, dims, axes, anchor, displays, region = (
+            inspect_open(archive, measurement, construct)
         )
         rows.append((asset["sha256"], *opening))
         corner_rows.append((asset["sha256"], *corners))
@@ -185,6 +198,7 @@ def report(construct):
         axis_rows.append((asset["sha256"], *axes))
         anchor_rows.append((asset["sha256"], *anchor))
         display_rows.append((asset["sha256"], *displays))
+        region_rows.append((asset["sha256"], *region))
     return {
         "capture_revision": CAPTURE_REVISION,
         "captures": {row[0]: row[-1] for row in rows},
@@ -210,6 +224,9 @@ def report(construct):
         ).hexdigest(),
         "display_replay_sha256": sha256(
             json.dumps(display_rows, separators=(",", ":")).encode()
+        ).hexdigest(),
+        "region_replay_sha256": sha256(
+            json.dumps(region_rows, separators=(",", ":")).encode()
         ).hexdigest(),
         "nonzero_regen_times": sum(row[-2] != 0.0 for row in rows),
         "replay_sha256": sha256(
