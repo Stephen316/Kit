@@ -52,7 +52,7 @@ def CheckTiming(TmpPath: FilePath) -> None:
             "--outcome",
             "completed",
             "--reason",
-            "dependency timing fixture completed",
+            "completed timing fixture",
         )
     Window = ["--from-unix", "0", "--until-unix", str(TimeClock.time())]
     Pinned = ReadActivity(TmpPath, Window + ["--dependency-timing"])
