@@ -1,7 +1,6 @@
 """Construct a SOLIDWORKS metadata container and compare pinned P01 bookkeeping."""
 
 import argparse
-from dataclasses import dataclass
 import json
 from pathlib import Path
 from struct import Struct
@@ -23,10 +22,15 @@ from convert.adapters.solidworks.Config.RootLayout import KRootClass, LoadPartLa
 from convert.adapters.solidworks.Container.Archive import (
     ContainerMo,
     EncodeClass,
-    EncodeNull,
-    EncodeString,
     KNullKind,
     ReadTag,
+)
+from convert.adapters.solidworks.Container.Bookkeeping import (
+    EncodePartBookkeeping,
+    KConfigObjects as CONFIG_OBJECTS,
+    KDisplayUpdate as DISPLAY_STAMP,
+    KModelStamps as MODEL_STAMPS,
+    PartStamps,
 )
 from convert.adapters.solidworks.Container.ArchiveCursor import FieldCursor
 from convert.adapters.solidworks.Container.Container import (
@@ -38,9 +42,6 @@ from convert.adapters.solidworks.Container.Container import (
 )
 from convert.adapters.solidworks.Resolved.ResolvedHead import OpenResolved
 
-CONFIG_OBJECTS = "Contents/CnfgObjs"
-MODEL_STAMPS = "ModelStamps"
-DISPLAY_STAMP = f"_DL_VERSION_{KGeneration}/DLUpdateStamp"
 CONFIGURATION = "Contents/Config-0"
 RESOLVED = f"{CONFIGURATION}-ResolvedFeatures"
 LOAD_CRITICAL = {
@@ -51,40 +52,14 @@ LOAD_CRITICAL = {
     "Header2",
     RESOLVED,
 }
-SHORT_COUNT = Struct("<H")
 STAMP = Struct("<I")
 MODEL_VALUES = Struct("<III")
 RESOLVED_FIELDS = Struct("<iH")
 PRE_ATOM_FIELDS = Struct("<IHi2i")
 
 
-@dataclass(frozen=True)
-class PartStamps:
-    creation_time: int
-    update: int
-    body: int
-
-
 def metadata_streams(stamps):
-    require(
-        0 < stamps.creation_time <= 0x7FFFFFFF,
-        "creation time is outside the positive archive time branch",
-    )
-    require(
-        all(0 <= value <= 0xFFFFFFFF for value in (stamps.update, stamps.body)),
-        "model stamp is outside the unsigned 32-bit range",
-    )
-    config_objects = ()
-    referenced_configuration_names = ("", "")
-    return {
-        CONFIG_OBJECTS: SHORT_COUNT.pack(len(config_objects))
-        + EncodeNull()
-        + b"".join(EncodeString(name) for name in referenced_configuration_names),
-        MODEL_STAMPS: MODEL_VALUES.pack(
-            stamps.creation_time, stamps.update, stamps.body
-        ),
-        DISPLAY_STAMP: STAMP.pack(stamps.update) + EncodeNull(),
-    }
+    return EncodePartBookkeeping(KGeneration, stamps)
 
 
 def read_null(cursor):
