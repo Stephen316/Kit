@@ -69,7 +69,8 @@ class PlacementCodec(Protocol):
 # the bare research imports must resolve to these exact files for the scoped hosted test
 def LoadResearchMut(PatchValue: MonkeyPatch, NameValue: str) -> ModuleType:
     PathValue = FilePath(__file__).resolve().parents[3] / "re/solidworks/WriterResearch"
-    SpecValue = LoadSpec(NameValue, PathValue / f"{NameValue}.py")
+    ModulePath = PathValue.joinpath(*NameValue.split(".")).with_suffix(".py")
+    SpecValue = LoadSpec(NameValue, ModulePath)
     assert SpecValue is not None and SpecValue.loader is not None
     ModuleValue = LoadModule(SpecValue)
     PatchValue.setitem(Modules, NameValue, ModuleValue)

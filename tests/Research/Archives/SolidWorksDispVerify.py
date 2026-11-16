@@ -1,5 +1,3 @@
-from importlib import import_module as ImportModule
-from pathlib import Path as FilePath
 from struct import pack as PackFields
 from typing import Protocol, cast as CastValue
 
@@ -14,6 +12,7 @@ from convert.adapters.solidworks.Container.Definition import ArchiveWriter
 from convert.adapters.solidworks.Resolved.BossDepth import DepthDisplay
 from convert.adapters.solidworks.Resolved.BossEnd import ReadBossClose
 from tests.Research.Archives.SolidWorksCacheVerify import KFavoriteClass, KFavoriteName
+from tests.Research.Archives.SolidWorksDistCodecs import LoadResearchMut
 from tests.Research.Archives.SolidWorksDistInputs import ReadDistInputs
 from tests.Research.Archives.SolidWorksDistVerify import (
     KAuthoredWitness,
@@ -48,6 +47,27 @@ class DisplayCodec(Protocol):
         Generation: int,
         ConditionOne: bool,
     ) -> int: ...
+
+
+# load dependencies in constructor order without changing the broader import path
+def LoadDisplayMut(PatchValue: MonkeyPatch) -> DisplayCodec:
+    for ModuleName in (
+        "BlindDepth",
+        "DisplayHandle",
+        "BlindDimension",
+        "DisplayFavorite",
+        "DisplayMasks",
+        "DisplayForeshorten",
+        "DisplayBaseHead",
+        "DisplayBaseFields",
+        "DisplayCache",
+        "DisplayReturn",
+        "DisplayStyle",
+        "DisplayTail",
+        "Display.Opening",
+    ):
+        _ = LoadResearchMut(PatchValue, ModuleName)
+    return CastValue(DisplayCodec, LoadResearchMut(PatchValue, "Display.Compose"))
 
 
 # the anchored comparison checks all emitted bytes around four known input or state differences
@@ -86,9 +106,7 @@ def MakeDisplay(
     Generation: int,
     Measurements: bytes,
 ) -> int:
-    Research = FilePath(__file__).resolve().parents[3] / "re/solidworks/WriterResearch"
-    PatchValue.syspath_prepend(str(Research))
-    Codec = CastValue(DisplayCodec, ImportModule("Display.Compose"))
+    Codec = LoadDisplayMut(PatchValue)
     Measure = ReadDistInputs(Measurements, Variant)
     Geometry = Codec.DimGeometry(
         Measure["frame"], Measure["normal"], Measure["tangent"], Measure["reverse"]
